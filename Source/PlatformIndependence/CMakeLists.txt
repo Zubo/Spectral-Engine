@@ -4,4 +4,5 @@ include(CMakeSources.cmake)
 
 add_library(PlatformIndependence STATIC ${SpectralEngine_PlatformIndependence_SRC})
 
-target_link_libraries(PlatformIndependence ThirdParty)
+target_link_libraries(PlatformIndependence KHR)
+target_link_libraries(PlatformIndependence GLFW)

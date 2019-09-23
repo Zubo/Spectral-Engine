@@ -4,4 +4,3 @@ include(CMakeSources.cmake)
 
 add_library(Core STATIC ${SpectralEngine_Core_SRC})
 
-target_link_libraries(Core ThirdParty)
