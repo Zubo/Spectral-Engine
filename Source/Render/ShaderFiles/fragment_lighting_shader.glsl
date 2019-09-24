@@ -28,7 +28,7 @@ vec3 getLightDir()
 }
 
 float getAtentuation(float distance) {
-	return 1 / (1.0F + 0.14 * distance + 0.05 * distance * distance);
+	return 1 / (1.0F + 0.1 * distance + 0.01 * distance * distance);
 }
 
 vec3 getDiffuseLight() 
@@ -66,13 +66,10 @@ vec3 getFlashlightValue() {
 		return vec3(0.0F, 0.0F, 0.0F);
 	}
 
-	float reducer = 1.0F;
+	float reducer = (dotProd - 0.95) / (1.0F - 0.95);	// normalize dotProd
+	float atentuation = getAtentuation(length(FragPos - cameraPos));
 
-	if (dotProd < 0.99) {
-		reducer = dotProd;
-	}
-
-	return getAtentuation(length(FragPos - cameraPos)) * vec3(texture(material.diffuseMapTex, TexCoords)) * reducer;
+	return atentuation * vec3(texture(material.diffuseMapTex, TexCoords)) * reducer;
 }
 
 void main()
