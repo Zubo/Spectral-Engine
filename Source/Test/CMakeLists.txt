@@ -22,3 +22,6 @@ ExternalProject_Add(catch_external
 target_include_directories(Test PRIVATE ${Catch_INSTALL_DIR}/src/catch_external/single_include)
 
 target_link_libraries(Test Core)
+
+set_target_properties(Test PROPERTIES
+    FOLDER Test)
