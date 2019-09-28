@@ -32,6 +32,7 @@ int main(int argc, char** argv) {
 	sp::ResourcesPathProvider::initializePaths(rootPath);
 	sp::initScene(argv[0]);
 
+	glfwSwapInterval(0);
 	glEnable(GL_DEPTH_TEST);
 
 	float lastFrame = static_cast<float>(glfwGetTime());
@@ -44,7 +45,7 @@ int main(int argc, char** argv) {
 
 		window->update();
 		sp::Input::update();
-
+		
 		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 

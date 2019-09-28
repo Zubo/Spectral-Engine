@@ -28,12 +28,4 @@ namespace sp {
 
 	Shader::~Shader() {
 	}
-
-	unsigned int Shader::getId() {
-		return this->id;
-	}
-
-	GLenum Shader::getType() {
-		return this->type;
-	}
 }

@@ -12,6 +12,7 @@
 #include "Game/Components/Renderer.h"
 #include "Game/Components/Camera.h"
 #include "Game/Components/CameraInputHandler.h"
+#include "Game/Components/FPSCounter.h"
 #include "Game/Components/UI/TextRenderer.h"
 #include "Game/GameObject/GameObject.h"
 #include "Game/Vertices.h"
@@ -37,9 +38,10 @@ namespace sp {
 		std::weak_ptr<TextRenderer> const textRendererWeak = textGameObject->addComponent<TextRenderer>();
 		
 		if (std::shared_ptr<TextRenderer> const textRendererShared = textRendererWeak.lock()) {
-			textRendererShared->setText(text);
 			textRendererShared->setFont(fontPath);
 		}
+
+		textGameObject->addComponent<FPSCounter>();
 	}
 
 	void setRandomColors(std::weak_ptr<Material> materialWeak) {

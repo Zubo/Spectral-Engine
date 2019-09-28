@@ -11,8 +11,12 @@ namespace sp {
 		~Shader();
 	
 	public:
-		unsigned int getId();
-		GLenum getType();
+		inline unsigned int getId() {
+			return this->id;
+		};
+		inline GLenum getType() {
+			return this->type;
+		};
 
 	private:
 		unsigned int id;
