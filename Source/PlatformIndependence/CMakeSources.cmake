@@ -16,10 +16,10 @@ set(SpectralEngine_PlatformIndependence_Input_HEADER
     "Input/MouseInputManager.h"
     "Input/KeyCode.h")
 
-source_group("Source Files" ${SpectralEngine_PlatformIndependence_NoFilter_SRC})
-source_group("Header Files" ${SpectralEngine_PlatformIndependence_NoFilter_HEADER})
-source_group("Source Files\\Input" ${SpectralEngine_PlatformIndependence_Input_SRC})
-source_group("Header Files\\Input" ${SpectralEngine_PlatformIndependence_Input_HEADER})
+source_group("Source Files" FILES ${SpectralEngine_PlatformIndependence_NoFilter_SRC})
+source_group("Header Files" FILES ${SpectralEngine_PlatformIndependence_NoFilter_HEADER})
+source_group("Source Files\\Input" FILES ${SpectralEngine_PlatformIndependence_Input_SRC})
+source_group("Header Files\\Input" FILES ${SpectralEngine_PlatformIndependence_Input_HEADER})
 
 set(SpectralEngine_PlatformIndependence_SRC
     ${SpectralEngine_PlatformIndependence_NoFilter_SRC}
