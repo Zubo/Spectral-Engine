@@ -16,7 +16,7 @@
 #include "Game/Components/UI/TextRenderer.h"
 #include "Game/GameObject/GameObject.h"
 #include "Game/Vertices.h"
-#include "Render/VertexData.h"
+#include "Render/RenderData.h"
 #include "Game/Components/Rotator.h"
 #include "Render/UI/Font/Font.h"
 #include "Core/Math/Radian.h"
@@ -72,8 +72,8 @@ namespace sp {
 
 		std::weak_ptr<Renderer> rendererWeak = lightSourceGameObject->addComponent<Renderer>();
 		if (auto rendererShared = rendererWeak.lock()) {
-			VertexData vertexData{ verticesUV, (int)(sizeof(verticesUV) / sizeof(float)), indices, (int)sizeof(indices), true, false };
-			rendererShared->initRenderer(vertexData);
+			RenderData renderData{ verticesUV, (int)(sizeof(verticesUV) / sizeof(float)), indices, (int)sizeof(indices), true, false };
+			rendererShared->initRenderer(renderData);
 		}
 
 		std::weak_ptr<Transform> lightSourceTransformWeak = lightSourceGameObject->addComponent<Transform>();
@@ -124,8 +124,8 @@ namespace sp {
 
 			std::weak_ptr<Renderer> renderer = boxObjects[i].addComponent<Renderer>();
 			if (auto rendererShared = renderer.lock()) {
-				VertexData vertexData{ verticesUVNormals, (int)(sizeof(verticesUVNormals) / sizeof(float)), indices, (int)(sizeof(indices) / sizeof(int)), true, true };
-				rendererShared->initRenderer(vertexData);
+				RenderData renderData{ verticesUVNormals, (int)(sizeof(verticesUVNormals) / sizeof(float)), indices, (int)(sizeof(indices) / sizeof(int)), true, true };
+				rendererShared->initRenderer(renderData);
 			}
 
 			std::weak_ptr<Transform> transform = boxObjects[i].addComponent<Transform>();

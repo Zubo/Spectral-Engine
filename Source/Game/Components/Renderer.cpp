@@ -8,14 +8,14 @@
 #include "Game/Components/Transform.h"
 #include "PlatformIndependence/SpString.h"
 #include "Render/Shader/ShaderProgram.h"
-#include "Render/VertexData.h"
+#include "Render/RenderData.h"
 
 namespace sp {
 	Renderer::Renderer(GameObject * const gameObjectOwner) : GameObjectComponent(gameObjectOwner) {
 	}
 
-	void Renderer::initRenderer(VertexData const & vertexData) {
-		this->initializeVertexData(vertexData);
+	void Renderer::initRenderer(RenderData const & renderData) {
+		this->initializeRenderData(renderData);
 	}
 
 	void Renderer::render() const {
@@ -51,39 +51,39 @@ namespace sp {
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 	}
 
-	void Renderer::initializeVertexData(VertexData const & vertexData) {
+	void Renderer::initializeRenderData(RenderData const & renderData) {
 		glGenVertexArrays(1, &this->VAO);
 		glBindVertexArray(this->VAO);
 
 		glGenBuffers(1, &this->VBO);
 		glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
 
-		int const stride = vertexData.getStride() * sizeof(float);
+		int const stride = renderData.getStride() * sizeof(float);
 		int attribArrayIndex = 0;
 
 		glVertexAttribPointer(attribArrayIndex, 3, GL_FLOAT, GL_FALSE, stride, (void *)0);
 		glEnableVertexAttribArray(attribArrayIndex++);
 		int step = 3;
 
-		if (vertexData.hasNormalCoords()) {
+		if (renderData.hasNormalCoords()) {
 			void const * const stepPointer = (void *)(step * sizeof(float));
 			glVertexAttribPointer(attribArrayIndex, 3, GL_FLOAT, GL_FALSE, stride, stepPointer);
 			glEnableVertexAttribArray(attribArrayIndex++);
 			step += 3;
 		}
 
-		if (vertexData.hasUVCoords()) {
+		if (renderData.hasUVCoords()) {
 			void const * const stepPointer = (void *)(step * sizeof(float));
 			glVertexAttribPointer(attribArrayIndex, 2, GL_FLOAT, GL_FALSE, stride, stepPointer);
 			glEnableVertexAttribArray(attribArrayIndex++);
 			step += 2;
 		}
 
-		glBufferData(GL_ARRAY_BUFFER, vertexData.getDataArraySize() * sizeof(float), vertexData.getDataArray(), GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, renderData.getDataArraySize() * sizeof(float), renderData.getDataArray(), GL_STATIC_DRAW);
 	
 		glGenBuffers(1, &this->EBO);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, vertexData.getIndexCount() * sizeof(int), vertexData.getIndexArray(), GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, renderData.getIndexCount() * sizeof(int), renderData.getIndexArray(), GL_STATIC_DRAW);
 
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);

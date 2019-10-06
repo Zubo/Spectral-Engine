@@ -20,7 +20,7 @@ namespace sp {
 		void setText(SpString const & text);
 
 	private:
-		void generateVertexData();
+		void generateRenderData();
 		Vector2 const getPosition() const;
 		Vector2 const getScale() const;
 

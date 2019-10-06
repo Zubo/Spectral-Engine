@@ -12,6 +12,10 @@ namespace sp {
 		~GameObject();
 
 	public:
+		inline int getId() {
+			return this->id;
+		}
+
 		template <typename T>
 		std::weak_ptr<T> addComponent() {
 			std::shared_ptr<T> component = std::make_shared<T>(this);
@@ -37,8 +41,10 @@ namespace sp {
 
 
 	private:
+		int id;
 		std::vector<std::shared_ptr<GameObjectComponent>> components;
 		static int getGameObjectIndex(GameObject *);
 		static std::vector<GameObject *> gameObjectCollection;
+		static int nextId;
 	};
 }

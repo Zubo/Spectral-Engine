@@ -2,7 +2,11 @@
 #include "Game/GameObject/GameObject.h"
 
 namespace sp {
+	std::vector<GameObject *> GameObject::gameObjectCollection;
+	int GameObject::nextId{ 0 };
+
 	GameObject::GameObject() {
+		this->id = (++GameObject::nextId);
 		GameObject::gameObjectCollection.push_back(this);
 	}
 
@@ -37,6 +41,4 @@ namespace sp {
 
 		return -1;
 	}
-
-	std::vector<GameObject *> GameObject::gameObjectCollection;
 }

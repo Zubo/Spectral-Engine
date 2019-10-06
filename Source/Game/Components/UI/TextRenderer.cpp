@@ -16,7 +16,7 @@ sp::TextRenderer::TextRenderer(GameObject * const gameObject) : GameObjectCompon
 		ResourcesPathProvider::getShaderFilesDirectoryPath() + SpString{ "/vertex_text_shader.glsl" },
 		ResourcesPathProvider::getShaderFilesDirectoryPath() + SpString{ "/fragment_text_shader.glsl" } },
 	text{ "" } {
-	this->generateVertexData();
+	this->generateRenderData();
 }
 
 void sp::TextRenderer::render() const {
@@ -78,7 +78,7 @@ void sp::TextRenderer::setText(SpString const & text) {
 	this->text = text;
 }
 
-void sp::TextRenderer::generateVertexData() {
+void sp::TextRenderer::generateRenderData() {
 	glGenVertexArrays(1, &this->VAO);
 	glBindVertexArray(this->VAO);
 

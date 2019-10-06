@@ -2,7 +2,7 @@
 
 #include "Game/Components/GameObjectComponent.h"
 #include "Game/Components/Interface/IRenderer.h"
-#include "Render/VertexData.h"
+#include "Render/RenderData.h"
 
 
 namespace sp {
@@ -11,11 +11,11 @@ namespace sp {
 	class Renderer : public GameObjectComponent, public IRenderer {
 	public:
 		Renderer(GameObject * const gameObjectOwner);
-		void initRenderer(VertexData const & vertexData);
+		void initRenderer(RenderData const & renderData);
 		void render() const override;
 
 	private:
-		void initializeVertexData(VertexData const & vertexData);
+		void initializeRenderData(RenderData const & renderData);
 
 	private:
 		unsigned int VAO;

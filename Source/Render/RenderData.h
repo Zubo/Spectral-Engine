@@ -1,16 +1,15 @@
 #pragma once
 
 namespace sp {
-	class VertexData {
+	class RenderData {
 	public:
-		VertexData(
+		RenderData(
 			float const * const dataArray, int const arraySizeint, unsigned int const * const elementIndices, int const indexCount, bool const uvCoords, bool const normalCoords);
-		VertexData(VertexData const & vertexData);
-		VertexData(VertexData && vertexData);
-		~VertexData();
+		RenderData(RenderData const & renderData);
+		RenderData(RenderData && renderData);
+		~RenderData();
 
 	public:
-
 		int const getStride() const;
 		float const * const getDataArray() const;
 		int const getDataArraySize() const;
@@ -18,6 +17,9 @@ namespace sp {
 		int const getIndexCount() const;
 		bool const hasUVCoords() const;
 		bool const hasNormalCoords() const;
+
+	public:
+		RenderData const & operator=(RenderData const & renderData);
 
 	private:
 		float * const dataArray;

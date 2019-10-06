@@ -8,7 +8,7 @@
 #include "Core/Math/Vector3.h"
 #include "PlatformIndependence/SpString.h"
 #include "Render/Shader/ShaderProgram.h"
-#include "Render/VertexData.h"
+#include "Render/RenderData.h"
 
 namespace sp {
 	class Texture;
