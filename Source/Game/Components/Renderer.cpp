@@ -8,13 +8,13 @@
 #include "Game/Components/Transform.h"
 #include "PlatformIndependence/SpString.h"
 #include "Render/Shader/ShaderProgram.h"
-#include "Render/RenderData.h"
+#include "Render/Mesh.h"
 
 namespace sp {
 	Renderer::Renderer(GameObject * const gameObjectOwner) : GameObjectComponent(gameObjectOwner) {
 	}
 
-	void Renderer::initRenderer(RenderData const & renderData) {
+	void Renderer::initRenderer(Mesh const & renderData) {
 		this->initializeRenderData(renderData);
 	}
 
@@ -51,7 +51,7 @@ namespace sp {
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 	}
 
-	void Renderer::initializeRenderData(RenderData const & renderData) {
+	void Renderer::initializeRenderData(Mesh const & renderData) {
 		glGenVertexArrays(1, &this->VAO);
 		glBindVertexArray(this->VAO);
 

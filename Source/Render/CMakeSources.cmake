@@ -1,9 +1,13 @@
 set(SpectralEngine_Render_NoFilter_SRC
+    "Mesh.cpp"
+    "RenderDataInitializer.cpp"
     "RenderData.cpp"
     "RenderDataContainer.cpp"
 	"Texture.cpp")
     
 set(SpectralEngine_Render_NoFilter_HEADER
+    "Mesh.h"
+    "RenderDataInitializer.h"
     "RenderData.h"
     "RenderDataContainer.h"
 	"Texture.h")

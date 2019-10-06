@@ -40,6 +40,7 @@ namespace sp {
 
 		return resultMatrix;
 	}
+
 	float const * Matrix4x4::getValuePtr() const
 	{
 		return reinterpret_cast<float const *>(values);

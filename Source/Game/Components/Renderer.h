@@ -2,20 +2,20 @@
 
 #include "Game/Components/GameObjectComponent.h"
 #include "Game/Components/Interface/IRenderer.h"
-#include "Render/RenderData.h"
 
 
 namespace sp {
 	class GameObject;
+	class Mesh;
 
 	class Renderer : public GameObjectComponent, public IRenderer {
 	public:
 		Renderer(GameObject * const gameObjectOwner);
-		void initRenderer(RenderData const & renderData);
+		void initRenderer(Mesh const & renderData);
 		void render() const override;
 
 	private:
-		void initializeRenderData(RenderData const & renderData);
+		void initializeRenderData(Mesh const & renderData);
 
 	private:
 		unsigned int VAO;
