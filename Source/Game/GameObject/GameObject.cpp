@@ -7,6 +7,7 @@ namespace sp {
 
 	GameObject::GameObject() {
 		this->id = (++GameObject::nextId);
+		this->isActive = true;
 		GameObject::gameObjectCollection.push_back(this);
 	}
 

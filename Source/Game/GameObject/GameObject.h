@@ -12,8 +12,12 @@ namespace sp {
 		~GameObject();
 
 	public:
-		inline int getId() {
+		inline int const getId() const {
 			return this->id;
+		}
+
+		inline bool const isActive() const {
+			return this->isActive;
 		}
 
 		template <typename T>
@@ -42,6 +46,7 @@ namespace sp {
 
 	private:
 		int id;
+		bool isActive;
 		std::vector<std::shared_ptr<GameObjectComponent>> components;
 		static int getGameObjectIndex(GameObject *);
 		static std::vector<GameObject *> gameObjectCollection;

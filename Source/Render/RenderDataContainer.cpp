@@ -3,12 +3,14 @@
 #include "Render/RenderData.h"
 
 namespace sp {
+	RenderDataContainer RenderDataContainer::instance;
+
 	RenderData const RenderDataContainer::getRenderData(int const gameObjectId) const {
 		return this->renderDataMap.at(gameObjectId);
 	}
 
-	std::map<int, RenderData>::const_iterator RenderDataContainer::getRenderDataIterator() const {
-		return this->renderDataMap.begin();
+	std::map<int, RenderData> const & RenderDataContainer::getRenderDataMap() const {
+		return this->renderDataMap;
 	}
 
 	void RenderDataContainer::updateRenderData(int const gameObjectId, RenderData const & renderData) {
@@ -22,5 +24,8 @@ namespace sp {
 			std::pair<int, RenderData> pair{ gameObjectId, renderData };
 			this->renderDataMap.insert(pair);
 		}
+	}
+	RenderDataContainer & RenderDataContainer::GetInstance() {
+		return RenderDataContainer::instance;
 	}
 }

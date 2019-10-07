@@ -1,0 +1,3 @@
+namespace sp {
+	void renderAll();
+}

@@ -11,15 +11,7 @@ namespace sp {
 	class Renderer : public GameObjectComponent, public IRenderer {
 	public:
 		Renderer(GameObject * const gameObjectOwner);
-		void initRenderer(Mesh const & renderData);
+		void initRenderer(Mesh const & mesh, ShaderProgram const & shaderProgram);
 		void render() const override;
-
-	private:
-		void initializeRenderData(Mesh const & renderData);
-
-	private:
-		unsigned int VAO;
-		unsigned int VBO;
-		unsigned int EBO;
 	};
 }
