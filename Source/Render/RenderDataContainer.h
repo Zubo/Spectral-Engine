@@ -7,9 +7,9 @@ namespace sp {
 
 	class RenderDataContainer {
 	public:
-		RenderData const getRenderData(int const gameObjectId) const;;
+		RenderData const & getRenderData(int const gameObjectId) const;
 		std::map<int, RenderData> const & getRenderDataMap() const;
-		void updateRenderData(int const gameObjectId, RenderData const & renderData);
+		void updateRenderData(RenderData const & renderData);
 		static RenderDataContainer & GetInstance();
 
 	private:

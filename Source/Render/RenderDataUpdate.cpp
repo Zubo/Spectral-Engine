@@ -1,4 +1,4 @@
-#include "Render/RenderDataInitializer.h"
+#include "Render/RenderDataUpdate.h"
 
 #include "glad/glad.h"
 #include "Render/Mesh.h"
@@ -6,8 +6,9 @@
 #include "Render/RenderDataContainer.h"
 #include "Render/Shader/ShaderProgram.h"
 
-void sp::initializeRenderData(int const gameObjectId, ShaderProgram const shaderProgram, bool const active, bool isStatic, Mesh const & mesh) {
+void sp::updateRenderData(int const gameObjectId, ShaderProgram const shaderProgram, bool const active, bool isStatic, Mesh const & mesh) {
 	RenderData renderData{ gameObjectId, shaderProgram, active, isStatic };
+	renderData.gameObjectId = gameObjectId;
 
 	glGenVertexArrays(1, &renderData.VAO);
 	glBindVertexArray(renderData.VAO);
@@ -48,5 +49,12 @@ void sp::initializeRenderData(int const gameObjectId, ShaderProgram const shader
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
-	renderDataContainer.updateRenderData(gameObjectId, renderData);
+	renderDataContainer.updateRenderData(renderData);
+}
+
+void sp::updateMVPMatrix(int const gameObjectId, Matrix4x4 const & matrix) {
+	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
+	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
+	renderData.mvpMatrix = matrix;
+	renderDataContainer.updateRenderData(renderData);
 }

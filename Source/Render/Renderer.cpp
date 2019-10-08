@@ -13,8 +13,13 @@ namespace sp {
 		
 		for (iterator; iterator != end; ++iterator) {
 			RenderData const & renderData = iterator->second;
+
+			if (renderData.changedMVP) {
+				// Update mvp matrix
+			}
+
 			glBindVertexArray(renderData.VAO);
-			glDrawArrays(GL_TRIANGLES, 0, renderData.elementCount);
+			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
 
 	}

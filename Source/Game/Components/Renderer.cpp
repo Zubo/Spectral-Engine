@@ -9,7 +9,7 @@
 #include "PlatformIndependence/SpString.h"
 #include "Render/Shader/ShaderProgram.h"
 #include "Render/Mesh.h"
-#include "Render/RenderDataInitializer.h"
+#include "Render/RenderDataUpdate.h"
 
 namespace sp {
 	Renderer::Renderer(GameObject * const gameObjectOwner) : GameObjectComponent(gameObjectOwner) {
@@ -20,7 +20,7 @@ namespace sp {
 		int const gameObjectId = gameObjectOwner->getId();
 		bool const isActive = gameObjectOwner->isActive();
 		bool const isStatic = false;
-		initializeRenderData(gameObjectId, shaderProgram, isActive, isStatic, mesh);
+		updateRenderData(gameObjectId, shaderProgram, isActive, isStatic, mesh);
 	}
 
 	void Renderer::render() const {
