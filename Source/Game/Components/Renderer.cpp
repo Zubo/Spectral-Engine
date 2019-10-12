@@ -18,7 +18,7 @@ namespace sp {
 	void Renderer::initRenderer(Mesh const & mesh, ShaderProgram const & shaderProgram) {
 		GameObject const * const gameObjectOwner = this->gameObjectOwner;
 		int const gameObjectId = gameObjectOwner->getId();
-		bool const isActive = gameObjectOwner->isActive();
+		bool const isActive = gameObjectOwner->getIsActive();
 		bool const isStatic = false;
 		updateRenderData(gameObjectId, shaderProgram, isActive, isStatic, mesh);
 	}

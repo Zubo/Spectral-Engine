@@ -19,8 +19,10 @@ namespace sp {
 		unsigned int VBO;
 		unsigned int EBO;
 		unsigned int elementCount;
-		Matrix4x4 mvpMatrix;
-		bool changedMVP;
+		Matrix4x4 translationMatrix;
+		Matrix4x4 roatationMatrix;
+		Matrix4x4 scaleMatrix;
+		bool modelMatrixChanged;
 		ShaderProgram shaderProgram;
 	};
 }

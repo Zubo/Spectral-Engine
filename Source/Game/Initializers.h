@@ -73,6 +73,7 @@ namespace sp {
 		std::weak_ptr<Renderer> rendererWeak = lightSourceGameObject->addComponent<Renderer>();
 		if (auto rendererShared = rendererWeak.lock()) {
 			Mesh mesh{ verticesUV, (int)(sizeof(verticesUV) / sizeof(float)), indices, (int)sizeof(indices), true, false };
+			ShaderProgram shaderProgram{ vertexLightingShaderPath, fragmentLightingShaderPath };
 			rendererShared->initRenderer(mesh);
 		}
 

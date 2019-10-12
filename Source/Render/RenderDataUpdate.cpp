@@ -52,9 +52,23 @@ void sp::updateRenderData(int const gameObjectId, ShaderProgram const shaderProg
 	renderDataContainer.updateRenderData(renderData);
 }
 
-void sp::updateMVPMatrix(int const gameObjectId, Matrix4x4 const & matrix) {
+void sp::updateTranslationMatrix(int const gameObjectId, Matrix4x4 const & matrix) {
 	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
 	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
-	renderData.mvpMatrix = matrix;
+	renderData.translationMatrix = matrix;
+	renderDataContainer.updateRenderData(renderData);
+}
+
+void sp::updateRotationMatrix(int const gameObjectId, Matrix4x4 const & matrix) {
+	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
+	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
+	renderData.roatationMatrix = matrix;
+	renderDataContainer.updateRenderData(renderData);
+}
+
+void sp::updateScaleMatrix(int const gameObjectId, Matrix4x4 const & matrix) {
+	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
+	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
+	renderData.scaleMatrix = matrix;
 	renderDataContainer.updateRenderData(renderData);
 }

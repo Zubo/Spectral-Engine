@@ -16,7 +16,7 @@ namespace sp {
 			return this->id;
 		}
 
-		inline bool const isActive() const {
+		inline bool const getIsActive() const {
 			return this->isActive;
 		}
 
