@@ -1,5 +1,6 @@
 set(SpectralEngine_Render_NoFilter_SRC
     "Mesh.cpp"
+    "MeshContainer.cpp"
     "RenderDataUpdate.cpp"
     "RenderData.cpp"
     "RenderDataContainer.cpp"
@@ -8,6 +9,7 @@ set(SpectralEngine_Render_NoFilter_SRC
     
 set(SpectralEngine_Render_NoFilter_HEADER
     "Mesh.h"
+    "MeshContainer.h"
     "RenderDataUpdate.h"
     "RenderData.h"
     "RenderDataContainer.h"

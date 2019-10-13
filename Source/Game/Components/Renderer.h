@@ -6,12 +6,11 @@
 
 namespace sp {
 	class GameObject;
-	class Mesh;
 
 	class Renderer : public GameObjectComponent, public IRenderer {
 	public:
 		Renderer(GameObject * const gameObjectOwner);
-		void initRenderer(Mesh const & mesh, ShaderProgram const & shaderProgram);
+		void initRenderer(unsigned int const meshId);
 		void render() const override;
 	};
 }

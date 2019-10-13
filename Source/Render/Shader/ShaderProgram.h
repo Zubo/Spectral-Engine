@@ -5,7 +5,7 @@
 namespace sp {
 	class ShaderProgram {
 	public:
-		ShaderProgram() = delete;
+		ShaderProgram() = default;
 		ShaderProgram(SpString vertexShaderPath, SpString fragmentShaderPath);
 		~ShaderProgram();
 		void use() const;

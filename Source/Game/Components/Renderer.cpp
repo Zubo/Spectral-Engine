@@ -8,19 +8,18 @@
 #include "Game/Components/Transform.h"
 #include "PlatformIndependence/SpString.h"
 #include "Render/Shader/ShaderProgram.h"
-#include "Render/Mesh.h"
 #include "Render/RenderDataUpdate.h"
 
 namespace sp {
 	Renderer::Renderer(GameObject * const gameObjectOwner) : GameObjectComponent(gameObjectOwner) {
 	}
 
-	void Renderer::initRenderer(Mesh const & mesh, ShaderProgram const & shaderProgram) {
+	void Renderer::initRenderer(unsigned int const meshId) {
 		GameObject const * const gameObjectOwner = this->gameObjectOwner;
 		int const gameObjectId = gameObjectOwner->getId();
 		bool const isActive = gameObjectOwner->getIsActive();
 		bool const isStatic = false;
-		updateRenderData(gameObjectId, shaderProgram, isActive, isStatic, mesh);
+		createRenderData(gameObjectId, isActive, isStatic, meshId);
 	}
 
 	void Renderer::render() const {

@@ -2,8 +2,8 @@
 
 namespace sp {
 	RenderData::RenderData(
-		int const gameObjectId, ShaderProgram const shaderProgram, bool const active, bool isStatic)
-		: gameObjectId{ gameObjectId }, shaderProgram{ shaderProgram }, active{ active }, isStatic{ isStatic } {
+		int const gameObjectId, bool const active, bool const isStatic)
+		: gameObjectId{ gameObjectId }, active{ active }, isStatic{ isStatic } {
 	}
 
 	RenderData const & RenderData::operator=(RenderData const & renderData) {

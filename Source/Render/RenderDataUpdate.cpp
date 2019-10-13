@@ -2,13 +2,22 @@
 
 #include "glad/glad.h"
 #include "Render/Mesh.h"
+#include "Render/MeshContainer.h"
 #include "Render/RenderData.h"
 #include "Render/RenderDataContainer.h"
 #include "Render/Shader/ShaderProgram.h"
 
-void sp::updateRenderData(int const gameObjectId, ShaderProgram const shaderProgram, bool const active, bool isStatic, Mesh const & mesh) {
-	RenderData renderData{ gameObjectId, shaderProgram, active, isStatic };
+void sp::createRenderData(int const gameObjectId, bool const active, unsigned int const meshId, bool const isStatic) {
+	RenderData renderData{ gameObjectId, active, isStatic };
 	renderData.gameObjectId = gameObjectId;
+
+	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
+	renderDataContainer.updateRenderData(renderData);
+}
+
+void sp::updateObjectMesh(int const gameObjectId, unsigned int const meshId, bool isStatic) {
+	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
+	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 
 	glGenVertexArrays(1, &renderData.VAO);
 	glBindVertexArray(renderData.VAO);
@@ -16,6 +25,7 @@ void sp::updateRenderData(int const gameObjectId, ShaderProgram const shaderProg
 	glGenBuffers(1, &renderData.VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, renderData.VBO);
 
+	Mesh const & mesh = MeshContainer::getMesh(meshId);
 	int const stride = mesh.getStride() * sizeof(float);
 	int attribArrayIndex = 0;
 
@@ -36,7 +46,7 @@ void sp::updateRenderData(int const gameObjectId, ShaderProgram const shaderProg
 		glEnableVertexAttribArray(attribArrayIndex++);
 		step += 2;
 	}
-	
+
 	int draw = (isStatic) ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW;
 	glBufferData(GL_ARRAY_BUFFER, mesh.getDataArraySize() * sizeof(float), mesh.getDataArray(), draw);
 
@@ -48,7 +58,15 @@ void sp::updateRenderData(int const gameObjectId, ShaderProgram const shaderProg
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+	renderDataContainer.updateRenderData(renderData);
+}
+
+void sp::updateShaderProgram(int const gameObjectId, ShaderProgram const shaderProgram) {
 	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
+	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
+
+	renderData.shaderProgram = shaderProgram;
+
 	renderDataContainer.updateRenderData(renderData);
 }
 

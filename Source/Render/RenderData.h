@@ -6,7 +6,7 @@
 namespace sp {
 	class RenderData {
 	public:
-		RenderData(int const gameObjectId, ShaderProgram const shaderProgram, bool const active, bool isStatic);
+		RenderData(int const gameObjectId, bool const active, bool const isStatic);
 
 	public:
 		RenderData const & operator=(RenderData const & renderData);
