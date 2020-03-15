@@ -6,6 +6,13 @@ namespace sp {
 		: gameObjectId{ gameObjectId }, active{ active }, isStatic{ isStatic } {
 	}
 
+	Matrix4x4 const RenderData::GetModelMatrix() const {
+		return 
+			this->roatationMatrix *
+			this->scaleMatrix *
+			this->translationMatrix;
+	}
+
 	RenderData const & RenderData::operator=(RenderData const & renderData) {
 		return RenderData{ renderData };
 	}

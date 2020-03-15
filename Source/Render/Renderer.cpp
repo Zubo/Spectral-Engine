@@ -3,6 +3,7 @@
 #include "glad/glad.h"
 #include "Render/RenderData.h"
 #include "RenderDataContainer.h"
+#include "PlatformIndependence/SpString.h"
 
 namespace sp {
 	void renderAll() {
@@ -15,7 +16,9 @@ namespace sp {
 			RenderData const & renderData = iterator->second;
 
 			if (renderData.modelMatrixChanged) {
-				// Update model matrix
+				Matrix4x4 const modelMatrix = renderData.GetModelMatrix();
+				SpString const & modelMatrixUniformName = "mvpMatrix";
+					renderData.shaderProgram.setMatrix4fv(modelMatrixUniformName, modelMatrix.getValuePtr());
 			}
 
 			glBindVertexArray(renderData.VAO);

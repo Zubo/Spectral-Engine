@@ -7,6 +7,7 @@ namespace sp {
 	class RenderData {
 	public:
 		RenderData(int const gameObjectId, bool const active, bool const isStatic);
+		Matrix4x4 const GetModelMatrix() const;
 
 	public:
 		RenderData const & operator=(RenderData const & renderData);
