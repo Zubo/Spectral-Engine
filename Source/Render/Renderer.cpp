@@ -7,7 +7,7 @@
 
 namespace sp {
 	void renderAll() {
-		RenderDataContainer const & renderDataContainer = RenderDataContainer::GetInstance();
+		RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
 
 		auto iterator = renderDataContainer.getRenderDataMap().cbegin();
 		auto end = renderDataContainer.getRenderDataMap().cend();
@@ -24,5 +24,7 @@ namespace sp {
 			glBindVertexArray(renderData.VAO);
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
+
+		renderDataContainer.resetAllModelMatrixUpdated();
 	}
 }

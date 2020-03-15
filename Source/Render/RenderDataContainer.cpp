@@ -26,6 +26,17 @@ namespace sp {
 			this->renderDataMap.insert(pair);
 		}
 	}
+
+	void RenderDataContainer::resetAllModelMatrixUpdated() {
+		auto renderDataIter = this->renderDataMap.begin();
+		auto const renderDataIterEnd = this->renderDataMap.end();
+
+		for (renderDataIter; renderDataIter != renderDataIterEnd; ++renderDataIter) {
+			sp::RenderData & renderData = renderDataIter->second;
+			renderData.modelMatrixChanged = false;
+		}
+	}
+
 	RenderDataContainer & RenderDataContainer::GetInstance() {
 		return RenderDataContainer::instance;
 	}
