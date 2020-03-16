@@ -26,8 +26,5 @@ namespace sp {
 		Vector3 const getForward() const;
 
 	private:
-		Degree fov;
-		int screenWidth;
-		int screenHeight;
 	};
 }

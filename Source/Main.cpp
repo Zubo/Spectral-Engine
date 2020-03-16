@@ -12,6 +12,7 @@
 #include "Game/Vertices.h"
 #include "PlatformIndependence/Input/Input.h"
 #include "PlatformIndependence/SpWindow.h"
+#include "Render/Renderer.h"
 
 #include "Core/Math/Vector3.h"
 
@@ -49,10 +50,10 @@ int main(int argc, char** argv) {
 		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		float oscilationFactor = (sin(currentFrame) / 2) + 0.5F;
-		float color[3] = { 1.0F - oscilationFactor, oscilationFactor, 0.5 };
+		/*float oscilationFactor = (sin(currentFrame) / 2) + 0.5F;
+		float color[3] = { 1.0F - oscilationFactor, oscilationFactor, 0.5 };*/
 
-		std::vector<sp::GameObject *> gameObjectCollection = sp::GameObject::getGameObjectCollection();
+		/*std::vector<sp::GameObject *> gameObjectCollection = sp::GameObject::getGameObjectCollection();
 		for (auto const & gameObject : gameObjectCollection) {
 			auto rendererWeak = gameObject->getComponent<sp::Renderer>();
 			if (auto rendererShared = rendererWeak.lock()) {
@@ -64,7 +65,9 @@ int main(int argc, char** argv) {
 			if (auto rendererShared = rendererWeak.lock()) {
 				rendererShared->render();
 			}
-		}
+		}*/
+
+		sp::renderAll();
 
 		glfwSwapBuffers(window->getConcreteWindow());
 		glfwPollEvents();

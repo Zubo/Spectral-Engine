@@ -5,7 +5,8 @@ set(SpectralEngine_Render_NoFilter_SRC
     "RenderData.cpp"
     "RenderDataContainer.cpp"
     "Renderer.cpp"
-	"Texture.cpp")
+    "Texture.cpp"
+    "CameraData.cpp")
     
 set(SpectralEngine_Render_NoFilter_HEADER
     "Mesh.h"
@@ -14,7 +15,8 @@ set(SpectralEngine_Render_NoFilter_HEADER
     "RenderData.h"
     "RenderDataContainer.h"
     "Renderer.h"
-	"Texture.h")
+    "Texture.h"
+    "CameraData.h")
 
 set(SpectralEngine_Render_Shader_SRC
     "Shader/ShaderCompilationException.cpp"
