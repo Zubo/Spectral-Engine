@@ -11,6 +11,5 @@ namespace sp {
 	public:
 		Renderer(GameObject * const gameObjectOwner);
 		void initRenderer(unsigned int const meshId);
-		void render() const override;
 	};
 }

@@ -5,7 +5,7 @@
 #include "Core/Math/Vector3.h"
 
 namespace sp {
-	Matrix4x4 const CameraData::GetViewMatrix() {
+	Matrix4x4 const & CameraData::GetViewMatrix() {
 		Vector3 const worldUp{ 0.0F, 1.0F, 0.0f };
 		Vector3 const forward = CameraData::getForward();
 		Vector3 const right = Vector3::cross(forward, worldUp).normalized();
@@ -15,7 +15,7 @@ namespace sp {
 		return lookAt;
 	}
 
-	Matrix4x4 const CameraData::GetProjectionMatrix() {
+	Matrix4x4 const & CameraData::GetProjectionMatrix() {
 		float aspect = static_cast<float>(CameraData::screenWidth) / CameraData::screenHeight;
 		return getPerspectiveMat(CameraData::fov, aspect, 0.1F, 100.0F);
 	}
@@ -35,14 +35,29 @@ namespace sp {
 		CameraData::dataChanged = true;
 	}
 
+	Vector3 const CameraData::getTranslation()
+	{
+		return CameraData::translation;
+	}
+
 	void CameraData::setTranslation(Vector3 const & translation) {
 		CameraData::translation = translation;
 		CameraData::dataChanged = true;
 	}
 
+	Vector3 const CameraData::getRotation()
+	{
+		return CameraData::rotation;
+	}
+
 	void CameraData::setRotation(Vector3 const & rotation) {
 		CameraData::rotation = rotation;
 		CameraData::dataChanged = true;
+	}
+
+	bool const CameraData::getDataChanged()
+	{
+		return CameraData::dataChanged;
 	}
 
 	void CameraData::setDataChangedToFalse() {

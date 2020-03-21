@@ -1,5 +1,6 @@
 #include "Transform.h"
 #include "Core/Math/Degree.h"
+#include "Core/Math/Direction.h"
 #include "Core/Math/LinearTransformations.h"
 #include "Core/Math/Matrix4x4.h"
 
@@ -31,19 +32,6 @@ namespace sp {
 
 	Vector3 const Transform::getRotationEuler() const {
 		return this->rotationEuler;
-	}
-
-	Vector3 const Transform::getDirection() const {
-		Vector3 const eulerAngles = getRotationEuler();
-		Degree const eulerX{ eulerAngles.x };
-		Degree const eulerY{ eulerAngles.y };
-		Vector3 const dir = Vector3{
-			cos(eulerX) * cos(eulerY),
-			sin(eulerX),
-			cos(eulerX) * sin(eulerY)
-		};
-
-		return dir;
 	}
 
 	void Transform::setRotationEuler(Vector3 const & rotation) {

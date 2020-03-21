@@ -15,7 +15,8 @@ set(SpectralEngine_Core_Math_SRC
 	"Math/Vector3.cpp"
 	"Math/Vector2.cpp"
 	"Math/Quaternion.cpp"
-	"Math/Matrix4x4.cpp")
+	"Math/Matrix4x4.cpp"
+	"Math/Direction.cpp")
 
 set(SpectralEngine_Core_Math_HEADER
 	"Math/SpMath.h"
@@ -25,7 +26,8 @@ set(SpectralEngine_Core_Math_HEADER
 	"Math/Vector3.h"
 	"Math/Vector2.h"
 	"Math/Quaternion.h"
-	"Math/Matrix4x4.h")
+	"Math/Matrix4x4.h"
+	"Math/Direction.h")
 
 set(SpectralEngine_Core_Utility_HEADER
 	"Utility/ResourcesPathProvider.h")

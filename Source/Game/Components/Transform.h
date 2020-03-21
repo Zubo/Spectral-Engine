@@ -13,7 +13,6 @@ namespace sp {
 		void setPosition(Vector3 const & positon);
 		Matrix4x4 const getTransformMatrix() const;
 		Vector3 const getRotationEuler() const;
-		Vector3 const getDirection() const;
 		void setRotationEuler(Vector3 const & rotation);
 		void setScale(Vector3 const & scale);
 		Vector3 const getScale() const;
