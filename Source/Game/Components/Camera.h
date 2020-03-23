@@ -21,7 +21,5 @@ namespace sp {
 	public:
 		Camera(GameObject * gameObjectOwner);
 		void initCamera(Degree fov, int screenWidth, int screenHeight);
-
-	private:
 	};
 }

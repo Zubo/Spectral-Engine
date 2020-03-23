@@ -1,9 +1,11 @@
 #include "CameraInputHandler.h"
+
+#include "Core/Math/Vector2.h"
 #include "Game/Components/Camera.h"
 #include "Game/Components/Transform.h"
 #include "Game/GameObject/GameObject.h"
+#include "Render/CameraData.h"
 #include "PlatformIndependence/Input/Input.h"
-#include "Core/Math/Vector2.h"
 
 namespace sp {
 	CameraInputHandler::CameraInputHandler(GameObject * gameObject) : GameObjectComponent{ gameObject } {
@@ -42,10 +44,7 @@ namespace sp {
 	 	auto const transformWeak = this->getGameObject()->getComponent<Transform>();
 		std::weak_ptr<Camera> cameraWeak = this->getGameObject()->getComponent<Camera>();
 
-		Vector3 cameraFront;
-		if (std::shared_ptr<Camera> cameraShared = cameraWeak.lock()) {
-	 		cameraFront = cameraShared->getForward();
-		}
+		Vector3 cameraFront = CameraData::getForward();
 
 	 	if (auto transformShared = transformWeak.lock()) {
 	 		Vector3 position = transformShared->getPosition();

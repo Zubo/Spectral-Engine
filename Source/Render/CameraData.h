@@ -18,8 +18,6 @@ namespace sp {
 		static void setRotation(Vector3 const & rotation);
 		static bool const getDataChanged();
 		static void setDataChangedToFalse();
-
-	private:
 		static Vector3 const getForward();
 
 	private:

@@ -1,6 +1,7 @@
 #include "Render/CameraData.h"
 
-#include "Core/Math/Degree.h"
+#include "Core/Math/Degree.h"#
+#include "Core/Math/Direction.h"
 #include "Core/Math/LinearTransformations.h"
 #include "Core/Math/Vector3.h"
 
@@ -65,14 +66,11 @@ namespace sp {
 	}
 
 	Vector3 const CameraData::getForward() {
-		Vector3 rotation = CameraData::rotation;
-		Degree rotX{ rotation.x };
-		Degree rotY{ rotation.y };
-		float const x = static_cast<float>(cos(rotX) * cos(rotY));
-		float const y = static_cast<float>(sin(rotX));
-		float const z = static_cast<float>(cos(rotX) * sin(rotY));
+		Vector3 const rotation = CameraData::rotation;
+		Degree const rotX{ rotation.x };
+		Degree const rotY{ rotation.y };
 
-		return Vector3{ x, y, z };
+		return getDirection(rotX, rotY);
 	}
 
 	bool CameraData::dataChanged = false;
