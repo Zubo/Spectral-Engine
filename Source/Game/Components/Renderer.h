@@ -7,7 +7,7 @@
 namespace sp {
 	class GameObject;
 
-	class Renderer : public GameObjectComponent, public IRenderer {
+	class Renderer : public GameObjectComponent {
 	public:
 		Renderer(GameObject * const gameObjectOwner);
 		void initRenderer(unsigned int const meshId);

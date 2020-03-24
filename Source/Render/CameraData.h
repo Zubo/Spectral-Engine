@@ -7,8 +7,8 @@ namespace sp {
 
 	class CameraData {
 	public:
-		static Matrix4x4 const & GetViewMatrix();
-		static Matrix4x4 const & GetProjectionMatrix();
+		static Matrix4x4 const GetViewMatrix();
+		static Matrix4x4 const GetProjectionMatrix();
 		static void setFov(Degree const & fov);
 		static void setScreenWidth(int const screenWidth);
 		static void setScreenHeight(int const screenHeight);
