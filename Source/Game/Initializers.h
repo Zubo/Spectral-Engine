@@ -7,6 +7,7 @@
 #include <time.h>
 
 #include "Render/Shader/Shader.h"
+#include "Game/Components/CameraTransform.h"
 #include "Game/Components/Material.h"
 #include "Game/Components/Transform.h"
 #include "Game/Components/Renderer.h"
@@ -139,7 +140,7 @@ namespace sp {
 
 	void initScene(SpString const & executablePath) {
 		GameObject * const cameraGameObject = new GameObject();
-		auto cameraTransformWeak = cameraGameObject->addComponent<Transform>();
+		auto cameraTransformWeak = cameraGameObject->addComponent<CameraTransform>();
 		auto cameraWeak = cameraGameObject->addComponent<Camera>();
 		cameraGameObject->addComponent<CameraInputHandler>();
 

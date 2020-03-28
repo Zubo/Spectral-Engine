@@ -8,7 +8,6 @@
 #include "Render/CameraData.h"
 
 namespace sp {
-	// TODO: Camera should have a special Transform component that updates CameraData
 	std::shared_ptr<Camera> Camera::mainCamera;
 
 	Camera::Camera(GameObject * gameObjectOwner) : GameObjectComponent{ gameObjectOwner } {

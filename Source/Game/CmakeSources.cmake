@@ -10,7 +10,8 @@ set(SpectralEngine_Game_Components_SRC
     "Components/Transform.cpp"
     "Components/Rotator.cpp"
     "Components/CameraInputHandler.cpp"
-    "Components/FPSCounter.cpp")
+    "Components/FPSCounter.cpp"
+    "Components/CameraTransform.cpp")
 
 set(SpectralEngine_Game_Components_HEADER
     "Components/Camera.h"
@@ -20,7 +21,8 @@ set(SpectralEngine_Game_Components_HEADER
     "Components/Transform.h"
     "Components/Rotator.h"
     "Components/CameraInputHandler.h"
-    "Components/FPSCounter.h")
+    "Components/FPSCounter.h"
+    "Components/CameraTransform.h")
     
 set(SpectralEngine_Game_Components_UI_SRC
     "Components/UI/TextRenderer.cpp")
