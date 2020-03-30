@@ -11,7 +11,7 @@ namespace sp {
 		Matrix4x4 const GetModelMatrix() const;
 
 	public:
-		RenderData const & operator=(RenderData const & renderData);
+		RenderData const operator=(RenderData const & renderData);
 
 	public:
 		int gameObjectId;

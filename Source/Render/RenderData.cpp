@@ -21,7 +21,7 @@ namespace sp {
 		return modelMatrix;
 	}
 
-	RenderData const & RenderData::operator=(RenderData const & renderData) {
+	RenderData const RenderData::operator=(RenderData const & renderData) {
 		return RenderData{ renderData };
 	}
 }

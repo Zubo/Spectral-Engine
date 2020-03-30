@@ -15,16 +15,7 @@ namespace sp {
 
 	void RenderDataContainer::updateRenderData(RenderData const & renderData) {
 		int const gameObjectId = renderData.gameObjectId;
-		auto const gameObjectIter{ this->renderDataMap.find(gameObjectId) };
-		bool const renderDataExists{ (gameObjectIter != this->renderDataMap.end()) };
-
-		if (renderDataExists) {
-			gameObjectIter->second = renderData;
-		}
-		else {
-			std::pair<int, RenderData> pair{ gameObjectId, renderData };
-			this->renderDataMap.insert(pair);
-		}
+		this->renderDataMap.insert_or_assign(gameObjectId, renderData);
 	}
 
 	void RenderDataContainer::resetAllModelMatrixUpdated() {

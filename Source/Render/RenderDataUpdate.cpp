@@ -13,6 +13,7 @@ void sp::createRenderData(int const gameObjectId, bool const active, unsigned in
 
 	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
 	renderDataContainer.updateRenderData(renderData);
+	sp::updateObjectMesh(gameObjectId, meshId, isStatic);
 }
 
 void sp::updateObjectMesh(int const gameObjectId, unsigned int const meshId, bool isStatic) {
@@ -46,7 +47,7 @@ void sp::updateObjectMesh(int const gameObjectId, unsigned int const meshId, boo
 		glEnableVertexAttribArray(attribArrayIndex++);
 		step += 2;
 	}
-
+	renderData.isStatic = isStatic;
 	int draw = (isStatic) ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW;
 	glBufferData(GL_ARRAY_BUFFER, mesh.getDataArraySize() * sizeof(float), mesh.getDataArray(), draw);
 
