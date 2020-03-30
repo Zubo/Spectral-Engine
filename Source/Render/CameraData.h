@@ -1,5 +1,6 @@
-#include "Core/Math/Vector3.h"
+#pragma once
 
+#include "Core/Math/Vector3.h"
 #include "Core/Math/Degree.h"
 
 namespace sp {

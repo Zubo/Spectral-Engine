@@ -70,23 +70,26 @@ void sp::updateShaderProgram(int const gameObjectId, ShaderProgram const shaderP
 	renderDataContainer.updateRenderData(renderData);
 }
 
-void sp::updateTranslationMatrix(int const gameObjectId, Matrix4x4 const & matrix) {
+void sp::updateTranslation(int const gameObjectId, Vector3 const & translation) {
 	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
 	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
-	renderData.translationMatrix = matrix;
+	renderData.translation = translation;
+	renderData.modelMatrixChanged = true;
 	renderDataContainer.updateRenderData(renderData);
 }
 
-void sp::updateRotationMatrix(int const gameObjectId, Matrix4x4 const & matrix) {
+void sp::updateRotation(int const gameObjectId, Vector3 const & rotationEuler) {
 	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
 	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
-	renderData.roatationMatrix = matrix;
+	renderData.rotationEuler = rotationEuler;
+	renderData.modelMatrixChanged = true;
 	renderDataContainer.updateRenderData(renderData);
 }
 
-void sp::updateScaleMatrix(int const gameObjectId, Matrix4x4 const & matrix) {
+void sp::updateScale(int const gameObjectId, Vector3 const & scale) {
 	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
 	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
-	renderData.scaleMatrix = matrix;
+	renderData.scale = scale;
+	renderData.modelMatrixChanged = true;
 	renderDataContainer.updateRenderData(renderData);
 }

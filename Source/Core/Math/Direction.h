@@ -1,3 +1,5 @@
+#pragma once
+
 namespace sp {
 	class Degree;
 	class Vector3;

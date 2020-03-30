@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Core/Math/Vector3.h"
 #include "Core/Math/Matrix4x4.h"
 #include "Render/Shader/ShaderProgram.h"
 
@@ -20,9 +21,9 @@ namespace sp {
 		unsigned int VBO;
 		unsigned int EBO;
 		unsigned int elementCount;
-		Matrix4x4 translationMatrix;
-		Matrix4x4 roatationMatrix;
-		Matrix4x4 scaleMatrix;
+		Vector3 translation;
+		Vector3 rotationEuler;
+		Vector3 scale;
 		bool modelMatrixChanged;
 		ShaderProgram shaderProgram;
 	};

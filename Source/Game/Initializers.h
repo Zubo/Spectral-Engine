@@ -162,7 +162,7 @@ namespace sp {
 		};
 
 		SpString const fontPath = resourcesFolderPath + SpString{ "/Fonts/JingJing.ttf" };
-		createText("This is sample text", fontPath);
+		//createText("This is sample text", fontPath);
 
 
 		constexpr int numberOfObjects = (sizeof(cubePositions) / sizeof(cubePositions[0]));
