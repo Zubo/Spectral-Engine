@@ -63,21 +63,21 @@ namespace sp {
 
 	GameObject * createLight(SpString const & shadersFolderPath, SpString const texturePathArray[], int const lightSourceIndex) {
 		GameObject * lightSourceGameObject = new GameObject;
-		SpString const vertexLightingShaderPath{ shadersFolderPath + SpString{ "/vertex_shader.glsl" } };
-		SpString const fragmentLightingShaderPath{ shadersFolderPath + SpString{ "/fragment_lamp_shader.glsl" } };
-		std::weak_ptr<Material> material = lightSourceGameObject->addComponent<Material>();
-		if (auto materialShared = material.lock()) {
-			const int numberOfTextures = 2;
-			materialShared->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
-		}
 
 		std::weak_ptr<Renderer> rendererWeak = lightSourceGameObject->addComponent<Renderer>();
 		if (auto rendererShared = rendererWeak.lock()) {
 			unsigned int const meshId = MeshContainer::createMesh(verticesUV, (int)(sizeof(verticesUV) / sizeof(float)), indices, (int)sizeof(indices), true, false);
-			ShaderProgram shaderProgram{ vertexLightingShaderPath, fragmentLightingShaderPath };
 			rendererShared->initRenderer(meshId);
 		}
 
+		SpString const vertexLightingShaderPath{ shadersFolderPath + SpString{ "/vertex_shader.glsl" } };
+		SpString const fragmentLightingShaderPath{ shadersFolderPath + SpString{ "/fragment_lamp_shader.glsl" } };
+		std::weak_ptr<Material> material = lightSourceGameObject->addComponent<Material>();
+		if (auto materialShared = material.lock()) {
+			materialShared->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
+			const int numberOfTextures = 2;
+			materialShared->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
+		}
 		std::weak_ptr<Transform> lightSourceTransformWeak = lightSourceGameObject->addComponent<Transform>();
 		if (auto transformShared = lightSourceTransformWeak.lock()) {
 			transformShared->setPosition(cubePositions[lightSourceIndex]);
@@ -94,11 +94,19 @@ namespace sp {
 		GameObject * boxObjects = new GameObject[numberOfBoxes];
 
 		for (int i = 0; i < numberOfBoxes; ++i) {
+
+			std::weak_ptr<Renderer> renderer = boxObjects[i].addComponent<Renderer>();
+			if (auto rendererShared = renderer.lock()) {
+				unsigned int const meshId = MeshContainer::createMesh(verticesUVNormals,
+					(int)(sizeof(verticesUVNormals) / sizeof(float)), indices, (int)(sizeof(indices) / sizeof(int)), true, true);
+				rendererShared->initRenderer(meshId);
+			}
+
 			std::weak_ptr<Material> material = boxObjects[i].addComponent<Material>();
 			setRandomColors(material);
 
 			if (auto materialShared = material.lock()) {
-				materialShared->initMaterial(vertexShaderPath, fragmentShaderPath);
+				/*materialShared->initMaterial(vertexShaderPath, fragmentShaderPath);
 
 				auto shaderProgramWeak = materialShared->getShaderProgram();
 				if (auto shaderProgramShared = shaderProgramWeak.lock()) {
@@ -117,18 +125,11 @@ namespace sp {
 				}
 
 				materialShared->setDiffuseMap(diffuseMapTexturePath);
-				materialShared->setSpecularMap(specularMapTexturePath);
+				materialShared->setSpecularMap(specularMapTexturePath);*/
 			}
 
 			if (i % 2) {
 				boxObjects[i].addComponent<Rotator>();
-			}
-
-			std::weak_ptr<Renderer> renderer = boxObjects[i].addComponent<Renderer>();
-			if (auto rendererShared = renderer.lock()) {
-				unsigned int const meshId = MeshContainer::createMesh(verticesUVNormals,
-					(int)(sizeof(verticesUVNormals) / sizeof(float)), indices, (int)(sizeof(indices) / sizeof(int)), true, true);
-				rendererShared->initRenderer(meshId);
 			}
 
 			std::weak_ptr<Transform> transform = boxObjects[i].addComponent<Transform>();

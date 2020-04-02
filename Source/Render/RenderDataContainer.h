@@ -11,7 +11,7 @@ namespace sp {
 		std::map<int, RenderData> const & getRenderDataMap() const;
 		void updateRenderData(RenderData const & renderData);
 		void resetAllModelMatrixUpdated();
-		static RenderDataContainer & GetInstance();
+		static RenderDataContainer & getInstance();
 
 	private:
 		RenderDataContainer() = default;

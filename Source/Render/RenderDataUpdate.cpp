@@ -11,13 +11,13 @@ void sp::createRenderData(int const gameObjectId, bool const active, unsigned in
 	RenderData renderData{ gameObjectId, active, isStatic };
 	renderData.gameObjectId = gameObjectId;
 
-	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
+	RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 	renderDataContainer.updateRenderData(renderData);
 	sp::updateObjectMesh(gameObjectId, meshId, isStatic);
 }
 
 void sp::updateObjectMesh(int const gameObjectId, unsigned int const meshId, bool isStatic) {
-	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
+	RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 
 	glGenVertexArrays(1, &renderData.VAO);
@@ -63,7 +63,7 @@ void sp::updateObjectMesh(int const gameObjectId, unsigned int const meshId, boo
 }
 
 void sp::updateShaderProgram(int const gameObjectId, ShaderProgram const shaderProgram) {
-	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
+	RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 
 	renderData.shaderProgram = shaderProgram;
@@ -72,7 +72,7 @@ void sp::updateShaderProgram(int const gameObjectId, ShaderProgram const shaderP
 }
 
 void sp::updateTranslation(int const gameObjectId, Vector3 const & translation) {
-	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
+	RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 	renderData.translation = translation;
 	renderData.modelMatrixChanged = true;
@@ -80,7 +80,7 @@ void sp::updateTranslation(int const gameObjectId, Vector3 const & translation) 
 }
 
 void sp::updateRotation(int const gameObjectId, Vector3 const & rotationEuler) {
-	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
+	RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 	renderData.rotationEuler = rotationEuler;
 	renderData.modelMatrixChanged = true;
@@ -88,7 +88,7 @@ void sp::updateRotation(int const gameObjectId, Vector3 const & rotationEuler) {
 }
 
 void sp::updateScale(int const gameObjectId, Vector3 const & scale) {
-	RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
+	RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 	renderData.scale = scale;
 	renderData.modelMatrixChanged = true;

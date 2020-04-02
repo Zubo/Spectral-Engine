@@ -28,7 +28,7 @@ namespace sp {
 		}
 	}
 
-	RenderDataContainer & RenderDataContainer::GetInstance() {
+	RenderDataContainer & RenderDataContainer::getInstance() {
 		return RenderDataContainer::instance;
 	}
 }

@@ -32,7 +32,7 @@ namespace sp {
 	}
 
 	void renderAll() {
-		RenderDataContainer & renderDataContainer = RenderDataContainer::GetInstance();
+		RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 
 		auto iterator = renderDataContainer.getRenderDataMap().cbegin();
 		auto end = renderDataContainer.getRenderDataMap().cend();
