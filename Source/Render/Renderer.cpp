@@ -46,14 +46,15 @@ namespace sp {
 		for (iterator; iterator != end; ++iterator) {
 			RenderData const & renderData = iterator->second;
 
+			renderData.shaderProgram.use();
+
 			if (renderData.modelMatrixChanged) {
 				Matrix4x4 const modelMatrix = renderData.GetModelMatrix();
 				SpString const & modelMatrixUniformName = "mvpMatrix";
-					renderData.shaderProgram.setMatrix4fv(modelMatrixUniformName, modelMatrix.getValuePtr());
+				renderData.shaderProgram.setMatrix4fv(modelMatrixUniformName, modelMatrix.getValuePtr());
 			}
 
-			if (cameraDataChanged)
-			{
+			if (cameraDataChanged) {
 				updateCamera(renderData.shaderProgram, viewMatrix, projectionMatrix, cameraPos, cameraRotation);
 			}
 
