@@ -50,7 +50,7 @@ namespace sp {
 
 			if (renderData.modelMatrixChanged) {
 				Matrix4x4 const modelMatrix = renderData.GetModelMatrix();
-				SpString const & modelMatrixUniformName = "mvpMatrix";
+				SpString const & modelMatrixUniformName = "modelMatrix";
 				renderData.shaderProgram.setMatrix4fv(modelMatrixUniformName, modelMatrix.getValuePtr());
 			}
 

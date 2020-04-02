@@ -6,7 +6,7 @@
 namespace sp {
 	RenderData::RenderData(
 		int const gameObjectId, bool const active, bool const isStatic)
-		: gameObjectId{ gameObjectId }, active{ active }, isStatic{ isStatic } {
+		: gameObjectId{ gameObjectId }, active{ active }, isStatic{ isStatic }, scale{ 1.0F } {
 	}
 
 	Matrix4x4 const RenderData::GetModelMatrix() const {

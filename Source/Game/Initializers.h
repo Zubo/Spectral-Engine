@@ -103,7 +103,6 @@ namespace sp {
 			}
 
 			std::weak_ptr<Material> material = boxObjects[i].addComponent<Material>();
-			setRandomColors(material);
 
 			if (auto materialShared = material.lock()) {
 				/*materialShared->initMaterial(vertexShaderPath, fragmentShaderPath);
@@ -123,10 +122,14 @@ namespace sp {
 						shaderProgramShared->setVec3("cameraPos", cameraPos.x, cameraPos.y, cameraPos.z);
 					}
 				}
+				*/
 
+				materialShared->initMaterial(vertexShaderPath, fragmentShaderPath);
 				materialShared->setDiffuseMap(diffuseMapTexturePath);
-				materialShared->setSpecularMap(specularMapTexturePath);*/
+				materialShared->setSpecularMap(specularMapTexturePath);
 			}
+
+			setRandomColors(material);
 
 			if (i % 2) {
 				boxObjects[i].addComponent<Rotator>();

@@ -1,5 +1,6 @@
 #include "CameraInputHandler.h"
 
+#include "Core/Math/SpMath.h"
 #include "Core/Math/Vector2.h"
 #include "Game/Components/Camera.h"
 #include "Game/Components/Transform.h"
@@ -20,6 +21,10 @@ namespace sp {
 
 		 double const sensitivity = 0.05;
 		 Vector2 const mouseOffset = Input::mouseAxis() * sensitivity;
+
+		 if (mouseOffset.x * mouseOffset.x < 0.01F && mouseOffset.y * mouseOffset.y < 0.01F) {
+			 return;
+		 }
 
 		 yaw -= mouseOffset.x;
 		 pitch += mouseOffset.y;
@@ -48,21 +53,24 @@ namespace sp {
 
 	 	if (auto transformShared = transformWeak.lock()) {
 	 		Vector3 position = transformShared->getPosition();
+			Vector3 oldPosition{ position };
 
 	 		if (Input::keyDown(KeyCode::W)) {
 	 			position += cameraSpeed * cameraFront * deltaTime;
+				transformShared->setPosition(position);
 	 		}
 	 		if (Input::keyDown(KeyCode::S)) {
 	 			position -= cameraSpeed * cameraFront * deltaTime;
+				transformShared->setPosition(position);
 	 		}
 	 		if (Input::keyDown(KeyCode::A)) {
 	 			position -= cameraSpeed * Vector3::cross(cameraFront, worldUp).normalized() * deltaTime;
+				transformShared->setPosition(position);
 	 		}
 	 		if (Input::keyDown(KeyCode::D)) {
 	 			position += cameraSpeed * Vector3::cross(cameraFront, worldUp).normalized() * deltaTime;
+				transformShared->setPosition(position);
 	 		}
-
-	 		transformShared->setPosition(position);
 	 	}
 	 }
 }
