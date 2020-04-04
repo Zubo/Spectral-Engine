@@ -14,6 +14,9 @@ namespace sp {
 		void saveLightData(LightData const & lightData);
 		LightData const & getLightData(int const gameObjectId);
 		std::map<int, LightData> const & getLightDataMap() const;
+		bool const getNumberOfLightsChanged() const;
+		void setNumberOfLightsChangedToFalse();
+		void setAllLightDataChangedToFalse();
 
 	private:
 		LightDataContainer();
@@ -23,5 +26,6 @@ namespace sp {
 	private:
 		static LightDataContainer instance;
 		std::map<int, LightData> lightDataMap;
+		bool numberOfLightsChanged = false;
 	};
 }

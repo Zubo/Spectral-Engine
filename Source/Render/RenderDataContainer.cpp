@@ -23,7 +23,7 @@ namespace sp {
 		auto const renderDataIterEnd = this->renderDataMap.end();
 
 		for (renderDataIter; renderDataIter != renderDataIterEnd; ++renderDataIter) {
-			sp::RenderData & renderData = renderDataIter->second;
+			RenderData & renderData = renderDataIter->second;
 			renderData.modelMatrixChanged = false;
 		}
 	}

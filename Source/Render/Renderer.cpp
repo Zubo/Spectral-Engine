@@ -4,7 +4,8 @@
 #include "glad/glad.h"
 #include "Render/CameraData.h"
 #include "Render/RenderData.h"
-#include "RenderDataContainer.h"
+#include "Render/LightDataContainer.h"
+#include "Render/RenderDataContainer.h"
 #include "PlatformIndependence/SpString.h"
 
 namespace sp {
@@ -29,6 +30,17 @@ namespace sp {
 		SpString const & cameraDirectionUniformName = "cameraDir";
 		Vector3 const cameraDirection = getDirection(cameraRotation.x, cameraRotation.y);
 		shaderProgram.setVec3(cameraDirectionUniformName, cameraDirection.x, cameraDirection.y, cameraDirection.z);
+	}
+
+	inline void updateLights(ShaderProgram const & shaderProgram) {
+		LightDataContainer const & lightDataContainer = LightDataContainer::getInstance();
+
+		if (lightDataContainer.getNumberOfLightsChanged()) {
+			// update all lights
+		}
+		else {
+			// update only lights that have changed flag on
+		}
 	}
 
 	void renderAll() {
@@ -63,6 +75,9 @@ namespace sp {
 		}
 
 		renderDataContainer.resetAllModelMatrixUpdated();
+		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
+		lightDataContainer.setNumberOfLightsChangedToFalse();
+		lightDataContainer.setAllLightDataChangedToFalse();
 		CameraData::setDataChangedToFalse();
 	}
 }
