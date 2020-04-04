@@ -13,7 +13,7 @@ namespace sp {
 		return this->renderDataMap;
 	}
 
-	void RenderDataContainer::updateRenderData(RenderData const & renderData) {
+	void RenderDataContainer::saveRenderData(RenderData const & renderData) {
 		int const gameObjectId = renderData.gameObjectId;
 		this->renderDataMap.insert_or_assign(gameObjectId, renderData);
 	}

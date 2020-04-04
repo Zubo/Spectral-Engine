@@ -9,7 +9,7 @@ namespace sp {
 		return LightDataContainer::instance;
 	}
 
-	void LightDataContainer::updateLightData(LightData const & lightData) {
+	void LightDataContainer::saveLightData(LightData const & lightData) {
 		int const lightDataId = lightData.id;
 		this->lightDataMap.insert_or_assign(lightDataId, lightData);
 	}

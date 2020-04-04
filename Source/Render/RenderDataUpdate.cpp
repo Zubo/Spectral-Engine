@@ -12,7 +12,7 @@ void sp::createRenderData(int const gameObjectId, bool const active, unsigned in
 	renderData.gameObjectId = gameObjectId;
 
 	RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
-	renderDataContainer.updateRenderData(renderData);
+	renderDataContainer.saveRenderData(renderData);
 	sp::updateObjectMesh(gameObjectId, meshId, isStatic);
 }
 
@@ -59,7 +59,7 @@ void sp::updateObjectMesh(int const gameObjectId, unsigned int const meshId, boo
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-	renderDataContainer.updateRenderData(renderData);
+	renderDataContainer.saveRenderData(renderData);
 }
 
 void sp::updateShaderProgram(int const gameObjectId, ShaderProgram const shaderProgram) {
@@ -68,23 +68,23 @@ void sp::updateShaderProgram(int const gameObjectId, ShaderProgram const shaderP
 
 	renderData.shaderProgram = shaderProgram;
 
-	renderDataContainer.updateRenderData(renderData);
+	renderDataContainer.saveRenderData(renderData);
 }
 
-void sp::updateTranslation(int const gameObjectId, Vector3 const & translation) {
+void sp::updatePosition(int const gameObjectId, Vector3 const & position) {
 	RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
-	renderData.translation = translation;
+	renderData.translation = position;
 	renderData.modelMatrixChanged = true;
-	renderDataContainer.updateRenderData(renderData);
+	renderDataContainer.saveRenderData(renderData);
 }
 
-void sp::updateRotation(int const gameObjectId, Vector3 const & rotationEuler) {
+void sp::saveRotation(int const gameObjectId, Vector3 const & rotationEuler) {
 	RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 	renderData.rotationEuler = rotationEuler;
 	renderData.modelMatrixChanged = true;
-	renderDataContainer.updateRenderData(renderData);
+	renderDataContainer.saveRenderData(renderData);
 }
 
 void sp::updateScale(int const gameObjectId, Vector3 const & scale) {
@@ -92,5 +92,5 @@ void sp::updateScale(int const gameObjectId, Vector3 const & scale) {
 	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 	renderData.scale = scale;
 	renderData.modelMatrixChanged = true;
-	renderDataContainer.updateRenderData(renderData);
+	renderDataContainer.saveRenderData(renderData);
 }

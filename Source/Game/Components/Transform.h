@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "GameObjectComponent.h"
 #include "Core/Math/Vector3.h"
 
@@ -17,7 +19,6 @@ namespace sp {
 		Vector3 const getScale() const;
 
 	private:
-		bool const hasMesh() const;
 		Vector3 position;
 		Vector3 rotationEuler;
 		Vector3 scaleVec;

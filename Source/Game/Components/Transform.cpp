@@ -1,14 +1,16 @@
 #include "Game/Components/Transform.h"
 
 #include <memory>
+#include <vector>
 
 #include "Core/Math/Degree.h"
 #include "Core/Math/Direction.h"
 #include "Core/Math/LinearTransformations.h"
 #include "Core/Math/Matrix4x4.h"
+#include "Game/Components/Interface/ITransformChangeObserver.h"
 #include "Game/Components/Renderer.h"
 #include "Game/GameObject/GameObject.h"
-#include "Render/RenderDataUpdate.h"
+
 
 namespace sp {
 	Transform::Transform(GameObject * const gameObjectOwner) :
@@ -24,9 +26,12 @@ namespace sp {
 	void Transform::setPosition(Vector3 const & position) {
 		this->position = position;
 
-		if (this->hasMesh()) {
-			int const gameObjectId = this->gameObjectOwner->getId();
-			updateTranslation(gameObjectId, this->position);
+		std::vector<std::weak_ptr<ITransformChangeObserver>> observers =
+			this->gameObjectOwner->getComponents<ITransformChangeObserver>();
+		for (auto observerWeak : observers) {
+			if (std::shared_ptr<ITransformChangeObserver> transformShared = observerWeak.lock()) {
+				transformShared->onPositionUpdated(position);
+			}
 		}
 	}
 
@@ -37,27 +42,28 @@ namespace sp {
 	void Transform::setRotationEuler(Vector3 const & rotation) {
 		this->rotationEuler = rotation;
 
-		if (this->hasMesh()) {
-			int const gameObjectId = this->gameObjectOwner->getId();
-			updateRotation(gameObjectId, this->rotationEuler);
+		std::vector<std::weak_ptr<ITransformChangeObserver>> observers =
+			this->gameObjectOwner->getComponents<ITransformChangeObserver>();
+		for (auto observerWeak : observers) {
+			if (std::shared_ptr<ITransformChangeObserver> transformShared = observerWeak.lock()) {
+				transformShared->onRotationUpdated(rotation);
+			}
 		}
 	}
 
 	void Transform::setScale(Vector3 const & scale) {
 		this->scaleVec = scale;
 
-		if (this->hasMesh()) {
-			int const gameObjectId = this->gameObjectOwner->getId();
-			updateScale(gameObjectId, this->scaleVec);
+		std::vector<std::weak_ptr<ITransformChangeObserver>> observers =
+			this->gameObjectOwner->getComponents<ITransformChangeObserver>();
+		for (auto observerWeak : observers) {
+			if (std::shared_ptr<ITransformChangeObserver> transformShared = observerWeak.lock()) {
+				transformShared->onScaleUpdated(scale);
+			}
 		}
 	}
 
 	Vector3 const Transform::getScale() const {
 		return this->scaleVec;
-	}
-
-	bool const Transform::hasMesh() const {
-		std::weak_ptr<Renderer> rendererWeak = this->gameObjectOwner->getComponent<Renderer>();
-		return (bool)rendererWeak.lock();
 	}
 }

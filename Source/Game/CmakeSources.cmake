@@ -31,7 +31,8 @@ set(SpectralEngine_Game_Components_UI_HEADER
     "Components/UI/TextRenderer.h")
 
 set(SpectralEngine_Game_Components_Interface_HEADER
-    "Components/Interface/IRenderer.h")
+    "Components/Interface/IRenderer.h"
+    "Components/Interface/ITransformChangeObserver.h")
 
 set(SpectralEngine_Game_GameObject_SRC
     "GameObject/GameObject.cpp")

@@ -21,4 +21,33 @@ namespace sp {
 		bool const isStatic = false;
 		createRenderData(gameObjectId, isActive, isStatic, meshId);
 	}
+
+	Renderer::~Renderer() {
+	}
+
+	void Renderer::onPositionUpdated(Vector3 const & position) {
+		if (this->hasMesh()) {
+			int const gameObjectId = gameObjectOwner->getId();
+			updatePosition(gameObjectId, position);
+		}
+	}
+
+	void Renderer::onRotationUpdated(Vector3 const & rotation) {
+		if (this->hasMesh()) {
+			int const gameObjectId = gameObjectOwner->getId();
+			saveRotation(gameObjectId, rotation);
+		}
+	}
+
+	void Renderer::onScaleUpdated(Vector3 const & scale) {
+		if (this->hasMesh()) {
+			int const gameObjectId = gameObjectOwner->getId();
+			updateScale(gameObjectId, scale);
+		}
+	}
+
+	bool const Renderer::hasMesh() const {
+		std::weak_ptr<Renderer> rendererWeak = this->gameObjectOwner->getComponent<Renderer>();
+		return (bool)rendererWeak.lock();
+	}
 }

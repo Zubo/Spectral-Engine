@@ -11,7 +11,7 @@ namespace sp {
 	class LightDataContainer {
 	public:
 		static LightDataContainer const & getInstance();
-		void updateLightData(LightData const & lightData);
+		void saveLightData(LightData const & lightData);
 		std::map<int, LightData> const & getLightDataMap() const;
 
 	private:
