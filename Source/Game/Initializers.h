@@ -14,10 +14,12 @@
 #include "Game/Components/Camera.h"
 #include "Game/Components/CameraInputHandler.h"
 #include "Game/Components/FPSCounter.h"
+#include "Game/Components/LightSource.h"
 #include "Game/Components/UI/TextRenderer.h"
 #include "Game/GameObject/GameObject.h"
 #include "Game/Vertices.h"
 #include "Render/MeshContainer.h"
+#include "Render/Enum/LightType.h"
 #include "Game/Components/Rotator.h"
 #include "Render/UI/Font/Font.h"
 #include "Core/Math/Radian.h"
@@ -64,6 +66,12 @@ namespace sp {
 	GameObject * createLight(SpString const & shadersFolderPath, SpString const texturePathArray[], int const lightSourceIndex) {
 		GameObject * lightSourceGameObject = new GameObject;
 
+		std::weak_ptr<Transform> lightSourceTransformWeak = lightSourceGameObject->addComponent<Transform>();
+		if (auto transformShared = lightSourceTransformWeak.lock()) {
+			transformShared->setPosition(cubePositions[lightSourceIndex]);
+			transformShared->setScale(Vector3{ 0.2F });
+		}
+
 		std::weak_ptr<Renderer> rendererWeak = lightSourceGameObject->addComponent<Renderer>();
 		if (auto rendererShared = rendererWeak.lock()) {
 			unsigned int const meshId = MeshContainer::createMesh(verticesUV, (int)(sizeof(verticesUV) / sizeof(float)), indices, (int)sizeof(indices), true, false);
@@ -78,10 +86,10 @@ namespace sp {
 			const int numberOfTextures = 2;
 			materialShared->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
 		}
-		std::weak_ptr<Transform> lightSourceTransformWeak = lightSourceGameObject->addComponent<Transform>();
-		if (auto transformShared = lightSourceTransformWeak.lock()) {
-			transformShared->setPosition(cubePositions[lightSourceIndex]);
-			transformShared->setScale(Vector3{ 0.2F });
+
+		std::weak_ptr<LightSource> lightSourceWeak = lightSourceGameObject->addComponent<LightSource>();
+		if (std::shared_ptr<LightSource> lightSourceShared = lightSourceWeak.lock()) {
+			lightSourceShared->initLightSource(LightType::Point);
 		}
 
 		return lightSourceGameObject;

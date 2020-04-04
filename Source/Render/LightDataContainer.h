@@ -10,12 +10,13 @@ namespace sp {
 
 	class LightDataContainer {
 	public:
-		static LightDataContainer const & getInstance();
+		static LightDataContainer & getInstance();
 		void saveLightData(LightData const & lightData);
+		LightData const & getLightData(int const gameObjectId);
 		std::map<int, LightData> const & getLightDataMap() const;
 
 	private:
-		LightDataContainer() = delete;
+		LightDataContainer();
 		LightDataContainer(LightDataContainer const & lightDataContainer) = delete;
 		LightDataContainer & operator=(LightDataContainer & lightDataContainer) = delete;
 
