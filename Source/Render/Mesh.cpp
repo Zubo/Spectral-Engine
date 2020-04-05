@@ -52,7 +52,7 @@ namespace sp {
 	}
 
 	unsigned int Mesh::getId() {
-		return 0;
+		return this->id;
 	}
 
 	int const Mesh::getStride() const {

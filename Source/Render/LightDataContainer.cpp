@@ -26,8 +26,8 @@ namespace sp {
 			(this->lightDataMap.size() != previousLightCount);
 	}
 
-	LightData const & LightDataContainer::getLightData(int const gameObjectId) {
-		return this->lightDataMap.at(gameObjectId);
+	LightData const & LightDataContainer::getLightData(int const lightDataId) {
+		return this->lightDataMap.at(lightDataId);
 	}
 
 	std::map<int, LightData> const & LightDataContainer::getLightDataMap() const {

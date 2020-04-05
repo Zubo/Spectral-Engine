@@ -16,15 +16,22 @@ struct Material {
 	sampler2D specularMapTex;
 };
 
+struct Light {
+	int lightType;
+	vec3 color;
+	vec3 position;
+	vec3 direction;
+};
+
 uniform Material material;
-uniform vec3 lightColor;
-uniform vec3 lightPos;
+uniform Light lightArray[10];
+uniform int numberOfLights;
 uniform vec3 cameraPos;
 uniform vec3 cameraDir;
 
 vec3 getLightDir()
 {
-	return (lightPos - FragPos);
+	return (lightArray[0].position - FragPos);
 }
 
 float getAtentuation(float distance) {
@@ -39,9 +46,13 @@ vec3 getDiffuseLight()
 	float lightNormalDot =  dot(normalNormalized, lightDirNormalized);
 	
 
-	float diffuseIntensity = max(0, lightNormalDot) * getAtentuation(length(getLightDir()));
+	float diffuseIntensity = max(0, lightNormalDot);
 
-	vec3 diffuseLight = diffuseIntensity * vec3(texture(material.diffuseMapTex, TexCoords)) * lightColor;
+	if (lightArray[0].lightType == 2) {
+		diffuseIntensity *= getAtentuation(length(getLightDir()));
+	}
+
+	vec3 diffuseLight = diffuseIntensity * vec3(texture(material.diffuseMapTex, TexCoords)) * lightArray[0].color;
 	return diffuseLight;
 }
 
@@ -54,7 +65,7 @@ vec3 getSpecular()
 	float viewReflectedDot = dot(normalize(reflectedDir), normalize(viewDir));
 	float specIntensity = pow(max(0, viewReflectedDot), material.shininess);
 
-	return specIntensity * material.specular * lightColor * vec3(texture(material.specularMapTex, TexCoords));
+	return specIntensity * material.specular * lightArray[0].color * vec3(texture(material.specularMapTex, TexCoords));
 }
 
 vec3 getFlashlightValue() {

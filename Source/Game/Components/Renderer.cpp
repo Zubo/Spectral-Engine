@@ -19,7 +19,7 @@ namespace sp {
 		int const gameObjectId = gameObjectOwner->getId();
 		bool const isActive = gameObjectOwner->getIsActive();
 		bool const isStatic = false;
-		createRenderData(gameObjectId, isActive, isStatic, meshId);
+		createRenderData(gameObjectId, isActive, meshId, isStatic);
 	}
 
 	Renderer::~Renderer() {

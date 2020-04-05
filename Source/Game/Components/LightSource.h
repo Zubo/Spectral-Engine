@@ -7,7 +7,7 @@
 namespace sp {
 	class Vector3;
 
-	class LightSource : public GameObjectComponent, ITransformChangeObserver {
+	class LightSource : public GameObjectComponent, public ITransformChangeObserver {
 	public:
 		LightSource(GameObject * gameObjectOwner);
 

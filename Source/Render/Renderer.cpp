@@ -34,13 +34,29 @@ namespace sp {
 
 	inline void updateLights(ShaderProgram const & shaderProgram) {
 		LightDataContainer const & lightDataContainer = LightDataContainer::getInstance();
+		std::map<int, LightData> const & lightDataMap = lightDataContainer.getLightDataMap();
+		int index = 0;
+		bool const numberOfLightsChanged = lightDataContainer.getNumberOfLightsChanged();
 
-		if (lightDataContainer.getNumberOfLightsChanged()) {
-			// update all lights
+		for (auto const & lightDataMapEntry : lightDataMap) {
+			LightData const & lightData = lightDataMapEntry.second;
+			if (numberOfLightsChanged || lightData.changed) {
+				SpString const indexStr = std::to_string(index);
+				SpString const variableAccessPrefix = "lightArray[" + indexStr + "]";
+				shaderProgram.setInt(variableAccessPrefix + ".lightType", (int)lightData.type);
+				shaderProgram.setVec3(variableAccessPrefix + ".color",
+					lightData.color.x, lightData.color.y, lightData.color.z);
+				shaderProgram.setVec3(variableAccessPrefix + ".position",
+					lightData.position.x, lightData.position.y, lightData.position.z);
+				shaderProgram.setVec3(variableAccessPrefix + ".direction",
+					lightData.direction.x, lightData.direction.y, lightData.direction.z);
+			}
+
+			++index;
 		}
-		else {
-			// update only lights that have changed flag on
-		}
+
+		int const numberOfLights = lightDataMap.size();
+		shaderProgram.setInt("numberOfLights", numberOfLights);
 	}
 
 	void renderAll() {
@@ -59,6 +75,8 @@ namespace sp {
 			RenderData const & renderData = iterator->second;
 
 			renderData.shaderProgram.use();
+
+			updateLights(renderData.shaderProgram);
 
 			if (renderData.modelMatrixChanged) {
 				Matrix4x4 const modelMatrix = renderData.GetModelMatrix();

@@ -16,6 +16,7 @@
 #include "Game/Components/FPSCounter.h"
 #include "Game/Components/LightSource.h"
 #include "Game/Components/UI/TextRenderer.h"
+#include "Game/Components/PositionOscilator.h"
 #include "Game/GameObject/GameObject.h"
 #include "Game/Vertices.h"
 #include "Render/MeshContainer.h"
@@ -92,6 +93,8 @@ namespace sp {
 			lightSourceShared->initLightSource(LightType::Point);
 		}
 
+		lightSourceGameObject->addComponent<PositionOscilator>();
+
 		return lightSourceGameObject;
 	}
 
@@ -113,25 +116,6 @@ namespace sp {
 			std::weak_ptr<Material> material = boxObjects[i].addComponent<Material>();
 
 			if (auto materialShared = material.lock()) {
-				/*materialShared->initMaterial(vertexShaderPath, fragmentShaderPath);
-
-				auto shaderProgramWeak = materialShared->getShaderProgram();
-				if (auto shaderProgramShared = shaderProgramWeak.lock()) {
-					shaderProgramShared->use();
-					shaderProgramShared->setVec3("lightColor", 1.5F, 1.6F, 1.89F);
-
-					if (auto lightSourceTransformShared = lightSourceTrnasformWeak.lock()) {
-						auto lightPos = lightSourceTransformShared->getPosition();
-						shaderProgramShared->setVec3("lightPos", lightPos.x, lightPos.y, lightPos.z);
-					}
-
-					if (auto cameraTransformShared = cameraTransformWeak.lock()) {
-						auto cameraPos = cameraTransformShared->getPosition();
-						shaderProgramShared->setVec3("cameraPos", cameraPos.x, cameraPos.y, cameraPos.z);
-					}
-				}
-				*/
-
 				materialShared->initMaterial(vertexShaderPath, fragmentShaderPath);
 				materialShared->setDiffuseMap(diffuseMapTexturePath);
 				materialShared->setSpecularMap(specularMapTexturePath);

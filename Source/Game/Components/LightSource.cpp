@@ -21,6 +21,7 @@ namespace sp {
 			this->gameObjectOwner->getComponent<Transform>();
 
 		std::shared_ptr<Transform const> const transformShared = transformWeak.lock();
+
 		Vector3 const & position = transformShared->getPosition();
 		Vector3 const & rotation = transformShared->getRotationEuler();
 		Degree const xAngle{ rotation.x };
@@ -30,21 +31,21 @@ namespace sp {
 		LightData const lightData{ lightType, Vector3{ 1.0F }, position, direction };
 		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
 		lightDataContainer.saveLightData(lightData);
+
+		this->lightDataId = lightData.id;
 	}
 
 	void LightSource::onPositionUpdated(Vector3 const & position) {
-		int const gameObjectId = this->gameObjectOwner->getId();
 		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
-		LightData lightData = lightDataContainer.getLightData(gameObjectId);
+		LightData lightData = lightDataContainer.getLightData(this->lightDataId);
 		lightData.position = position;
 		lightData.changed = true;
 		lightDataContainer.saveLightData(lightData);
 	}
 
 	void LightSource::onRotationUpdated(Vector3 const & rotation) {
-		int const gameObjectId = this->gameObjectOwner->getId();
 		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
-		LightData lightData = lightDataContainer.getLightData(gameObjectId);
+		LightData lightData = lightDataContainer.getLightData(this->lightDataId);
 
 		Degree const xAngle{ rotation.x };
 		Degree const yAngle{ rotation.y };
