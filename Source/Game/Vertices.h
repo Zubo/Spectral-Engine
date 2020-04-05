@@ -96,7 +96,7 @@ namespace sp {
 	};
 
 	Vector3 cubePositions[]{
-		Vector3{ 0.0f,  0.0f,  0.0f },
+		Vector3{ 5.0f,  2.0f,  3.0f },
 		Vector3{ 2.0f,  5.0f, -15.0f },
 		Vector3{ -1.5f, -2.2f, -2.5f },
 		Vector3{ -3.8f, -2.0f, -12.3f },

@@ -31,7 +31,7 @@ uniform vec3 cameraDir;
 
 vec3 getLightDir()
 {
-	return (lightArray[0].position - FragPos);
+	return (FragPos - lightArray[0].position);
 }
 
 float getAtentuation(float distance) {
@@ -43,10 +43,9 @@ vec3 getDiffuseLight()
 	vec3 lightDir = getLightDir();
 	vec3 lightDirNormalized = normalize(lightDir);
 	vec3 normalNormalized = normalize(Normal);
-	float lightNormalDot =  dot(normalNormalized, lightDirNormalized);
-	
+	float lightNormalDot =  dot(normalNormalized, -lightDirNormalized);
 
-	float diffuseIntensity = max(0, lightNormalDot);
+	float diffuseIntensity = max(0, lightNormalDot) / length(FragPos - lightArray[0].position);
 
 	if (lightArray[0].lightType == 2) {
 		diffuseIntensity *= getAtentuation(length(getLightDir()));
@@ -59,20 +58,23 @@ vec3 getDiffuseLight()
 vec3 getSpecular()
 {
 	vec3 lightDir = getLightDir();
-	vec3 viewDir = (cameraPos - FragPos);
-	vec3 reflectedDir = reflect(-lightDir, Normal);
+	vec3 viewDir = (FragPos - cameraPos);
+	vec3 reflectedDir = reflect(lightDir, Normal);
 
-	float viewReflectedDot = dot(normalize(reflectedDir), normalize(viewDir));
-	float specIntensity = pow(max(0, viewReflectedDot), material.shininess);
+	float viewReflectedDot = dot(normalize(reflectedDir), -normalize(viewDir));
+	float specIntensity = max(0, viewReflectedDot);
 
-	return specIntensity * material.specular * lightArray[0].color * vec3(texture(material.specularMapTex, TexCoords));
+	return specIntensity *
+		material.specular *
+		lightArray[0].color *
+		vec3(texture(material.specularMapTex, TexCoords));
 }
 
 vec3 getFlashlightValue() {
-	vec3 lightDirNormalized = normalize(FragPos - cameraPos);
+	vec3 lightDirNormalized = normalize(cameraPos - FragPos);
 	vec3 viewDirNormalized = -normalize(cameraDir);
-	float dotProd = dot(lightDirNormalized, viewDirNormalized);
 
+	float dotProd = dot(lightDirNormalized, viewDirNormalized);
 	if (dotProd < 0.95) {
 		return vec3(0.0F, 0.0F, 0.0F);
 	}
@@ -85,9 +87,10 @@ vec3 getFlashlightValue() {
 
 void main()
 {
+	vec3 ambientColor = material.ambient * vec3(texture(material.diffuseMapTex, TexCoords)) * getAtentuation(length(getLightDir()));
 	vec3 diffuseLight = getDiffuseLight();
 	vec3 specular = getSpecular();
-	vec3 ambientColor = material.ambient * vec3(texture(material.diffuseMapTex, TexCoords)) * getAtentuation(length(getLightDir()));
-	vec3 totalLight = (ambientColor + diffuseLight + specular + getFlashlightValue());
+	vec3 flashlightValue = getFlashlightValue();
+	vec3 totalLight = (ambientColor + diffuseLight + specular + flashlightValue);
 	FragColor = vec4(totalLight, 1.0F);
 }
