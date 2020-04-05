@@ -88,12 +88,17 @@ namespace sp {
 			materialShared->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
 		}
 
-		std::weak_ptr<LightSource> lightSourceWeak = lightSourceGameObject->addComponent<LightSource>();
-		if (std::shared_ptr<LightSource> lightSourceShared = lightSourceWeak.lock()) {
+		std::weak_ptr<LightSource> pointLightSourceWeak = lightSourceGameObject->addComponent<LightSource>();
+		if (std::shared_ptr<LightSource> lightSourceShared = pointLightSourceWeak.lock()) {
 			lightSourceShared->initLightSource(LightType::Point);
 		}
 
 		lightSourceGameObject->addComponent<PositionOscilator>();
+		lightSourceGameObject->addComponent<Rotator>();
+		std::weak_ptr<LightSource> directionalLightSourceWeak = lightSourceGameObject->addComponent<LightSource>();
+		if (std::shared_ptr<LightSource> directionalLightSourceShared = directionalLightSourceWeak.lock()) {
+			directionalLightSourceShared->initLightSource(LightType::Directional);
+		}
 
 		return lightSourceGameObject;
 	}
@@ -127,9 +132,13 @@ namespace sp {
 				boxObjects[i].addComponent<Rotator>();
 			}
 
+
 			std::weak_ptr<Transform> transform = boxObjects[i].addComponent<Transform>();
 			if (auto transformShared = transform.lock()) {
 				transformShared->setPosition(cubePositions[i]);
+				if (i == 0) {
+					transformShared->setScale(Vector3{ 50.0F });
+				}
 			}
 		}
 	}
@@ -140,6 +149,10 @@ namespace sp {
 		auto cameraWeak = cameraGameObject->addComponent<Camera>();
 		cameraGameObject->addComponent<CameraInputHandler>();
 
+		std::weak_ptr<LightSource> cameraFlashlightWeak = cameraGameObject->addComponent<LightSource>();
+		if (std::shared_ptr<LightSource> cameraFlashlightShared = cameraFlashlightWeak.lock()) {
+			cameraFlashlightShared->initLightSource(LightType::Directional);
+		}
 		if (auto cameraShared = cameraWeak.lock()) {
 			cameraShared->initCamera(45.0F, SCR_WIDTH, SCR_HEIGHT);
 			Camera::setMainCamera(cameraShared);

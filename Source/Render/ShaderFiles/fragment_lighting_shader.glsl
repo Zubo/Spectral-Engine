@@ -1,5 +1,8 @@
 #version 330 core
 
+#define LightTypePoint 1
+#define LightTypeDirectional 2
+
 out vec4 FragColor;
 
 in vec3 Normal;
@@ -29,35 +32,42 @@ uniform int numberOfLights;
 uniform vec3 cameraPos;
 uniform vec3 cameraDir;
 
-vec3 getLightDir()
+vec3 getLightDir(Light light)
 {
-	return (FragPos - lightArray[0].position);
+	if (light.lightType == LightTypePoint)
+	{
+		return (FragPos - light.position);
+	}
+	else if (light.lightType == LightTypeDirectional)
+	{
+		return light.direction;
+	}
 }
 
 float getAtentuation(float distance) {
 	return 1 / (1.0F + 0.1 * distance + 0.01 * distance * distance);
 }
 
-vec3 getDiffuseLight() 
+vec3 getDiffuseLight(Light light) 
 {	
-	vec3 lightDir = getLightDir();
+	vec3 lightDir = getLightDir(light);
 	vec3 lightDirNormalized = normalize(lightDir);
 	vec3 normalNormalized = normalize(Normal);
 	float lightNormalDot =  dot(normalNormalized, -lightDirNormalized);
 
-	float diffuseIntensity = max(0, lightNormalDot) / length(FragPos - lightArray[0].position);
+	float diffuseIntensity = max(0, lightNormalDot) / length(FragPos - light.position);
 
-	if (lightArray[0].lightType == 2) {
-		diffuseIntensity *= getAtentuation(length(getLightDir()));
-	}
+	diffuseIntensity *= getAtentuation(length(getLightDir(light)));
 
-	vec3 diffuseLight = diffuseIntensity * vec3(texture(material.diffuseMapTex, TexCoords)) * lightArray[0].color;
+	vec3 diffuseLight = diffuseIntensity *
+						vec3(texture(material.diffuseMapTex, TexCoords)) *
+						light.color;
 	return diffuseLight;
 }
 
-vec3 getSpecular()
+vec3 getSpecular(Light light)
 {
-	vec3 lightDir = getLightDir();
+	vec3 lightDir = getLightDir(light);
 	vec3 viewDir = (FragPos - cameraPos);
 	vec3 reflectedDir = reflect(lightDir, Normal);
 
@@ -66,13 +76,13 @@ vec3 getSpecular()
 
 	return specIntensity *
 		material.specular *
-		lightArray[0].color *
+		light.color *
 		vec3(texture(material.specularMapTex, TexCoords));
 }
 
-vec3 getFlashlightValue() {
-	vec3 lightDirNormalized = normalize(cameraPos - FragPos);
-	vec3 viewDirNormalized = -normalize(cameraDir);
+vec3 getDirectionalLight(Light light) {
+	vec3 lightDirNormalized = normalize(light.position - FragPos);
+	vec3 viewDirNormalized = -normalize(light.direction);
 
 	float dotProd = dot(lightDirNormalized, viewDirNormalized);
 	if (dotProd < 0.95) {
@@ -80,17 +90,31 @@ vec3 getFlashlightValue() {
 	}
 
 	float reducer = (dotProd - 0.95) / (1.0F - 0.95);	// normalize dotProd
-	float atentuation = getAtentuation(length(FragPos - cameraPos));
 
-	return atentuation * vec3(texture(material.diffuseMapTex, TexCoords)) * reducer;
+	return vec3(texture(material.diffuseMapTex, TexCoords)) * reducer;
 }
 
 void main()
 {
-	vec3 ambientColor = material.ambient * vec3(texture(material.diffuseMapTex, TexCoords)) * getAtentuation(length(getLightDir()));
-	vec3 diffuseLight = getDiffuseLight();
-	vec3 specular = getSpecular();
-	vec3 flashlightValue = getFlashlightValue();
-	vec3 totalLight = (ambientColor + diffuseLight + specular + flashlightValue);
+	vec3 totalLight;
+
+	for (int i = 0; i < numberOfLights; ++i)
+	{
+		Light light = lightArray[i];
+
+		if (light.lightType == LightTypePoint)
+		{
+			vec3 ambientColor = material.ambient *
+								vec3(texture(material.diffuseMapTex, TexCoords));
+			vec3 diffuseLight = getDiffuseLight(light);
+			vec3 specular = getSpecular(light);
+			totalLight += (ambientColor + diffuseLight + specular);
+		}
+		else if (light.lightType == LightTypeDirectional)
+		{
+			totalLight += getDirectionalLight(light);
+		}
+	}
+
 	FragColor = vec4(totalLight, 1.0F);
 }
