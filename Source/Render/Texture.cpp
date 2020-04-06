@@ -2,11 +2,14 @@
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image/stb_image.h"
+#include "PlatformIndependence/SpHash.h"
 
 
 namespace sp {
-	Texture::Texture(SpString const & path, bool const genMipmap, GLenum format) {
+	Texture::Texture(SpString const & path, bool const genMipmap, GLenum format) :
+		genMipMap{ genMipMap }, format{ format }, pathHashValue{ calculateHashValue(path) } {
 		glGenTextures(1, &this->id);
+		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, this->id);
 	
 		unsigned char * data = stbi_load(path.c_str(), &this->width, &this->height, &this->nrChannel, 0);
@@ -22,13 +25,10 @@ namespace sp {
 			std::cout << "Error loading texture file: " << path << std::endl;
 		}
 
+		//glBindTexture(GL_TEXTURE_2D, 0);
 		stbi_image_free(data);
 	}
 
 	Texture::~Texture() {
-	}
-
-	unsigned int const Texture::getId() const {
-		return this->id;
 	}
 }

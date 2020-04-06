@@ -19,7 +19,6 @@ namespace sp {
 
 	public:
 		void initMaterial(SpString const & vertexShaderPath, SpString const & fragmentShaderPath);
-		void use(Matrix4x4 const & mvpMatrix, Matrix4x4 const & modelMatrix) const;
 		void setAmbient(Vector3 const & ambientColor);
 		void setDiffuse(Vector3 const & diffuseColor);
 		void setSpecular(Vector3 const & specularColor);

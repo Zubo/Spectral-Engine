@@ -2,4 +2,6 @@
 
 #include<string>
 
-using SpString = std::string;
+namespace sp {
+	using SpString = std::string;
+}

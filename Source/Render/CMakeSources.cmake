@@ -6,6 +6,7 @@ set(SpectralEngine_Render_NoFilter_SRC
     "RenderDataContainer.cpp"
     "Renderer.cpp"
     "Texture.cpp"
+    "TextureManager.cpp"
     "CameraData.cpp"
     "LightData.cpp"
     "LightDataContainer.cpp")
@@ -18,6 +19,7 @@ set(SpectralEngine_Render_NoFilter_HEADER
     "RenderDataContainer.h"
     "Renderer.h"
     "Texture.h"
+    "TextureManager.h"
     "CameraData.h"
     "LightData.h"
     "LightDataContainer.h")

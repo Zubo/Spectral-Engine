@@ -70,7 +70,7 @@ namespace sp {
 		std::weak_ptr<Transform> lightSourceTransformWeak = lightSourceGameObject->addComponent<Transform>();
 		if (auto transformShared = lightSourceTransformWeak.lock()) {
 			transformShared->setPosition(cubePositions[lightSourceIndex]);
-			transformShared->setScale(Vector3{ 0.2F });
+			transformShared->setScale(Vector3{ 0.1F });
 		}
 
 		std::weak_ptr<Renderer> rendererWeak = lightSourceGameObject->addComponent<Renderer>();
@@ -104,8 +104,8 @@ namespace sp {
 	}
 
 	void createBoxObjects(
-		SpString const & specularMapTexturePath, SpString const & diffuseMapTexturePath, SpString const & vertexShaderPath, SpString const & fragmentShaderPath,
-		int numberOfBoxes, std::weak_ptr<Transform> cameraTransformWeak, std::weak_ptr<Transform> lightSourceTrnasformWeak) {
+		SpString const & bigBoxTexture, SpString const & specularMapTexturePath, SpString const & diffuseMapTexturePath, SpString const & vertexShaderPath,
+		SpString const & fragmentShaderPath, int numberOfBoxes, std::weak_ptr<Transform> cameraTransformWeak, std::weak_ptr<Transform> lightSourceTrnasformWeak) {
 
 		GameObject * boxObjects = new GameObject[numberOfBoxes];
 
@@ -122,6 +122,10 @@ namespace sp {
 
 			if (auto materialShared = material.lock()) {
 				materialShared->initMaterial(vertexShaderPath, fragmentShaderPath);
+				if (i == 0) {
+					materialShared->setDiffuseMap(bigBoxTexture);
+					materialShared->setSpecularMap(bigBoxTexture);
+				}
 				materialShared->setDiffuseMap(diffuseMapTexturePath);
 				materialShared->setSpecularMap(specularMapTexturePath);
 			}
@@ -179,6 +183,6 @@ namespace sp {
 
 		int const numberOfBoxes = numberOfObjects - 1;
 		std::weak_ptr<Transform> lightSourceTransformWeak = lightSourceGameObject->getComponent<Transform>();
-		createBoxObjects(specularMapPath, diffuseMapPath, vertexShaderPath, fragmentShaderPath, numberOfBoxes, cameraTransformWeak, lightSourceTransformWeak);
+		createBoxObjects(texturePathArray[0], specularMapPath, diffuseMapPath, vertexShaderPath, fragmentShaderPath, numberOfBoxes, cameraTransformWeak, lightSourceTransformWeak);
 	}
 }

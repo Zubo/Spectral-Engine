@@ -28,8 +28,8 @@ int main(int argc, char** argv) {
 
 	std::cout << sizeof(sp::Vector3) << std::endl;
 
-	SpString const executablePath{ argv[0] };
-	SpString const rootPath{ executablePath.substr(0, executablePath.find_last_of("\\")) };
+	sp::SpString const executablePath{ argv[0] };
+	sp::SpString const rootPath{ executablePath.substr(0, executablePath.find_last_of("\\")) };
 	sp::ResourcesPathProvider::initializePaths(rootPath);
 	sp::initScene(argv[0]);
 

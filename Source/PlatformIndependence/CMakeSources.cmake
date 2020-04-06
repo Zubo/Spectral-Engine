@@ -3,7 +3,8 @@ set(SpectralEngine_PlatformIndependence_NoFilter_SRC
 
 set(SpectralEngine_PlatformIndependence_NoFilter_HEADER
     "SpWindow.h"
-    "SpString.h")
+    "SpString.h"
+    "SpHash.h")
 
 set(SpectralEngine_PlatformIndependence_Input_SRC
     "Input/Input.cpp"
