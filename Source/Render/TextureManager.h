@@ -19,7 +19,7 @@ namespace sp {
 		Texture const getTexture(int textureId);
 
 	private:
-		TextureManager();
+		TextureManager() = default;
 		TextureManager(TextureManager const & textureManager) = delete;
 		TextureManager operator=(TextureManager const & textureManager) = delete;
 

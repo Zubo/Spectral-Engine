@@ -105,7 +105,7 @@ namespace sp {
 
 	void createBoxObjects(
 		SpString const & bigBoxTexture, SpString const & specularMapTexturePath, SpString const & diffuseMapTexturePath, SpString const & vertexShaderPath,
-		SpString const & fragmentShaderPath, int numberOfBoxes, std::weak_ptr<Transform> cameraTransformWeak, std::weak_ptr<Transform> lightSourceTrnasformWeak) {
+		SpString const & fragmentShaderPath, int const numberOfBoxes, std::weak_ptr<Transform> cameraTransformWeak, std::weak_ptr<Transform> lightSourceTrnasformWeak) {
 
 		GameObject * boxObjects = new GameObject[numberOfBoxes];
 
@@ -126,8 +126,10 @@ namespace sp {
 					materialShared->setDiffuseMap(bigBoxTexture);
 					materialShared->setSpecularMap(bigBoxTexture);
 				}
-				materialShared->setDiffuseMap(diffuseMapTexturePath);
-				materialShared->setSpecularMap(specularMapTexturePath);
+				else {
+					materialShared->setDiffuseMap(diffuseMapTexturePath);
+					materialShared->setSpecularMap(specularMapTexturePath);
+				}
 			}
 
 			setRandomColors(material);
@@ -170,7 +172,7 @@ namespace sp {
 		SpString const diffuseMapPath = resourcesFolderPath + SpString{ "/Art/container.png" };
 		SpString const specularMapPath = resourcesFolderPath + SpString{ "/Art/specular_map_container.png" };
 		SpString const texturePathArray[2]{
-			resourcesFolderPath + SpString{ "/Art/wall.png" },
+			resourcesFolderPath + SpString{ "/Art/stone-wall.png" },
 			resourcesFolderPath + SpString{ "/Art/awesomeface.png" }
 		};
 

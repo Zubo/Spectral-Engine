@@ -18,7 +18,7 @@ namespace sp {
 
 		if (std::shared_ptr<Transform> transformShared = transformWeak.lock()) {
 			sp::Radian timePassedRadian{ timePassed };
-			transformShared->setPosition(sin(timePassedRadian));
+			transformShared->setPosition(5.0F * sin(timePassedRadian));
 		}
 	}
 }

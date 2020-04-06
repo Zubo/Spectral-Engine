@@ -34,7 +34,5 @@ namespace sp {
 		Vector3 diffuseColor;
 		Vector3 specularColor;
 		float shininess;
-		std::unique_ptr<Texture> diffuseMapTexture;
-		std::unique_ptr<Texture> specularMapTexture;
 	};
 }

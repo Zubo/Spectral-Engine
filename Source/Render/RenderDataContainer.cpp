@@ -18,7 +18,7 @@ namespace sp {
 		this->renderDataMap.insert_or_assign(gameObjectId, renderData);
 	}
 
-	void RenderDataContainer::resetAllModelMatrixUpdated() {
+	void RenderDataContainer::resetAllChangedFlags() {
 		auto renderDataIter = this->renderDataMap.begin();
 		auto const renderDataIterEnd = this->renderDataMap.end();
 

@@ -4,6 +4,8 @@
 #include "Core/Math/Matrix4x4.h"
 #include "Render/Shader/ShaderProgram.h"
 
+#define MAX_NUMBER_OF_TEXTURES 32
+
 namespace sp {
 	class RenderData {
 	public:
@@ -23,5 +25,6 @@ namespace sp {
 		Vector3 scale;
 		bool modelMatrixChanged;
 		ShaderProgram shaderProgram;
+		unsigned int textureIds[MAX_NUMBER_OF_TEXTURES] = { 0 };
 	};
 }

@@ -10,7 +10,7 @@ namespace sp {
 		RenderData const & getRenderData(int const gameObjectId) const;
 		std::map<int, RenderData> const & getRenderDataMap() const;
 		void saveRenderData(RenderData const & renderData);
-		void resetAllModelMatrixUpdated();
+		void resetAllChangedFlags();
 		static RenderDataContainer & getInstance();
 
 	private:

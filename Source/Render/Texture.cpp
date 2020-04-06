@@ -6,8 +6,8 @@
 
 
 namespace sp {
-	Texture::Texture(SpString const & path, bool const genMipmap, GLenum format) :
-		genMipMap{ genMipMap }, format{ format }, pathHashValue{ calculateHashValue(path) } {
+	Texture::Texture(SpString const & path, bool const genMipMap, GLenum format) :
+			genMipMap{ genMipMap }, format{ format }, pathHashValue{ calculateHashValue(path) } {
 		glGenTextures(1, &this->id);
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, this->id);
@@ -17,7 +17,7 @@ namespace sp {
 		if (data) {
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, this->width, this->height, 0, format, GL_UNSIGNED_BYTE, data);
 
-			if (genMipmap) {
+			if (this->genMipMap) {
 				glGenerateMipmap(GL_TEXTURE_2D);
 			}
 		}
@@ -25,7 +25,7 @@ namespace sp {
 			std::cout << "Error loading texture file: " << path << std::endl;
 		}
 
-		//glBindTexture(GL_TEXTURE_2D, 0);
+		glBindTexture(GL_TEXTURE_2D, 0);
 		stbi_image_free(data);
 	}
 

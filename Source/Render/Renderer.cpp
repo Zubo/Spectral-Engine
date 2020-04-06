@@ -32,6 +32,24 @@ namespace sp {
 		shaderProgram.setVec3(cameraDirectionUniformName, cameraDirection.x, cameraDirection.y, cameraDirection.z);
 	}
 
+	inline void bindTextures(RenderData const & renderData) {
+		for (int i = 0; i < MAX_NUMBER_OF_TEXTURES; ++i) {
+			int const textureUnit = GL_TEXTURE0 + i;
+			glActiveTexture(textureUnit);
+
+			unsigned int textureId = renderData.textureIds[i];
+			glBindTexture(GL_TEXTURE_2D, textureId);
+		}
+	}
+
+	inline void unbindAllTextures() {
+		for (int i = 0; i < MAX_NUMBER_OF_TEXTURES; ++i) {
+			int const textureUnit = GL_TEXTURE0 + i;
+			glActiveTexture(textureUnit);
+			glBindTexture(GL_TEXTURE_2D, 0);
+		}
+	}
+
 	inline void updateLights(ShaderProgram const & shaderProgram) {
 		LightDataContainer const & lightDataContainer = LightDataContainer::getInstance();
 		std::map<int, LightData> const & lightDataMap = lightDataContainer.getLightDataMap();
@@ -88,11 +106,14 @@ namespace sp {
 				updateCamera(renderData.shaderProgram, viewMatrix, projectionMatrix, cameraPos, cameraRotation);
 			}
 
+			bindTextures(renderData);
+
 			glBindVertexArray(renderData.VAO);
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
 
-		renderDataContainer.resetAllModelMatrixUpdated();
+		unbindAllTextures();
+		renderDataContainer.resetAllChangedFlags();
 		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
 		lightDataContainer.setNumberOfLightsChangedToFalse();
 		lightDataContainer.setAllLightDataChangedToFalse();

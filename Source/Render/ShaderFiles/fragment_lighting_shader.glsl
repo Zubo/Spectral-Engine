@@ -61,7 +61,9 @@ vec3 getDiffuseLight(Light light)
 
 	vec3 diffuseLight = diffuseIntensity *
 						vec3(texture(material.diffuseMapTex, TexCoords)) *
+						material.diffuse *
 						light.color;
+						
 	return diffuseLight;
 }
 
@@ -104,11 +106,9 @@ void main()
 
 		if (light.lightType == LightTypePoint)
 		{
-			vec3 ambientColor = material.ambient *
-								vec3(texture(material.diffuseMapTex, TexCoords));
 			vec3 diffuseLight = getDiffuseLight(light);
-			vec3 specular = getSpecular(light);
-			totalLight += (ambientColor + diffuseLight + specular);
+			vec3 specularLight = getSpecular(light);
+			totalLight += (diffuseLight + specularLight);
 		}
 		else if (light.lightType == LightTypeDirectional)
 		{
@@ -116,5 +116,9 @@ void main()
 		}
 	}
 
+	vec3 ambientColor = material.ambient *
+						vec3(texture(material.diffuseMapTex, TexCoords));
+	totalLight += ambientColor;
+	
 	FragColor = vec4(totalLight, 1.0F);
 }

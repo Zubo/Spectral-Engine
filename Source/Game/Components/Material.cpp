@@ -7,6 +7,7 @@
 #include "Render/RenderDataUpdate.h"
 #include "Render/Shader/ShaderProgram.h"
 #include "Render/Texture.h"
+#include "Render/TextureManager.h"
 
 #define MATERIAL_VARIABLE_NAME "material"
 
@@ -22,6 +23,12 @@ namespace sp {
 		ShaderProgram const shaderProgram{ vertexShaderPath, fragmentShaderPath };
 		int const gameObjectId = this->gameObjectOwner->getId();
 		updateShaderProgram(gameObjectId, shaderProgram);
+		this->setAmbient(this->ambientColor);
+		this->setSpecular(this->specularColor);
+		this->setDiffuse(this->diffuseColor);
+		this->setShinines(this->shininess);
+		shaderProgram.setInt(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".diffuseMapTex" }, 0);
+		shaderProgram.setInt(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".specularMapTex" }, 1);
 	}
 
 	void Material::setAmbient(Vector3 const & ambientColor) {
@@ -47,26 +54,30 @@ namespace sp {
 
 	void Material::setShinines(float const shininess) {
 		this->shininess = shininess;
+
+		ShaderProgram const shaderProgram = this->getShaderProgram();
+		shaderProgram.setFloat(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".shininess" },
+			this->shininess);
 	}
 
 	void Material::setDiffuseMap(SpString const & texturePath) {
-		ShaderProgram const shaderProgram = getShaderProgram();
-		
-		shaderProgram.use();
-		this->diffuseMapTexture = std::make_unique<Texture>(texturePath, true, GL_RGBA);
-		SpString const materialVariablePrefix{ MATERIAL_VARIABLE_NAME };
-		shaderProgram.setInt(materialVariablePrefix + SpString{ ".diffuseMapTex" }, 0);
+		TextureManager & textureManager = TextureManager::getInstance();
+		Texture texture = textureManager.getTexture(texturePath, true, GL_RGBA);
+
+		int const gameObjectId = this->gameObjectOwner->getId();
+		unsigned int const diffuseMapTextureIndex = 0;
+		unsigned int const textureId = texture.getId();
+		updateTextureId(gameObjectId, textureId, diffuseMapTextureIndex);
 	}
 
 	void Material::setSpecularMap(SpString const & texturePath) {
-		
-		ShaderProgram const shaderProgram = getShaderProgram();
-		shaderProgram.use();
-		glActiveTexture(GL_TEXTURE1);
-		this->specularMapTexture = std::make_unique<Texture>(texturePath, true, GL_RGBA);
-		SpString const materialVariablePrefix{ MATERIAL_VARIABLE_NAME };
-		shaderProgram.setInt(materialVariablePrefix + SpString{ ".specularMapTex" }, 1);
-		glActiveTexture(0);
+		TextureManager & textureManager = TextureManager::getInstance();
+		Texture texture = textureManager.getTexture(texturePath, true, GL_RGBA);
+
+		int const gameObjectId = this->gameObjectOwner->getId();
+		unsigned int const specularMapTextureIndex = 1;
+		unsigned int const textureId = texture.getId();
+		updateTextureId(gameObjectId, textureId, specularMapTextureIndex);
 	}
 
 	ShaderProgram const Material::getShaderProgram() {
