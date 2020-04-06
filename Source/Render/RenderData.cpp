@@ -15,7 +15,7 @@ namespace sp {
 		modelMatrix = rotateX(modelMatrix, Degree{ this->rotationEuler.x });
 		modelMatrix = rotateY(modelMatrix, Degree{ this->rotationEuler.y });
 		modelMatrix = rotateZ(modelMatrix, Degree{ this->rotationEuler.z });
-		modelMatrix = translate(modelMatrix, this->translation);
+		modelMatrix = translate(modelMatrix, this->position);
 		modelMatrix = sp::scale(modelMatrix, this->scale);
 
 		return modelMatrix;

@@ -18,7 +18,7 @@ namespace sp {
 		unsigned int VBO;
 		unsigned int EBO;
 		unsigned int elementCount;
-		Vector3 translation;
+		Vector3 position;
 		Vector3 rotationEuler;
 		Vector3 scale;
 		bool modelMatrixChanged;

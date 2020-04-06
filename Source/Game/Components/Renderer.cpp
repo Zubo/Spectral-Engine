@@ -9,6 +9,7 @@
 #include "PlatformIndependence/SpString.h"
 #include "Render/Shader/ShaderProgram.h"
 #include "Render/RenderDataUpdate.h"
+#include "Render/RenderDataContainer.h"
 
 namespace sp {
 	Renderer::Renderer(GameObject * const gameObjectOwner) : GameObjectComponent(gameObjectOwner) {
@@ -20,6 +21,16 @@ namespace sp {
 		bool const isActive = gameObjectOwner->getIsActive();
 		bool const isStatic = false;
 		createRenderData(gameObjectId, isActive, meshId, isStatic);
+
+		std::weak_ptr<Transform> transformWeak = this->gameObjectOwner->getComponent<Transform>();
+		if (std::shared_ptr<Transform> transformShared = transformWeak.lock()) {
+			RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
+			RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
+			renderData.position = transformShared->getPosition();
+			renderData.rotationEuler = transformShared->getRotationEuler();
+			renderData.scale = transformShared->getScale();
+			renderDataContainer.saveRenderData(renderData);
+		}
 	}
 
 	Renderer::~Renderer() {

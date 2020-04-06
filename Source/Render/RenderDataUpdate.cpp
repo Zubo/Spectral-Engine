@@ -74,7 +74,7 @@ void sp::updateShaderProgram(int const gameObjectId, ShaderProgram const shaderP
 void sp::updatePosition(int const gameObjectId, Vector3 const & position) {
 	RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 	RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
-	renderData.translation = position;
+	renderData.position = position;
 	renderData.modelMatrixChanged = true;
 	renderDataContainer.saveRenderData(renderData);
 }
