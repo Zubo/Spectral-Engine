@@ -20,6 +20,14 @@ namespace sp {
 		bool const initializedSuccessfuly() const;
 		bool const shouldClose() const;
 		GLFWwindow * const getConcreteWindow() const;
+		
+		inline int getWidht() const {
+			return this->width;
+		}
+
+		inline int getHeight() const {
+			return this->height;
+		}
 
 	private:
 		int width;
