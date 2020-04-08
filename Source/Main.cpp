@@ -40,9 +40,14 @@ int main(int argc, char** argv) {
 
 	float lastFrame = static_cast<float>(glfwGetTime());
 
+	float lastFPS = 0.0F;
+	float deltaTimeAccumulated = 0.0F;
+	int frameCounter = 0;
+
 	while (!window->shouldClose()) {
 		float currentFrame = static_cast<float>(glfwGetTime());
 		float deltaTime = currentFrame - lastFrame;
+		deltaTimeAccumulated += deltaTime;
 		sp::GameObject::updateGameObjects(deltaTime);
 		lastFrame = currentFrame;
 
@@ -52,11 +57,20 @@ int main(int argc, char** argv) {
 		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		sp::renderAll();
+		sp::renderScene();
+		textRenderer.renderText(std::to_string(lastFPS), { 50.0F }, { 0.3F });
 
 		glfwSwapBuffers(window->getConcreteWindow());
 		glfwPollEvents();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		++frameCounter;
+
+		if (deltaTimeAccumulated > 1.0F) {
+			lastFPS = frameCounter / deltaTimeAccumulated;
+			frameCounter = 0;
+			deltaTimeAccumulated = 0.0F;
+		}
 	}
 
 	glfwTerminate();

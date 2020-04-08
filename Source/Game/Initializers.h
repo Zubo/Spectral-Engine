@@ -1,5 +1,4 @@
 #pragma once
-
 #include <memory>
 #include <random>
 #define GLFW_INCLUDE_NONE

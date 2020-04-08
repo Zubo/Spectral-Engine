@@ -29,7 +29,7 @@ namespace sp {
 
 		glBindVertexArray(0);
 
-		SpString const fontPath{ ResourcesPathProvider::getResourcesDirectoryPath() + SpString{ "/Fonts/JingJing.ttf" } };
+		SpString const fontPath{ ResourcesPathProvider::getResourcesDirectoryPath() + SpString{ "/Fonts/Arial.ttf" } };
 		this->font = Font::getFont(fontPath);
 
 		SpString const vertexShaderPath{ ResourcesPathProvider::getShaderFilesDirectoryPath() + SpString{"/vertex_text_shader.glsl" } };
