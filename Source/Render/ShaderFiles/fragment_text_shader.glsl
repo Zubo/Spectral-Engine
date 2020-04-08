@@ -9,5 +9,5 @@ uniform vec3 TextColor;
 void main()
 {
 	vec4 sampled = vec4(1.0F, 1.0F, 1.0F, texture(textu, TexCoord).r);
-	color = sampled * vec4(TextColor, 1.0F);
+	color = sampled * vec4(vec3(1.0F), 1.0F);
 }

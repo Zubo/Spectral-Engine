@@ -1,6 +1,7 @@
 #include "Render/TextRenderer.h"
 
 #include "Core/Math/LinearTransformations.h"
+#include "Core/Utility/ResourcesPathProvider.h"
 #include "glad/glad.h"
 #include "PlatformIndependence/SpWindow.h"
 #include "Render/UI/Font/Character.h"
@@ -19,26 +20,31 @@ namespace sp {
 
 		glGenBuffers(1, &this->VBO);
 		glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
-		constexpr int quadSize = 6 * 2 * sizeof(float);	// Quad has 2 triangles, each with 3 xy vertices
+		constexpr int quadSize = 6 * 4 * sizeof(float);	// Quad has 2 triangles, each with 3 xy vertices
 		glBufferData(GL_ARRAY_BUFFER, quadSize, NULL, GL_DYNAMIC_DRAW);
 
-		glVertexAttribPointer(0, 2 * sizeof(float), GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void *)0);
+		glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *)0);
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 		glBindVertexArray(0);
+
+		SpString const fontPath{ ResourcesPathProvider::getResourcesDirectoryPath() + SpString{ "/Fonts/JingJing.ttf" } };
+		this->font = Font::getFont(fontPath);
+
+		SpString const vertexShaderPath{ ResourcesPathProvider::getShaderFilesDirectoryPath() + SpString{"/vertex_text_shader.glsl" } };
+		SpString const fragmentShaderPath{ ResourcesPathProvider::getShaderFilesDirectoryPath() + SpString{"/fragment_text_shader.glsl" } };
+		this->shaderProgram = ShaderProgram{ vertexShaderPath, fragmentShaderPath };
 	}
 
 	void TextRenderer::renderText(
 		SpString const & text,
-		Font const & font,
-		ShaderProgram const & shaderProgram,
 		Vector2 const & position,
 		Vector2 const & scale
 	) const {
 		Matrix4x4 const orthoProjectionMatrix = this->getOrthoProjectionMatrix();
 
-		shaderProgram.use();
+		this->shaderProgram.use();
 		shaderProgram.setMatrix4fv("projection", orthoProjectionMatrix.getValuePtr());
 		shaderProgram.setInt("textu", 0);
 
@@ -48,7 +54,7 @@ namespace sp {
 		float characterOffsetX = 0.0f;
 
 		for (SpString::const_iterator charIterator = text.begin(); charIterator != text.end(); ++charIterator) {
-			Character const character = font.getCharacter(*charIterator);
+			Character const character = this->font->getCharacter(*charIterator);
 			Vector2 const currentCharPos = position + Vector2{ characterOffsetX, 0.0F };
 			Vector2 const characterBearing{ (float)character.bitmapLeft, (float)character.bitmapTop };
 			Vector2 const textureOrigin = currentCharPos + characterBearing;

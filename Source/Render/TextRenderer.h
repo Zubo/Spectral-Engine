@@ -1,12 +1,14 @@
 #pragma once
 
+#include <memory>
+
 #include "glad/glad.h"
 
 #include "Core/Math/Matrix4x4.h"
 #include "Render/Shader/ShaderProgram.h"
+#include "Render/UI/Font/Font.h"
 
 namespace sp {
-	class Font;
 	class Vector2;
 
 	class TextRenderer {
@@ -19,8 +21,6 @@ namespace sp {
 		void init();
 		void renderText(
 			SpString const & text,
-			Font const & font,
-			ShaderProgram const & shaderProgram,
 			Vector2 const & position,
 			Vector2 const & scale) const;
 
@@ -30,5 +30,7 @@ namespace sp {
 	private:
 		GLuint VBO;
 		GLuint VAO;
+		std::shared_ptr<Font const> font;
+		ShaderProgram shaderProgram;
 	};
 }

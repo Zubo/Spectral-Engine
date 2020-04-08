@@ -10,8 +10,10 @@
 #include "PlatformIndependence/Input/Input.h"
 #include "PlatformIndependence/SpWindow.h"
 #include "Render/Renderer.h"
+#include "Render/TextRenderer.h"
 
 #include "Core/Math/Vector3.h"
+#include "Core/Math/Vector2.h"
 
 
 int main(int argc, char** argv) {
@@ -29,6 +31,9 @@ int main(int argc, char** argv) {
 	sp::SpString const rootPath{ executablePath.substr(0, executablePath.find_last_of("\\")) };
 	sp::ResourcesPathProvider::initializePaths(rootPath);
 	sp::initScene(argv[0]);
+
+	sp::TextRenderer textRenderer = sp::TextRenderer::getInstance();
+	textRenderer.init();
 
 	glfwSwapInterval(0);
 	glEnable(GL_DEPTH_TEST);
