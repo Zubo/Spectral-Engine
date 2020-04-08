@@ -4,7 +4,6 @@
 #include <memory>
 #include <sstream>
 
-#include "Game/Components/UI/TextRenderer.h"
 #include "Game/GameObject/GameObject.h"
 #include "PlatformIndependence/SpString.h"
 
@@ -21,19 +20,7 @@ namespace sp {
 			return;
 		}
 
-		std::weak_ptr<TextRenderer> textRendererWeak = this->gameObjectOwner->getComponent<TextRenderer>();
-
-		if (auto textRendererShared = textRendererWeak.lock()) {
-			float const averageFramePeriod = this->timeSinceLastRender / this->numberOfFrames;
-			float const fps = std::ceil(1.0F / averageFramePeriod * 10.0F) / 10.0F;
-
-			std::ostringstream ss;
-			ss << fps;
-
-			SpString fpsString{ ss.str() };
-
-			textRendererShared->setText(fpsString);
-		}
+		// Render text
 
 		this->timeSinceLastRender = 0.0F;
 		this->numberOfFrames = 0.0F;

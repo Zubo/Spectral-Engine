@@ -27,12 +27,6 @@ set(SpectralEngine_Game_Components_HEADER
     "Components/FPSCounter.h"
     "Components/CameraTransform.h"
     "Components/LightSource.h")
-    
-set(SpectralEngine_Game_Components_UI_SRC
-    "Components/UI/TextRenderer.cpp")
-
-set(SpectralEngine_Game_Components_UI_HEADER
-    "Components/UI/TextRenderer.h")
 
 set(SpectralEngine_Game_Components_Interface_HEADER
     "Components/Interface/IRenderer.h"
@@ -58,7 +52,5 @@ set(SpectralEngine_Game_SRC
 	${SpectralEngine_Game_Components_SRC}
 	${SpectralEngine_Game_Components_HEADER}
 	${SpectralEngine_Game_Components_Interface_HEADER}
-	${SpectralEngine_Game_Components_UI_SRC}
-    ${SpectralEngine_Game_Components_UI_HEADER}
     ${SpectralEngine_Game_GameObject_HEADER}
     ${SpectralEngine_Game_GameObject_SRC})

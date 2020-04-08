@@ -21,7 +21,8 @@ namespace sp {
 			SpString const & text,
 			Font const & font,
 			ShaderProgram const & shaderProgram,
-			Vector2 const & position);
+			Vector2 const & position,
+			Vector2 const & scale) const;
 
 	private:
 		Matrix4x4 getOrthoProjectionMatrix() const;

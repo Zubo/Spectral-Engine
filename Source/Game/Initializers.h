@@ -15,7 +15,6 @@
 #include "Game/Components/CameraInputHandler.h"
 #include "Game/Components/FPSCounter.h"
 #include "Game/Components/LightSource.h"
-#include "Game/Components/UI/TextRenderer.h"
 #include "Game/Components/PositionOscilator.h"
 #include "Game/GameObject/GameObject.h"
 #include "Game/Vertices.h"
@@ -30,23 +29,6 @@ namespace sp {
 	constexpr unsigned int SCR_HEIGHT = 600;
 	std::default_random_engine generator{ (unsigned int)time(0) };
 	std::uniform_real_distribution<float> distribution{ 0.0F, 1.0F };
-
-	void createText(SpString const & text, SpString const & fontPath) {
-		GameObject * textGameObject = new GameObject;
-		std::weak_ptr<Transform> transformWeak = textGameObject->addComponent<Transform>();
-
-		if (auto transformShared = transformWeak.lock()) {
-			transformShared->setScale(sp::Vector2::getVectorOne() * 0.6F);
-		}
-
-		std::weak_ptr<TextRenderer> const textRendererWeak = textGameObject->addComponent<TextRenderer>();
-		
-		if (std::shared_ptr<TextRenderer> const textRendererShared = textRendererWeak.lock()) {
-			textRendererShared->setFont(fontPath);
-		}
-
-		textGameObject->addComponent<FPSCounter>();
-	}
 
 	void setRandomColors(std::weak_ptr<Material> materialWeak) {
 		if (auto materialShared = materialWeak.lock()) {
@@ -175,10 +157,6 @@ namespace sp {
 			resourcesFolderPath + SpString{ "/Art/stone-wall.png" },
 			resourcesFolderPath + SpString{ "/Art/awesomeface.png" }
 		};
-
-		SpString const fontPath = resourcesFolderPath + SpString{ "/Fonts/JingJing.ttf" };
-		//createText("This is sample text", fontPath);
-
 
 		constexpr int numberOfObjects = (sizeof(cubePositions) / sizeof(cubePositions[0]));
 		GameObject * lightSourceGameObject = createLight(shadersFolderPath, texturePathArray, numberOfObjects - 1);
