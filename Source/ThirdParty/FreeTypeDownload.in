@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.8)
+
+project(FreeTypeDownload)
+
+include(ExternalProject)
+
+ExternalProject_Add(FreeType
+    GIT_REPOSITORY  https://github.com/aseprite/freetype2
+    GIT_TAG         VER-2-8-1
+	BINARY_DIR		"${CMAKE_CURRENT_BINARY_DIR}/FreeType-build"
+    CMAKE_ARGS      -DCMAKE_INSTALL_PREFIX=${FreeType_INSTALL_DIR})

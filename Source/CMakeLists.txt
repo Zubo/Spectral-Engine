@@ -8,9 +8,9 @@ add_executable (SpectralEngine "main.cpp")
 
 set(LIBRARIES_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Libraries/Header)
 
+add_subdirectory(ThirdParty)
 add_subdirectory(Game)
 add_subdirectory(Core)
-add_subdirectory(ThirdParty)
 add_subdirectory(Render)
 add_subdirectory(PlatformIndependence)
 add_subdirectory(Test)
@@ -19,7 +19,6 @@ target_link_libraries(SpectralEngine Core)
 target_link_libraries(SpectralEngine Game)
 target_link_libraries(SpectralEngine Glad_external)
 target_link_libraries(SpectralEngine PlatformIndependence)
-target_link_libraries(SpectralEngine GLFW)
 
 target_include_directories(Game PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(Core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

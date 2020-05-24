@@ -7,12 +7,15 @@ cmake_install.cmake
 install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
+CMakeSettings.json
 
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+.vs/*
 
 Source/Test/Catch/*
 Source/ThirdParty/GLFW/*
