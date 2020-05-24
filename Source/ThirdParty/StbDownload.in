@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.8)
+
+project(StbDownload)
+
+include(ExternalProject)
+
+ExternalProject_Add(Stb
+	GIT_REPOSITORY		git@github.com:nothings/stb.git
+	GIT_TAG				master
+	BINARY_DIR			"${CMAKE_CURRENT_BINARY_DIR}/stb-build"
+	SOURCE_DIR			"${Stb_SOURCE_DIR}"
+	CONFIGURE_COMMAND	""
+	BUILD_COMMAND		""
+	CMAKE_ARGS			-DCMAKE_INSTALL_PREFIX=${Stb_INSTALL_DIR}
+	INSTALL_COMMAND		"${CMAKE_COMMAND}" -E copy "${Stb_SOURCE_DIR}/stb_image.h" "${Stb_INSTALL_DIR}/stb/stb_image.h")

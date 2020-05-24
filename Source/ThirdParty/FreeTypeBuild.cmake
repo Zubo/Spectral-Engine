@@ -19,6 +19,12 @@ if (result)
 	message(FATAL_ERROR "Build step for FreeType failed: ${result}")
 endif()
 
-# Link freetype through these variables because find_package sometimes doesn't work
-set(freetype_LIB_PATH "${FreeType_INSTALL_DIR}/lib/freetyped.lib" CACHE STRING "Path to freetype library.")
-set(freetype_INCLUDE_PATH "${FreeType_INSTALL_DIR}/include/freetype2/" CACHE STRING "Path to freetype include directory.")
+# Add freetype library globally
+set(freetype_LIB_PATH "${FreeType_INSTALL_DIR}/lib/freetyped.lib")
+add_library(freetype STATIC IMPORTED GLOBAL)
+set_property(TARGET freetype
+	PROPERTY IMPORTED_LOCATION "${freetype_LIB_PATH}")
+
+# Set include directories for freetype
+set(freetype_INCLUDE_PATH "${FreeType_INSTALL_DIR}/include/freetype2/")
+target_include_directories(freetype INTERFACE ${freetype_INCLUDE_PATH})

@@ -8,13 +8,11 @@ include(FreeTypeBuild.cmake)
 # GLFW:
 include(GlfwBuild.cmake)
 
+#KHR
+include(KhrBuild.cmake)
+
 # Glad
 add_subdirectory(Glad)
 
-#KHR
-add_library(KHR INTERFACE)
-target_include_directories(KHR INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/KHR)
-
 #STB_Image
-add_library(STB_Image INTERFACE)
-target_include_directories(STB_Image INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/STB_Image/include)
+include(StbBuild.cmake)

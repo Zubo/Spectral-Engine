@@ -1,13 +1,11 @@
 cmake_minimum_required(VERSION 3.8)
 
 include(CMakeSources.cmake)
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_library(Glad_external STATIC ${ThirdParty_Glad_ALL})
+add_library(glad STATIC ${Glad_ALL})
+target_include_directories(glad PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-set_target_properties(Glad_external PROPERTIES
-    FOLDER ExternalProjectTargets/Glad_external)
+set_target_properties(glad PROPERTIES
+    FOLDER ThirdParty)
 
-target_include_directories(Glad_external PUBLIC ${ThirdParty_Glad_Include_Directories})
-
-target_link_libraries(Glad_external KHR)
+target_link_libraries(glad khr)

@@ -56,5 +56,4 @@ set(SpectralEngine_Core_SRC
 	${SpectralEngine_Core_Utility_HEADER}
 	${SpectralEngine_Core_Math_SRC}
 	${SpectralEngine_Core_Math_HEADER}
-	${SpectralEngine_Glad_SRC}
 	${SpectralEngine_Core_Files})
