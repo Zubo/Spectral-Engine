@@ -1,4 +1,4 @@
-#include "catch2/catch.hpp"
+#include "gtest/gtest.h"
 #include "Core/Math/Degree.h"
 #include "Core/Math/SpMath.h"
 
@@ -6,7 +6,7 @@
 namespace sp
 {
 	namespace test {
-		TEST_CASE("DegreeTest/getValueDegree") {
+		TEST(DegreeTest, getValueDegree) {
 			// Arrange
 			float const initialValueDegree{ 50.0F };
 			Degree const degree{ initialValueDegree };
@@ -15,10 +15,10 @@ namespace sp
 			float const resultValueDegree = degree.getValueDegrees();
 			
 			// Assert
-			REQUIRE(initialValueDegree == Approx(resultValueDegree));
+			ASSERT_FLOAT_EQ(initialValueDegree, resultValueDegree);
 		}
 
-		TEST_CASE("DegreeTest/getValueRadian") {
+		TEST(DegreeTest, getValueRadian) {
 			// Arrange
 			float const initialValueDegree{ 50.0F };
 			Degree const degree{ initialValueDegree };
@@ -28,7 +28,7 @@ namespace sp
 
 			// Assert
 			float const expectedValueRadians = initialValueDegree * PI / 180.0F;
-			REQUIRE(expectedValueRadians == Approx(resultValueRadians));
+			ASSERT_FLOAT_EQ(expectedValueRadians, resultValueRadians);
 		}
 	}
 }

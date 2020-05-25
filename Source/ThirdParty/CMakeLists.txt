@@ -16,3 +16,6 @@ add_subdirectory(Glad)
 
 #STB_Image
 include(StbBuild.cmake)
+
+#googletest
+include(GtestBuild.cmake)
