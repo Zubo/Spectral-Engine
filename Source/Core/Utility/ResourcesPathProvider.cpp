@@ -13,7 +13,7 @@ namespace sp {
 	}
 
 	void ResourcesPathProvider::initializePaths(SpString const & rootPath) {
-		resourcesDirectoryPath = rootPath + SpString{ "/../../../Resources/Resources" };
-		shaderFilesDirectoryPath = rootPath + SpString{ "/../../../Source/Render/ShaderFiles" };
-}
+		resourcesDirectoryPath = rootPath + SpString{ "/../../Resources" };
+		shaderFilesDirectoryPath = resourcesDirectoryPath + SpString{ "/Shaders" };
+	}
 }

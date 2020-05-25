@@ -145,11 +145,10 @@ namespace sp {
 			Camera::setMainCamera(cameraShared);
 		}
 
-		SpString const rootPath{ executablePath.substr(0, executablePath.find_last_of("\\")) };
-		SpString const shadersFolderPath{ rootPath + SpString{"/../../../Source/Render/ShaderFiles"} };
+		SpString const shadersFolderPath{ ResourcesPathProvider::getShaderFilesDirectoryPath() };
 		SpString const vertexShaderPath{ shadersFolderPath + SpString{ "/vertex_lighting_shader.glsl" } };
 		SpString const fragmentShaderPath{ shadersFolderPath + SpString{ "/fragment_lighting_shader.glsl" } };
-		SpString const resourcesFolderPath{ rootPath + SpString{ "/../../../Resources/Resources" } };
+		SpString const resourcesFolderPath{ ResourcesPathProvider::getResourcesDirectoryPath() };
 		SpString const diffuseMapPath = resourcesFolderPath + SpString{ "/Art/container.png" };
 		SpString const specularMapPath = resourcesFolderPath + SpString{ "/Art/specular_map_container.png" };
 		SpString const texturePathArray[2]{

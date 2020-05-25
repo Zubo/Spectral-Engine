@@ -21,4 +21,4 @@ Source/Test/Catch/*
 Source/ThirdParty/GLFW/*
 Source/ThirdParty/FreeType/*
 
-build/*
+Binary/Build*

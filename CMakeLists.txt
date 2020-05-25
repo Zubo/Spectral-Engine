@@ -7,4 +7,3 @@ project ("SpectralEngine")
 
 # Include sub-projects.
 add_subdirectory ("Source")
-add_subdirectory ("Resources")

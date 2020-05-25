@@ -26,6 +26,6 @@ target_include_directories(Render PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(PlatformIndependence PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(Test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-set(EXECUTABLE_OUTPUT_PATH "../bin/executable")
-set(LIBRARY_OUTPUT_PATH "../bin/lib")
+set(EXECUTABLE_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/Binary/Build")
+set(LIBRARY_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/Binary/Build/lib")
 # TODO: Add tests and install targets if needed.
