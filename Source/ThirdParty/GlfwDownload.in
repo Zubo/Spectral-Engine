@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.8)
+
+project(GlfwDownload)
+
+include(ExternalProject)
+
+ExternalProject_Add(glfw_download
+    GIT_REPOSITORY	https://github.com/glfw/glfw.git
+    GIT_TAG			3.2.1
+	BINARY_DIR		"${CMAKE_CURRENT_BINARY_DIR}/glfw-build"
+    CMAKE_ARGS		-DCMAKE_INSTALL_PREFIX=${GLFW_INSTALL_DIR})

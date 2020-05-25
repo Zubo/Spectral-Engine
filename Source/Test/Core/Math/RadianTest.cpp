@@ -1,10 +1,10 @@
-#include "catch2/catch.hpp"
 #include "Core/Math/Radian.h"
 #include "Core/Math/SpMath.h"
+#include "gtest/gtest.h"
 
 namespace sp {
 	namespace test {
-		TEST_CASE("Radian/getValueRadian") {
+		TEST(Radian, getValueRadian) {
 			// Arrange
 			float const initialValueRadian{ 2.12F };
 			Radian const radian{ initialValueRadian };
@@ -13,10 +13,10 @@ namespace sp {
 			float const resultValueRadians = radian.getValueRadians();
 
 			// Assert
-			REQUIRE(initialValueRadian == Approx(resultValueRadians));
+			ASSERT_FLOAT_EQ(initialValueRadian, resultValueRadians);
 		}
 
-		TEST_CASE("Radian/getValueDegree") {
+		TEST(Radian, getValueDegree) {
 			// Arrange
 			float const initialValueRadian{ 5.1F };
 			Radian const radian{ initialValueRadian };
@@ -26,7 +26,7 @@ namespace sp {
 
 			// Assert
 			float const expectedValueDegree = initialValueRadian * 180.0F / PI;
-			REQUIRE(expectedValueDegree == Approx(resultValueDegree));
+			ASSERT_FLOAT_EQ(expectedValueDegree, resultValueDegree);
 		}
 	}
 }
