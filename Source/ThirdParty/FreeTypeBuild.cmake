@@ -24,9 +24,9 @@ add_library(freetype STATIC IMPORTED GLOBAL)
 if(WIN32)
 	set(freetype_LIB_PATH "${FreeType_INSTALL_DIR}/lib/freetyped.lib")
 elseif(UNIX)
-	set(freetype_LIB_PATH "${FreeType_INSTALL_DIR}/lib/freetyped.a")
+	set(freetype_LIB_PATH "${FreeType_INSTALL_DIR}/lib/libfreetype.a")
 else()
-	message(FATAL_ERROR "Current target OS implementation missing."
+	message(FATAL_ERROR "Current target OS implementation missing.")
 endif()
 set_property(TARGET freetype
 	PROPERTY IMPORTED_LOCATION ${freetype_LIB_PATH})
