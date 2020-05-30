@@ -1,5 +1,7 @@
 #include "Game/Components/Rotator.h"
 
+#include "Core/Math/Radian.h"
+#include "Core/Math/SpMath.h"
 #include "Game/GameObject/GameObject.h"
 #include "Game/Components/Transform.h"
 
@@ -11,7 +13,9 @@ namespace sp {
 		this->passedTime += deltaTime;
 		auto transformComponentWeak = gameObjectOwner->getComponent<Transform>();
 		if (auto transformComponentShared = transformComponentWeak.lock()) {
-			transformComponentShared->setRotationEuler(Vector3{ 0.0F, sin(this->passedTime * (0.2F)) * 360.0F, 0.0F });
+			float const rotY{ sin(Radian{ this->passedTime * 0.2F }) * 360.0F };
+			Vector3 const rotationVector{ 0.0F, rotY, 0.0F };
+			transformComponentShared->setRotationEuler(rotationVector);
 		}
 	}
 }

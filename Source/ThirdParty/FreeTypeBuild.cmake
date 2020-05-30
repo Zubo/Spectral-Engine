@@ -20,10 +20,16 @@ if (result)
 endif()
 
 # Add freetype library globally
-set(freetype_LIB_PATH "${FreeType_INSTALL_DIR}/lib/freetyped.lib")
 add_library(freetype STATIC IMPORTED GLOBAL)
+if(WIN32)
+	set(freetype_LIB_PATH "${FreeType_INSTALL_DIR}/lib/freetyped.lib")
+elseif(UNIX)
+	set(freetype_LIB_PATH "${FreeType_INSTALL_DIR}/lib/freetyped.a")
+else()
+	message(FATAL_ERROR "Current target OS implementation missing."
+endif()
 set_property(TARGET freetype
-	PROPERTY IMPORTED_LOCATION "${freetype_LIB_PATH}")
+	PROPERTY IMPORTED_LOCATION ${freetype_LIB_PATH})
 
 # Set include directories for freetype
 set(freetype_INCLUDE_PATH "${FreeType_INSTALL_DIR}/include/freetype2/")

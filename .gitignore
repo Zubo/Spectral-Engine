@@ -22,3 +22,4 @@ Source/ThirdParty/GLFW/*
 Source/ThirdParty/FreeType/*
 
 Binary/Build*
+build/*

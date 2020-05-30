@@ -8,7 +8,7 @@ namespace sp {
 
 	public:
 		float * operator[](int const ind);
-		float const * Matrix4x4::operator[](int const ind) const;
+		float const * operator[](int const ind) const;
 		Matrix4x4 operator*(Matrix4x4 const & mat) const;
 
 	public:

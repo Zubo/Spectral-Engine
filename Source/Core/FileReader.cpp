@@ -1,7 +1,7 @@
 #include "Core/FileReader.h"
 
 namespace sp {
-	SpString const FileReader::ReadFromFile(SpString const path) throw (char *) {
+	SpString const FileReader::ReadFromFile(SpString const path) {
 		std::ifstream inputFileStream(path);
 
 		if (!inputFileStream) {
