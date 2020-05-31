@@ -34,3 +34,9 @@ set_property(TARGET freetype
 # Set include directories for freetype
 set(freetype_INCLUDE_PATH "${FreeType_INSTALL_DIR}/include/freetype2/")
 target_include_directories(freetype INTERFACE ${freetype_INCLUDE_PATH})
+
+if(UNIX)
+	find_package(PNG REQUIRED)
+	find_package(ZLIB REQUIRED)
+	target_link_libraries(freetype INTERFACE ${PNG_LIBRARY} ${ZLIB_LIBRARY})
+endif()
