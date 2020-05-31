@@ -98,7 +98,7 @@ vec3 getDirectionalLight(Light light) {
 
 void main()
 {
-	vec3 totalLight;
+	vec3 totalLight = vec3(0.0F, 0.0F, 0.0F);
 
 	for (int i = 0; i < numberOfLights; ++i)
 	{
