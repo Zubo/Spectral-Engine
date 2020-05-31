@@ -7,6 +7,7 @@
 #include "Core/Utility/ResourcesPathProvider.h"
 #include "Game/Initializers.h"
 #include "Game/Vertices.h"
+#include "PlatformIndependence/Environment.h"
 #include "PlatformIndependence/Input/Input.h"
 #include "PlatformIndependence/SpWindow.h"
 #include "Render/Renderer.h"
@@ -14,7 +15,6 @@
 
 #include "Core/Math/Vector3.h"
 #include "Core/Math/Vector2.h"
-
 
 int main(int argc, char** argv) {
 	sp::SpWindow::init(800, 600);
@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
 	std::cout << sizeof(sp::Vector3) << std::endl;
 
 	sp::SpString const executablePath{ argv[0] };
-	sp::SpString const rootPath{ executablePath.substr(0, executablePath.find_last_of("\\")) };
+	sp::SpString const rootPath{ executablePath.substr(0, executablePath.find_last_of(sp::Environment::FilePathSeparator())) };
 	sp::ResourcesPathProvider::initializePaths(rootPath);
 	sp::initScene(argv[0]);
 
