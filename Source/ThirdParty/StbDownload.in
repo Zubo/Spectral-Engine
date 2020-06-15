@@ -12,4 +12,5 @@ ExternalProject_Add(Stb
 	CONFIGURE_COMMAND	""
 	BUILD_COMMAND		""
 	CMAKE_ARGS			-DCMAKE_INSTALL_PREFIX=${Stb_INSTALL_DIR}
-	INSTALL_COMMAND		"${CMAKE_COMMAND}" -E copy "${Stb_SOURCE_DIR}/stb_image.h" "${Stb_INSTALL_DIR}/stb/stb_image.h")
+	INSTALL_COMMAND		"${CMAKE_COMMAND}" -E copy "${Stb_SOURCE_DIR}/stb_image.h" "${Stb_INSTALL_DIR}/stb/stb_image.h"
+	UPDATE_COMMAND		"")
