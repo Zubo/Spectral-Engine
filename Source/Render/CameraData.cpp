@@ -26,12 +26,12 @@ namespace sp {
 		CameraData::dataChanged = true;
 	}
 
-	void CameraData::setScreenWidth(int const screenWidth) {
+	void CameraData::setScreenWidth(SpInt const screenWidth) {
 		CameraData::screenWidth = screenWidth;
 		CameraData::dataChanged = true;
 	}
 
-	void CameraData::setScreenHeight(int const screenHeight) {
+	void CameraData::setScreenHeight(SpInt const screenHeight) {
 		CameraData::screenHeight = screenHeight;
 		CameraData::dataChanged = true;
 	}
@@ -77,6 +77,6 @@ namespace sp {
 	Vector3 CameraData::translation{};
 	Vector3 CameraData::rotation{};
 	Degree CameraData::fov{};
-	int CameraData::screenWidth;
-	int CameraData::screenHeight;
+	SpInt CameraData::screenWidth;
+	SpInt CameraData::screenHeight;
 }

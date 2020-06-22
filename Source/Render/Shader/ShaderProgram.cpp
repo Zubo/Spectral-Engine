@@ -15,7 +15,7 @@ namespace sp {
 
 		glLinkProgram(this->id);
 
-		int success;
+		SpInt success;
 		glGetProgramiv(this->id, GL_LINK_STATUS, &success);
 
 		if (!success) {
@@ -42,31 +42,31 @@ namespace sp {
 
 	void ShaderProgram::setBool(SpString const & name, bool value) const {
 		this->use();
-		int const uniformLocation = glGetUniformLocation(this->id, name.c_str());
+		SpInt const uniformLocation = glGetUniformLocation(this->id, name.c_str());
 		glUniform1i(uniformLocation, (int)value);
 	}
 
-	void ShaderProgram::setInt(SpString const & name, int value) const {
+	void ShaderProgram::setInt(SpString const & name, SpInt value) const {
 		this->use();
-		int const uniformLocation = glGetUniformLocation(this->id, name.c_str());
+		SpInt const uniformLocation = glGetUniformLocation(this->id, name.c_str());
 		glUniform1i(uniformLocation, value);
 	}
 
 	void ShaderProgram::setFloat(SpString const & name, float value) const {
 		this->use();
-		int const uniformLocation = glGetUniformLocation(this->id, name.c_str());
+		SpInt const uniformLocation = glGetUniformLocation(this->id, name.c_str());
 		glUniform1f(uniformLocation, value);
 	}
 
 	void ShaderProgram::setMatrix4fv(SpString const & name, float const * const matrix) const {
 		this->use();
-		int const uniformLocation = glGetUniformLocation(this->getId(), name.c_str());
+		SpInt const uniformLocation = glGetUniformLocation(this->getId(), name.c_str());
 		glUniformMatrix4fv(uniformLocation, 1, GL_TRUE, matrix);
 	}
 
 	void ShaderProgram::setVec3(SpString const & name, float x, float y, float z) const {
 		this->use();
-		int const uniformLocation = glGetUniformLocation(this->getId(), name.c_str());
+		SpInt const uniformLocation = glGetUniformLocation(this->getId(), name.c_str());
 		float value[3] { x, y, z };
 		glUniform3fv(uniformLocation, 1, value);
 	}

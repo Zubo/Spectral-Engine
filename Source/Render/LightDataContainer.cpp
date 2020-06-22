@@ -2,6 +2,7 @@
 
 #include <map>
 
+#include "PlatformIndependence/SpType.h"
 #include "Render/LightData.h"
 
 namespace sp {
@@ -15,9 +16,9 @@ namespace sp {
 	}
 
 	void LightDataContainer::saveLightData(LightData const & lightData) {
-		int const lightDataId = lightData.id;
+		SpInt const lightDataId = lightData.id;
 		
-		int const previousLightCount = this->lightDataMap.size();
+		SpInt const previousLightCount = this->lightDataMap.size();
 
 		this->lightDataMap.insert_or_assign(lightDataId, lightData);
 
@@ -26,7 +27,7 @@ namespace sp {
 			(this->lightDataMap.size() != previousLightCount);
 	}
 
-	LightData const & LightDataContainer::getLightData(int const lightDataId) {
+	LightData const & LightDataContainer::getLightData(SpInt const lightDataId) {
 		return this->lightDataMap.at(lightDataId);
 	}
 
@@ -47,7 +48,7 @@ namespace sp {
 		auto lightDataIterEnd = this->lightDataMap.end();
 
 		for (lightDataIter; lightDataIter != lightDataIterEnd; ++lightDataIter) {
-			sp::LightData & lightData = lightDataIter->second;
+			LightData & lightData = lightDataIter->second;
 			lightData.changed = false;
 		}
 	}

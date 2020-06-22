@@ -2,8 +2,9 @@
 
 #include <memory>
 
-#include "Game/Components/GameObjectComponent.h"
 #include "Core/Math/Degree.h"
+#include "Game/Components/GameObjectComponent.h"
+#include "PlatformIndependence/SpType.h"
 
 namespace sp {
 	class GameObject;
@@ -20,6 +21,6 @@ namespace sp {
 
 	public:
 		Camera(GameObject * gameObjectOwner);
-		void initCamera(Degree fov, int screenWidth, int screenHeight);
+		void initCamera(Degree fov, SpInt screenWidth, SpInt screenHeight);
 	};
 }

@@ -3,6 +3,7 @@
 #include "Core/Math/LinearTransformations.h"
 #include "Core/Utility/ResourcesPathProvider.h"
 #include "glad/glad.h"
+#include "PlatformIndependence/SpType.h"
 #include "PlatformIndependence/SpWindow.h"
 #include "Render/UI/Font/Character.h"
 #include "Render/UI/Font/Font.h"
@@ -20,7 +21,7 @@ namespace sp {
 
 		glGenBuffers(1, &this->VBO);
 		glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
-		constexpr int quadSize = 6 * 4 * sizeof(float);	// Quad has 2 triangles, each with 3 xy vertices
+		constexpr SpInt quadSize = 6 * 4 * sizeof(float);	// Quad has 2 triangles, each with 3 xy vertices
 		glBufferData(GL_ARRAY_BUFFER, quadSize, NULL, GL_DYNAMIC_DRAW);
 
 		glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *)0);
@@ -91,8 +92,8 @@ namespace sp {
 
 	Matrix4x4 TextRenderer::getOrthoProjectionMatrix() const {
 		SpWindow const * const window = SpWindow::getInstance();
-		int const width = window->getWidht();
-		int const height = window->getHeight();
+		SpInt const width = window->getWidht();
+		SpInt const height = window->getHeight();
 		return getOrthographicMat(0, width, 0, height);
 	}
 }

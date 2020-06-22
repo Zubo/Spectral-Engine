@@ -14,7 +14,7 @@ namespace sp {
 		glShaderSource(this->id, 1, &shaderSourceCstring, NULL);
 		glCompileShader(this->id);
 
-		int success;
+		SpInt success;
 		glGetShaderiv(this->id, GL_COMPILE_STATUS, &success);
 
 		if (!success) {

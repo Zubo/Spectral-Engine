@@ -21,7 +21,7 @@ namespace sp {
 
 	void Material::initMaterial(SpString const & vertexShaderPath, SpString const & fragmentShaderPath) {
 		ShaderProgram const shaderProgram{ vertexShaderPath, fragmentShaderPath };
-		int const gameObjectId = this->gameObjectOwner->getId();
+		SpInt const gameObjectId = this->gameObjectOwner->getId();
 		updateShaderProgram(gameObjectId, shaderProgram);
 		this->setAmbient(this->ambientColor);
 		this->setSpecular(this->specularColor);
@@ -64,7 +64,7 @@ namespace sp {
 		TextureManager & textureManager = TextureManager::getInstance();
 		Texture texture = textureManager.getTexture(texturePath, true, GL_RGBA);
 
-		int const gameObjectId = this->gameObjectOwner->getId();
+		SpInt const gameObjectId = this->gameObjectOwner->getId();
 		SpUnsigned const diffuseMapTextureIndex = 0;
 		SpUnsigned const textureId = texture.getId();
 		updateTextureId(gameObjectId, textureId, diffuseMapTextureIndex);
@@ -74,14 +74,14 @@ namespace sp {
 		TextureManager & textureManager = TextureManager::getInstance();
 		Texture texture = textureManager.getTexture(texturePath, true, GL_RGBA);
 
-		int const gameObjectId = this->gameObjectOwner->getId();
+		SpInt const gameObjectId = this->gameObjectOwner->getId();
 		SpUnsigned const specularMapTextureIndex = 1;
 		SpUnsigned const textureId = texture.getId();
 		updateTextureId(gameObjectId, textureId, specularMapTextureIndex);
 	}
 
 	ShaderProgram const Material::getShaderProgram() {
-		int const gameObjectId = this->gameObjectOwner->getId();
+		SpInt const gameObjectId = this->gameObjectOwner->getId();
 		RenderDataContainer const & renderDataContainer = RenderDataContainer::getInstance();
 		RenderData const & renderData = renderDataContainer.getRenderData(gameObjectId);
 

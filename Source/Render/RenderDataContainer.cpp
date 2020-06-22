@@ -5,7 +5,7 @@
 namespace sp {
 	RenderDataContainer RenderDataContainer::instance;
 
-	RenderData const & RenderDataContainer::getRenderData(int const gameObjectId) const {
+	RenderData const & RenderDataContainer::getRenderData(SpInt const gameObjectId) const {
 		return this->renderDataMap.at(gameObjectId);
 	}
 
@@ -14,7 +14,7 @@ namespace sp {
 	}
 
 	void RenderDataContainer::saveRenderData(RenderData const & renderData) {
-		int const gameObjectId = renderData.gameObjectId;
+		SpInt const gameObjectId = renderData.gameObjectId;
 		this->renderDataMap.insert_or_assign(gameObjectId, renderData);
 	}
 

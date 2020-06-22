@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Matrix4x4.h"
-#include "Quaternion.h"
-#include "Vector3.h"
-#include "Radian.h"
-#include "Degree.h"
-#include "SpMath.h"
+#include "Core/Math/Matrix4x4.h"
+#include "Core/Math/Quaternion.h"
+#include "Core/Math/Vector3.h"
+#include "Core/Math/Radian.h"
+#include "Core/Math/Degree.h"
+#include "Core/Math/SpMath.h"
 
 namespace sp {
 	inline const Matrix4x4 translate(Matrix4x4 const & mat, Vector3 const & translation) {

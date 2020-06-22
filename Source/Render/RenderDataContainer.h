@@ -2,12 +2,14 @@
 
 #include <map>
 
+#include "PlatformIndependence/SpType.h"
+
 namespace sp {
 	class RenderData;
 
 	class RenderDataContainer {
 	public:
-		RenderData const & getRenderData(int const gameObjectId) const;
+		RenderData const & getRenderData(SpInt const gameObjectId) const;
 		std::map<int, RenderData> const & getRenderDataMap() const;
 		void saveRenderData(RenderData const & renderData);
 		void resetAllChangedFlags();

@@ -10,11 +10,11 @@
 namespace sp {
 	class RenderData {
 	public:
-		RenderData(int const gameObjectId, bool const active, bool const isStatic);
+		RenderData(SpInt const gameObjectId, bool const active, bool const isStatic);
 		Matrix4x4 const GetModelMatrix() const;
 
 	public:
-		int gameObjectId;
+		SpInt gameObjectId;
 		bool active;
 		bool isStatic;
 		SpUnsigned VAO;

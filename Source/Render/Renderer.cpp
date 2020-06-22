@@ -33,8 +33,8 @@ namespace sp {
 	}
 
 	inline void bindTextures(RenderData const & renderData) {
-		for (int i = 0; i < MAX_NUMBER_OF_TEXTURES; ++i) {
-			int const textureUnit = GL_TEXTURE0 + i;
+		for (SpInt i = 0; i < MAX_NUMBER_OF_TEXTURES; ++i) {
+			SpInt const textureUnit = GL_TEXTURE0 + i;
 			glActiveTexture(textureUnit);
 
 			SpUnsigned textureId = renderData.textureIds[i];
@@ -43,8 +43,8 @@ namespace sp {
 	}
 
 	inline void unbindAllTextures() {
-		for (int i = 0; i < MAX_NUMBER_OF_TEXTURES; ++i) {
-			int const textureUnit = GL_TEXTURE0 + i;
+		for (SpInt i = 0; i < MAX_NUMBER_OF_TEXTURES; ++i) {
+			SpInt const textureUnit = GL_TEXTURE0 + i;
 			glActiveTexture(textureUnit);
 			glBindTexture(GL_TEXTURE_2D, 0);
 		}
@@ -53,7 +53,7 @@ namespace sp {
 	inline void updateLights(ShaderProgram const & shaderProgram) {
 		LightDataContainer const & lightDataContainer = LightDataContainer::getInstance();
 		std::map<int, LightData> const & lightDataMap = lightDataContainer.getLightDataMap();
-		int index = 0;
+		SpInt index = 0;
 		bool const numberOfLightsChanged = lightDataContainer.getNumberOfLightsChanged();
 
 		for (auto const & lightDataMapEntry : lightDataMap) {
@@ -73,7 +73,7 @@ namespace sp {
 			++index;
 		}
 
-		int const numberOfLights = lightDataMap.size();
+		SpInt const numberOfLights = lightDataMap.size();
 		shaderProgram.setInt("numberOfLights", numberOfLights);
 	}
 

@@ -2,6 +2,7 @@
 
 #include "Game/Components/GameObjectComponent.h"
 #include "Game/Components/Interface/ITransformChangeObserver.h"
+#include "PlatformIndependence/SpType.h"
 #include "Render/Enum/LightType.h"
 
 namespace sp {
@@ -18,6 +19,6 @@ namespace sp {
 		virtual void onScaleUpdated(Vector3 const & scale) override;
 
 	private:
-		int lightDataId;
+		SpInt lightDataId;
 	};
 }

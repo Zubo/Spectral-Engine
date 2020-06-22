@@ -1,6 +1,7 @@
 #pragma once
 
 #include "PlatformIndependence/SpString.h"
+#include "PlatformIndependence/SpType.h"
 #include "ft2build.h"
 #include FT_FREETYPE_H
 
@@ -9,6 +10,6 @@
 namespace sp {
 	class Font;
 
-	int createFace(SpString const & path, FT_Face & face);
+	SpInt createFace(SpString const & path, FT_Face & face);
 	void loadFontCharacters(Font & font, FT_Face const & face);
 }

@@ -4,7 +4,7 @@
 
 namespace sp {
 	std::vector<GameObject *> GameObject::gameObjectCollection;
-	int GameObject::nextId{ 0 };
+	SpInt GameObject::nextId{ 0 };
 
 	GameObject::GameObject() {
 		this->id = (++GameObject::nextId);
@@ -13,7 +13,7 @@ namespace sp {
 	}
 
 	GameObject::~GameObject() {
-		int index = GameObject::getGameObjectIndex(this);
+		SpInt index = GameObject::getGameObjectIndex(this);
 		auto iterator = GameObject::gameObjectCollection.begin() + index;
 		GameObject::gameObjectCollection.erase(iterator);
 	}
@@ -34,7 +34,7 @@ namespace sp {
 		return GameObject::gameObjectCollection;
 	}
 
-	int GameObject::getGameObjectIndex(GameObject *gameObject) {
+	SpInt GameObject::getGameObjectIndex(GameObject *gameObject) {
 		for (SpUnsigned i = 0; i < GameObject::gameObjectCollection.size(); ++i) {
 			if (GameObject::gameObjectCollection.at(i) == gameObject) {
 				return i;

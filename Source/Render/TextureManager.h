@@ -16,7 +16,7 @@ namespace sp {
 
 	public:
 		Texture const getTexture(SpString const & texturePath, bool const genMipMap, GLenum const format);
-		Texture const getTexture(int textureId);
+		Texture const getTexture(SpInt textureId);
 
 	private:
 		TextureManager() = default;

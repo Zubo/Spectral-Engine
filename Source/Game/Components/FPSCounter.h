@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Components/GameObjectComponent.h"
+#include "PlatformIndependence/SpType.h"
 
 #define FPS_RENDER_PERIOD 0.35F
 
@@ -14,6 +15,6 @@ namespace sp {
 
 	private:
 		float timeSinceLastRender;
-		int numberOfFrames;
+		SpInt numberOfFrames;
 	};
 }

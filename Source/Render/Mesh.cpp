@@ -6,8 +6,8 @@ namespace sp {
 	SpUnsigned Mesh::nextId = 1;
 
 	Mesh::Mesh(
-			float const * const dataArray, int const arraySize, SpUnsigned const * const elementIndices,
-			int const indexCount, bool const uvCoords, bool const normalCoords) :
+			float const * const dataArray, SpInt const arraySize, SpUnsigned const * const elementIndices,
+			SpInt const indexCount, bool const uvCoords, bool const normalCoords) :
 			id{ Mesh::nextId++ },
 			dataArray{ new float[arraySize] },
 			dataArraySize{ arraySize },
@@ -55,8 +55,8 @@ namespace sp {
 		return this->id;
 	}
 
-	int const Mesh::getStride() const {
-		int stride = 3;
+	SpInt const Mesh::getStride() const {
+		SpInt stride = 3;
 
 		if (uvCoords) {
 			stride += 2;
@@ -73,7 +73,7 @@ namespace sp {
 		return this->dataArray;
 	}
 
-	int const Mesh::getDataArraySize() const {
+	SpInt const Mesh::getDataArraySize() const {
 		return this->dataArraySize;
 	}
 
@@ -81,7 +81,7 @@ namespace sp {
 		return this->elementIndices;
 	}
 
-	int const Mesh::getIndexCount() const {
+	SpInt const Mesh::getIndexCount() const {
 		return this->indexCount;
 	}
 

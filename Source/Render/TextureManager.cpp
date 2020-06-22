@@ -34,7 +34,7 @@ namespace sp {
 		return texture;
 	}
 
-	Texture const TextureManager::getTexture(int textureId) {
+	Texture const TextureManager::getTexture(SpInt textureId) {
 		return this->textureMap.at(textureId);
 	}
 }

@@ -45,7 +45,7 @@ namespace sp {
 		}
 	}
 
-	GameObject * createLight(SpString const & shadersFolderPath, SpString const texturePathArray[], int const lightSourceIndex) {
+	GameObject * createLight(SpString const & shadersFolderPath, SpString const texturePathArray[], SpInt const lightSourceIndex) {
 		GameObject * lightSourceGameObject = new GameObject;
 
 		std::weak_ptr<Transform> lightSourceTransformWeak = lightSourceGameObject->addComponent<Transform>();
@@ -65,7 +65,7 @@ namespace sp {
 		std::weak_ptr<Material> material = lightSourceGameObject->addComponent<Material>();
 		if (auto materialShared = material.lock()) {
 			materialShared->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
-			const int numberOfTextures = 2;
+			const SpInt numberOfTextures = 2;
 			materialShared->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
 		}
 
@@ -86,11 +86,11 @@ namespace sp {
 
 	void createBoxObjects(
 		SpString const & bigBoxTexture, SpString const & specularMapTexturePath, SpString const & diffuseMapTexturePath, SpString const & vertexShaderPath,
-		SpString const & fragmentShaderPath, int const numberOfBoxes, std::weak_ptr<Transform> cameraTransformWeak, std::weak_ptr<Transform> lightSourceTrnasformWeak) {
+		SpString const & fragmentShaderPath, SpInt const numberOfBoxes, std::weak_ptr<Transform> cameraTransformWeak, std::weak_ptr<Transform> lightSourceTrnasformWeak) {
 
 		GameObject * boxObjects = new GameObject[numberOfBoxes];
 
-		for (int i = 0; i < numberOfBoxes; ++i) {
+		for (SpInt i = 0; i < numberOfBoxes; ++i) {
 
 			std::weak_ptr<Renderer> renderer = boxObjects[i].addComponent<Renderer>();
 			if (auto rendererShared = renderer.lock()) {
@@ -156,10 +156,10 @@ namespace sp {
 			resourcesFolderPath + SpString{ "/Art/awesomeface.png" }
 		};
 
-		constexpr int numberOfObjects = (sizeof(cubePositions) / sizeof(cubePositions[0]));
+		constexpr SpInt numberOfObjects = (sizeof(cubePositions) / sizeof(cubePositions[0]));
 		GameObject * lightSourceGameObject = createLight(shadersFolderPath, texturePathArray, numberOfObjects - 1);
 
-		int const numberOfBoxes = numberOfObjects - 1;
+		SpInt const numberOfBoxes = numberOfObjects - 1;
 		std::weak_ptr<Transform> lightSourceTransformWeak = lightSourceGameObject->getComponent<Transform>();
 		createBoxObjects(texturePathArray[0], specularMapPath, diffuseMapPath, vertexShaderPath, fragmentShaderPath, numberOfBoxes, cameraTransformWeak, lightSourceTransformWeak);
 	}

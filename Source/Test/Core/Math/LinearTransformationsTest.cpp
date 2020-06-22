@@ -14,7 +14,7 @@ namespace sp {
 			Matrix4x4 const resultMatrix = translate(transformation, translation);
 
 			// assert
-			for (int i = 0; i < 16; ++i) {
+			for (SpInt i = 0; i < 16; ++i) {
 				float expectedValue;
 				switch (i)
 				{
@@ -47,7 +47,7 @@ namespace sp {
 
 			// assert
 			float const * startingValues = transformation.getValuePtr();
-			for (int i = 0; i < 16; ++i) {
+			for (SpInt i = 0; i < 16; ++i) {
 				float expectedValue;
 
 				switch (i)

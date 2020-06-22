@@ -31,9 +31,9 @@ namespace sp {
 
 	private:
 		SpUnsigned id;
-		int width;
-		int height;
-		int nrChannel;
+		SpInt width;
+		SpInt height;
+		SpInt nrChannel;
 		bool genMipMap;
 		GLenum format;
 		SpHashValue pathHashValue;
