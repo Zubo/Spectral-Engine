@@ -1,12 +1,14 @@
 #pragma once
 
+#include "PlatformIndependence/SpType.h"
+
 namespace sp {
 	class GameObject;
 
 	class GameObjectComponent {
 	public:
 		GameObjectComponent(GameObject * const gameObject);
-		virtual void update(float const deltaTime);
+		virtual void update(SpFloat const deltaTime);
 		GameObject const * const getGameObject() const;
 		virtual ~GameObjectComponent();
 

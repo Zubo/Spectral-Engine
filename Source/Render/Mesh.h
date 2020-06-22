@@ -12,14 +12,14 @@ namespace sp {
 
 	private:
 		friend class MeshContainer;
-		Mesh(float const * const mesh, SpInt const arraySize, SpUnsigned const * const elementIndices,
+		Mesh(SpFloat const * const mesh, SpInt const arraySize, SpUnsigned const * const elementIndices,
 			SpInt const indexCount, bool const uvCoords, bool const normalCoords);
 		Mesh(Mesh const & mesh);
 
 	public:
 		SpUnsigned getId();
 		SpInt const getStride() const;
-		float const * const getDataArray() const;
+		SpFloat const * const getDataArray() const;
 		SpInt const getDataArraySize() const;
 		SpUnsigned const * const getIndexArray() const;
 		SpInt const getIndexCount() const;
@@ -28,7 +28,7 @@ namespace sp {
 
 	private:
 		SpUnsigned id;
-		float * const dataArray;
+		SpFloat * const dataArray;
 		SpInt const dataArraySize;
 		SpUnsigned * const elementIndices;
 		SpInt const indexCount;

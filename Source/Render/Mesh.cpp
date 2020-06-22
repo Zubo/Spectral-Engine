@@ -6,7 +6,7 @@ namespace sp {
 	SpUnsigned Mesh::nextId = 1;
 
 	Mesh::Mesh(
-			float const * const dataArray, SpInt const arraySize, SpUnsigned const * const elementIndices,
+			SpFloat const * const dataArray, SpInt const arraySize, SpUnsigned const * const elementIndices,
 			SpInt const indexCount, bool const uvCoords, bool const normalCoords) :
 			id{ Mesh::nextId++ },
 			dataArray{ new float[arraySize] },
@@ -39,7 +39,7 @@ namespace sp {
 			indexCount{ mesh.indexCount },
 			uvCoords{ mesh.uvCoords },
 			normalCoords{ mesh.normalCoords } {
-		float ** dataArrayNoConst = const_cast<float **>(&mesh.dataArray);
+		SpFloat ** dataArrayNoConst = const_cast<SpFloat **>(&mesh.dataArray);
 		*dataArrayNoConst = nullptr;
 		SpUnsigned ** indexArrayNoConst = const_cast<SpUnsigned **>(&mesh.elementIndices);
 		*indexArrayNoConst = nullptr;
@@ -69,7 +69,7 @@ namespace sp {
 		return stride;
 	}
 
-	float const * const Mesh::getDataArray() const {
+	SpFloat const * const Mesh::getDataArray() const {
 		return this->dataArray;
 	}
 

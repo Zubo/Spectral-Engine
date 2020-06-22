@@ -52,7 +52,7 @@ namespace sp {
 			this->specularColor.x, this->specularColor.y, this->specularColor.z);
 	}
 
-	void Material::setShinines(float const shininess) {
+	void Material::setShinines(SpFloat const shininess) {
 		this->shininess = shininess;
 
 		ShaderProgram const shaderProgram = this->getShaderProgram();

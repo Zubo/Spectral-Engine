@@ -40,7 +40,7 @@ namespace sp {
 			Vector3 specular{ distribution(generator) };
 			materialShared->setSpecular(specular);
 
-			float shininess{ 1.0F + 31 * distribution(generator) };
+			SpFloat shininess{ 1.0F + 31 * distribution(generator) };
 			materialShared->setShinines(shininess);
 		}
 	}

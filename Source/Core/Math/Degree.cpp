@@ -5,13 +5,13 @@ namespace sp {
 	Degree::Degree() : value{ 0.0F } {
 	}
 
-	Degree::Degree(float value) : value{ value } {
+	Degree::Degree(SpFloat value) : value{ value } {
 	}
 
 	Degree::Degree(Radian radian) {
 		this->value = radian.getValueRadians() * 180.0F / PI;
 	}
-	Degree Degree::operator/(float const value) const
+	Degree Degree::operator/(SpFloat const value) const
 	{
 		return Degree{ this->getValueDegrees() / value };
 	}

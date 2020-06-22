@@ -3,7 +3,7 @@
 #include "Core/Math/SpMath.h"
 
 namespace sp {
-	float const sp::Vector3::dot(Vector3 const & vec1, Vector3 const & vec2) {
+	SpFloat const sp::Vector3::dot(Vector3 const & vec1, Vector3 const & vec2) {
 		return (vec1.x * vec2.x) + (vec1.y * vec2.y) + (vec1.z * vec2.z);
 	}
 
@@ -22,10 +22,10 @@ namespace sp {
 	Vector3::Vector3(Vector2 const & vector) : x{ vector.x }, y{ vector.y }, z{ 0.0F } {
 	}
 
-	Vector3::Vector3(float val) : x{ val }, y{ val }, z{ val } {
+	Vector3::Vector3(SpFloat val) : x{ val }, y{ val }, z{ val } {
 	}
 
-	Vector3::Vector3 (float const x, float const y, float const z) : x{ x }, y{ y }, z{ z } {
+	Vector3::Vector3 (SpFloat const x, SpFloat const y, SpFloat const z) : x{ x }, y{ y }, z{ z } {
 	}
 
 	Vector3 Vector3::operator-() const {
@@ -48,7 +48,7 @@ namespace sp {
 		};
 	}
 
-	Vector3 Vector3::operator*(float const realNumber) const {
+	Vector3 Vector3::operator*(SpFloat const realNumber) const {
 		return Vector3{
 			this->x * realNumber,
 			this->y * realNumber,
@@ -69,7 +69,7 @@ namespace sp {
 	}
 
 	Vector3 Vector3::normalized() const {
-		float const length = this->length();
+		SpFloat const length = this->length();
 
 		return Vector3{
 			this->x / length,
@@ -78,11 +78,11 @@ namespace sp {
 		};
 	}
 
-	float const Vector3::length() const {
+	SpFloat const Vector3::length() const {
 		return sqrt((x * x) + (y * y) + (z * z));
 	}
 
-	Vector3 operator*(float const realNumber, Vector3 const & vector) {
+	Vector3 operator*(SpFloat const realNumber, Vector3 const & vector) {
 		return Vector3{
 			vector.x * realNumber,
 			vector.y * realNumber,

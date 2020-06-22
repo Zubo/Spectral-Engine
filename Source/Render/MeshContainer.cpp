@@ -12,7 +12,7 @@ namespace sp {
 		return MeshContainer::meshMap.at(meshId);
 	}
 
-	SpUnsigned MeshContainer::createMesh(float const * const dataArray, SpInt const arraySize, SpUnsigned const * const elementIndices,
+	SpUnsigned MeshContainer::createMesh(SpFloat const * const dataArray, SpInt const arraySize, SpUnsigned const * const elementIndices,
 		SpInt const indexCount, bool const uvCoords, bool const normalCoords) {
 		Mesh mesh{ dataArray, arraySize, elementIndices, indexCount, uvCoords, normalCoords };
 		SpUnsigned const id = mesh.getId();

@@ -1,6 +1,6 @@
 #include "Render/CameraData.h"
 
-#include "Core/Math/Degree.h"#
+#include "Core/Math/Degree.h"
 #include "Core/Math/Direction.h"
 #include "Core/Math/LinearTransformations.h"
 #include "Core/Math/Vector3.h"
@@ -17,7 +17,7 @@ namespace sp {
 	}
 
 	Matrix4x4 const CameraData::GetProjectionMatrix() {
-		float aspect = static_cast<float>(CameraData::screenWidth) / CameraData::screenHeight;
+		SpFloat aspect = static_cast<float>(CameraData::screenWidth) / CameraData::screenHeight;
 		return getPerspectiveMat(CameraData::fov, aspect, 0.1F, 100.0F);
 	}
 

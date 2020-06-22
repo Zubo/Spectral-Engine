@@ -1,17 +1,17 @@
-#include "Game/Components/PositionOscilator.h"
-
 #include <memory>
 
 #include "Core/Math/SpMath.h"
 #include "Core/Math/Radian.h"
 #include "Game/GameObject/GameObject.h"
+#include "Game/Components/PositionOscilator.h"
 #include "Game/Components/Transform.h"
+#include "PlatformIndependence/SpType.h"
 
 namespace sp {
 	PositionOscilator::PositionOscilator(GameObject * gameObjectOwner) : GameObjectComponent{ gameObjectOwner } {
 	}
 
-	void PositionOscilator::update(float deltaTime) {
+	void PositionOscilator::update(SpFloat deltaTime) {
 		timePassed += deltaTime;
 
 		std::weak_ptr<Transform> transformWeak = this->gameObjectOwner->getComponent<Transform>();

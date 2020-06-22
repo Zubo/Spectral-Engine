@@ -8,9 +8,9 @@ namespace sp {
 		PositionOscilator(GameObject * gameObjectOwner);
 
 	public:
-		void update(float deltaTime) override;
+		void update(SpFloat deltaTime) override;
 
 	private:
-		float timePassed = 0.0F;
+		SpFloat timePassed = 0.0F;
 	};
 }

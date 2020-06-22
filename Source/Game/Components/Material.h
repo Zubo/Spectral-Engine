@@ -22,7 +22,7 @@ namespace sp {
 		void setAmbient(Vector3 const & ambientColor);
 		void setDiffuse(Vector3 const & diffuseColor);
 		void setSpecular(Vector3 const & specularColor);
-		void setShinines(float const shininess);
+		void setShinines(SpFloat const shininess);
 		void setDiffuseMap(SpString const & texturePath);
 		void setSpecularMap(SpString const & texturePath);
 
@@ -33,6 +33,6 @@ namespace sp {
 		Vector3 ambientColor;
 		Vector3 diffuseColor;
 		Vector3 specularColor;
-		float shininess;
+		SpFloat shininess;
 	};
 }

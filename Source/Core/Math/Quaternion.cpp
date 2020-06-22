@@ -5,7 +5,7 @@ namespace sp {
 	Quaternion::Quaternion() : x{ 0.0F }, y{ 0.0F }, z{ 0.0F }, w{ 0.0F } {
 	}
 
-	Quaternion::Quaternion(float const x, float const y, float const z, float const w) : x{ x }, y{ y }, z{ z }, w{ w } {
+	Quaternion::Quaternion(SpFloat const x, SpFloat const y, SpFloat const z, SpFloat const w) : x{ x }, y{ y }, z{ z }, w{ w } {
 	}
 
 	Quaternion::Quaternion(Vector3 const & vec3) : x{ vec3.x }, y{ vec3.y }, z{ vec3.z }, w{ 0.0F } {

@@ -52,7 +52,7 @@ namespace sp {
 		glActiveTexture(GL_TEXTURE0);
 		glBindVertexArray(this->VAO);
 
-		float characterOffsetX = 0.0f;
+		SpFloat characterOffsetX = 0.0f;
 
 		for (SpString::const_iterator charIterator = text.begin(); charIterator != text.end(); ++charIterator) {
 			Character const character = this->font->getCharacter(*charIterator);
@@ -60,10 +60,10 @@ namespace sp {
 			Vector2 const characterBearing{ (float)character.bitmapLeft, (float)character.bitmapTop };
 			Vector2 const textureOrigin = currentCharPos + characterBearing;
 
-			float const scaleX = scale.x;
-			float const scaleY = scale.y;
+			SpFloat const scaleX = scale.x;
+			SpFloat const scaleY = scale.y;
 
-			float const characterVertices[6][4]{
+			SpFloat const characterVertices[6][4]{
 				{ textureOrigin.x * scaleX, textureOrigin.y * scaleY, 0.0F, 0.0F },
 				{ (textureOrigin.x + character.width) * scaleX, textureOrigin.y * scaleY, 1.0F, 0.0F },
 				{ textureOrigin.x * scaleX, (textureOrigin.y - character.height) * scaleY, 0.0F, 1.0F },

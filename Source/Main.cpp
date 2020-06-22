@@ -9,6 +9,7 @@
 #include "Game/Vertices.h"
 #include "PlatformIndependence/Environment.h"
 #include "PlatformIndependence/Input/Input.h"
+#include "PlatformIndependence/SpType.h"
 #include "PlatformIndependence/SpWindow.h"
 #include "Render/Renderer.h"
 #include "Render/TextRenderer.h"
@@ -38,15 +39,15 @@ int main(int argc, char** argv) {
 	glfwSwapInterval(0);
 	glEnable(GL_DEPTH_TEST);
 
-	float lastFrame = static_cast<float>(glfwGetTime());
+	sp::SpFloat lastFrame = static_cast<float>(glfwGetTime());
 
-	float lastFPS = 0.0F;
-	float deltaTimeAccumulated = 0.0F;
+	sp::SpFloat lastFPS = 0.0F;
+	sp::SpFloat deltaTimeAccumulated = 0.0F;
 	int frameCounter = 0;
 
 	while (!window->shouldClose()) {
-		float currentFrame = static_cast<float>(glfwGetTime());
-		float deltaTime = currentFrame - lastFrame;
+		sp::SpFloat currentFrame = static_cast<float>(glfwGetTime());
+		sp::SpFloat deltaTime = currentFrame - lastFrame;
 		deltaTimeAccumulated += deltaTime;
 		sp::GameObject::updateGameObjects(deltaTime);
 		lastFrame = currentFrame;

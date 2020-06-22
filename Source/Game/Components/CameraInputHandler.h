@@ -9,11 +9,11 @@ namespace sp {
 		 CameraInputHandler(GameObject * gameObject);
 
 	 public:
-		 void update(float deltaTime) override;
+		 void update(SpFloat deltaTime) override;
 
 	 private:
 	 	void processMouseInput();
-	 	void processKeyInput(float deltaTime);
+	 	void processKeyInput(SpFloat deltaTime);
 		
 	 private:
 	 	Vector3 worldUp{ 0.0F, 1.0F, 0.0F };

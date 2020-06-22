@@ -56,8 +56,8 @@ namespace sp {
 			return componentsVector;
 		}
 
-		void updateComponents(float const deltaTime);
-		static void updateGameObjects(float const deltaTime);
+		void updateComponents(SpFloat const deltaTime);
+		static void updateGameObjects(SpFloat const deltaTime);
 		static std::vector<GameObject *> getGameObjectCollection();
 
 

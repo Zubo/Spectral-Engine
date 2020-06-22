@@ -18,13 +18,13 @@ namespace sp {
 		GameObject::gameObjectCollection.erase(iterator);
 	}
 
-	void GameObject::updateComponents(float const deltaTime) {
+	void GameObject::updateComponents(SpFloat const deltaTime) {
 		for (auto & component : this->components) {
 			component->update(deltaTime);
 		}
 	}
 
-	void GameObject::updateGameObjects(float const deltaTime) {
+	void GameObject::updateGameObjects(SpFloat const deltaTime) {
 		for (auto & gameObject : gameObjectCollection) {
 			gameObject->updateComponents(deltaTime);
 		}
