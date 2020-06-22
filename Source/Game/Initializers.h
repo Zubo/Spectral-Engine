@@ -24,9 +24,9 @@
 #include "Core/Math/Radian.h"
 
 namespace sp {
-	constexpr unsigned int SCR_WIDTH = 800;
-	constexpr unsigned int SCR_HEIGHT = 600;
-	std::default_random_engine generator{ (unsigned int)time(0) };
+	constexpr SpUnsigned SCR_WIDTH = 800;
+	constexpr SpUnsigned SCR_HEIGHT = 600;
+	std::default_random_engine generator{ (SpUnsigned)time(0) };
 	std::uniform_real_distribution<float> distribution{ 0.0F, 1.0F };
 
 	void setRandomColors(std::weak_ptr<Material> materialWeak) {
@@ -56,7 +56,7 @@ namespace sp {
 
 		std::weak_ptr<Renderer> rendererWeak = lightSourceGameObject->addComponent<Renderer>();
 		if (auto rendererShared = rendererWeak.lock()) {
-			unsigned int const meshId = MeshContainer::createMesh(verticesUV, (int)(sizeof(verticesUV) / sizeof(float)), indices, (int)sizeof(indices), true, false);
+			SpUnsigned const meshId = MeshContainer::createMesh(verticesUV, (int)(sizeof(verticesUV) / sizeof(float)), indices, (int)sizeof(indices), true, false);
 			rendererShared->initRenderer(meshId);
 		}
 
@@ -94,7 +94,7 @@ namespace sp {
 
 			std::weak_ptr<Renderer> renderer = boxObjects[i].addComponent<Renderer>();
 			if (auto rendererShared = renderer.lock()) {
-				unsigned int const meshId = MeshContainer::createMesh(verticesUVNormals,
+				SpUnsigned const meshId = MeshContainer::createMesh(verticesUVNormals,
 					(int)(sizeof(verticesUVNormals) / sizeof(float)), indices, (int)(sizeof(indices) / sizeof(int)), true, true);
 				rendererShared->initRenderer(meshId);
 			}

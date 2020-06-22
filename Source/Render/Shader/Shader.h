@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include <iostream>
 #include "PlatformIndependence/SpString.h"
+#include "PlatformIndependence/SpType.h"
 
 namespace sp {
 	class Shader {
@@ -11,7 +12,7 @@ namespace sp {
 		~Shader();
 	
 	public:
-		inline unsigned int getId() {
+		inline SpUnsigned getId() {
 			return this->id;
 		};
 		inline GLenum getType() {
@@ -19,7 +20,7 @@ namespace sp {
 		};
 
 	private:
-		unsigned int id;
+		SpUnsigned id;
 		GLenum type;
 	};
 }

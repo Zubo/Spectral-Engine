@@ -1,5 +1,6 @@
 #include "Game/Components/GameObjectComponent.h"
 #include "Game/GameObject/GameObject.h"
+#include "PlatformIndependence/SpType.h"
 
 namespace sp {
 	std::vector<GameObject *> GameObject::gameObjectCollection;
@@ -34,7 +35,7 @@ namespace sp {
 	}
 
 	int GameObject::getGameObjectIndex(GameObject *gameObject) {
-		for (unsigned int i = 0; i < GameObject::gameObjectCollection.size(); ++i) {
+		for (SpUnsigned i = 0; i < GameObject::gameObjectCollection.size(); ++i) {
 			if (GameObject::gameObjectCollection.at(i) == gameObject) {
 				return i;
 			}

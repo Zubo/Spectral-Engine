@@ -36,7 +36,7 @@ namespace sp {
 		glUseProgram(this->id);
 	}
 
-	unsigned int const ShaderProgram::getId() const {
+	SpUnsigned const ShaderProgram::getId() const {
 		return this->id;
 	}
 

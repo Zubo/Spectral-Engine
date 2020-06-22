@@ -1,6 +1,7 @@
 #include "Render/RenderDataUpdate.h"
 
 #include "glad/glad.h"
+#include "PlatformIndependence/SpType.h"
 #include "Render/Mesh.h"
 #include "Render/MeshContainer.h"
 #include "Render/RenderData.h"
@@ -9,7 +10,7 @@
 
 namespace sp {
 
-	void createRenderData(int const gameObjectId, bool const active, unsigned int const meshId, bool const isStatic) {
+	void createRenderData(int const gameObjectId, bool const active, SpUnsigned const meshId, bool const isStatic) {
 		RenderData renderData{ gameObjectId, active, isStatic };
 		renderData.gameObjectId = gameObjectId;
 
@@ -18,7 +19,7 @@ namespace sp {
 		updateObjectMesh(gameObjectId, meshId, isStatic);
 	}
 
-	void updateObjectMesh(int const gameObjectId, unsigned int const meshId, bool isStatic) {
+	void updateObjectMesh(int const gameObjectId, SpUnsigned const meshId, bool isStatic) {
 		RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 		RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 
@@ -97,7 +98,7 @@ namespace sp {
 		renderDataContainer.saveRenderData(renderData);
 	}
 
-	void updateTextureId(int const gameObjectId, unsigned int const textureId, unsigned int const textureIdIndex) {
+	void updateTextureId(int const gameObjectId, SpUnsigned const textureId, SpUnsigned const textureIdIndex) {
 		RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 		RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 		renderData.textureIds[textureIdIndex] = textureId;

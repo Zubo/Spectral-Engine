@@ -3,7 +3,7 @@
 #include "Core/Math/Vector3.h"
 
 namespace sp {
-	unsigned int indices[] = {
+	SpUnsigned indices[] = {
 		0, 1, 2, 0, 3, 2
 	};
 

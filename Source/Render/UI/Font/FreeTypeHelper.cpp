@@ -29,7 +29,7 @@ void sp::loadFontCharacters(Font & font, FT_Face const & face) {
 			std::cout << "Error: Failed to load glyph: " << (int)c << std::endl;
 		}
 
-		unsigned int texture;
+		SpUnsigned texture;
 		glGenTextures(1, &texture);
 		glBindTexture(GL_TEXTURE_2D, texture);
 		glTexImage2D(
@@ -55,9 +55,9 @@ void sp::loadFontCharacters(Font & font, FT_Face const & face) {
 			texture,
 			glyph->bitmap.width,
 			glyph->bitmap.rows,
-			(unsigned int)glyph->bitmap_left,
-			(unsigned int)glyph->bitmap_top,
-			(unsigned int)glyph->advance.x
+			(SpUnsigned)glyph->bitmap_left,
+			(SpUnsigned)glyph->bitmap_top,
+			(SpUnsigned)glyph->advance.x
 		};
 
 		font.insertCharacter(c, character);

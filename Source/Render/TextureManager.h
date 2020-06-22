@@ -24,6 +24,6 @@ namespace sp {
 		TextureManager operator=(TextureManager const & textureManager) = delete;
 
 	private:
-		std::map<unsigned int, Texture const> textureMap;
+		std::map<SpUnsigned, Texture const> textureMap;
 	};
 }

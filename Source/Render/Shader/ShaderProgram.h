@@ -1,6 +1,7 @@
 #pragma once
 
 #include "PlatformIndependence/SpString.h"
+#include "PlatformIndependence/SpType.h"
 
 namespace sp {
 	class ShaderProgram {
@@ -9,7 +10,7 @@ namespace sp {
 		ShaderProgram(SpString vertexShaderPath, SpString fragmentShaderPath);
 		~ShaderProgram();
 		void use() const;
-		unsigned int const getId() const;
+		SpUnsigned const getId() const;
 		void setBool(SpString const & name, bool value) const;
 		void setInt(SpString const & name, int value) const;
 		void setFloat(SpString const & name, float value) const;
@@ -17,6 +18,6 @@ namespace sp {
 		void setVec3(SpString const & name, float x, float y, float z) const;
 
 	private:
-		unsigned int id;
+		SpUnsigned id;
 	};
 }

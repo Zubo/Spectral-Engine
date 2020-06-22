@@ -15,7 +15,7 @@ namespace sp {
 	Renderer::Renderer(GameObject * const gameObjectOwner) : GameObjectComponent(gameObjectOwner) {
 	}
 
-	void Renderer::initRenderer(unsigned int const meshId) {
+	void Renderer::initRenderer(SpUnsigned const meshId) {
 		GameObject const * const gameObjectOwner = this->gameObjectOwner;
 		int const gameObjectId = gameObjectOwner->getId();
 		bool const isActive = gameObjectOwner->getIsActive();

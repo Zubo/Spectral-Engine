@@ -5,11 +5,11 @@
 namespace sp {
 	class ShaderProgramLinkingException {
 	public:
-		ShaderProgramLinkingException(unsigned int const programId, char const infoLog[]);
+		ShaderProgramLinkingException(SpUnsigned const programId, char const infoLog[]);
 		SpString what();
 
 	private:
-		unsigned int const programId;
+		SpUnsigned const programId;
 		SpString const infoLog;
 	};
 }

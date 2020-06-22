@@ -65,8 +65,8 @@ namespace sp {
 		Texture texture = textureManager.getTexture(texturePath, true, GL_RGBA);
 
 		int const gameObjectId = this->gameObjectOwner->getId();
-		unsigned int const diffuseMapTextureIndex = 0;
-		unsigned int const textureId = texture.getId();
+		SpUnsigned const diffuseMapTextureIndex = 0;
+		SpUnsigned const textureId = texture.getId();
 		updateTextureId(gameObjectId, textureId, diffuseMapTextureIndex);
 	}
 
@@ -75,8 +75,8 @@ namespace sp {
 		Texture texture = textureManager.getTexture(texturePath, true, GL_RGBA);
 
 		int const gameObjectId = this->gameObjectOwner->getId();
-		unsigned int const specularMapTextureIndex = 1;
-		unsigned int const textureId = texture.getId();
+		SpUnsigned const specularMapTextureIndex = 1;
+		SpUnsigned const textureId = texture.getId();
 		updateTextureId(gameObjectId, textureId, specularMapTextureIndex);
 	}
 
