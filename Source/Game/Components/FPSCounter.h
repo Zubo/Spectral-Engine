@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Components/GameObjectComponent.h"
+#include "PlatformIndependence/SpType.h"
 
 #define FPS_RENDER_PERIOD 0.35F
 
@@ -10,10 +11,10 @@ namespace sp {
 		FPSCounter(GameObject * const gameObject);
 
 	public:
-		void update(float const deltaTime) override;
+		void update(SpFloat const deltaTime) override;
 
 	private:
-		float timeSinceLastRender;
-		int numberOfFrames;
+		SpFloat timeSinceLastRender;
+		SpInt numberOfFrames;
 	};
 }

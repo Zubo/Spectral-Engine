@@ -3,6 +3,8 @@
 #include <memory>
 #include <vector>
 
+#include "PlatformIndependence/SpType.h"
+
 namespace sp {
 	class GameObjectComponent;
 
@@ -12,7 +14,7 @@ namespace sp {
 		~GameObject();
 
 	public:
-		inline int const getId() const {
+		inline SpInt const getId() const {
 			return this->id;
 		}
 
@@ -54,17 +56,17 @@ namespace sp {
 			return componentsVector;
 		}
 
-		void updateComponents(float const deltaTime);
-		static void updateGameObjects(float const deltaTime);
+		void updateComponents(SpFloat const deltaTime);
+		static void updateGameObjects(SpFloat const deltaTime);
 		static std::vector<GameObject *> getGameObjectCollection();
 
 
 	private:
-		int id;
+		SpInt id;
 		bool isActive;
 		std::vector<std::shared_ptr<GameObjectComponent>> components;
-		static int getGameObjectIndex(GameObject *);
+		static SpInt getGameObjectIndex(GameObject *);
 		static std::vector<GameObject *> gameObjectCollection;
-		static int nextId;
+		static SpInt nextId;
 	};
 }

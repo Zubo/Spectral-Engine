@@ -1,6 +1,7 @@
 #include "Render/RenderDataUpdate.h"
 
 #include "glad/glad.h"
+#include "PlatformIndependence/SpType.h"
 #include "Render/Mesh.h"
 #include "Render/MeshContainer.h"
 #include "Render/RenderData.h"
@@ -9,7 +10,7 @@
 
 namespace sp {
 
-	void createRenderData(int const gameObjectId, bool const active, unsigned int const meshId, bool const isStatic) {
+	void createRenderData(SpInt const gameObjectId, bool const active, SpUnsigned const meshId, bool const isStatic) {
 		RenderData renderData{ gameObjectId, active, isStatic };
 		renderData.gameObjectId = gameObjectId;
 
@@ -18,7 +19,7 @@ namespace sp {
 		updateObjectMesh(gameObjectId, meshId, isStatic);
 	}
 
-	void updateObjectMesh(int const gameObjectId, unsigned int const meshId, bool isStatic) {
+	void updateObjectMesh(SpInt const gameObjectId, SpUnsigned const meshId, bool isStatic) {
 		RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 		RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 
@@ -29,12 +30,12 @@ namespace sp {
 		glBindBuffer(GL_ARRAY_BUFFER, renderData.VBO);
 
 		Mesh const & mesh = MeshContainer::getMesh(meshId);
-		int const stride = mesh.getStride() * sizeof(float);
-		int attribArrayIndex = 0;
+		SpInt const stride = mesh.getStride() * sizeof(float);
+		SpInt attribArrayIndex = 0;
 
 		glVertexAttribPointer(attribArrayIndex, 3, GL_FLOAT, GL_FALSE, stride, (void *)0);
 		glEnableVertexAttribArray(attribArrayIndex++);
-		int step = 3;
+		SpInt step = 3;
 
 		if (mesh.hasNormalCoords()) {
 			void const * const stepPointer = (void *)(step * sizeof(float));
@@ -50,7 +51,7 @@ namespace sp {
 			step += 2;
 		}
 		renderData.isStatic = isStatic;
-		int draw = (isStatic) ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW;
+		SpInt draw = (isStatic) ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW;
 		glBufferData(GL_ARRAY_BUFFER, mesh.getDataArraySize() * sizeof(float), mesh.getDataArray(), draw);
 
 		glGenBuffers(1, &renderData.EBO);
@@ -64,7 +65,7 @@ namespace sp {
 		renderDataContainer.saveRenderData(renderData);
 	}
 
-	void updateShaderProgram(int const gameObjectId, ShaderProgram const shaderProgram) {
+	void updateShaderProgram(SpInt const gameObjectId, ShaderProgram const shaderProgram) {
 		RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 		RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 
@@ -73,7 +74,7 @@ namespace sp {
 		renderDataContainer.saveRenderData(renderData);
 	}
 
-	void updatePosition(int const gameObjectId, Vector3 const & position) {
+	void updatePosition(SpInt const gameObjectId, Vector3 const & position) {
 		RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 		RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 		renderData.position = position;
@@ -81,7 +82,7 @@ namespace sp {
 		renderDataContainer.saveRenderData(renderData);
 	}
 
-	void saveRotation(int const gameObjectId, Vector3 const & rotationEuler) {
+	void saveRotation(SpInt const gameObjectId, Vector3 const & rotationEuler) {
 		RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 		RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 		renderData.rotationEuler = rotationEuler;
@@ -89,7 +90,7 @@ namespace sp {
 		renderDataContainer.saveRenderData(renderData);
 	}
 
-	void updateScale(int const gameObjectId, Vector3 const & scale) {
+	void updateScale(SpInt const gameObjectId, Vector3 const & scale) {
 		RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 		RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 		renderData.scale = scale;
@@ -97,7 +98,7 @@ namespace sp {
 		renderDataContainer.saveRenderData(renderData);
 	}
 
-	void updateTextureId(int const gameObjectId, unsigned int const textureId, unsigned int const textureIdIndex) {
+	void updateTextureId(SpInt const gameObjectId, SpUnsigned const textureId, SpUnsigned const textureIdIndex) {
 		RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 		RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 		renderData.textureIds[textureIdIndex] = textureId;

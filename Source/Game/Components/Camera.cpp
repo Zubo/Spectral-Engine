@@ -13,7 +13,7 @@ namespace sp {
 	Camera::Camera(GameObject * gameObjectOwner) : GameObjectComponent{ gameObjectOwner } {
 	}
 
-	void Camera::initCamera(Degree fov, int screenWidth, int screenHeight) {
+	void Camera::initCamera(Degree fov, SpInt screenWidth, SpInt screenHeight) {
 		CameraData::setFov(fov);
 		CameraData::setScreenHeight(screenHeight);
 		CameraData::setScreenWidth(screenWidth);

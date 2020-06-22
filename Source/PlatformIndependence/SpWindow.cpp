@@ -9,7 +9,7 @@
 namespace sp {
 	sp::SpWindow * sp::SpWindow::windowInstance = nullptr;
 
-	void sp::SpWindow::init(int const width, int const height) {
+	void sp::SpWindow::init(SpInt const width, SpInt const height) {
 		SpWindow::windowInstance = new SpWindow(width, height);
 	}
 
@@ -21,7 +21,7 @@ namespace sp {
 		return SpWindow::windowInstance;
 	}
 
-	sp::SpWindow::SpWindow(int const width, int const height) : width{ width }, height{ height }, initialized{ false } {
+	sp::SpWindow::SpWindow(SpInt const width, SpInt const height) : width{ width }, height{ height }, initialized{ false } {
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -45,7 +45,7 @@ namespace sp {
 		glViewport(0, 0, width, height);
 
 		glfwSetFramebufferSizeCallback(this->concreteWindow,
-			[](GLFWwindow * window, int width, int height) {
+			[](GLFWwindow * window, SpInt width, SpInt height) {
 			glViewport(0, 0, width, height);
 		});
 

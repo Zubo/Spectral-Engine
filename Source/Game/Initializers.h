@@ -24,9 +24,9 @@
 #include "Core/Math/Radian.h"
 
 namespace sp {
-	constexpr unsigned int SCR_WIDTH = 800;
-	constexpr unsigned int SCR_HEIGHT = 600;
-	std::default_random_engine generator{ (unsigned int)time(0) };
+	constexpr SpUnsigned SCR_WIDTH = 800;
+	constexpr SpUnsigned SCR_HEIGHT = 600;
+	std::default_random_engine generator{ (SpUnsigned)time(0) };
 	std::uniform_real_distribution<float> distribution{ 0.0F, 1.0F };
 
 	void setRandomColors(std::weak_ptr<Material> materialWeak) {
@@ -40,12 +40,12 @@ namespace sp {
 			Vector3 specular{ distribution(generator) };
 			materialShared->setSpecular(specular);
 
-			float shininess{ 1.0F + 31 * distribution(generator) };
+			SpFloat shininess{ 1.0F + 31 * distribution(generator) };
 			materialShared->setShinines(shininess);
 		}
 	}
 
-	GameObject * createLight(SpString const & shadersFolderPath, SpString const texturePathArray[], int const lightSourceIndex) {
+	GameObject * createLight(SpString const & shadersFolderPath, SpString const texturePathArray[], SpInt const lightSourceIndex) {
 		GameObject * lightSourceGameObject = new GameObject;
 
 		std::weak_ptr<Transform> lightSourceTransformWeak = lightSourceGameObject->addComponent<Transform>();
@@ -56,7 +56,7 @@ namespace sp {
 
 		std::weak_ptr<Renderer> rendererWeak = lightSourceGameObject->addComponent<Renderer>();
 		if (auto rendererShared = rendererWeak.lock()) {
-			unsigned int const meshId = MeshContainer::createMesh(verticesUV, (int)(sizeof(verticesUV) / sizeof(float)), indices, (int)sizeof(indices), true, false);
+			SpUnsigned const meshId = MeshContainer::createMesh(verticesUV, (int)(sizeof(verticesUV) / sizeof(float)), indices, (int)sizeof(indices), true, false);
 			rendererShared->initRenderer(meshId);
 		}
 
@@ -65,7 +65,7 @@ namespace sp {
 		std::weak_ptr<Material> material = lightSourceGameObject->addComponent<Material>();
 		if (auto materialShared = material.lock()) {
 			materialShared->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
-			const int numberOfTextures = 2;
+			const SpInt numberOfTextures = 2;
 			materialShared->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
 		}
 
@@ -86,15 +86,15 @@ namespace sp {
 
 	void createBoxObjects(
 		SpString const & bigBoxTexture, SpString const & specularMapTexturePath, SpString const & diffuseMapTexturePath, SpString const & vertexShaderPath,
-		SpString const & fragmentShaderPath, int const numberOfBoxes, std::weak_ptr<Transform> cameraTransformWeak, std::weak_ptr<Transform> lightSourceTrnasformWeak) {
+		SpString const & fragmentShaderPath, SpInt const numberOfBoxes, std::weak_ptr<Transform> cameraTransformWeak, std::weak_ptr<Transform> lightSourceTrnasformWeak) {
 
 		GameObject * boxObjects = new GameObject[numberOfBoxes];
 
-		for (int i = 0; i < numberOfBoxes; ++i) {
+		for (SpInt i = 0; i < numberOfBoxes; ++i) {
 
 			std::weak_ptr<Renderer> renderer = boxObjects[i].addComponent<Renderer>();
 			if (auto rendererShared = renderer.lock()) {
-				unsigned int const meshId = MeshContainer::createMesh(verticesUVNormals,
+				SpUnsigned const meshId = MeshContainer::createMesh(verticesUVNormals,
 					(int)(sizeof(verticesUVNormals) / sizeof(float)), indices, (int)(sizeof(indices) / sizeof(int)), true, true);
 				rendererShared->initRenderer(meshId);
 			}
@@ -156,10 +156,10 @@ namespace sp {
 			resourcesFolderPath + SpString{ "/Art/awesomeface.png" }
 		};
 
-		constexpr int numberOfObjects = (sizeof(cubePositions) / sizeof(cubePositions[0]));
+		constexpr SpInt numberOfObjects = (sizeof(cubePositions) / sizeof(cubePositions[0]));
 		GameObject * lightSourceGameObject = createLight(shadersFolderPath, texturePathArray, numberOfObjects - 1);
 
-		int const numberOfBoxes = numberOfObjects - 1;
+		SpInt const numberOfBoxes = numberOfObjects - 1;
 		std::weak_ptr<Transform> lightSourceTransformWeak = lightSourceGameObject->getComponent<Transform>();
 		createBoxObjects(texturePathArray[0], specularMapPath, diffuseMapPath, vertexShaderPath, fragmentShaderPath, numberOfBoxes, cameraTransformWeak, lightSourceTransformWeak);
 	}

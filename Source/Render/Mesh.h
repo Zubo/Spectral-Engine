@@ -2,6 +2,8 @@
 
 #include <map>
 
+#include "PlatformIndependence/SpType.h"
+
 namespace sp {
 	class Mesh {
 	public:
@@ -10,28 +12,28 @@ namespace sp {
 
 	private:
 		friend class MeshContainer;
-		Mesh(float const * const mesh, int const arraySize, unsigned int const * const elementIndices,
-			int const indexCount, bool const uvCoords, bool const normalCoords);
+		Mesh(SpFloat const * const mesh, SpInt const arraySize, SpUnsigned const * const elementIndices,
+			SpInt const indexCount, bool const uvCoords, bool const normalCoords);
 		Mesh(Mesh const & mesh);
 
 	public:
-		unsigned int getId();
-		int const getStride() const;
-		float const * const getDataArray() const;
-		int const getDataArraySize() const;
-		unsigned int const * const getIndexArray() const;
-		int const getIndexCount() const;
+		SpUnsigned getId();
+		SpInt const getStride() const;
+		SpFloat const * const getDataArray() const;
+		SpInt const getDataArraySize() const;
+		SpUnsigned const * const getIndexArray() const;
+		SpInt const getIndexCount() const;
 		bool const hasUVCoords() const;
 		bool const hasNormalCoords() const;
 
 	private:
-		unsigned int id;
-		float * const dataArray;
-		int const dataArraySize;
-		unsigned int * const elementIndices;
-		int const indexCount;
+		SpUnsigned id;
+		SpFloat * const dataArray;
+		SpInt const dataArraySize;
+		SpUnsigned * const elementIndices;
+		SpInt const indexCount;
 		bool const uvCoords;
 		bool const normalCoords;
-		static unsigned int nextId;
+		static SpUnsigned nextId;
 	};
 }

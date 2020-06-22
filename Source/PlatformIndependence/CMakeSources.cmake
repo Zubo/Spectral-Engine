@@ -5,6 +5,7 @@ set(SpectralEngine_PlatformIndependence_NoFilter_SRC
 set(SpectralEngine_PlatformIndependence_NoFilter_HEADER
     "SpWindow.h"
     "SpString.h"
+    "SpType.h"
     "SpHash.h"
     "Environment.h")
 

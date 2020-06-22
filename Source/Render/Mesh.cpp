@@ -3,15 +3,15 @@
 #include <algorithm>
 
 namespace sp {
-	unsigned int Mesh::nextId = 1;
+	SpUnsigned Mesh::nextId = 1;
 
 	Mesh::Mesh(
-			float const * const dataArray, int const arraySize, unsigned int const * const elementIndices,
-			int const indexCount, bool const uvCoords, bool const normalCoords) :
+			SpFloat const * const dataArray, SpInt const arraySize, SpUnsigned const * const elementIndices,
+			SpInt const indexCount, bool const uvCoords, bool const normalCoords) :
 			id{ Mesh::nextId++ },
 			dataArray{ new float[arraySize] },
 			dataArraySize{ arraySize },
-			elementIndices{ new unsigned int[indexCount] },
+			elementIndices{ new SpUnsigned[indexCount] },
 			indexCount{ indexCount },
 			uvCoords{ uvCoords },
 			normalCoords{ normalCoords } {
@@ -23,7 +23,7 @@ namespace sp {
 			id{ Mesh::nextId++ },
 			dataArray{ new float[mesh.dataArraySize] },
 			dataArraySize{ mesh.dataArraySize },
-			elementIndices{ new unsigned int[mesh.indexCount] },
+			elementIndices{ new SpUnsigned[mesh.indexCount] },
 			indexCount{ mesh.indexCount },
 			uvCoords{ mesh.uvCoords },
 			normalCoords{ mesh.normalCoords } {
@@ -39,9 +39,9 @@ namespace sp {
 			indexCount{ mesh.indexCount },
 			uvCoords{ mesh.uvCoords },
 			normalCoords{ mesh.normalCoords } {
-		float ** dataArrayNoConst = const_cast<float **>(&mesh.dataArray);
+		SpFloat ** dataArrayNoConst = const_cast<SpFloat **>(&mesh.dataArray);
 		*dataArrayNoConst = nullptr;
-		unsigned int ** indexArrayNoConst = const_cast<unsigned int **>(&mesh.elementIndices);
+		SpUnsigned ** indexArrayNoConst = const_cast<SpUnsigned **>(&mesh.elementIndices);
 		*indexArrayNoConst = nullptr;
 		mesh.id = 0;
 	}
@@ -51,12 +51,12 @@ namespace sp {
 		delete[] this->elementIndices;
 	}
 
-	unsigned int Mesh::getId() {
+	SpUnsigned Mesh::getId() {
 		return this->id;
 	}
 
-	int const Mesh::getStride() const {
-		int stride = 3;
+	SpInt const Mesh::getStride() const {
+		SpInt stride = 3;
 
 		if (uvCoords) {
 			stride += 2;
@@ -69,19 +69,19 @@ namespace sp {
 		return stride;
 	}
 
-	float const * const Mesh::getDataArray() const {
+	SpFloat const * const Mesh::getDataArray() const {
 		return this->dataArray;
 	}
 
-	int const Mesh::getDataArraySize() const {
+	SpInt const Mesh::getDataArraySize() const {
 		return this->dataArraySize;
 	}
 
-	unsigned int const * const Mesh::getIndexArray() const {
+	SpUnsigned const * const Mesh::getIndexArray() const {
 		return this->elementIndices;
 	}
 
-	int const Mesh::getIndexCount() const {
+	SpInt const Mesh::getIndexCount() const {
 		return this->indexCount;
 	}
 

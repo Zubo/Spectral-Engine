@@ -9,19 +9,19 @@ namespace sp {
 	public:
 		Radian();
 		Radian(Radian const & radian) = default;
-		Radian(float const value);
+		Radian(SpFloat const value);
 		Radian(Degree const degree);
 
 	public:
-		constexpr float const getValueRadians() const {
+		constexpr SpFloat const getValueRadians() const {
 			return this->value;
 		}
 
-		constexpr float const getVlueDegrees() const {
+		constexpr SpFloat const getVlueDegrees() const {
 			return this->value * 180.0F / PI;
 		}
 
 	private:
-		float value;
+		SpFloat value;
 	};
 }

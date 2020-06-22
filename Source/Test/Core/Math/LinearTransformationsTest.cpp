@@ -14,8 +14,8 @@ namespace sp {
 			Matrix4x4 const resultMatrix = translate(transformation, translation);
 
 			// assert
-			for (int i = 0; i < 16; ++i) {
-				float expectedValue;
+			for (SpInt i = 0; i < 16; ++i) {
+				SpFloat expectedValue;
 				switch (i)
 				{
 				case 3:
@@ -32,7 +32,7 @@ namespace sp {
 					break;
 				}
 
-				float const * values = resultMatrix.getValuePtr();
+				SpFloat const * values = resultMatrix.getValuePtr();
 				EXPECT_FLOAT_EQ(values[i], expectedValue);
 			}
 		}
@@ -46,9 +46,9 @@ namespace sp {
 			Matrix4x4 const resultMatrix = scale(transformation, scaleVector);
 
 			// assert
-			float const * startingValues = transformation.getValuePtr();
-			for (int i = 0; i < 16; ++i) {
-				float expectedValue;
+			SpFloat const * startingValues = transformation.getValuePtr();
+			for (SpInt i = 0; i < 16; ++i) {
+				SpFloat expectedValue;
 
 				switch (i)
 				{
@@ -66,7 +66,7 @@ namespace sp {
 					break;
 				}
 
-				float const * resultValues = resultMatrix.getValuePtr();
+				SpFloat const * resultValues = resultMatrix.getValuePtr();
 				EXPECT_FLOAT_EQ(resultValues[i], expectedValue);
 			}
 		}

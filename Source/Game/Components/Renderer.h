@@ -3,6 +3,7 @@
 #include "Game/Components/GameObjectComponent.h"
 #include "Game/Components/Interface/IRenderer.h"
 #include "Game/Components/Interface/ITransformChangeObserver.h"
+#include "PlatformIndependence/SpType.h"
 
 namespace sp {
 	class GameObject;
@@ -10,7 +11,7 @@ namespace sp {
 	class Renderer : public GameObjectComponent, public ITransformChangeObserver {
 	public:
 		Renderer(GameObject * const gameObjectOwner);
-		void initRenderer(unsigned int const meshId);
+		void initRenderer(SpUnsigned const meshId);
 		~Renderer();
 		virtual void onPositionUpdated(Vector3 const & position) override;
 		virtual void onRotationUpdated(Vector3 const & rotation) override;

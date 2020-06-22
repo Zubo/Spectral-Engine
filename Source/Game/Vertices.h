@@ -3,11 +3,11 @@
 #include "Core/Math/Vector3.h"
 
 namespace sp {
-	unsigned int indices[] = {
+	SpUnsigned indices[] = {
 		0, 1, 2, 0, 3, 2
 	};
 
-	float verticesUV[] = {
+	SpFloat verticesUV[] = {
 		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
 		0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
 		0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
@@ -51,7 +51,7 @@ namespace sp {
 		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 	};
 
-	float verticesNormal[] = {
+	SpFloat verticesNormal[] = {
 		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 		0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 		0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
@@ -108,7 +108,7 @@ namespace sp {
 		Vector3{ -1.3f,  1.0f, -1.5f }
 	};
 
-	float verticesUVNormals[] = {
+	SpFloat verticesUVNormals[] = {
 		// positions          // normals           // texture coords
 		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
 		0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f,

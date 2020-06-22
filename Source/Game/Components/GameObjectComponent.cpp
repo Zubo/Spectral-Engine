@@ -5,7 +5,7 @@ namespace sp {
 		gameObjectOwner{ gameObjectOwner } {
 	}
 
-	void GameObjectComponent::update(float const deltaTime) {
+	void GameObjectComponent::update(SpFloat const deltaTime) {
 	}
 
 	GameObject const * const GameObjectComponent::getGameObject() const {

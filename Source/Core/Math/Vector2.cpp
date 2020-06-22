@@ -12,7 +12,7 @@ namespace sp {
 	Vector2::Vector2() : x{ 0.0F }, y{ 0.0F } {
 	}
 
-	Vector2::Vector2(float const x, float const y) : x{ x }, y{ y } {
+	Vector2::Vector2(SpFloat const x, SpFloat const y) : x{ x }, y{ y } {
 	}
 
 	Vector2::Vector2(Vector3 const & vector3) : x{ vector3.x }, y{ vector3.y } {
@@ -30,7 +30,7 @@ namespace sp {
 		return Vector2{ -this->x, -this->y };
 	}
 
-	Vector2 Vector2::operator*(float const value) const {
+	Vector2 Vector2::operator*(SpFloat const value) const {
 		return Vector2{ this->x * value, this->y * value };
 	}
 }

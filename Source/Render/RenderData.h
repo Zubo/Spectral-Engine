@@ -2,6 +2,7 @@
 
 #include "Core/Math/Vector3.h"
 #include "Core/Math/Matrix4x4.h"
+#include "PlatformIndependence/SpType.h"
 #include "Render/Shader/ShaderProgram.h"
 
 #define MAX_NUMBER_OF_TEXTURES 32
@@ -9,22 +10,22 @@
 namespace sp {
 	class RenderData {
 	public:
-		RenderData(int const gameObjectId, bool const active, bool const isStatic);
+		RenderData(SpInt const gameObjectId, bool const active, bool const isStatic);
 		Matrix4x4 const GetModelMatrix() const;
 
 	public:
-		int gameObjectId;
+		SpInt gameObjectId;
 		bool active;
 		bool isStatic;
-		unsigned int VAO;
-		unsigned int VBO;
-		unsigned int EBO;
-		unsigned int elementCount;
+		SpUnsigned VAO;
+		SpUnsigned VBO;
+		SpUnsigned EBO;
+		SpUnsigned elementCount;
 		Vector3 position;
 		Vector3 rotationEuler;
 		Vector3 scale;
 		bool modelMatrixChanged;
 		ShaderProgram shaderProgram;
-		unsigned int textureIds[MAX_NUMBER_OF_TEXTURES] = { 0 };
+		SpUnsigned textureIds[MAX_NUMBER_OF_TEXTURES] = { 0 };
 	};
 }

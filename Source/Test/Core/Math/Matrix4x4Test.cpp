@@ -6,9 +6,9 @@ namespace sp {
 		TEST(Matrix4x4, transpose) {
 			// arrange
 			Matrix4x4 mat;
-			for (int i = 0; i < 4; ++i) {
-				for (int j = 0; j < 4; ++j) {
-					mat[i][j] = i * 10 + j;
+			for (SpInt i = 0; i < 4; ++i) {
+				for (SpInt j = 0; j < 4; ++j) {
+					mat[i][j] = i * 10.0F + j;
 				}
 			}
 
@@ -16,8 +16,8 @@ namespace sp {
 			Matrix4x4 transposedMat = mat.transposed();
 
 			// assert
-			for (int i = 0; i < 4; ++i) {
-				for (int j = 0; j < 4; ++j) {
+			for (SpInt i = 0; i < 4; ++i) {
+				for (SpInt j = 0; j < 4; ++j) {
 					EXPECT_FLOAT_EQ(mat[i][j], transposedMat[j][i]);
 				}
 			}

@@ -1,9 +1,10 @@
 #include <sstream>
 
 #include "Render/Shader/ShaderCompilationException.h"
+#include "PlatformIndependence/SpType.h"
 
 namespace sp {
-	ShaderCompilationException::ShaderCompilationException(unsigned int const shaderId, GLenum shaderType, char infoLog[512])
+	ShaderCompilationException::ShaderCompilationException(SpUnsigned const shaderId, GLenum shaderType, char infoLog[512])
 		: shaderId{ shaderId }, shaderType{ shaderType }, infoLog{ SpString{infoLog} } {
 	}
 

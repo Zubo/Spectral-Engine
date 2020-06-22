@@ -1,5 +1,7 @@
 #pragma once
 
+#include "PlatformIndependence/SpType.h"
+
 namespace sp {
 	class Vector3;
 
@@ -9,7 +11,7 @@ namespace sp {
 	public:
 		Quaternion();
 		Quaternion(Quaternion const & quaternion) = default;
-		Quaternion(float const x, float const y, float const z, float const w);
+		Quaternion(SpFloat const x, SpFloat const y, SpFloat const z, SpFloat const w);
 		Quaternion(Vector3 const & vec3);
 
 	public:
@@ -17,6 +19,6 @@ namespace sp {
 		Quaternion operator*(Vector3 const & vec3);
 
 	public:
-		float const x, y, z, w;
+		SpFloat const x, y, z, w;
 	};
 }

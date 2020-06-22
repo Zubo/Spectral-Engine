@@ -2,8 +2,9 @@
 
 #include <map>
 
-#include "PlatformIndependence/SpString.h"
 #include "PlatformIndependence/SpHash.h"
+#include "PlatformIndependence/SpString.h"
+#include "PlatformIndependence/SpType.h"
 
 namespace sp {
 	TextureManager TextureManager::instance;
@@ -27,13 +28,13 @@ namespace sp {
 		}
 
 		Texture texture{ texturePath, genMipMap, format };
-		unsigned int id = texture.getId();
-		this->textureMap.insert(std::pair<unsigned int, Texture const>{ id, texture });
+		SpUnsigned id = texture.getId();
+		this->textureMap.insert(std::pair<SpUnsigned, Texture const>{ id, texture });
 
 		return texture;
 	}
 
-	Texture const TextureManager::getTexture(int textureId) {
+	Texture const TextureManager::getTexture(SpInt textureId) {
 		return this->textureMap.at(textureId);
 	}
 }

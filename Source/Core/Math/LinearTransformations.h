@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Matrix4x4.h"
-#include "Quaternion.h"
-#include "Vector3.h"
-#include "Radian.h"
-#include "Degree.h"
-#include "SpMath.h"
+#include "Core/Math/Matrix4x4.h"
+#include "Core/Math/Quaternion.h"
+#include "Core/Math/Vector3.h"
+#include "Core/Math/Radian.h"
+#include "Core/Math/Degree.h"
+#include "Core/Math/SpMath.h"
 
 namespace sp {
 	inline const Matrix4x4 translate(Matrix4x4 const & mat, Vector3 const & translation) {
@@ -81,7 +81,7 @@ namespace sp {
 		return coordinateSystemMatrix * translationMatrix;
 	}
 
-	Matrix4x4 const getPerspectiveMat(Degree const fov, float const aspect, float const near, float const far);
+	Matrix4x4 const getPerspectiveMat(Degree const fov, SpFloat const aspect, SpFloat const near, SpFloat const far);
 
-	Matrix4x4 const getOrthographicMat(float const left, float const right, float const bottom, float const top, float const zNear = -1.0F, float const zFar = 1.0F);
+	Matrix4x4 const getOrthographicMat(SpFloat const left, SpFloat const right, SpFloat const bottom, SpFloat const top, SpFloat const zNear = -1.0F, SpFloat const zFar = 1.0F);
 }

@@ -10,11 +10,11 @@ namespace sp {
 		values[3][3] = 1.0F;
 	}
 
-	float * Matrix4x4::operator[](int const ind) {
+	SpFloat * Matrix4x4::operator[](SpInt const ind) {
 		return values[ind];
 	}
 
-	float const * Matrix4x4::operator[](int const ind) const {
+	SpFloat const * Matrix4x4::operator[](SpInt const ind) const {
 		return values[ind];
 	}
 
@@ -41,16 +41,16 @@ namespace sp {
 		return resultMatrix;
 	}
 
-	float const * Matrix4x4::getValuePtr() const
+	SpFloat const * Matrix4x4::getValuePtr() const
 	{
-		return reinterpret_cast<float const *>(values);
+		return reinterpret_cast<SpFloat const *>(values);
 	}
 
 	Matrix4x4 const Matrix4x4::transposed() const
 	{
 		Matrix4x4 result = (*this);
-		for (int i = 0; i < 3; ++i) {
-			for (int j = i + 1; j < 4; ++j) {
+		for (SpInt i = 0; i < 3; ++i) {
+			for (SpInt j = i + 1; j < 4; ++j) {
 				std::swap(result[i][j], result[j][i]);
 			}
 		}

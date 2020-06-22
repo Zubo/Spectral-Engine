@@ -5,6 +5,7 @@
 #include "glad/glad.h"
 
 #include "Core/Math/Matrix4x4.h"
+#include "PlatformIndependence/SpType.h"
 #include "Render/Shader/ShaderProgram.h"
 #include "Render/UI/Font/Font.h"
 

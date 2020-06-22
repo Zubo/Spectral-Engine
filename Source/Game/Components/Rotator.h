@@ -6,9 +6,9 @@ namespace sp {
 		Rotator(GameObject * const gameObjectOwner);
 
 	public:
-		void update(float deltaTime) override;
+		void update(SpFloat deltaTime) override;
 
 	private:
-		float passedTime = 0.0F;
+		SpFloat passedTime = 0.0F;
 	};
 }

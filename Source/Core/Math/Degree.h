@@ -9,22 +9,22 @@ namespace sp {
 	public:
 		Degree();
 		Degree(Degree const & degree) = default;
-		Degree(float value);
+		Degree(SpFloat value);
 		Degree(Radian radian);
 
 	public:
-		Degree operator/(float const value) const;
+		Degree operator/(SpFloat const value) const;
 
 	public:
-		constexpr float const getValueDegrees() const {
+		constexpr SpFloat const getValueDegrees() const {
 			return this->value;
 		}
 
-		constexpr float const getValueRadians() const {
+		constexpr SpFloat const getValueRadians() const {
 			return this->value * PI / 180.0F;
 		}
 
 	private:
-		float value;
+		SpFloat value;
 	};
 }

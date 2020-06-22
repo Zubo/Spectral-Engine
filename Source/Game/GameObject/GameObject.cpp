@@ -1,9 +1,10 @@
 #include "Game/Components/GameObjectComponent.h"
 #include "Game/GameObject/GameObject.h"
+#include "PlatformIndependence/SpType.h"
 
 namespace sp {
 	std::vector<GameObject *> GameObject::gameObjectCollection;
-	int GameObject::nextId{ 0 };
+	SpInt GameObject::nextId{ 0 };
 
 	GameObject::GameObject() {
 		this->id = (++GameObject::nextId);
@@ -12,18 +13,18 @@ namespace sp {
 	}
 
 	GameObject::~GameObject() {
-		int index = GameObject::getGameObjectIndex(this);
+		SpInt index = GameObject::getGameObjectIndex(this);
 		auto iterator = GameObject::gameObjectCollection.begin() + index;
 		GameObject::gameObjectCollection.erase(iterator);
 	}
 
-	void GameObject::updateComponents(float const deltaTime) {
+	void GameObject::updateComponents(SpFloat const deltaTime) {
 		for (auto & component : this->components) {
 			component->update(deltaTime);
 		}
 	}
 
-	void GameObject::updateGameObjects(float const deltaTime) {
+	void GameObject::updateGameObjects(SpFloat const deltaTime) {
 		for (auto & gameObject : gameObjectCollection) {
 			gameObject->updateComponents(deltaTime);
 		}
@@ -33,8 +34,8 @@ namespace sp {
 		return GameObject::gameObjectCollection;
 	}
 
-	int GameObject::getGameObjectIndex(GameObject *gameObject) {
-		for (unsigned int i = 0; i < GameObject::gameObjectCollection.size(); ++i) {
+	SpInt GameObject::getGameObjectIndex(GameObject *gameObject) {
+		for (SpUnsigned i = 0; i < GameObject::gameObjectCollection.size(); ++i) {
 			if (GameObject::gameObjectCollection.at(i) == gameObject) {
 				return i;
 			}

@@ -22,7 +22,7 @@ namespace sp {
 		Right = 0x27,
 		Down = 0x28,
 		Select = 0x29,
-		Print = 0x2A,
+		PrSpInt = 0x2A,
 		Execute = 0x2B,
 		PrintScreen = 0x2C,
 		Insert = 0x2D,

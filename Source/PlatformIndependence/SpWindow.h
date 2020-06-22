@@ -1,18 +1,20 @@
 #pragma once
 
+#include "PlatformIndependence/SpType.h"
+
 struct GLFWwindow;
 
 namespace sp {
 	class SpWindow {
 	public:
-		static void init(int const width, int const height);
+		static void init(SpInt const width, SpInt const height);
 		static SpWindow * const getInstance();
 		
 	private:
 		static SpWindow * windowInstance;
 
 	private:
-		SpWindow(int const width, int const height);
+		SpWindow(SpInt const width, SpInt const height);
 		SpWindow(SpWindow const & window) = delete;
 
 	public:
@@ -21,17 +23,17 @@ namespace sp {
 		bool const shouldClose() const;
 		GLFWwindow * const getConcreteWindow() const;
 		
-		inline int getWidht() const {
+		inline SpInt getWidht() const {
 			return this->width;
 		}
 
-		inline int getHeight() const {
+		inline SpInt getHeight() const {
 			return this->height;
 		}
 
 	private:
-		int width;
-		int height;
+		SpInt width;
+		SpInt height;
 		bool initialized;
 		GLFWwindow * concreteWindow = nullptr;
 	};

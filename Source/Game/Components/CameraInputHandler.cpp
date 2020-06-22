@@ -12,7 +12,7 @@ namespace sp {
 	CameraInputHandler::CameraInputHandler(GameObject * gameObject) : GameObjectComponent{ gameObject } {
 	}
 
-	void CameraInputHandler::update(float deltaTime) {
+	void CameraInputHandler::update(SpFloat deltaTime) {
 		 this->processMouseInput();
 		 this->processKeyInput(deltaTime);
 	 }
@@ -44,8 +44,8 @@ namespace sp {
 		 }
 	 }
 
-	 void CameraInputHandler::processKeyInput(float deltaTime) {
-	 	float const cameraSpeed = 1.0F;
+	 void CameraInputHandler::processKeyInput(SpFloat deltaTime) {
+	 	SpFloat const cameraSpeed = 1.0F;
 	 	auto const transformWeak = this->getGameObject()->getComponent<Transform>();
 		std::weak_ptr<Camera> cameraWeak = this->getGameObject()->getComponent<Camera>();
 

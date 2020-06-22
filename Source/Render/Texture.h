@@ -4,6 +4,7 @@
 
 #include "glad/glad.h"
 #include "PlatformIndependence/SpString.h"
+#include "PlatformIndependence/SpType.h"
 #include "PlatformIndependence/SpHash.h"
 
 namespace sp {
@@ -12,7 +13,7 @@ namespace sp {
 		Texture(SpString const & path, bool const genMipmap, GLenum format);
 		~Texture();
 
-		inline unsigned int const getId() const {
+		inline SpUnsigned const getId() const {
 			return this->id;
 		}
 
@@ -29,10 +30,10 @@ namespace sp {
 		}
 
 	private:
-		unsigned int id;
-		int width;
-		int height;
-		int nrChannel;
+		SpUnsigned id;
+		SpInt width;
+		SpInt height;
+		SpInt nrChannel;
 		bool genMipMap;
 		GLenum format;
 		SpHashValue pathHashValue;

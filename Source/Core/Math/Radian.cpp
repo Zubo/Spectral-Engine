@@ -5,7 +5,7 @@ namespace sp {
 	Radian::Radian() : value{ 0.0F } {
 	}
 
-	Radian::Radian(float const value) : value{ value } {
+	Radian::Radian(SpFloat const value) : value{ value } {
 	}
 
 	Radian::Radian(Degree const degree) {

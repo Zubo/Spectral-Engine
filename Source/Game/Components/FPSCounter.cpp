@@ -12,7 +12,7 @@ namespace sp {
 		this->timeSinceLastRender = 0.0F;
 	}
 
-	void FPSCounter::update(float const deltaTime) {
+	void FPSCounter::update(SpFloat const deltaTime) {
 		this->timeSinceLastRender += deltaTime;
 		this->numberOfFrames++;
 

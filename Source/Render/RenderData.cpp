@@ -5,7 +5,7 @@
 
 namespace sp {
 	RenderData::RenderData(
-		int const gameObjectId, bool const active, bool const isStatic)
+		SpInt const gameObjectId, bool const active, bool const isStatic)
 		: gameObjectId{ gameObjectId }, active{ active }, isStatic{ isStatic }, scale{ 1.0F } {
 	}
 
