@@ -7,17 +7,17 @@
 
 namespace sp {
 	Texture::Texture(SpString const & path, bool const genMipMap, GLenum format) :
-			genMipMap{ genMipMap }, format{ format }, pathHashValue{ calculateHashValue(path) } {
-		glGenTextures(1, &this->id);
+			_genMipMap{ genMipMap }, _format{ format }, _pathHashValue{ calculateHashValue(path) } {
+		glGenTextures(1, &this->_id);
 		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, this->id);
-	
-		unsigned char * data = stbi_load(path.c_str(), &this->width, &this->height, &this->nrChannel, 0);
+		glBindTexture(GL_TEXTURE_2D, this->_id);
+
+		unsigned char * data = stbi_load(path.c_str(), &this->_width, &this->_height, &this->_nrChannel, 0);
 
 		if (data) {
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, this->width, this->height, 0, format, GL_UNSIGNED_BYTE, data);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, this->_width, this->_height, 0, format, GL_UNSIGNED_BYTE, data);
 
-			if (this->genMipMap) {
+			if (this->_genMipMap) {
 				glGenerateMipmap(GL_TEXTURE_2D);
 			}
 		}

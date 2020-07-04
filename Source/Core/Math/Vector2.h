@@ -19,7 +19,7 @@ namespace sp {
 		Vector2 operator*(SpFloat const value) const;
 
 	public:
-		SpFloat x;
-		SpFloat y;
+		SpFloat X;
+		SpFloat Y;
 	};
 }

@@ -14,18 +14,18 @@ namespace sp {
 		Matrix4x4 const GetModelMatrix() const;
 
 	public:
-		SpInt gameObjectId;
-		bool active;
-		bool isStatic;
+		SpInt GameObjectId;
+		bool Active;
+		bool IsStatic;
 		SpUnsigned VAO;
 		SpUnsigned VBO;
 		SpUnsigned EBO;
-		SpUnsigned elementCount;
-		Vector3 position;
-		Vector3 rotationEuler;
-		Vector3 scale;
-		bool modelMatrixChanged;
-		ShaderProgram shaderProgram;
-		SpUnsigned textureIds[MAX_NUMBER_OF_TEXTURES] = { 0 };
+		SpUnsigned ElementCount;
+		Vector3 Position;
+		Vector3 RotationEuler;
+		Vector3 Scale;
+		bool ModelMatrixChanged;
+		ShaderProgram ShaderProgram;
+		SpUnsigned TextureIds[MAX_NUMBER_OF_TEXTURES] = { 0 };
 	};
 }

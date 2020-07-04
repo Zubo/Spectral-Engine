@@ -2,14 +2,15 @@
 
 namespace sp {
 	GameObjectComponent::GameObjectComponent(GameObject * const gameObjectOwner) :
-		gameObjectOwner{ gameObjectOwner } {
+		_gameObjectOwner{ gameObjectOwner } {
 	}
 
 	void GameObjectComponent::update(SpFloat const deltaTime) {
+		(void)deltaTime;
 	}
 
 	GameObject const * const GameObjectComponent::getGameObject() const {
-		return this->gameObjectOwner;
+		return this->_gameObjectOwner;
 	}
 
 	GameObjectComponent::~GameObjectComponent() {

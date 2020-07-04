@@ -21,21 +21,21 @@ namespace sp {
 		return SpWindow::windowInstance;
 	}
 
-	sp::SpWindow::SpWindow(SpInt const width, SpInt const height) : width{ width }, height{ height }, initialized{ false } {
+	sp::SpWindow::SpWindow(SpInt const width, SpInt const height) : _width{ width }, _height{ height }, _initialized{ false } {
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-		this->concreteWindow = glfwCreateWindow(width, height, "Spectral Engine", NULL, NULL);
+		this->_concreteWindow = glfwCreateWindow(width, height, "Spectral Engine", NULL, NULL);
 
-		if (this->concreteWindow == nullptr) {
+		if (this->_concreteWindow == nullptr) {
 			std::cout << "Failed to create GLFW window." << std::endl;
 			glfwTerminate();
 			return;
 		}
 
-		glfwMakeContextCurrent(this->concreteWindow);
+		glfwMakeContextCurrent(this->_concreteWindow);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 			std::cout << "Failed to initialize GLAD." << std::endl;
@@ -44,31 +44,31 @@ namespace sp {
 
 		glViewport(0, 0, width, height);
 
-		glfwSetFramebufferSizeCallback(this->concreteWindow,
+		glfwSetFramebufferSizeCallback(this->_concreteWindow,
 			[](GLFWwindow * window, SpInt width, SpInt height) {
 			glViewport(0, 0, width, height);
 		});
 
-		glfwSetInputMode(this->concreteWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		glfwSetInputMode(this->_concreteWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-		this->initialized = true;
+		this->_initialized = true;
 	}
 
 	void sp::SpWindow::update() const {
-		if (glfwGetKey(this->concreteWindow, GLFW_KEY_ESCAPE)) {
-			glfwSetWindowShouldClose(this->concreteWindow, true);
+		if (glfwGetKey(this->_concreteWindow, GLFW_KEY_ESCAPE)) {
+			glfwSetWindowShouldClose(this->_concreteWindow, true);
 		}
 	}
 
 	bool const sp::SpWindow::initializedSuccessfuly() const {
-		return this->initialized;
+		return this->_initialized;
 	}
 
 	bool const sp::SpWindow::shouldClose() const {
-		return glfwWindowShouldClose(this->concreteWindow);
+		return glfwWindowShouldClose(this->_concreteWindow);
 	}
 
 	GLFWwindow * const sp::SpWindow::getConcreteWindow() const {
-		return this->concreteWindow;
+		return this->_concreteWindow;
 	}
 }

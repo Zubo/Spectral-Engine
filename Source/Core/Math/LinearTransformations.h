@@ -10,9 +10,9 @@
 namespace sp {
 	inline const Matrix4x4 translate(Matrix4x4 const & mat, Vector3 const & translation) {
 		Matrix4x4 translationMat;
-		translationMat[0][3] = translation.x;
-		translationMat[1][3] = translation.y;
-		translationMat[2][3] = translation.z;
+		translationMat[0][3] = translation.X;
+		translationMat[1][3] = translation.Y;
+		translationMat[2][3] = translation.Z;
 
 		return translationMat * mat;
 	}
@@ -20,9 +20,9 @@ namespace sp {
 	inline const Matrix4x4 scale(Matrix4x4 const & mat, Vector3 const & scale) {
 		Matrix4x4 scaleMat;
 
-		scaleMat[0][0] = scale.x;
-		scaleMat[1][1] = scale.y;
-		scaleMat[2][2] = scale.z;
+		scaleMat[0][0] = scale.X;
+		scaleMat[1][1] = scale.Y;
+		scaleMat[2][2] = scale.Z;
 
 		return scaleMat * mat;
 	}
@@ -61,15 +61,15 @@ namespace sp {
 		Matrix4x4 result{};
 		Vector3 const right = Vector3::cross(forward, up);
 
-		result[0][0] = right.x;
-		result[0][1] = right.y;
-		result[0][2] = right.z;
-		result[1][0] = up.x;
-		result[1][1] = up.y;
-		result[1][2] = up.z;
-		result[2][0] = -forward.x;
-		result[2][1] = -forward.y;
-		result[2][2] = -forward.z;
+		result[0][0] = right.X;
+		result[0][1] = right.Y;
+		result[0][2] = right.Z;
+		result[1][0] = up.X;
+		result[1][1] = up.Y;
+		result[1][2] = up.Z;
+		result[2][0] = -forward.X;
+		result[2][1] = -forward.Y;
+		result[2][2] = -forward.Z;
 
 		return result;
 	}

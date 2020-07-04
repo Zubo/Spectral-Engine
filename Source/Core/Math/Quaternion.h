@@ -19,6 +19,6 @@ namespace sp {
 		Quaternion operator*(Vector3 const & vec3);
 
 	public:
-		SpFloat const x, y, z, w;
+		SpFloat const X, Y, Z, W;
 	};
 }

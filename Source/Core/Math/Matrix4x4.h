@@ -18,6 +18,6 @@ namespace sp {
 		Matrix4x4 const transposed() const;
 
 	private:
-		SpFloat values[4][4];
+		SpFloat _values[4][4];
 	};
 }

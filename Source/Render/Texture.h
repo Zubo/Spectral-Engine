@@ -14,28 +14,28 @@ namespace sp {
 		~Texture();
 
 		inline SpUnsigned const getId() const {
-			return this->id;
+			return this->_id;
 		}
 
 		inline SpHashValue const getPathHashValue() const {
-			return this->pathHashValue;
+			return this->_pathHashValue;
 		}
 
 		inline bool const getGenMipMap() const {
-			return this->genMipMap;
+			return this->_genMipMap;
 		}
 
 		inline GLenum const getFormat() const {
-			return this->format;
+			return this->_format;
 		}
 
 	private:
-		SpUnsigned id;
-		SpInt width;
-		SpInt height;
-		SpInt nrChannel;
-		bool genMipMap;
-		GLenum format;
-		SpHashValue pathHashValue;
+		SpUnsigned _id;
+		SpInt _width;
+		SpInt _height;
+		SpInt _nrChannel;
+		bool _genMipMap;
+		GLenum _format;
+		SpHashValue _pathHashValue;
 	};
 }

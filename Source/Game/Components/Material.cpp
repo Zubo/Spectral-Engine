@@ -13,58 +13,58 @@
 
 namespace sp {
 	Material::Material(GameObject * gameObject) : GameObjectComponent(gameObject),
-		ambientColor{ 1.0F },
-		specularColor{ 1.0F },
-		diffuseColor{ 1.0F },
-		shininess{ 1.0F } {
+		_ambientColor{ 1.0F },
+		_specularColor{ 1.0F },
+		_diffuseColor{ 1.0F },
+		_shininess{ 1.0F } {
 	}
 
 	void Material::initMaterial(SpString const & vertexShaderPath, SpString const & fragmentShaderPath) {
 		ShaderProgram const shaderProgram{ vertexShaderPath, fragmentShaderPath };
-		SpInt const gameObjectId = this->gameObjectOwner->getId();
+		SpInt const gameObjectId = this->_gameObjectOwner->getId();
 		updateShaderProgram(gameObjectId, shaderProgram);
-		this->setAmbient(this->ambientColor);
-		this->setSpecular(this->specularColor);
-		this->setDiffuse(this->diffuseColor);
-		this->setShinines(this->shininess);
+		this->setAmbient(this->_ambientColor);
+		this->setSpecular(this->_specularColor);
+		this->setDiffuse(this->_diffuseColor);
+		this->setShinines(this->_shininess);
 		shaderProgram.setInt(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".diffuseMapTex" }, 0);
 		shaderProgram.setInt(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".specularMapTex" }, 1);
 	}
 
 	void Material::setAmbient(Vector3 const & ambientColor) {
-		this->ambientColor = ambientColor;
+		this->_ambientColor = ambientColor;
 		ShaderProgram const shaderProgram = this->getShaderProgram();
 		shaderProgram.setVec3(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".ambient" },
-			this->ambientColor.x, this->ambientColor.y, this->ambientColor.z);
+			this->_ambientColor.X, this->_ambientColor.Y, this->_ambientColor.Z);
 	}
 
 	void Material::setDiffuse(Vector3 const & diffuseColor) {
-		this->diffuseColor = diffuseColor;
+		this->_diffuseColor = diffuseColor;
 		ShaderProgram const shaderProgram = this->getShaderProgram();
 		shaderProgram.setVec3(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".diffuse" },
-			this->diffuseColor.x, this->diffuseColor.y, this->diffuseColor.z);
+			this->_diffuseColor.X, this->_diffuseColor.Y, this->_diffuseColor.Z);
 	}
 
 	void Material::setSpecular(Vector3 const & specularColor) {
-		this->specularColor = specularColor;
+		this->_specularColor = specularColor;
 		ShaderProgram const shaderProgram = this->getShaderProgram();
 		shaderProgram.setVec3(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".specular" },
-			this->specularColor.x, this->specularColor.y, this->specularColor.z);
+			this->_specularColor.X, this->_specularColor.Y, this->_specularColor.Z);
 	}
 
 	void Material::setShinines(SpFloat const shininess) {
-		this->shininess = shininess;
+		this->_shininess = shininess;
 
 		ShaderProgram const shaderProgram = this->getShaderProgram();
 		shaderProgram.setFloat(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".shininess" },
-			this->shininess);
+			this->_shininess);
 	}
 
 	void Material::setDiffuseMap(SpString const & texturePath) {
 		TextureManager & textureManager = TextureManager::getInstance();
 		Texture texture = textureManager.getTexture(texturePath, true, GL_RGBA);
 
-		SpInt const gameObjectId = this->gameObjectOwner->getId();
+		SpInt const gameObjectId = this->_gameObjectOwner->getId();
 		SpUnsigned const diffuseMapTextureIndex = 0;
 		SpUnsigned const textureId = texture.getId();
 		updateTextureId(gameObjectId, textureId, diffuseMapTextureIndex);
@@ -74,17 +74,17 @@ namespace sp {
 		TextureManager & textureManager = TextureManager::getInstance();
 		Texture texture = textureManager.getTexture(texturePath, true, GL_RGBA);
 
-		SpInt const gameObjectId = this->gameObjectOwner->getId();
+		SpInt const gameObjectId = this->_gameObjectOwner->getId();
 		SpUnsigned const specularMapTextureIndex = 1;
 		SpUnsigned const textureId = texture.getId();
 		updateTextureId(gameObjectId, textureId, specularMapTextureIndex);
 	}
 
 	ShaderProgram const Material::getShaderProgram() {
-		SpInt const gameObjectId = this->gameObjectOwner->getId();
+		SpInt const gameObjectId = this->_gameObjectOwner->getId();
 		RenderDataContainer const & renderDataContainer = RenderDataContainer::getInstance();
 		RenderData const & renderData = renderDataContainer.getRenderData(gameObjectId);
 
-		return renderData.shaderProgram;
+		return renderData.ShaderProgram;
 	}
 }

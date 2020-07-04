@@ -15,19 +15,19 @@
 namespace sp {
 	Transform::Transform(GameObject * const gameObjectOwner) :
 		GameObjectComponent(gameObjectOwner),
-		position{ 0.0F },
-		scaleVec{ 1.0F } {
+		_position{ 0.0F },
+		_scaleVec{ 1.0F } {
 	}
 
 	Vector3 const Transform::getPosition() const {
-		return this->position;
+		return this->_position;
 	}
 
 	void Transform::setPosition(Vector3 const & position) {
-		this->position = position;
+		this->_position = position;
 
 		std::vector<std::weak_ptr<ITransformChangeObserver>> observers =
-			this->gameObjectOwner->getComponents<ITransformChangeObserver>();
+			this->_gameObjectOwner->getComponents<ITransformChangeObserver>();
 		for (auto observerWeak : observers) {
 			if (std::shared_ptr<ITransformChangeObserver> transformShared = observerWeak.lock()) {
 				transformShared->onPositionUpdated(position);
@@ -36,14 +36,14 @@ namespace sp {
 	}
 
 	Vector3 const Transform::getRotationEuler() const {
-		return this->rotationEuler;
+		return this->_rotationEuler;
 	}
 
 	void Transform::setRotationEuler(Vector3 const & rotation) {
-		this->rotationEuler = rotation;
+		this->_rotationEuler = rotation;
 
 		std::vector<std::weak_ptr<ITransformChangeObserver>> observers =
-			this->gameObjectOwner->getComponents<ITransformChangeObserver>();
+			this->_gameObjectOwner->getComponents<ITransformChangeObserver>();
 		for (auto observerWeak : observers) {
 			if (std::shared_ptr<ITransformChangeObserver> transformShared = observerWeak.lock()) {
 				transformShared->onRotationUpdated(rotation);
@@ -52,10 +52,10 @@ namespace sp {
 	}
 
 	void Transform::setScale(Vector3 const & scale) {
-		this->scaleVec = scale;
+		this->_scaleVec = scale;
 
 		std::vector<std::weak_ptr<ITransformChangeObserver>> observers =
-			this->gameObjectOwner->getComponents<ITransformChangeObserver>();
+			this->_gameObjectOwner->getComponents<ITransformChangeObserver>();
 		for (auto observerWeak : observers) {
 			if (std::shared_ptr<ITransformChangeObserver> transformShared = observerWeak.lock()) {
 				transformShared->onScaleUpdated(scale);
@@ -64,6 +64,6 @@ namespace sp {
 	}
 
 	Vector3 const Transform::getScale() const {
-		return this->scaleVec;
+		return this->_scaleVec;
 	}
 }

@@ -23,11 +23,11 @@ namespace sp {
 		static Vector3 const getForward();
 
 	private:
-		static bool dataChanged;
-		static Vector3 translation;
-		static Vector3 rotation;
-		static Degree fov;
-		static SpInt screenWidth;
-		static SpInt screenHeight;
+		static bool _dataChanged;
+		static Vector3 _translation;
+		static Vector3 _rotation;
+		static Degree _fov;
+		static SpInt _screenWidth;
+		static SpInt _screenHeight;
 	};
 }

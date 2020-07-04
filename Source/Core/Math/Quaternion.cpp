@@ -2,21 +2,21 @@
 #include "Vector3.h"
 
 namespace sp {
-	Quaternion::Quaternion() : x{ 0.0F }, y{ 0.0F }, z{ 0.0F }, w{ 0.0F } {
+	Quaternion::Quaternion() : X{ 0.0F }, Y{ 0.0F }, Z{ 0.0F }, W{ 0.0F } {
 	}
 
-	Quaternion::Quaternion(SpFloat const x, SpFloat const y, SpFloat const z, SpFloat const w) : x{ x }, y{ y }, z{ z }, w{ w } {
+	Quaternion::Quaternion(SpFloat const x, SpFloat const y, SpFloat const z, SpFloat const w) : X{ x }, Y{ y }, Z{ z }, W{ w } {
 	}
 
-	Quaternion::Quaternion(Vector3 const & vec3) : x{ vec3.x }, y{ vec3.y }, z{ vec3.z }, w{ 0.0F } {
+	Quaternion::Quaternion(Vector3 const & vec3) : X{ vec3.X }, Y{ vec3.Y }, Z{ vec3.Z }, W{ 0.0F } {
 	}
 
 	Quaternion Quaternion::operator*(Quaternion const & quat) const {
 		return Quaternion{
-			(this->x * quat.w) + (this->y * quat.z) - (this->z * quat.y) + (this->w * quat.x),
-			-(this->x * quat.z) + (this->y * quat.w) + (this->z * quat.x) + (this->w * quat.y),
-			(this->x * quat.y) - (this->y * quat.x) + (this->z * quat.w) + (this->w * quat.z),
-			-(this->x * quat.x) - (this->y * quat.y) - (this->z * quat.z) + (this->w * quat.w)
+			(this->X * quat.W) + (this->Y * quat.Z) - (this->Z * quat.Y) + (this->W * quat.X),
+			-(this->X * quat.Z) + (this->Y * quat.W) + (this->Z * quat.X) + (this->W * quat.Y),
+			(this->X * quat.Y) - (this->Y * quat.X) + (this->Z * quat.W) + (this->W * quat.Z),
+			-(this->X * quat.X) - (this->Y * quat.Y) - (this->Z * quat.Z) + (this->W * quat.W)
 		};
 	}
 

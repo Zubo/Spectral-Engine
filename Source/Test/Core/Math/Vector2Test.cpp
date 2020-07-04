@@ -11,13 +11,13 @@ namespace sp {
 			SpFloat const secondY = 29312.2F;
 			Vector2 const firstVector{ firstX, firstY };
 			Vector2 const secondVector{ secondX, secondY };
-			
+
 			// act
 			Vector2 const result = firstVector + secondVector;
 
 			// assert
-			ASSERT_FLOAT_EQ(result.x, firstX + secondX);
-			ASSERT_FLOAT_EQ(result.y, firstY + secondY);
+			ASSERT_FLOAT_EQ(result.X, firstX + secondX);
+			ASSERT_FLOAT_EQ(result.Y, firstY + secondY);
 		}
 
 		TEST(Vector2, subtractionWithVector2) {
@@ -33,8 +33,8 @@ namespace sp {
 			Vector2 const result = firstVector - secondVector;
 
 			// assert
-			ASSERT_FLOAT_EQ(result.x, firstX - secondX);
-			ASSERT_FLOAT_EQ(result.y, firstY - secondY);
+			ASSERT_FLOAT_EQ(result.X, firstX - secondX);
+			ASSERT_FLOAT_EQ(result.Y, firstY - secondY);
 		}
 
 		TEST(Vector2, negation) {
@@ -47,8 +47,8 @@ namespace sp {
 			Vector2 const result = -vector;
 
 			// assert
-			ASSERT_FLOAT_EQ(result.x, -x);
-			ASSERT_FLOAT_EQ(result.y, -y);
+			ASSERT_FLOAT_EQ(result.X, -x);
+			ASSERT_FLOAT_EQ(result.Y, -y);
 		}
 	}
 }

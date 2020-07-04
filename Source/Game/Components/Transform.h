@@ -19,8 +19,8 @@ namespace sp {
 		Vector3 const getScale() const;
 
 	private:
-		Vector3 position;
-		Vector3 rotationEuler;
-		Vector3 scaleVec;
+		Vector3 _position;
+		Vector3 _rotationEuler;
+		Vector3 _scaleVec;
 	};
 }

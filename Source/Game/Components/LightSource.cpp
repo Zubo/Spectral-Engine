@@ -13,49 +13,50 @@
 
 namespace sp {
 	LightSource::LightSource(GameObject * gameObjectOwner) : GameObjectComponent{ gameObjectOwner } {
-		this->gameObjectOwner = gameObjectOwner;
+		this->_gameObjectOwner = gameObjectOwner;
 	}
 
 	void LightSource::initLightSource(LightType const lightType) {
 		std::weak_ptr<Transform const> const transformWeak =
-			this->gameObjectOwner->getComponent<Transform>();
+			this->_gameObjectOwner->getComponent<Transform>();
 
 		std::shared_ptr<Transform const> const transformShared = transformWeak.lock();
 
 		Vector3 const & position = transformShared->getPosition();
 		Vector3 const & rotation = transformShared->getRotationEuler();
-		Degree const xAngle{ rotation.x };
-		Degree const yAngle{ rotation.y };
+		Degree const xAngle{ rotation.X };
+		Degree const yAngle{ rotation.Y };
 		Vector3 const & direction = getDirection(xAngle, yAngle);
 
 		LightData const lightData{ lightType, Vector3{ 1.0F }, position, direction };
 		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
 		lightDataContainer.saveLightData(lightData);
 
-		this->lightDataId = lightData.id;
+		this->_lightDataId = lightData.Id;
 	}
 
 	void LightSource::onPositionUpdated(Vector3 const & position) {
 		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
-		LightData lightData = lightDataContainer.getLightData(this->lightDataId);
-		lightData.position = position;
-		lightData.changed = true;
+		LightData lightData = lightDataContainer.getLightData(this->_lightDataId);
+		lightData.Position = position;
+		lightData.Changed = true;
 		lightDataContainer.saveLightData(lightData);
 	}
 
 	void LightSource::onRotationUpdated(Vector3 const & rotation) {
 		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
-		LightData lightData = lightDataContainer.getLightData(this->lightDataId);
+		LightData lightData = lightDataContainer.getLightData(this->_lightDataId);
 
-		Degree const xAngle{ rotation.x };
-		Degree const yAngle{ rotation.y };
+		Degree const xAngle{ rotation.X };
+		Degree const yAngle{ rotation.Y };
 		Vector3 const & direction = getDirection(xAngle, yAngle);
-		lightData.direction = direction;
-		lightData.changed = true;
+		lightData.Direction = direction;
+		lightData.Changed = true;
 		lightDataContainer.saveLightData(lightData);
 	}
 
 	void LightSource::onScaleUpdated(Vector3 const & scale) {
+		(void)scale;
 		// Scale has no effect on light
 	}
 }

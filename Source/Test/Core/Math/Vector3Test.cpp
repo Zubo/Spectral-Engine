@@ -18,9 +18,9 @@ namespace sp {
 			Vector3 const result = firstVector + secondVector;
 
 			// assert
-			ASSERT_FLOAT_EQ(result.x, firstX + secondX);
-			ASSERT_FLOAT_EQ(result.y, firstY + secondY);
-			ASSERT_FLOAT_EQ(result.z, firstZ + secondZ);
+			ASSERT_FLOAT_EQ(result.X, firstX + secondX);
+			ASSERT_FLOAT_EQ(result.Y, firstY + secondY);
+			ASSERT_FLOAT_EQ(result.Z, firstZ + secondZ);
 		}
 
 		TEST(Vector3, subtractionWithVector3) {
@@ -38,9 +38,9 @@ namespace sp {
 			Vector3 const result = firstVector - secondVector;
 
 			// assert
-			ASSERT_FLOAT_EQ(result.x, firstX - secondX);
-			ASSERT_FLOAT_EQ(result.y, firstY - secondY);
-			ASSERT_FLOAT_EQ(result.z, firstZ - secondZ);
+			ASSERT_FLOAT_EQ(result.X, firstX - secondX);
+			ASSERT_FLOAT_EQ(result.Y, firstY - secondY);
+			ASSERT_FLOAT_EQ(result.Z, firstZ - secondZ);
 		}
 
 		TEST(Vector3, negation) {
@@ -54,9 +54,9 @@ namespace sp {
 			Vector3 const result = -vector;
 
 			// assert
-			ASSERT_FLOAT_EQ(result.x, -x);
-			ASSERT_FLOAT_EQ(result.y, -y);
-			ASSERT_FLOAT_EQ(result.z, -z);
+			ASSERT_FLOAT_EQ(result.X, -x);
+			ASSERT_FLOAT_EQ(result.Y, -y);
+			ASSERT_FLOAT_EQ(result.Z, -z);
 		}
 	}
 }

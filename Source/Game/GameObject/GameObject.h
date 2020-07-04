@@ -15,23 +15,23 @@ namespace sp {
 
 	public:
 		inline SpInt const getId() const {
-			return this->id;
+			return this->_id;
 		}
 
 		inline bool const getIsActive() const {
-			return this->isActive;
+			return this->_isActive;
 		}
 
 		template <typename T>
 		std::weak_ptr<T> addComponent() {
 			std::shared_ptr<T> component = std::make_shared<T>(this);
-			this->components.push_back(std::static_pointer_cast<GameObjectComponent>(component));
+			this->_components.push_back(std::static_pointer_cast<GameObjectComponent>(component));
 			return std::weak_ptr<T>{ component };
 		};
 
 		template <typename T>
 		std::weak_ptr<T> getComponent() const {
-			for (auto const & comp : this->components) {
+			for (auto const & comp : this->_components) {
 				std::shared_ptr<T> componentT = std::dynamic_pointer_cast<T>(comp);
 				if (componentT != nullptr) {
 					return std::weak_ptr<T>{ componentT };
@@ -45,7 +45,7 @@ namespace sp {
 		std::vector<std::weak_ptr<T>> getComponents() const {
 			std::vector<std::weak_ptr<T>> componentsVector;
 
-			for (auto & comp : this->components) {
+			for (auto & comp : this->_components) {
 				std::shared_ptr<T> componentT = std::dynamic_pointer_cast<T>(comp);
 				if (componentT != nullptr) {
 					std::weak_ptr<T> componentWeak = std::weak_ptr<T>{ componentT };
@@ -62,11 +62,11 @@ namespace sp {
 
 
 	private:
-		SpInt id;
-		bool isActive;
-		std::vector<std::shared_ptr<GameObjectComponent>> components;
+		SpInt _id;
+		bool _isActive;
+		std::vector<std::shared_ptr<GameObjectComponent>> _components;
 		static SpInt getGameObjectIndex(GameObject *);
-		static std::vector<GameObject *> gameObjectCollection;
-		static SpInt nextId;
+		static std::vector<GameObject *> _gameObjectCollection;
+		static SpInt _nextId;
 	};
 }

@@ -18,7 +18,7 @@ namespace sp {
 		Vector3(SpFloat const x, SpFloat const y, SpFloat const z);
 
 	public:
-		SpFloat x, y, z;
+		SpFloat X, Y, Z;
 		Vector3 operator-() const;
 		Vector3 operator+(Vector3 const & vector) const;
 		Vector3 operator-(Vector3 const & vector) const;

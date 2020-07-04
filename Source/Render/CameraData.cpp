@@ -11,72 +11,72 @@ namespace sp {
 		Vector3 const forward = CameraData::getForward();
 		Vector3 const right = Vector3::cross(forward, worldUp).normalized();
 		Vector3 const up = Vector3::cross(right, forward).normalized();
-		Vector3 const & translation = CameraData::translation;
+		Vector3 const & translation = CameraData::_translation;
 		auto lookAt = getLookAtMatrix(forward, up, translation);
 		return lookAt;
 	}
 
 	Matrix4x4 const CameraData::GetProjectionMatrix() {
-		SpFloat aspect = static_cast<float>(CameraData::screenWidth) / CameraData::screenHeight;
-		return getPerspectiveMat(CameraData::fov, aspect, 0.1F, 100.0F);
+		SpFloat aspect = static_cast<float>(CameraData::_screenWidth) / CameraData::_screenHeight;
+		return getPerspectiveMat(CameraData::_fov, aspect, 0.1F, 100.0F);
 	}
 
 	void CameraData::setFov(Degree const & fov) {
-		CameraData::fov = fov;
-		CameraData::dataChanged = true;
+		CameraData::_fov = fov;
+		CameraData::_dataChanged = true;
 	}
 
 	void CameraData::setScreenWidth(SpInt const screenWidth) {
-		CameraData::screenWidth = screenWidth;
-		CameraData::dataChanged = true;
+		CameraData::_screenWidth = screenWidth;
+		CameraData::_dataChanged = true;
 	}
 
 	void CameraData::setScreenHeight(SpInt const screenHeight) {
-		CameraData::screenHeight = screenHeight;
-		CameraData::dataChanged = true;
+		CameraData::_screenHeight = screenHeight;
+		CameraData::_dataChanged = true;
 	}
 
 	Vector3 const CameraData::getTranslation()
 	{
-		return CameraData::translation;
+		return CameraData::_translation;
 	}
 
 	void CameraData::setTranslation(Vector3 const & translation) {
-		CameraData::translation = translation;
-		CameraData::dataChanged = true;
+		CameraData::_translation = translation;
+		CameraData::_dataChanged = true;
 	}
 
 	Vector3 const CameraData::getRotation()
 	{
-		return CameraData::rotation;
+		return CameraData::_rotation;
 	}
 
 	void CameraData::setRotation(Vector3 const & rotation) {
-		CameraData::rotation = rotation;
-		CameraData::dataChanged = true;
+		CameraData::_rotation = rotation;
+		CameraData::_dataChanged = true;
 	}
 
 	bool const CameraData::getDataChanged()
 	{
-		return CameraData::dataChanged;
+		return CameraData::_dataChanged;
 	}
 
 	void CameraData::setDataChangedToFalse() {
-		CameraData::dataChanged = false;
+		CameraData::_dataChanged = false;
 	}
 
 	Vector3 const CameraData::getForward() {
-		Vector3 const rotation = CameraData::rotation;
-		Degree const rotX{ rotation.x };
-		Degree const rotY{ rotation.y };
+		Vector3 const rotation = CameraData::_rotation;
+		Degree const rotX{ rotation.X };
+		Degree const rotY{ rotation.Y };
 
 		return getDirection(rotX, rotY);
 	}
 
-	bool CameraData::dataChanged = false;
-	Vector3 CameraData::translation{};
-	Vector3 CameraData::rotation{};
-	Degree CameraData::fov{};
-	SpInt CameraData::screenWidth;
-	SpInt CameraData::screenHeight;
+	bool CameraData::_dataChanged = false;
+	Vector3 CameraData::_translation{};
+	Vector3 CameraData::_rotation{};
+	Degree CameraData::_fov{};
+	SpInt CameraData::_screenWidth;
+	SpInt CameraData::_screenHeight;
 }

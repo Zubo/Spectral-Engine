@@ -19,13 +19,13 @@ namespace sp {
 				switch (i)
 				{
 				case 3:
-					expectedValue = translation.x;
+					expectedValue = translation.X;
 					break;
 				case 7:
-					expectedValue = translation.y;
+					expectedValue = translation.Y;
 					break;
 				case 11:
-					expectedValue = translation.z;
+					expectedValue = translation.Z;
 					break;
 				default:
 					expectedValue = transformation.getValuePtr()[i];
@@ -53,13 +53,13 @@ namespace sp {
 				switch (i)
 				{
 				case 0:
-					expectedValue = startingValues[i] * scaleVector.x;
+					expectedValue = startingValues[i] * scaleVector.X;
 					break;
 				case 5:
-					expectedValue = startingValues[i] * scaleVector.y;
+					expectedValue = startingValues[i] * scaleVector.Y;
 					break;
 				case 10:
-					expectedValue = startingValues[i] * scaleVector.z;
+					expectedValue = startingValues[i] * scaleVector.Z;
 					break;
 				default:
 					expectedValue = transformation.getValuePtr()[i];

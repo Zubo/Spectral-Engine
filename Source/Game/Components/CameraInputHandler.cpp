@@ -19,28 +19,28 @@ namespace sp {
 
 	 void CameraInputHandler::processMouseInput() {
 
-		 double const sensitivity = 0.05;
+		 float const sensitivity = 0.05F;
 		 Vector2 const mouseOffset = Input::mouseAxis() * sensitivity;
 
-		 if (mouseOffset.x * mouseOffset.x < 0.01F && mouseOffset.y * mouseOffset.y < 0.01F) {
+		 if (mouseOffset.X * mouseOffset.X < 0.01F && mouseOffset.Y * mouseOffset.Y < 0.01F) {
 			 return;
 		 }
 
-		 yaw -= mouseOffset.x;
-		 pitch += mouseOffset.y;
+		 _yaw -= mouseOffset.X;
+		 _pitch += mouseOffset.Y;
 
-		 if (pitch > 89.0F) {
-			 pitch = 89.0F;
+		 if (_pitch > 89.0F) {
+			 _pitch = 89.0F;
 		 }
-		 if (pitch < -89.0F) {
-			 pitch = -89.0F;
+		 if (_pitch < -89.0F) {
+			 _pitch = -89.0F;
 		 }
 
 		 auto const cameraShared = Camera::getMainCamera();
 		 auto const transformWeak = cameraShared->getGameObject()->getComponent<Transform>();
 
 		 if (auto const transformShared = transformWeak.lock()) {
-			 transformShared->setRotationEuler(Vector3{ static_cast<float>(pitch), static_cast<float>(yaw), 0.0F });
+			 transformShared->setRotationEuler(Vector3{ static_cast<float>(_pitch), static_cast<float>(_yaw), 0.0F });
 		 }
 	 }
 
@@ -64,11 +64,11 @@ namespace sp {
 				transformShared->setPosition(position);
 	 		}
 	 		if (Input::keyDown(KeyCode::A)) {
-	 			position -= cameraSpeed * Vector3::cross(cameraFront, worldUp).normalized() * deltaTime;
+	 			position -= cameraSpeed * Vector3::cross(cameraFront, _worldUp).normalized() * deltaTime;
 				transformShared->setPosition(position);
 	 		}
 	 		if (Input::keyDown(KeyCode::D)) {
-	 			position += cameraSpeed * Vector3::cross(cameraFront, worldUp).normalized() * deltaTime;
+	 			position += cameraSpeed * Vector3::cross(cameraFront, _worldUp).normalized() * deltaTime;
 				transformShared->setPosition(position);
 	 		}
 	 	}

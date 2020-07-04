@@ -2,19 +2,19 @@
 #include "Render/LightData.h"
 
 namespace sp {
-	SpInt LightData::nextId = 0;
+	SpInt LightData::_nextId = 0;
 
 	LightData::LightData(LightType const type, Vector3 const & color, Vector3 const & position, Vector3 const & direction)
-		: type{ type },
-		color{ color },
-		position{ position },
-		direction{ direction },
-		changed{ true },
-		id{ LightData::getNextId() } {
+		: Type{ type },
+		Color{ color },
+		Position{ position },
+		Direction{ direction },
+		Changed{ true },
+		Id{ LightData::getNextId() } {
 	}
 
 	SpInt LightData::getNextId()
 	{
-		return (++nextId);
+		return (++_nextId);
 	}
 }

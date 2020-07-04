@@ -13,6 +13,6 @@ namespace sp {
 		virtual ~GameObjectComponent();
 
 	protected:
-		GameObject * gameObjectOwner;
+		GameObject * _gameObjectOwner;
 	};
 }

@@ -14,10 +14,10 @@ namespace sp {
 	}
 
 	Texture const TextureManager::getTexture(SpString const & texturePath, bool const genMipMap, GLenum const format) {
-		auto textureMapEnd = this->textureMap.cend();
+		auto textureMapEnd = this->_textureMap.cend();
 		SpHashValue pathHashValue = calculateHashValue(texturePath);
 
-		for (auto textureMapIter = this->textureMap.cbegin(); textureMapIter != textureMapEnd; ++textureMapIter) {
+		for (auto textureMapIter = this->_textureMap.cbegin(); textureMapIter != textureMapEnd; ++textureMapIter) {
 			Texture const & texture = textureMapIter->second;
 
 			if (texture.getPathHashValue() == pathHashValue &&
@@ -29,12 +29,12 @@ namespace sp {
 
 		Texture texture{ texturePath, genMipMap, format };
 		SpUnsigned id = texture.getId();
-		this->textureMap.insert(std::pair<SpUnsigned, Texture const>{ id, texture });
+		this->_textureMap.insert(std::pair<SpUnsigned, Texture const>{ id, texture });
 
 		return texture;
 	}
 
 	Texture const TextureManager::getTexture(SpInt textureId) {
-		return this->textureMap.at(textureId);
+		return this->_textureMap.at(textureId);
 	}
 }

@@ -17,7 +17,7 @@ namespace sp {
 		static void setMainCamera(std::shared_ptr<Camera> const mainCamera);
 
 	private:
-		static std::shared_ptr<Camera> mainCamera;
+		static std::shared_ptr<Camera> _mainCamera;
 
 	public:
 		Camera(GameObject * gameObjectOwner);
