@@ -13,10 +13,10 @@ namespace sp {
 
 	Quaternion Quaternion::operator*(Quaternion const & quat) const {
 		return Quaternion{
-			(this->X * quat.W) + (this->Y * quat.Z) - (this->Z * quat.Y) + (this->W * quat.X),
-			-(this->X * quat.Z) + (this->Y * quat.W) + (this->Z * quat.X) + (this->W * quat.Y),
-			(this->X * quat.Y) - (this->Y * quat.X) + (this->Z * quat.W) + (this->W * quat.Z),
-			-(this->X * quat.X) - (this->Y * quat.Y) - (this->Z * quat.Z) + (this->W * quat.W)
+			(X * quat.W) + (Y * quat.Z) - (Z * quat.Y) + (W * quat.X),
+			-(X * quat.Z) + (Y * quat.W) + (Z * quat.X) + (W * quat.Y),
+			(X * quat.Y) - (Y * quat.X) + (Z * quat.W) + (W * quat.Z),
+			-(X * quat.X) - (Y * quat.Y) - (Z * quat.Z) + (W * quat.W)
 		};
 	}
 

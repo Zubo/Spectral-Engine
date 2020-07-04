@@ -17,11 +17,11 @@ namespace sp {
 
 	public:
 		constexpr SpFloat const getValueDegrees() const {
-			return this->_value;
+			return _value;
 		}
 
 		constexpr SpFloat const getValueRadians() const {
-			return this->_value * PI / 180.0F;
+			return _value * PI / 180.0F;
 		}
 
 	private:

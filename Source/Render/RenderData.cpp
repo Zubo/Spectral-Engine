@@ -12,11 +12,11 @@ namespace sp {
 	Matrix4x4 const RenderData::GetModelMatrix() const {
 		Matrix4x4 modelMatrix;
 
-		modelMatrix = rotateX(modelMatrix, Degree{ this->RotationEuler.X });
-		modelMatrix = rotateY(modelMatrix, Degree{ this->RotationEuler.Y });
-		modelMatrix = rotateZ(modelMatrix, Degree{ this->RotationEuler.Z });
-		modelMatrix = translate(modelMatrix, this->Position);
-		modelMatrix = sp::scale(modelMatrix, this->Scale);
+		modelMatrix = rotateX(modelMatrix, Degree{ RotationEuler.X });
+		modelMatrix = rotateY(modelMatrix, Degree{ RotationEuler.Y });
+		modelMatrix = rotateZ(modelMatrix, Degree{ RotationEuler.Z });
+		modelMatrix = translate(modelMatrix, Position);
+		modelMatrix = sp::scale(modelMatrix, Scale);
 
 		return modelMatrix;
 	}

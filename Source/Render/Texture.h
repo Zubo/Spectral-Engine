@@ -14,19 +14,19 @@ namespace sp {
 		~Texture();
 
 		inline SpUnsigned const getId() const {
-			return this->_id;
+			return _id;
 		}
 
 		inline SpHashValue const getPathHashValue() const {
-			return this->_pathHashValue;
+			return _pathHashValue;
 		}
 
 		inline bool const getGenMipMap() const {
-			return this->_genMipMap;
+			return _genMipMap;
 		}
 
 		inline GLenum const getFormat() const {
-			return this->_format;
+			return _format;
 		}
 
 	private:

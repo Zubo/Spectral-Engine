@@ -16,11 +16,11 @@ namespace sp {
 	}
 
 	void TextRenderer::init() {
-		glGenVertexArrays(1, &this->_VAO);
-		glBindVertexArray(this->_VAO);
+		glGenVertexArrays(1, &_VAO);
+		glBindVertexArray(_VAO);
 
-		glGenBuffers(1, &this->_VBO);
-		glBindBuffer(GL_ARRAY_BUFFER, this->_VBO);
+		glGenBuffers(1, &_VBO);
+		glBindBuffer(GL_ARRAY_BUFFER, _VBO);
 		constexpr SpInt quadSize = 6 * 4 * sizeof(float);	// Quad has 2 triangles, each with 3 xy vertices
 		glBufferData(GL_ARRAY_BUFFER, quadSize, NULL, GL_DYNAMIC_DRAW);
 
@@ -31,11 +31,11 @@ namespace sp {
 		glBindVertexArray(0);
 
 		SpString const fontPath{ ResourcesPathProvider::getResourcesDirectoryPath() + SpString{ "/Fonts/Arial.ttf" } };
-		this->_font = Font::getFont(fontPath);
+		_font = Font::getFont(fontPath);
 
 		SpString const vertexShaderPath{ ResourcesPathProvider::getShaderFilesDirectoryPath() + SpString{"/vertex_text_shader.glsl" } };
 		SpString const fragmentShaderPath{ ResourcesPathProvider::getShaderFilesDirectoryPath() + SpString{"/fragment_text_shader.glsl" } };
-		this->_shaderProgram = ShaderProgram{ vertexShaderPath, fragmentShaderPath };
+		_shaderProgram = ShaderProgram{ vertexShaderPath, fragmentShaderPath };
 	}
 
 	void TextRenderer::renderText(
@@ -43,19 +43,19 @@ namespace sp {
 		Vector2 const & position,
 		Vector2 const & scale
 	) const {
-		Matrix4x4 const orthoProjectionMatrix = this->getOrthoProjectionMatrix();
+		Matrix4x4 const orthoProjectionMatrix = getOrthoProjectionMatrix();
 
-		this->_shaderProgram.use();
+		_shaderProgram.use();
 		_shaderProgram.setMatrix4fv("projection", orthoProjectionMatrix.getValuePtr());
 		_shaderProgram.setInt("textu", 0);
 
 		glActiveTexture(GL_TEXTURE0);
-		glBindVertexArray(this->_VAO);
+		glBindVertexArray(_VAO);
 
 		SpFloat characterOffsetX = 0.0f;
 
 		for (SpString::const_iterator charIterator = text.begin(); charIterator != text.end(); ++charIterator) {
-			Character const character = this->_font->getCharacter(*charIterator);
+			Character const character = _font->getCharacter(*charIterator);
 			Vector2 const currentCharPos = position + Vector2{ characterOffsetX, 0.0F };
 			Vector2 const characterBearing{ (float)character.bitmapLeft, (float)character.bitmapTop };
 			Vector2 const textureOrigin = currentCharPos + characterBearing;
@@ -73,7 +73,7 @@ namespace sp {
 			};
 
 			glBindTexture(GL_TEXTURE_2D, character.textureId);
-			glBindBuffer(GL_ARRAY_BUFFER, this->_VBO);
+			glBindBuffer(GL_ARRAY_BUFFER, _VBO);
 			glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(characterVertices), characterVertices);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 
@@ -92,8 +92,8 @@ namespace sp {
 
 	Matrix4x4 TextRenderer::getOrthoProjectionMatrix() const {
 		SpWindow const * const window = SpWindow::getInstance();
-		SpInt const width = window->getWidht();
-		SpInt const height = window->getHeight();
+		SpFloat const width = static_cast<SpFloat>(window->getWidht());
+		SpFloat const height = static_cast<SpFloat>(window->getHeight());
 		return getOrthographicMat(0, width, 0, height);
 	}
 }

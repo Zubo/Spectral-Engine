@@ -27,15 +27,15 @@ namespace sp {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-		this->_concreteWindow = glfwCreateWindow(width, height, "Spectral Engine", NULL, NULL);
+		_concreteWindow = glfwCreateWindow(width, height, "Spectral Engine", NULL, NULL);
 
-		if (this->_concreteWindow == nullptr) {
+		if (_concreteWindow == nullptr) {
 			std::cout << "Failed to create GLFW window." << std::endl;
 			glfwTerminate();
 			return;
 		}
 
-		glfwMakeContextCurrent(this->_concreteWindow);
+		glfwMakeContextCurrent(_concreteWindow);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 			std::cout << "Failed to initialize GLAD." << std::endl;
@@ -44,31 +44,31 @@ namespace sp {
 
 		glViewport(0, 0, width, height);
 
-		glfwSetFramebufferSizeCallback(this->_concreteWindow,
+		glfwSetFramebufferSizeCallback(_concreteWindow,
 			[](GLFWwindow * window, SpInt width, SpInt height) {
 			glViewport(0, 0, width, height);
 		});
 
-		glfwSetInputMode(this->_concreteWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		glfwSetInputMode(_concreteWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-		this->_initialized = true;
+		_initialized = true;
 	}
 
 	void sp::SpWindow::update() const {
-		if (glfwGetKey(this->_concreteWindow, GLFW_KEY_ESCAPE)) {
-			glfwSetWindowShouldClose(this->_concreteWindow, true);
+		if (glfwGetKey(_concreteWindow, GLFW_KEY_ESCAPE)) {
+			glfwSetWindowShouldClose(_concreteWindow, true);
 		}
 	}
 
 	bool const sp::SpWindow::initializedSuccessfuly() const {
-		return this->_initialized;
+		return _initialized;
 	}
 
 	bool const sp::SpWindow::shouldClose() const {
-		return glfwWindowShouldClose(this->_concreteWindow);
+		return glfwWindowShouldClose(_concreteWindow);
 	}
 
 	GLFWwindow * const sp::SpWindow::getConcreteWindow() const {
-		return this->_concreteWindow;
+		return _concreteWindow;
 	}
 }

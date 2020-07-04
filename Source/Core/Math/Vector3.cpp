@@ -34,25 +34,25 @@ namespace sp {
 
 	Vector3 Vector3::operator+(Vector3 const & vector) const {
 		return Vector3{
-			this->X + vector.X,
-			this->Y + vector.Y,
-			this->Z + vector.Z
+			X + vector.X,
+			Y + vector.Y,
+			Z + vector.Z
 		};
 	}
 
 	Vector3 Vector3::operator-(Vector3 const & vector) const {
 		return Vector3{
-			this->X - vector.X,
-			this->Y - vector.Y,
-			this->Z - vector.Z
+			X - vector.X,
+			Y - vector.Y,
+			Z - vector.Z
 		};
 	}
 
 	Vector3 Vector3::operator*(SpFloat const realNumber) const {
 		return Vector3{
-			this->X * realNumber,
-			this->Y * realNumber,
-			this->Z * realNumber
+			X * realNumber,
+			Y * realNumber,
+			Z * realNumber
 		};
 	}
 
@@ -69,12 +69,12 @@ namespace sp {
 	}
 
 	Vector3 Vector3::normalized() const {
-		SpFloat const length = this->length();
+		SpFloat const vectorLength = length();
 
 		return Vector3{
-			this->X / length,
-			this->Y / length,
-			this->Z / length
+			X / vectorLength,
+			Y / vectorLength,
+			Z / vectorLength
 		};
 	}
 

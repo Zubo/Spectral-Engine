@@ -9,11 +9,11 @@ namespace sp {
 	}
 
 	Degree::Degree(Radian radian) {
-		this->_value = radian.getValueRadians() * 180.0F / PI;
+		_value = radian.getValueRadians() * 180.0F / PI;
 	}
 
 	Degree Degree::operator/(SpFloat const degreeValue) const
 	{
-		return Degree{ this->getValueDegrees() / degreeValue };
+		return Degree{ getValueDegrees() / degreeValue };
 	}
 }

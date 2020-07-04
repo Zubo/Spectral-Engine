@@ -9,6 +9,6 @@ namespace sp {
 	}
 
 	Radian::Radian(Degree const degree) {
-		this->_value = degree.getValueRadians();
+		_value = degree.getValueRadians();
 	}
 }

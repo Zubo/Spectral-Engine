@@ -21,50 +21,50 @@ namespace sp {
 
 	void Material::initMaterial(SpString const & vertexShaderPath, SpString const & fragmentShaderPath) {
 		ShaderProgram const shaderProgram{ vertexShaderPath, fragmentShaderPath };
-		SpInt const gameObjectId = this->_gameObjectOwner->getId();
+		SpInt const gameObjectId = _gameObjectOwner->getId();
 		updateShaderProgram(gameObjectId, shaderProgram);
-		this->setAmbient(this->_ambientColor);
-		this->setSpecular(this->_specularColor);
-		this->setDiffuse(this->_diffuseColor);
-		this->setShinines(this->_shininess);
+		setAmbient(_ambientColor);
+		setSpecular(_specularColor);
+		setDiffuse(_diffuseColor);
+		setShinines(_shininess);
 		shaderProgram.setInt(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".diffuseMapTex" }, 0);
 		shaderProgram.setInt(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".specularMapTex" }, 1);
 	}
 
 	void Material::setAmbient(Vector3 const & ambientColor) {
-		this->_ambientColor = ambientColor;
-		ShaderProgram const shaderProgram = this->getShaderProgram();
+		_ambientColor = ambientColor;
+		ShaderProgram const shaderProgram = getShaderProgram();
 		shaderProgram.setVec3(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".ambient" },
-			this->_ambientColor.X, this->_ambientColor.Y, this->_ambientColor.Z);
+			_ambientColor.X, _ambientColor.Y, _ambientColor.Z);
 	}
 
 	void Material::setDiffuse(Vector3 const & diffuseColor) {
-		this->_diffuseColor = diffuseColor;
-		ShaderProgram const shaderProgram = this->getShaderProgram();
+		_diffuseColor = diffuseColor;
+		ShaderProgram const shaderProgram = getShaderProgram();
 		shaderProgram.setVec3(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".diffuse" },
-			this->_diffuseColor.X, this->_diffuseColor.Y, this->_diffuseColor.Z);
+			_diffuseColor.X, _diffuseColor.Y, _diffuseColor.Z);
 	}
 
 	void Material::setSpecular(Vector3 const & specularColor) {
-		this->_specularColor = specularColor;
-		ShaderProgram const shaderProgram = this->getShaderProgram();
+		_specularColor = specularColor;
+		ShaderProgram const shaderProgram = getShaderProgram();
 		shaderProgram.setVec3(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".specular" },
-			this->_specularColor.X, this->_specularColor.Y, this->_specularColor.Z);
+			_specularColor.X, _specularColor.Y, _specularColor.Z);
 	}
 
 	void Material::setShinines(SpFloat const shininess) {
-		this->_shininess = shininess;
+		_shininess = shininess;
 
-		ShaderProgram const shaderProgram = this->getShaderProgram();
+		ShaderProgram const shaderProgram = getShaderProgram();
 		shaderProgram.setFloat(SpString{ MATERIAL_VARIABLE_NAME } + SpString{ ".shininess" },
-			this->_shininess);
+			_shininess);
 	}
 
 	void Material::setDiffuseMap(SpString const & texturePath) {
 		TextureManager & textureManager = TextureManager::getInstance();
 		Texture texture = textureManager.getTexture(texturePath, true, GL_RGBA);
 
-		SpInt const gameObjectId = this->_gameObjectOwner->getId();
+		SpInt const gameObjectId = _gameObjectOwner->getId();
 		SpUnsigned const diffuseMapTextureIndex = 0;
 		SpUnsigned const textureId = texture.getId();
 		updateTextureId(gameObjectId, textureId, diffuseMapTextureIndex);
@@ -74,14 +74,14 @@ namespace sp {
 		TextureManager & textureManager = TextureManager::getInstance();
 		Texture texture = textureManager.getTexture(texturePath, true, GL_RGBA);
 
-		SpInt const gameObjectId = this->_gameObjectOwner->getId();
+		SpInt const gameObjectId = _gameObjectOwner->getId();
 		SpUnsigned const specularMapTextureIndex = 1;
 		SpUnsigned const textureId = texture.getId();
 		updateTextureId(gameObjectId, textureId, specularMapTextureIndex);
 	}
 
 	ShaderProgram const Material::getShaderProgram() {
-		SpInt const gameObjectId = this->_gameObjectOwner->getId();
+		SpInt const gameObjectId = _gameObjectOwner->getId();
 		RenderDataContainer const & renderDataContainer = RenderDataContainer::getInstance();
 		RenderData const & renderData = renderDataContainer.getRenderData(gameObjectId);
 

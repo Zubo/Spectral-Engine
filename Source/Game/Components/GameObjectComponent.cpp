@@ -10,7 +10,7 @@ namespace sp {
 	}
 
 	GameObject const * const GameObjectComponent::getGameObject() const {
-		return this->_gameObjectOwner;
+		return _gameObjectOwner;
 	}
 
 	GameObjectComponent::~GameObjectComponent() {

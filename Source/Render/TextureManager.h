@@ -12,7 +12,7 @@ namespace sp {
 		static TextureManager & getInstance();
 
 	private:
-		static TextureManager instance;
+		static TextureManager _instance;
 
 	public:
 		Texture const getTexture(SpString const & texturePath, bool const genMipMap, GLenum const format);

@@ -13,12 +13,12 @@
 
 namespace sp {
 	LightSource::LightSource(GameObject * gameObjectOwner) : GameObjectComponent{ gameObjectOwner } {
-		this->_gameObjectOwner = gameObjectOwner;
+		_gameObjectOwner = gameObjectOwner;
 	}
 
 	void LightSource::initLightSource(LightType const lightType) {
 		std::weak_ptr<Transform const> const transformWeak =
-			this->_gameObjectOwner->getComponent<Transform>();
+			_gameObjectOwner->getComponent<Transform>();
 
 		std::shared_ptr<Transform const> const transformShared = transformWeak.lock();
 
@@ -32,12 +32,12 @@ namespace sp {
 		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
 		lightDataContainer.saveLightData(lightData);
 
-		this->_lightDataId = lightData.Id;
+		_lightDataId = lightData.Id;
 	}
 
 	void LightSource::onPositionUpdated(Vector3 const & position) {
 		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
-		LightData lightData = lightDataContainer.getLightData(this->_lightDataId);
+		LightData lightData = lightDataContainer.getLightData(_lightDataId);
 		lightData.Position = position;
 		lightData.Changed = true;
 		lightDataContainer.saveLightData(lightData);
@@ -45,7 +45,7 @@ namespace sp {
 
 	void LightSource::onRotationUpdated(Vector3 const & rotation) {
 		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
-		LightData lightData = lightDataContainer.getLightData(this->_lightDataId);
+		LightData lightData = lightDataContainer.getLightData(_lightDataId);
 
 		Degree const xAngle{ rotation.X };
 		Degree const yAngle{ rotation.Y };

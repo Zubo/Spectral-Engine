@@ -16,13 +16,13 @@ namespace sp {
 	}
 
 	void Renderer::initRenderer(SpUnsigned const meshId) {
-		GameObject const * const gameObjectOwner = this->_gameObjectOwner;
+		GameObject const * const gameObjectOwner = _gameObjectOwner;
 		SpInt const gameObjectId = gameObjectOwner->getId();
 		bool const isActive = gameObjectOwner->getIsActive();
 		bool const isStatic = false;
 		createRenderData(gameObjectId, isActive, meshId, isStatic);
 
-		std::weak_ptr<Transform> transformWeak = this->_gameObjectOwner->getComponent<Transform>();
+		std::weak_ptr<Transform> transformWeak = _gameObjectOwner->getComponent<Transform>();
 		if (std::shared_ptr<Transform> transformShared = transformWeak.lock()) {
 			RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 			RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
@@ -37,28 +37,28 @@ namespace sp {
 	}
 
 	void Renderer::onPositionUpdated(Vector3 const & position) {
-		if (this->hasMesh()) {
+		if (hasMesh()) {
 			SpInt const gameObjectId = _gameObjectOwner->getId();
 			updatePosition(gameObjectId, position);
 		}
 	}
 
 	void Renderer::onRotationUpdated(Vector3 const & rotation) {
-		if (this->hasMesh()) {
+		if (hasMesh()) {
 			SpInt const gameObjectId = _gameObjectOwner->getId();
 			saveRotation(gameObjectId, rotation);
 		}
 	}
 
 	void Renderer::onScaleUpdated(Vector3 const & scale) {
-		if (this->hasMesh()) {
+		if (hasMesh()) {
 			SpInt const gameObjectId = _gameObjectOwner->getId();
 			updateScale(gameObjectId, scale);
 		}
 	}
 
 	bool const Renderer::hasMesh() const {
-		std::weak_ptr<Renderer> rendererWeak = this->_gameObjectOwner->getComponent<Renderer>();
+		std::weak_ptr<Renderer> rendererWeak = _gameObjectOwner->getComponent<Renderer>();
 		return (bool)rendererWeak.lock();
 	}
 }

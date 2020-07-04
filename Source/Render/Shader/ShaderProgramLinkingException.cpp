@@ -10,7 +10,7 @@ namespace sp {
 
 	SpString ShaderProgramLinkingException::what() {
 		std::stringstream ss;
-		ss << "Error linking program with id: " << this->programId << std::endl << this->infoLog;
+		ss << "Error linking program with id: " << programId << std::endl << infoLog;
 		return ss.str();
 	}
 }

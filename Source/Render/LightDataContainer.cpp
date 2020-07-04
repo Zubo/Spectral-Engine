@@ -18,34 +18,34 @@ namespace sp {
 	void LightDataContainer::saveLightData(LightData const & lightData) {
 		SpInt const lightDataId = lightData.Id;
 
-		SpInt const previousLightCount = this->_lightDataMap.size();
+		SpInt const previousLightCount = _lightDataMap.size();
 
-		this->_lightDataMap.insert_or_assign(lightDataId, lightData);
+		_lightDataMap.insert_or_assign(lightDataId, lightData);
 
-		this->_numberOfLightsChanged =
-			this->_numberOfLightsChanged ||
-			(this->_lightDataMap.size() != previousLightCount);
+		_numberOfLightsChanged =
+			_numberOfLightsChanged ||
+			(_lightDataMap.size() != previousLightCount);
 	}
 
 	LightData const & LightDataContainer::getLightData(SpInt const lightDataId) {
-		return this->_lightDataMap.at(lightDataId);
+		return _lightDataMap.at(lightDataId);
 	}
 
 	std::map<int, LightData> const & LightDataContainer::getLightDataMap() const {
-		return this->_lightDataMap;
+		return _lightDataMap;
 	}
 
 	bool const LightDataContainer::getNumberOfLightsChanged() const {
-		return this->_numberOfLightsChanged;
+		return _numberOfLightsChanged;
 	}
 
 	void LightDataContainer::setNumberOfLightsChangedToFalse() {
-		this->_numberOfLightsChanged = false;
+		_numberOfLightsChanged = false;
 	}
 
 	void LightDataContainer::setAllLightDataChangedToFalse() {
-		auto lightDataIter = this->_lightDataMap.begin();
-		auto lightDataIterEnd = this->_lightDataMap.end();
+		auto lightDataIter = _lightDataMap.begin();
+		auto lightDataIterEnd = _lightDataMap.end();
 
 		for (lightDataIter; lightDataIter != lightDataIterEnd; ++lightDataIter) {
 			LightData & lightData = lightDataIter->second;

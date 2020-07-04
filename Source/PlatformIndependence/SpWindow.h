@@ -24,11 +24,11 @@ namespace sp {
 		GLFWwindow * const getConcreteWindow() const;
 
 		inline SpInt getWidht() const {
-			return this->_width;
+			return _width;
 		}
 
 		inline SpInt getHeight() const {
-			return this->_height;
+			return _height;
 		}
 
 	private:

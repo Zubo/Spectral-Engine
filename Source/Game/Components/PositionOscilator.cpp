@@ -14,7 +14,7 @@ namespace sp {
 	void PositionOscilator::update(SpFloat deltaTime) {
 		_timePassed += deltaTime;
 
-		std::weak_ptr<Transform> transformWeak = this->_gameObjectOwner->getComponent<Transform>();
+		std::weak_ptr<Transform> transformWeak = _gameObjectOwner->getComponent<Transform>();
 
 		if (std::shared_ptr<Transform> transformShared = transformWeak.lock()) {
 			sp::Radian timePassedRadian{ _timePassed };

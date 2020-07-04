@@ -7,8 +7,8 @@ namespace sp {
 	SpInt GameObject::_nextId{ 0 };
 
 	GameObject::GameObject() {
-		this->_id = (++GameObject::_nextId);
-		this->_isActive = true;
+		_id = (++GameObject::_nextId);
+		_isActive = true;
 		GameObject::_gameObjectCollection.push_back(this);
 	}
 
@@ -19,7 +19,7 @@ namespace sp {
 	}
 
 	void GameObject::updateComponents(SpFloat const deltaTime) {
-		for (auto & component : this->_components) {
+		for (auto & component : _components) {
 			component->update(deltaTime);
 		}
 	}

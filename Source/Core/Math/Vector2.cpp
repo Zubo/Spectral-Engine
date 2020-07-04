@@ -19,18 +19,18 @@ namespace sp {
 	}
 
 	Vector2 Vector2::operator+(Vector2 const & vector2) const {
-		return Vector2{ this->X + vector2.X, this->Y + vector2.Y };
+		return Vector2{ X + vector2.X, Y + vector2.Y };
 	}
 
 	Vector2 Vector2::operator-(Vector2 const & vector2) const {
-		return Vector2{ this->X - vector2.X, this->Y - vector2.Y };
+		return Vector2{ X - vector2.X, Y - vector2.Y };
 	}
 
 	Vector2 Vector2::operator-() const {
-		return Vector2{ -this->X, -this->Y };
+		return Vector2{ -X, -Y };
 	}
 
 	Vector2 Vector2::operator*(SpFloat const value) const {
-		return Vector2{ this->X * value, this->Y * value };
+		return Vector2{ X * value, Y * value };
 	}
 }
