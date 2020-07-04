@@ -17,6 +17,6 @@ namespace sp {
 
 	private:
 		GLFWwindow * window;
-		std::map<KeyCode, bool> keyPressedMap;
+		std::map<KeyCode, bool> _keyPressedMap;
 	};
 }

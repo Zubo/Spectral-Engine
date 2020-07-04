@@ -13,14 +13,14 @@ namespace sp {
 	private:
 
 	public:
-		SpInt id;
-		LightType type;
-		Vector3 color;
-		Vector3 position;
-		Vector3 direction;
-		bool changed;
+		SpInt Id;
+		LightType Type;
+		Vector3 Color;
+		Vector3 Position;
+		Vector3 Direction;
+		bool Changed;
 
 	private:
-		static SpInt nextId;
+		static SpInt _nextId;
 	};
 }

@@ -11,6 +11,6 @@ namespace sp {
 		void update(SpFloat deltaTime) override;
 
 	private:
-		SpFloat timePassed = 0.0F;
+		SpFloat _timePassed = 0.0F;
 	};
 }

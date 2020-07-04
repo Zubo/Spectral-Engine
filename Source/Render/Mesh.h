@@ -27,13 +27,13 @@ namespace sp {
 		bool const hasNormalCoords() const;
 
 	private:
-		SpUnsigned id;
-		SpFloat * const dataArray;
-		SpInt const dataArraySize;
-		SpUnsigned * const elementIndices;
-		SpInt const indexCount;
-		bool const uvCoords;
-		bool const normalCoords;
-		static SpUnsigned nextId;
+		SpUnsigned _id;
+		SpFloat * const _dataArray;
+		SpInt const _dataArraySize;
+		SpUnsigned * const _elementIndices;
+		SpInt const _indexCount;
+		bool const _uvCoords;
+		bool const _normalCoords;
+		static SpUnsigned _nextId;
 	};
 }

@@ -25,11 +25,11 @@ namespace sp {
 		shaderProgram.setMatrix4fv(viewMatrixUniformName, viewMatrix.getValuePtr());
 
 		SpString const & cameraPositionUniformName = "cameraPos";
-		shaderProgram.setVec3(cameraPositionUniformName, cameraPos.x, cameraPos.y, cameraPos.z);
+		shaderProgram.setVec3(cameraPositionUniformName, cameraPos.X, cameraPos.Y, cameraPos.Z);
 
 		SpString const & cameraDirectionUniformName = "cameraDir";
-		Vector3 const cameraDirection = getDirection(cameraRotation.x, cameraRotation.y);
-		shaderProgram.setVec3(cameraDirectionUniformName, cameraDirection.x, cameraDirection.y, cameraDirection.z);
+		Vector3 const cameraDirection = getDirection(cameraRotation.X, cameraRotation.Y);
+		shaderProgram.setVec3(cameraDirectionUniformName, cameraDirection.X, cameraDirection.Y, cameraDirection.Z);
 	}
 
 	inline void bindTextures(RenderData const & renderData) {
@@ -37,7 +37,7 @@ namespace sp {
 			SpInt const textureUnit = GL_TEXTURE0 + i;
 			glActiveTexture(textureUnit);
 
-			SpUnsigned textureId = renderData.textureIds[i];
+			SpUnsigned textureId = renderData.TextureIds[i];
 			glBindTexture(GL_TEXTURE_2D, textureId);
 		}
 	}
@@ -58,16 +58,16 @@ namespace sp {
 
 		for (auto const & lightDataMapEntry : lightDataMap) {
 			LightData const & lightData = lightDataMapEntry.second;
-			if (numberOfLightsChanged || lightData.changed) {
+			if (numberOfLightsChanged || lightData.Changed) {
 				SpString const indexStr = std::to_string(index);
 				SpString const variableAccessPrefix = "lightArray[" + indexStr + "]";
-				shaderProgram.setInt(variableAccessPrefix + ".lightType", (int)lightData.type);
+				shaderProgram.setInt(variableAccessPrefix + ".lightType", (int)lightData.Type);
 				shaderProgram.setVec3(variableAccessPrefix + ".color",
-					lightData.color.x, lightData.color.y, lightData.color.z);
+					lightData.Color.X, lightData.Color.Y, lightData.Color.Z);
 				shaderProgram.setVec3(variableAccessPrefix + ".position",
-					lightData.position.x, lightData.position.y, lightData.position.z);
+					lightData.Position.X, lightData.Position.Y, lightData.Position.Z);
 				shaderProgram.setVec3(variableAccessPrefix + ".direction",
-					lightData.direction.x, lightData.direction.y, lightData.direction.z);
+					lightData.Direction.X, lightData.Direction.Y, lightData.Direction.Z);
 			}
 
 			++index;
@@ -82,7 +82,7 @@ namespace sp {
 
 		auto iterator = renderDataContainer.getRenderDataMap().cbegin();
 		auto end = renderDataContainer.getRenderDataMap().cend();
-		
+
 		Matrix4x4 const projectionMatrix = CameraData::GetProjectionMatrix();
 		Matrix4x4 const viewMatrix = CameraData::GetViewMatrix();
 		Vector3 const cameraPos = CameraData::getTranslation();
@@ -92,18 +92,18 @@ namespace sp {
 		for (iterator; iterator != end; ++iterator) {
 			RenderData const & renderData = iterator->second;
 
-			renderData.shaderProgram.use();
+			renderData.ShaderProgram.use();
 
-			updateLights(renderData.shaderProgram);
+			updateLights(renderData.ShaderProgram);
 
-			if (renderData.modelMatrixChanged) {
+			if (renderData.ModelMatrixChanged) {
 				Matrix4x4 const modelMatrix = renderData.GetModelMatrix();
 				SpString const & modelMatrixUniformName = "modelMatrix";
-				renderData.shaderProgram.setMatrix4fv(modelMatrixUniformName, modelMatrix.getValuePtr());
+				renderData.ShaderProgram.setMatrix4fv(modelMatrixUniformName, modelMatrix.getValuePtr());
 			}
 
 			if (cameraDataChanged) {
-				updateCamera(renderData.shaderProgram, viewMatrix, projectionMatrix, cameraPos, cameraRotation);
+				updateCamera(renderData.ShaderProgram, viewMatrix, projectionMatrix, cameraPos, cameraRotation);
 			}
 
 			bindTextures(renderData);

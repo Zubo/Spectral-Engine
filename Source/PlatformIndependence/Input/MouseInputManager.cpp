@@ -1,19 +1,19 @@
 #include "MouseInputManager.h"
 
 void sp::MouseInputManager::update() {
-	if (this->updated) {
-		this->updated = true;
+	if (_updated) {
+		_updated = true;
 		return;
 	}
 
-	this->xDelta = 0.0F;
-	this->yDelta = 0.0F;
+	_xDelta = 0.0F;
+	_yDelta = 0.0F;
 }
 
 void sp::MouseInputManager::updateMousePos(SpFloat const xPosition, SpFloat const yPosition) {
-	this->xDelta = this->xPosition - xPosition;
-	this->yDelta = this->yPosition - yPosition;
+	_xDelta = _xPosition - xPosition;
+	_yDelta = _yPosition - yPosition;
 
-	this->xPosition = xPosition;
-	this->yPosition = yPosition;
+	_xPosition = xPosition;
+	_yPosition = yPosition;
 }

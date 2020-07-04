@@ -14,7 +14,7 @@ namespace sp {
 		void update(SpFloat const deltaTime) override;
 
 	private:
-		SpFloat timeSinceLastRender;
-		SpInt numberOfFrames;
+		SpFloat _timeSinceLastRender;
+		SpInt _numberOfFrames;
 	};
 }

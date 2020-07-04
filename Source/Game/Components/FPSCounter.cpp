@@ -9,20 +9,20 @@
 
 namespace sp {
 	FPSCounter::FPSCounter(GameObject * const gameObject) : GameObjectComponent(gameObject) {
-		this->timeSinceLastRender = 0.0F;
+		_timeSinceLastRender = 0.0F;
 	}
 
 	void FPSCounter::update(SpFloat const deltaTime) {
-		this->timeSinceLastRender += deltaTime;
-		this->numberOfFrames++;
+		_timeSinceLastRender += deltaTime;
+		_numberOfFrames++;
 
-		if (this->timeSinceLastRender < FPS_RENDER_PERIOD) {
+		if (_timeSinceLastRender < FPS_RENDER_PERIOD) {
 			return;
 		}
 
 		// Render text
 
-		this->timeSinceLastRender = 0.0F;
-		this->numberOfFrames = 0.0F;
+		_timeSinceLastRender = 0.0F;
+		_numberOfFrames = 0;
 	}
 }

@@ -3,47 +3,47 @@
 #include "Core/Math/Matrix4x4.h"
 
 namespace sp {
-	Matrix4x4::Matrix4x4() : values{ 0.0F } {
-		values[0][0] = 1.0F;
-		values[1][1] = 1.0F;
-		values[2][2] = 1.0F;
-		values[3][3] = 1.0F;
+	Matrix4x4::Matrix4x4() : _values{ 0.0F } {
+		_values[0][0] = 1.0F;
+		_values[1][1] = 1.0F;
+		_values[2][2] = 1.0F;
+		_values[3][3] = 1.0F;
 	}
 
 	SpFloat * Matrix4x4::operator[](SpInt const ind) {
-		return values[ind];
+		return _values[ind];
 	}
 
 	SpFloat const * Matrix4x4::operator[](SpInt const ind) const {
-		return values[ind];
+		return _values[ind];
 	}
 
 	Matrix4x4 Matrix4x4::operator*(Matrix4x4 const & mat) const {
 		Matrix4x4 resultMatrix;
 
-		resultMatrix.values[0][0] = (values[0][0] * mat[0][0]) + (values[0][1] * mat[1][0]) + (values[0][2] * mat[2][0]) + (values[0][3] * mat[3][0]);
-		resultMatrix.values[0][1] = (values[0][0] * mat[0][1]) + (values[0][1] * mat[1][1]) + (values[0][2] * mat[2][1]) + (values[0][3] * mat[3][1]);
-		resultMatrix.values[0][2] = (values[0][0] * mat[0][2]) + (values[0][1] * mat[1][2]) + (values[0][2] * mat[2][2]) + (values[0][3] * mat[3][2]);
-		resultMatrix.values[0][3] = (values[0][0] * mat[0][3]) + (values[0][1] * mat[1][3]) + (values[0][2] * mat[2][3]) + (values[0][3] * mat[3][3]);
-		resultMatrix.values[1][0] = (values[1][0] * mat[0][0]) + (values[1][1] * mat[1][0]) + (values[1][2] * mat[2][0]) + (values[1][3] * mat[3][0]);
-		resultMatrix.values[1][1] = (values[1][0] * mat[0][1]) + (values[1][1] * mat[1][1]) + (values[1][2] * mat[2][1]) + (values[1][3] * mat[3][1]);
-		resultMatrix.values[1][2] = (values[1][0] * mat[0][2]) + (values[1][1] * mat[1][2]) + (values[1][2] * mat[2][2]) + (values[1][3] * mat[3][2]);
-		resultMatrix.values[1][3] = (values[1][0] * mat[0][3]) + (values[1][1] * mat[1][3]) + (values[1][2] * mat[2][3]) + (values[1][3] * mat[3][3]);
-		resultMatrix.values[2][0] = (values[2][0] * mat[0][0]) + (values[2][1] * mat[1][0]) + (values[2][2] * mat[2][0]) + (values[2][3] * mat[3][0]);
-		resultMatrix.values[2][1] = (values[2][0] * mat[0][1]) + (values[2][1] * mat[1][1]) + (values[2][2] * mat[2][1]) + (values[2][3] * mat[3][1]);
-		resultMatrix.values[2][2] = (values[2][0] * mat[0][2]) + (values[2][1] * mat[1][2]) + (values[2][2] * mat[2][2]) + (values[2][3] * mat[3][2]);
-		resultMatrix.values[2][3] = (values[2][0] * mat[0][3]) + (values[2][1] * mat[1][3]) + (values[2][2] * mat[2][3]) + (values[2][3] * mat[3][3]);
-		resultMatrix.values[3][0] = (values[3][0] * mat[0][0]) + (values[3][1] * mat[1][0]) + (values[3][2] * mat[2][0]) + (values[3][3] * mat[3][0]);
-		resultMatrix.values[3][1] = (values[3][0] * mat[0][1]) + (values[3][1] * mat[1][1]) + (values[3][2] * mat[2][1]) + (values[3][3] * mat[3][1]);
-		resultMatrix.values[3][2] = (values[3][0] * mat[0][2]) + (values[3][1] * mat[1][2]) + (values[3][2] * mat[2][2]) + (values[3][3] * mat[3][2]);
-		resultMatrix.values[3][3] = (values[3][0] * mat[0][3]) + (values[3][1] * mat[1][3]) + (values[3][2] * mat[2][3]) + (values[3][3] * mat[3][3]);
+		resultMatrix._values[0][0] = (_values[0][0] * mat[0][0]) + (_values[0][1] * mat[1][0]) + (_values[0][2] * mat[2][0]) + (_values[0][3] * mat[3][0]);
+		resultMatrix._values[0][1] = (_values[0][0] * mat[0][1]) + (_values[0][1] * mat[1][1]) + (_values[0][2] * mat[2][1]) + (_values[0][3] * mat[3][1]);
+		resultMatrix._values[0][2] = (_values[0][0] * mat[0][2]) + (_values[0][1] * mat[1][2]) + (_values[0][2] * mat[2][2]) + (_values[0][3] * mat[3][2]);
+		resultMatrix._values[0][3] = (_values[0][0] * mat[0][3]) + (_values[0][1] * mat[1][3]) + (_values[0][2] * mat[2][3]) + (_values[0][3] * mat[3][3]);
+		resultMatrix._values[1][0] = (_values[1][0] * mat[0][0]) + (_values[1][1] * mat[1][0]) + (_values[1][2] * mat[2][0]) + (_values[1][3] * mat[3][0]);
+		resultMatrix._values[1][1] = (_values[1][0] * mat[0][1]) + (_values[1][1] * mat[1][1]) + (_values[1][2] * mat[2][1]) + (_values[1][3] * mat[3][1]);
+		resultMatrix._values[1][2] = (_values[1][0] * mat[0][2]) + (_values[1][1] * mat[1][2]) + (_values[1][2] * mat[2][2]) + (_values[1][3] * mat[3][2]);
+		resultMatrix._values[1][3] = (_values[1][0] * mat[0][3]) + (_values[1][1] * mat[1][3]) + (_values[1][2] * mat[2][3]) + (_values[1][3] * mat[3][3]);
+		resultMatrix._values[2][0] = (_values[2][0] * mat[0][0]) + (_values[2][1] * mat[1][0]) + (_values[2][2] * mat[2][0]) + (_values[2][3] * mat[3][0]);
+		resultMatrix._values[2][1] = (_values[2][0] * mat[0][1]) + (_values[2][1] * mat[1][1]) + (_values[2][2] * mat[2][1]) + (_values[2][3] * mat[3][1]);
+		resultMatrix._values[2][2] = (_values[2][0] * mat[0][2]) + (_values[2][1] * mat[1][2]) + (_values[2][2] * mat[2][2]) + (_values[2][3] * mat[3][2]);
+		resultMatrix._values[2][3] = (_values[2][0] * mat[0][3]) + (_values[2][1] * mat[1][3]) + (_values[2][2] * mat[2][3]) + (_values[2][3] * mat[3][3]);
+		resultMatrix._values[3][0] = (_values[3][0] * mat[0][0]) + (_values[3][1] * mat[1][0]) + (_values[3][2] * mat[2][0]) + (_values[3][3] * mat[3][0]);
+		resultMatrix._values[3][1] = (_values[3][0] * mat[0][1]) + (_values[3][1] * mat[1][1]) + (_values[3][2] * mat[2][1]) + (_values[3][3] * mat[3][1]);
+		resultMatrix._values[3][2] = (_values[3][0] * mat[0][2]) + (_values[3][1] * mat[1][2]) + (_values[3][2] * mat[2][2]) + (_values[3][3] * mat[3][2]);
+		resultMatrix._values[3][3] = (_values[3][0] * mat[0][3]) + (_values[3][1] * mat[1][3]) + (_values[3][2] * mat[2][3]) + (_values[3][3] * mat[3][3]);
 
 		return resultMatrix;
 	}
 
 	SpFloat const * Matrix4x4::getValuePtr() const
 	{
-		return reinterpret_cast<SpFloat const *>(values);
+		return reinterpret_cast<SpFloat const *>(_values);
 	}
 
 	Matrix4x4 const Matrix4x4::transposed() const

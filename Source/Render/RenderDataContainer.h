@@ -21,7 +21,7 @@ namespace sp {
 		RenderDataContainer operator=(RenderDataContainer & renderDataCOntainer) = delete;
 
 	private:
-		std::map<int, RenderData> renderDataMap;
-		static RenderDataContainer instance;
+		std::map<int, RenderData> _renderDataMap;
+		static RenderDataContainer _instance;
 	};
 }

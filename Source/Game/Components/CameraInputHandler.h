@@ -14,10 +14,10 @@ namespace sp {
 	 private:
 	 	void processMouseInput();
 	 	void processKeyInput(SpFloat deltaTime);
-		
+
 	 private:
-	 	Vector3 worldUp{ 0.0F, 1.0F, 0.0F };
-	 	double yaw = 0.0;
-	 	double pitch = 0.0;
+	 	Vector3 _worldUp{ 0.0F, 1.0F, 0.0F };
+	 	double _yaw = 0.0;
+	 	double _pitch = 0.0;
 	 };
 }

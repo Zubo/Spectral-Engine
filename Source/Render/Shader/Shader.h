@@ -13,10 +13,10 @@ namespace sp {
 	
 	public:
 		inline SpUnsigned getId() {
-			return this->id;
+			return id;
 		};
 		inline GLenum getType() {
-			return this->type;
+			return type;
 		};
 
 	private:

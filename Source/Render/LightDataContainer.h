@@ -25,8 +25,8 @@ namespace sp {
 		LightDataContainer & operator=(LightDataContainer & lightDataContainer) = delete;
 
 	private:
-		static LightDataContainer instance;
-		std::map<int, LightData> lightDataMap;
-		bool numberOfLightsChanged = false;
+		static LightDataContainer _instance;
+		std::map<int, LightData> _lightDataMap;
+		bool _numberOfLightsChanged = false;
 	};
 }

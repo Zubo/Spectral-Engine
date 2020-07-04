@@ -10,8 +10,8 @@ namespace sp {
 		static void initializePaths(SpString const & rootPath);
 
 	private:
-		static SpString resourcesDirectoryPath;
-		static SpString shaderFilesDirectoryPath;
+		static SpString _resourcesDirectoryPath;
+		static SpString _shaderFilesDirectoryPath;
 
 	private:
 		ResourcesPathProvider() = delete;

@@ -29,9 +29,9 @@ namespace sp {
 		Matrix4x4 getOrthoProjectionMatrix() const;
 
 	private:
-		GLuint VBO;
-		GLuint VAO;
-		std::shared_ptr<Font const> font;
-		ShaderProgram shaderProgram;
+		GLuint _VBO;
+		GLuint _VAO;
+		std::shared_ptr<Font const> _font;
+		ShaderProgram _shaderProgram;
 	};
 }

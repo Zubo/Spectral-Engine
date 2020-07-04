@@ -30,9 +30,9 @@ namespace sp {
 		ShaderProgram const getShaderProgram();
 
 	private:
-		Vector3 ambientColor;
-		Vector3 diffuseColor;
-		Vector3 specularColor;
-		SpFloat shininess;
+		Vector3 _ambientColor;
+		Vector3 _diffuseColor;
+		Vector3 _specularColor;
+		SpFloat _shininess;
 	};
 }

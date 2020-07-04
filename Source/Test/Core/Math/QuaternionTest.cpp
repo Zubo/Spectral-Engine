@@ -14,10 +14,10 @@ namespace sp {
 
 			// Assert
 			Quaternion const expectedResult{ 1.4F, 137.66F, 23.88F, -10.1F };
-			ASSERT_FLOAT_EQ(result.x, expectedResult.x);
-			ASSERT_FLOAT_EQ(result.y, expectedResult.y);
-			ASSERT_FLOAT_EQ(result.z, expectedResult.z);
-			ASSERT_FLOAT_EQ(result.w, expectedResult.w);
+			ASSERT_FLOAT_EQ(result.X, expectedResult.X);
+			ASSERT_FLOAT_EQ(result.Y, expectedResult.Y);
+			ASSERT_FLOAT_EQ(result.Z, expectedResult.Z);
+			ASSERT_FLOAT_EQ(result.W, expectedResult.W);
 		}
 
 
@@ -30,10 +30,10 @@ namespace sp {
 
 			// Assert
 			Quaternion const expectedResult{ 11.18F, 0.66F, -4.06F, -14.08F };
-			ASSERT_FLOAT_EQ(result.x, expectedResult.x);
-			ASSERT_FLOAT_EQ(result.y, expectedResult.y);
-			ASSERT_FLOAT_EQ(result.z, expectedResult.z);
-			ASSERT_FLOAT_EQ(result.w, expectedResult.w);
+			ASSERT_FLOAT_EQ(result.X, expectedResult.X);
+			ASSERT_FLOAT_EQ(result.Y, expectedResult.Y);
+			ASSERT_FLOAT_EQ(result.Z, expectedResult.Z);
+			ASSERT_FLOAT_EQ(result.W, expectedResult.W);
 		}
 	}
 }

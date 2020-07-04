@@ -14,6 +14,6 @@ namespace sp {
 			SpInt const indexCount, bool const uvCoords, bool const normalCoords);
 
 	private:
-		static std::map<SpUnsigned const, Mesh> meshMap;
+		static std::map<SpUnsigned const, Mesh> _meshMap;
 	};
 }

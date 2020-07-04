@@ -20,7 +20,7 @@ namespace sp {
 		static void update();
 
 	private:
-		static std::unique_ptr<MouseInputManager> mouseInputManagerUnique;
-		static std::unique_ptr<KeyInputManager> keyInputManagerUnique;
+		static std::unique_ptr<MouseInputManager> _mouseInputManagerUnique;
+		static std::unique_ptr<KeyInputManager> _keyInputManagerUnique;
 	};
 }

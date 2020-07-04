@@ -6,50 +6,50 @@
 #include "Render/LightData.h"
 
 namespace sp {
-	LightDataContainer LightDataContainer::instance;
+	LightDataContainer LightDataContainer::_instance;
 
 	LightDataContainer & LightDataContainer::getInstance() {
-		return LightDataContainer::instance;
+		return LightDataContainer::_instance;
 	}
 
 	LightDataContainer::LightDataContainer() {
 	}
 
 	void LightDataContainer::saveLightData(LightData const & lightData) {
-		SpInt const lightDataId = lightData.id;
-		
-		SpInt const previousLightCount = this->lightDataMap.size();
+		SpInt const lightDataId = lightData.Id;
 
-		this->lightDataMap.insert_or_assign(lightDataId, lightData);
+		SpInt const previousLightCount = _lightDataMap.size();
 
-		this->numberOfLightsChanged = 
-			this->numberOfLightsChanged ||
-			(this->lightDataMap.size() != previousLightCount);
+		_lightDataMap.insert_or_assign(lightDataId, lightData);
+
+		_numberOfLightsChanged =
+			_numberOfLightsChanged ||
+			(_lightDataMap.size() != previousLightCount);
 	}
 
 	LightData const & LightDataContainer::getLightData(SpInt const lightDataId) {
-		return this->lightDataMap.at(lightDataId);
+		return _lightDataMap.at(lightDataId);
 	}
 
 	std::map<int, LightData> const & LightDataContainer::getLightDataMap() const {
-		return this->lightDataMap;
+		return _lightDataMap;
 	}
 
 	bool const LightDataContainer::getNumberOfLightsChanged() const {
-		return this->numberOfLightsChanged;
+		return _numberOfLightsChanged;
 	}
 
 	void LightDataContainer::setNumberOfLightsChangedToFalse() {
-		this->numberOfLightsChanged = false;
+		_numberOfLightsChanged = false;
 	}
 
 	void LightDataContainer::setAllLightDataChangedToFalse() {
-		auto lightDataIter = this->lightDataMap.begin();
-		auto lightDataIterEnd = this->lightDataMap.end();
+		auto lightDataIter = _lightDataMap.begin();
+		auto lightDataIterEnd = _lightDataMap.end();
 
 		for (lightDataIter; lightDataIter != lightDataIterEnd; ++lightDataIter) {
 			LightData & lightData = lightDataIter->second;
-			lightData.changed = false;
+			lightData.Changed = false;
 		}
 	}
 }

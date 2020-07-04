@@ -9,7 +9,7 @@ namespace sp {
 	public:
 		static void init(SpInt const width, SpInt const height);
 		static SpWindow * const getInstance();
-		
+
 	private:
 		static SpWindow * windowInstance;
 
@@ -22,19 +22,19 @@ namespace sp {
 		bool const initializedSuccessfuly() const;
 		bool const shouldClose() const;
 		GLFWwindow * const getConcreteWindow() const;
-		
+
 		inline SpInt getWidht() const {
-			return this->width;
+			return _width;
 		}
 
 		inline SpInt getHeight() const {
-			return this->height;
+			return _height;
 		}
 
 	private:
-		SpInt width;
-		SpInt height;
-		bool initialized;
-		GLFWwindow * concreteWindow = nullptr;
+		SpInt _width;
+		SpInt _height;
+		bool _initialized;
+		GLFWwindow * _concreteWindow = nullptr;
 	};
 }

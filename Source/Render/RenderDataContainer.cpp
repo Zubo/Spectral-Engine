@@ -3,32 +3,32 @@
 #include "Render/RenderData.h"
 
 namespace sp {
-	RenderDataContainer RenderDataContainer::instance;
+	RenderDataContainer RenderDataContainer::_instance;
 
 	RenderData const & RenderDataContainer::getRenderData(SpInt const gameObjectId) const {
-		return this->renderDataMap.at(gameObjectId);
+		return _renderDataMap.at(gameObjectId);
 	}
 
 	std::map<int, RenderData> const & RenderDataContainer::getRenderDataMap() const {
-		return this->renderDataMap;
+		return _renderDataMap;
 	}
 
 	void RenderDataContainer::saveRenderData(RenderData const & renderData) {
-		SpInt const gameObjectId = renderData.gameObjectId;
-		this->renderDataMap.insert_or_assign(gameObjectId, renderData);
+		SpInt const gameObjectId = renderData.GameObjectId;
+		_renderDataMap.insert_or_assign(gameObjectId, renderData);
 	}
 
 	void RenderDataContainer::resetAllChangedFlags() {
-		auto renderDataIter = this->renderDataMap.begin();
-		auto const renderDataIterEnd = this->renderDataMap.end();
+		auto renderDataIter = _renderDataMap.begin();
+		auto const renderDataIterEnd = _renderDataMap.end();
 
 		for (renderDataIter; renderDataIter != renderDataIterEnd; ++renderDataIter) {
 			RenderData & renderData = renderDataIter->second;
-			renderData.modelMatrixChanged = false;
+			renderData.ModelMatrixChanged = false;
 		}
 	}
 
 	RenderDataContainer & RenderDataContainer::getInstance() {
-		return RenderDataContainer::instance;
+		return RenderDataContainer::_instance;
 	}
 }

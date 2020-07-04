@@ -23,9 +23,9 @@ std::shared_ptr<sp::Font const> const sp::Font::getFont(SpString const & path) {
 
 void sp::Font::insertCharacter(unsigned char key, Character const & character) {
 	std::pair<unsigned char, Character const> const pair{ key, character };
-	this->characterMap.insert(pair);
+	characterMap.insert(pair);
 }
 
 sp::Character const sp::Font::getCharacter(unsigned char const c) const {
-	return this->characterMap.at(c);
+	return characterMap.at(c);
 }

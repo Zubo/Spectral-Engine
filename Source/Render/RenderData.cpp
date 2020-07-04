@@ -6,17 +6,17 @@
 namespace sp {
 	RenderData::RenderData(
 		SpInt const gameObjectId, bool const active, bool const isStatic)
-		: gameObjectId{ gameObjectId }, active{ active }, isStatic{ isStatic }, scale{ 1.0F } {
+		: GameObjectId{ gameObjectId }, Active{ active }, IsStatic{ isStatic }, Scale{ 1.0F } {
 	}
 
 	Matrix4x4 const RenderData::GetModelMatrix() const {
 		Matrix4x4 modelMatrix;
 
-		modelMatrix = rotateX(modelMatrix, Degree{ this->rotationEuler.x });
-		modelMatrix = rotateY(modelMatrix, Degree{ this->rotationEuler.y });
-		modelMatrix = rotateZ(modelMatrix, Degree{ this->rotationEuler.z });
-		modelMatrix = translate(modelMatrix, this->position);
-		modelMatrix = sp::scale(modelMatrix, this->scale);
+		modelMatrix = rotateX(modelMatrix, Degree{ RotationEuler.X });
+		modelMatrix = rotateY(modelMatrix, Degree{ RotationEuler.Y });
+		modelMatrix = rotateZ(modelMatrix, Degree{ RotationEuler.Z });
+		modelMatrix = translate(modelMatrix, Position);
+		modelMatrix = sp::scale(modelMatrix, Scale);
 
 		return modelMatrix;
 	}
