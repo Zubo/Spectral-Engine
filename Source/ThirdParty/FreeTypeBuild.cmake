@@ -3,7 +3,7 @@ set(FreeType_DOWNLOAD_DIR "${CMAKE_CURRENT_BINARY_DIR}/FreeType-download")
 message(STATUS "FreeType install dir is " ${FreeType_INSTALL_DIR})
 configure_file(FreeTypeDownload.in ${FreeType_DOWNLOAD_DIR}/CMakeLists.txt)
 
-execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .
+execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" -A "${CMAKE_GENERATOR_PLATFORM}" .
 	RESULT_VARIABLE result
 	WORKING_DIRECTORY ${FreeType_DOWNLOAD_DIR})
 

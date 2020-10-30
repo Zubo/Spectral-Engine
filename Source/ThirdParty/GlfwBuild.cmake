@@ -3,7 +3,7 @@ set(GLFW_DOWNLOAD_DIR "${CMAKE_CURRENT_BINARY_DIR}/glfw-download")
 
 configure_file(GlfwDownload.in ${GLFW_DOWNLOAD_DIR}/CMakeLists.txt)
 
-execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .
+execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" -A "${CMAKE_GENERATOR_PLATFORM}" .
 	RESULT_VARIABLE result
 	WORKING_DIRECTORY "${GLFW_DOWNLOAD_DIR}")
 
