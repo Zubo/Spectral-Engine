@@ -52,7 +52,7 @@ namespace sp {
 
 	inline void updateLights(ShaderProgram const & shaderProgram) {
 		LightDataContainer const & lightDataContainer = LightDataContainer::getInstance();
-		std::map<int, LightData> const & lightDataMap = lightDataContainer.getLightDataMap();
+		std::unordered_map<int, LightData> const & lightDataMap = lightDataContainer.getLightDataMap();
 		SpInt index = 0;
 		bool const numberOfLightsChanged = lightDataContainer.getNumberOfLightsChanged();
 
@@ -73,7 +73,7 @@ namespace sp {
 			++index;
 		}
 
-		SpInt const numberOfLights = lightDataMap.size();
+		SpInt const numberOfLights = static_cast<SpInt>(lightDataMap.size());
 		shaderProgram.setInt("numberOfLights", numberOfLights);
 	}
 

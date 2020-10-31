@@ -1,6 +1,6 @@
 #pragma once
 
-#include <map>
+#include <unordered_map>
 
 #include "PlatformIndependence/SpType.h"
 
@@ -10,7 +10,7 @@ namespace sp {
 	class RenderDataContainer {
 	public:
 		RenderData const & getRenderData(SpInt const gameObjectId) const;
-		std::map<int, RenderData> const & getRenderDataMap() const;
+		std::unordered_map<int, RenderData> const & getRenderDataMap() const;
 		void saveRenderData(RenderData const & renderData);
 		void resetAllChangedFlags();
 		static RenderDataContainer & getInstance();
@@ -21,7 +21,7 @@ namespace sp {
 		RenderDataContainer operator=(RenderDataContainer & renderDataCOntainer) = delete;
 
 	private:
-		std::map<int, RenderData> _renderDataMap;
+		std::unordered_map<int, RenderData> _renderDataMap;
 		static RenderDataContainer _instance;
 	};
 }

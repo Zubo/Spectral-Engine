@@ -1,6 +1,6 @@
 #pragma once
 
-#include <map>
+#include <unordered_map>
 
 #include "glad/glad.h"
 #include "Render/Texture.h"
@@ -24,6 +24,6 @@ namespace sp {
 		TextureManager operator=(TextureManager const & textureManager) = delete;
 
 	private:
-		std::map<SpUnsigned, Texture const> _textureMap;
+		std::unordered_map<SpUnsigned, Texture const> _textureMap;
 	};
 }

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <map>
 #include <memory>
+#include <unordered_map>
 
 #include "PlatformIndependence/SpString.h"
 #include "Render/UI/Font/Character.h"
@@ -19,6 +19,6 @@ namespace sp {
 		Font() = default;
 
 	private:
-		std::map<unsigned char, Character const> characterMap;
+		std::unordered_map<unsigned char, Character const> characterMap;
 	};
 }

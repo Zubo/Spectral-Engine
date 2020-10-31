@@ -1,6 +1,6 @@
 #pragma once
 
-#include <map>
+#include <unordered_map>
 
 #include "PlatformIndependence/SpType.h"
 #include "Render/Enum/LightType.h"
@@ -14,7 +14,7 @@ namespace sp {
 		static LightDataContainer & getInstance();
 		void saveLightData(LightData const & lightData);
 		LightData const & getLightData(SpInt const gameObjectId);
-		std::map<int, LightData> const & getLightDataMap() const;
+		std::unordered_map<int, LightData> const & getLightDataMap() const;
 		bool getNumberOfLightsChanged() const;
 		void setNumberOfLightsChangedToFalse();
 		void setAllLightDataChangedToFalse();
@@ -26,7 +26,7 @@ namespace sp {
 
 	private:
 		static LightDataContainer _instance;
-		std::map<int, LightData> _lightDataMap;
+		std::unordered_map<int, LightData> _lightDataMap;
 		bool _numberOfLightsChanged = false;
 	};
 }

@@ -9,7 +9,7 @@ namespace sp {
 		return _renderDataMap.at(gameObjectId);
 	}
 
-	std::map<int, RenderData> const & RenderDataContainer::getRenderDataMap() const {
+	std::unordered_map<int, RenderData> const & RenderDataContainer::getRenderDataMap() const {
 		return _renderDataMap;
 	}
 

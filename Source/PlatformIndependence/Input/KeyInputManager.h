@@ -1,6 +1,6 @@
 #pragma once
 
-#include <map>
+#include <unordered_map>
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
@@ -17,6 +17,6 @@ namespace sp {
 
 	private:
 		GLFWwindow * window;
-		std::map<KeyCode, bool> _keyPressedMap;
+		std::unordered_map<KeyCode, bool> _keyPressedMap;
 	};
 }

@@ -1,6 +1,6 @@
 #include "Render/LightDataContainer.h"
 
-#include <map>
+#include <unordered_map>
 
 #include "PlatformIndependence/SpType.h"
 #include "Render/LightData.h"
@@ -18,7 +18,7 @@ namespace sp {
 	void LightDataContainer::saveLightData(LightData const & lightData) {
 		SpInt const lightDataId = lightData.Id;
 
-		SpInt const previousLightCount = _lightDataMap.size();
+		SpInt const previousLightCount = static_cast<SpInt>(_lightDataMap.size());
 
 		_lightDataMap.insert_or_assign(lightDataId, lightData);
 
@@ -31,7 +31,7 @@ namespace sp {
 		return _lightDataMap.at(lightDataId);
 	}
 
-	std::map<int, LightData> const & LightDataContainer::getLightDataMap() const {
+	std::unordered_map<int, LightData> const & LightDataContainer::getLightDataMap() const {
 		return _lightDataMap;
 	}
 
