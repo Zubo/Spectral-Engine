@@ -23,11 +23,11 @@ void sp::Input::init() {
 	Input::_keyInputManagerUnique = std::unique_ptr<KeyInputManager>(new KeyInputManager{ window });
 }
 
-bool const sp::Input::keyDown(KeyCode keyCode) {
+bool sp::Input::keyDown(KeyCode keyCode) {
 	return Input::_keyInputManagerUnique->keyPressed(keyCode);
 }
 
-sp::Vector2 const sp::Input::mouseAxis() {
+sp::Vector2 sp::Input::mouseAxis() {
 	return Vector2{ Input::_mouseInputManagerUnique->_xDelta, Input::_mouseInputManagerUnique->_yDelta };
 }
 

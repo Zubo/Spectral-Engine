@@ -8,11 +8,11 @@ namespace sp {
 
 	#define PI 3.14159265358979323846F
 
-	SpFloat const sin(Radian const rad);
-	SpFloat const sin(Degree const degree);
-	SpFloat const cos(Radian const rad);
-	SpFloat const cos(Degree const degree);
-	SpFloat const tan(Radian const radian);
-	SpFloat const tan(Degree const degree);
-	SpFloat const sqrt(SpFloat const number);
+	SpFloat sin(Radian const rad);
+	SpFloat sin(Degree const degree);
+	SpFloat cos(Radian const rad);
+	SpFloat cos(Degree const degree);
+	SpFloat tan(Radian const radian);
+	SpFloat tan(Degree const degree);
+	SpFloat sqrt(SpFloat const number);
 }

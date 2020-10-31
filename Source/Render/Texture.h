@@ -13,19 +13,19 @@ namespace sp {
 		Texture(SpString const & path, bool const genMipmap, GLenum format);
 		~Texture();
 
-		inline SpUnsigned const getId() const {
+		inline SpUnsigned getId() const {
 			return _id;
 		}
 
-		inline SpHashValue const getPathHashValue() const {
+		inline SpHashValue getPathHashValue() const {
 			return _pathHashValue;
 		}
 
-		inline bool const getGenMipMap() const {
+		inline bool getGenMipMap() const {
 			return _genMipMap;
 		}
 
-		inline GLenum const getFormat() const {
+		inline GLenum getFormat() const {
 			return _format;
 		}
 

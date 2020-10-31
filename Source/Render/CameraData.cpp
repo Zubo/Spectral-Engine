@@ -56,7 +56,7 @@ namespace sp {
 		CameraData::_dataChanged = true;
 	}
 
-	bool const CameraData::getDataChanged()
+	bool CameraData::getDataChanged()
 	{
 		return CameraData::_dataChanged;
 	}

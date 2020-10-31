@@ -5,8 +5,8 @@
 namespace sp
 {
 #ifdef COMPILE_64_BIT
-	using SpInt = int64_t;
-	using SpUnsigned = uint64_t;
+	using SpInt = int;
+	using SpUnsigned = unsigned int;
 #endif
 
 #ifdef COMPILE_32_BIT

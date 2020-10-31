@@ -9,7 +9,7 @@ namespace sp {
 	public:
 		GameObjectComponent(GameObject * const gameObject);
 		virtual void update(SpFloat const deltaTime);
-		GameObject const * const getGameObject() const;
+		GameObject const * getGameObject() const;
 		virtual ~GameObjectComponent();
 
 	protected:

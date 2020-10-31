@@ -3,11 +3,11 @@
 #include "Core/Math/SpMath.h"
 
 namespace sp {
-	SpFloat const sp::Vector3::dot(Vector3 const & vec1, Vector3 const & vec2) {
+	SpFloat sp::Vector3::dot(Vector3 const & vec1, Vector3 const & vec2) {
 		return (vec1.X * vec2.X) + (vec1.Y * vec2.Y) + (vec1.Z * vec2.Z);
 	}
 
-	Vector3 const Vector3::cross(Vector3 const & vec1, Vector3 const & vec2) {
+	Vector3 Vector3::cross(Vector3 const & vec1, Vector3 const & vec2) {
 		return Vector3{
 			(vec1.Y * vec2.Z) - (vec1.Z * vec2.Y),
 			(vec1.Z * vec2.X) - (vec1.X * vec2.Z),
@@ -78,7 +78,7 @@ namespace sp {
 		};
 	}
 
-	SpFloat const Vector3::length() const {
+	SpFloat Vector3::length() const {
 		return sqrt((X * X) + (Y * Y) + (Z * Z));
 	}
 

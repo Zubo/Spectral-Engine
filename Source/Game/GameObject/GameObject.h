@@ -14,11 +14,11 @@ namespace sp {
 		~GameObject();
 
 	public:
-		inline SpInt const getId() const {
+		inline SpInt getId() const {
 			return _id;
 		}
 
-		inline bool const getIsActive() const {
+		inline bool getIsActive() const {
 			return _isActive;
 		}
 
@@ -27,7 +27,7 @@ namespace sp {
 			std::shared_ptr<T> component = std::make_shared<T>(this);
 			_components.push_back(std::static_pointer_cast<GameObjectComponent>(component));
 			return std::weak_ptr<T>{ component };
-		};
+		}
 
 		template <typename T>
 		std::weak_ptr<T> getComponent() const {
@@ -39,7 +39,7 @@ namespace sp {
 			}
 
 			return std::weak_ptr<T>{};
-		};
+		}
 
 		template <typename T>
 		std::vector<std::weak_ptr<T>> getComponents() const {

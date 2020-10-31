@@ -18,6 +18,6 @@ namespace sp {
 		virtual void onScaleUpdated(Vector3 const & scale) override;
 
 	private:
-		bool const hasMesh() const;
+		bool hasMesh() const;
 	};
 }

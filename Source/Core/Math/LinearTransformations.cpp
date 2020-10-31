@@ -2,7 +2,7 @@
 #include "Core/Math/Matrix4x4.h"
 
 namespace sp {
-	Matrix4x4 const getPerspectiveMat(Degree const fov, SpFloat const aspect, SpFloat const far, SpFloat const near) {
+	Matrix4x4 getPerspectiveMat(Degree const fov, SpFloat const aspect, SpFloat const far, SpFloat const near) {
 		Matrix4x4 result;
 		result[1][1] = 1.0F / tan(fov / 2.0F);
 		result[0][0] = result[1][1] / aspect;
@@ -16,7 +16,7 @@ namespace sp {
 		return result;
 	}
 
-	Matrix4x4 const getOrthographicMat(SpFloat const left, SpFloat const right, SpFloat const bottom, SpFloat const top, SpFloat const zNear, SpFloat const zFar) {
+	Matrix4x4 getOrthographicMat(SpFloat const left, SpFloat const right, SpFloat const bottom, SpFloat const top, SpFloat const zNear, SpFloat const zFar) {
 		Matrix4x4 result;
 		result[0][0] = 2.0F / (right - left);
 		result[1][1] = 2.0F / (top - bottom);

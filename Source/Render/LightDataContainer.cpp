@@ -35,7 +35,7 @@ namespace sp {
 		return _lightDataMap;
 	}
 
-	bool const LightDataContainer::getNumberOfLightsChanged() const {
+	bool LightDataContainer::getNumberOfLightsChanged() const {
 		return _numberOfLightsChanged;
 	}
 

@@ -18,7 +18,7 @@ namespace sp {
 		static void setTranslation(Vector3 const & translation);
 		static Vector3 const getRotation();
 		static void setRotation(Vector3 const & rotation);
-		static bool const getDataChanged();
+		static bool getDataChanged();
 		static void setDataChangedToFalse();
 		static Vector3 const getForward();
 
