@@ -69,7 +69,7 @@ namespace sp {
 		RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 		RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
 
-		renderData.ShaderProgram = shaderProgram;
+		renderData.RenderShaderProgram = shaderProgram;
 
 		renderDataContainer.saveRenderData(renderData);
 	}

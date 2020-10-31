@@ -9,7 +9,7 @@ namespace sp {
 		(void)deltaTime;
 	}
 
-	GameObject const * const GameObjectComponent::getGameObject() const {
+	GameObject const * GameObjectComponent::getGameObject() const {
 		return _gameObjectOwner;
 	}
 

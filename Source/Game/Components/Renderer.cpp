@@ -16,7 +16,7 @@ namespace sp {
 	}
 
 	void Renderer::initRenderer(SpUnsigned const meshId) {
-		GameObject const * const gameObjectOwner = _gameObjectOwner;
+		GameObject const * gameObjectOwner = _gameObjectOwner;
 		SpInt const gameObjectId = gameObjectOwner->getId();
 		bool const isActive = gameObjectOwner->getIsActive();
 		bool const isStatic = false;
@@ -57,7 +57,7 @@ namespace sp {
 		}
 	}
 
-	bool const Renderer::hasMesh() const {
+	bool Renderer::hasMesh() const {
 		std::weak_ptr<Renderer> rendererWeak = _gameObjectOwner->getComponent<Renderer>();
 		return (bool)rendererWeak.lock();
 	}

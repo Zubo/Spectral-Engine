@@ -16,11 +16,11 @@ namespace sp {
 		Degree operator/(SpFloat const value) const;
 
 	public:
-		constexpr SpFloat const getValueDegrees() const {
+		SpFloat getValueDegrees() const {
 			return _value;
 		}
 
-		constexpr SpFloat const getValueRadians() const {
+		SpFloat getValueRadians() const {
 			return _value * PI / 180.0F;
 		}
 

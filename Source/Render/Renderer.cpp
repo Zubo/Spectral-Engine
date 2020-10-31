@@ -92,18 +92,18 @@ namespace sp {
 		for (iterator; iterator != end; ++iterator) {
 			RenderData const & renderData = iterator->second;
 
-			renderData.ShaderProgram.use();
+			renderData.RenderShaderProgram.use();
 
-			updateLights(renderData.ShaderProgram);
+			updateLights(renderData.RenderShaderProgram);
 
 			if (renderData.ModelMatrixChanged) {
 				Matrix4x4 const modelMatrix = renderData.GetModelMatrix();
 				SpString const & modelMatrixUniformName = "modelMatrix";
-				renderData.ShaderProgram.setMatrix4fv(modelMatrixUniformName, modelMatrix.getValuePtr());
+				renderData.RenderShaderProgram.setMatrix4fv(modelMatrixUniformName, modelMatrix.getValuePtr());
 			}
 
 			if (cameraDataChanged) {
-				updateCamera(renderData.ShaderProgram, viewMatrix, projectionMatrix, cameraPos, cameraRotation);
+				updateCamera(renderData.RenderShaderProgram, viewMatrix, projectionMatrix, cameraPos, cameraRotation);
 			}
 
 			bindTextures(renderData);

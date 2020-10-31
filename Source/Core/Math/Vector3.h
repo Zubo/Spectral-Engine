@@ -7,8 +7,8 @@ namespace sp {
 
 	class Vector3 {
 	public:
-		static SpFloat const dot(Vector3 const & vec1, Vector3 const & vec2);
-		static Vector3 const cross(Vector3 const & vec1, Vector3 const & vec2);
+		static SpFloat dot(Vector3 const & vec1, Vector3 const & vec2);
+		static Vector3 cross(Vector3 const & vec1, Vector3 const & vec2);
 
 	public:
 		Vector3();
@@ -28,7 +28,7 @@ namespace sp {
 
 	public:
 		Vector3 normalized() const;
-		SpFloat const length() const;
+		SpFloat length() const;
 	};
 
 	Vector3 operator*(SpFloat const realNumber, Vector3 const & vector);

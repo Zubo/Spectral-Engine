@@ -10,7 +10,7 @@ namespace sp {
 		ShaderProgram(SpString vertexShaderPath, SpString fragmentShaderPath);
 		~ShaderProgram();
 		void use() const;
-		SpUnsigned const getId() const;
+		SpUnsigned getId() const;
 		void setBool(SpString const & name, bool value) const;
 		void setInt(SpString const & name, SpInt value) const;
 		void setFloat(SpString const & name, SpFloat value) const;

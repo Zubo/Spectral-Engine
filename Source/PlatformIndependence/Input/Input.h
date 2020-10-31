@@ -15,8 +15,8 @@ namespace sp {
 
 	public:
 		static void init();
-		static bool const keyDown(KeyCode keyCode);
-		static Vector2 const mouseAxis();
+		static bool keyDown(KeyCode keyCode);
+		static Vector2 mouseAxis();
 		static void update();
 
 	private:

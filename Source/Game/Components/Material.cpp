@@ -14,8 +14,8 @@
 namespace sp {
 	Material::Material(GameObject * gameObject) : GameObjectComponent(gameObject),
 		_ambientColor{ 1.0F },
-		_specularColor{ 1.0F },
 		_diffuseColor{ 1.0F },
+		_specularColor{ 1.0F },
 		_shininess{ 1.0F } {
 	}
 
@@ -85,6 +85,6 @@ namespace sp {
 		RenderDataContainer const & renderDataContainer = RenderDataContainer::getInstance();
 		RenderData const & renderData = renderDataContainer.getRenderData(gameObjectId);
 
-		return renderData.ShaderProgram;
+		return renderData.RenderShaderProgram;
 	}
 }

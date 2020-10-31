@@ -13,11 +13,11 @@ namespace sp {
 		Radian(Degree const degree);
 
 	public:
-		constexpr SpFloat const getValueRadians() const {
+		SpFloat getValueRadians() const {
 			return _value;
 		}
 
-		constexpr SpFloat const getVlueDegrees() const {
+		SpFloat getVlueDegrees() const {
 			return _value * 180.0F / PI;
 		}
 

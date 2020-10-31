@@ -25,7 +25,7 @@ namespace sp {
 		Vector3 RotationEuler;
 		Vector3 Scale;
 		bool ModelMatrixChanged;
-		ShaderProgram ShaderProgram;
+		ShaderProgram RenderShaderProgram;
 		SpUnsigned TextureIds[MAX_NUMBER_OF_TEXTURES] = { 0 };
 	};
 }
