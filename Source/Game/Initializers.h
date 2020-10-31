@@ -97,21 +97,21 @@ namespace sp {
 				renderer->initRenderer(meshId);
 			}
 
-			OptionalRef<Material> material = boxObjects[i].addComponent<Material>();
+			OptionalRef<Material> materialRef = boxObjects[i].addComponent<Material>();
 
-			if (material.HasRef()) {
-				material->initMaterial(vertexShaderPath, fragmentShaderPath);
+			if (materialRef.HasRef()) {
+				materialRef->initMaterial(vertexShaderPath, fragmentShaderPath);
 				if (i == 0) {
-					material->setDiffuseMap(bigBoxTexture);
-					material->setSpecularMap(bigBoxTexture);
+					materialRef->setDiffuseMap(bigBoxTexture);
+					materialRef->setSpecularMap(bigBoxTexture);
 				}
 				else {
-					material->setDiffuseMap(diffuseMapTexturePath);
-					material->setSpecularMap(specularMapTexturePath);
+					materialRef->setDiffuseMap(diffuseMapTexturePath);
+					materialRef->setSpecularMap(specularMapTexturePath);
 				}
 			}
 
-			setRandomColors(*material);
+			setRandomColors(materialRef);
 
 			if (i % 2) {
 				boxObjects[i].addComponent<Rotator>();
@@ -140,7 +140,7 @@ namespace sp {
 		}
 		if (cameraRef.HasRef()) {
 			cameraRef->initCamera(45.0F, SCR_WIDTH, SCR_HEIGHT);
-			Camera::setMainCamera(*cameraRef);
+			Camera::setMainCamera(cameraRef);
 		}
 
 		SpString const shadersFolderPath{ ResourcesPathProvider::getShaderFilesDirectoryPath() };
@@ -159,6 +159,6 @@ namespace sp {
 
 		SpInt const numberOfBoxes = numberOfObjects - 1;
 		OptionalRef<Transform> lightSourceTransformRef = lightSourceGameObject->getComponent<Transform>();
-		createBoxObjects(texturePathArray[0], specularMapPath, diffuseMapPath, vertexShaderPath, fragmentShaderPath, numberOfBoxes, cameraTransformRef, *lightSourceTransformRef);
+		createBoxObjects(texturePathArray[0], specularMapPath, diffuseMapPath, vertexShaderPath, fragmentShaderPath, numberOfBoxes, cameraTransformRef, lightSourceTransformRef);
 	}
 }

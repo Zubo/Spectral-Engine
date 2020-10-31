@@ -58,8 +58,7 @@ namespace sp {
 			_gameObjectOwner->getComponents<ITransformChangeObserver>();
 		for (auto observerOptionalRef : observers) {
 			if (observerOptionalRef.HasRef()) {
-				ITransformChangeObserver & observerOptional = *observerOptionalRef;
-				observerOptional.onScaleUpdated(scale);
+				observerOptionalRef->onScaleUpdated(scale);
 			}
 		}
 	}

@@ -20,7 +20,7 @@ namespace sp {
 	}
 
 	Camera & Camera::getMainCamera() {
-		return *_mainCamera;
+		return _mainCamera;
 	}
 
 	void Camera::setMainCamera(Camera & camera) {

@@ -20,7 +20,7 @@ namespace sp {
 			return _component.has_value();
 		}
 
-		T & operator*() const {
+		operator T & () const {
 			return _component.value().get();
 		}
 

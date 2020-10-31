@@ -70,7 +70,6 @@ namespace sp {
 			return casted != nullptr;
 		}
 
-
 	private:
 		SpInt _id;
 		bool _isActive;
