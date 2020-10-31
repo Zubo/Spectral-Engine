@@ -26,11 +26,11 @@ namespace sp {
 	void Transform::setPosition(Vector3 const & position) {
 		_position = position;
 
-		std::vector<std::weak_ptr<ITransformChangeObserver>> observers =
+		std::vector<OptionalRef<ITransformChangeObserver>> observers =
 			_gameObjectOwner->getComponents<ITransformChangeObserver>();
-		for (auto observerWeak : observers) {
-			if (std::shared_ptr<ITransformChangeObserver> transformShared = observerWeak.lock()) {
-				transformShared->onPositionUpdated(position);
+		for (auto observerOptionalRef : observers) {
+			if (observerOptionalRef.HasRef()) {
+				observerOptionalRef->onPositionUpdated(position);
 			}
 		}
 	}
@@ -42,11 +42,11 @@ namespace sp {
 	void Transform::setRotationEuler(Vector3 const & rotation) {
 		_rotationEuler = rotation;
 
-		std::vector<std::weak_ptr<ITransformChangeObserver>> observers =
+		std::vector<OptionalRef<ITransformChangeObserver>> observers =
 			_gameObjectOwner->getComponents<ITransformChangeObserver>();
-		for (auto observerWeak : observers) {
-			if (std::shared_ptr<ITransformChangeObserver> transformShared = observerWeak.lock()) {
-				transformShared->onRotationUpdated(rotation);
+		for (auto observerOptionalRef : observers) {
+			if (observerOptionalRef.HasRef()) {
+				observerOptionalRef->onRotationUpdated(rotation);
 			}
 		}
 	}
@@ -54,11 +54,12 @@ namespace sp {
 	void Transform::setScale(Vector3 const & scale) {
 		_scaleVec = scale;
 
-		std::vector<std::weak_ptr<ITransformChangeObserver>> observers =
+		std::vector<OptionalRef<ITransformChangeObserver>> observers =
 			_gameObjectOwner->getComponents<ITransformChangeObserver>();
-		for (auto observerWeak : observers) {
-			if (std::shared_ptr<ITransformChangeObserver> transformShared = observerWeak.lock()) {
-				transformShared->onScaleUpdated(scale);
+		for (auto observerOptionalRef : observers) {
+			if (observerOptionalRef.HasRef()) {
+				ITransformChangeObserver & observerOptional = *observerOptionalRef;
+				observerOptional.onScaleUpdated(scale);
 			}
 		}
 	}

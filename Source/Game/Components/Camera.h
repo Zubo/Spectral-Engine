@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "Core/Math/Degree.h"
+#include "Core/Utility/OptionalRef.h"
 #include "Game/Components/GameObjectComponent.h"
 #include "PlatformIndependence/SpType.h"
 
@@ -13,11 +14,11 @@ namespace sp {
 
 	class Camera : public GameObjectComponent {
 	public:
-		static std::shared_ptr<Camera> getMainCamera();
-		static void setMainCamera(std::shared_ptr<Camera> const mainCamera);
+		static Camera & getMainCamera();
+		static void setMainCamera(Camera & mainCamera);
 
 	private:
-		static std::shared_ptr<Camera> _mainCamera;
+		static OptionalRef<Camera> _mainCamera;
 
 	public:
 		Camera(GameObject * gameObjectOwner);

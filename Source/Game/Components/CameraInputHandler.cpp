@@ -36,40 +36,40 @@ namespace sp {
 			 _pitch = -89.0F;
 		 }
 
-		 auto const cameraShared = Camera::getMainCamera();
-		 auto const transformWeak = cameraShared->getGameObject()->getComponent<Transform>();
+		 Camera & camera = Camera::getMainCamera();
+		 auto const transformOptionalRef = camera.getGameObject()->getComponent<Transform>();
 
-		 if (auto const transformShared = transformWeak.lock()) {
-			 transformShared->setRotationEuler(Vector3{ static_cast<float>(_pitch), static_cast<float>(_yaw), 0.0F });
+		 if (transformOptionalRef.HasRef()) {
+			 transformOptionalRef->setRotationEuler(Vector3{ static_cast<float>(_pitch), static_cast<float>(_yaw), 0.0F });
 		 }
 	 }
 
 	 void CameraInputHandler::processKeyInput(SpFloat deltaTime) {
 	 	SpFloat const cameraSpeed = 1.0F;
-	 	auto const transformWeak = getGameObject()->getComponent<Transform>();
-		std::weak_ptr<Camera> cameraWeak = getGameObject()->getComponent<Camera>();
+	 	OptionalRef<Transform> const transform = getGameObject()->getComponent<Transform>();
+		OptionalRef<Camera> const camera = getGameObject()->getComponent<Camera>();
 
 		Vector3 cameraFront = CameraData::getForward();
 
-	 	if (auto transformShared = transformWeak.lock()) {
-	 		Vector3 position = transformShared->getPosition();
+	 	if (transform.HasRef()) {
+	 		Vector3 position = transform->getPosition();
 			Vector3 oldPosition{ position };
 
 	 		if (Input::keyDown(KeyCode::W)) {
 	 			position += cameraSpeed * cameraFront * deltaTime;
-				transformShared->setPosition(position);
+				transform->setPosition(position);
 	 		}
 	 		if (Input::keyDown(KeyCode::S)) {
 	 			position -= cameraSpeed * cameraFront * deltaTime;
-				transformShared->setPosition(position);
+				transform->setPosition(position);
 	 		}
 	 		if (Input::keyDown(KeyCode::A)) {
 	 			position -= cameraSpeed * Vector3::cross(cameraFront, _worldUp).normalized() * deltaTime;
-				transformShared->setPosition(position);
+				transform->setPosition(position);
 	 		}
 	 		if (Input::keyDown(KeyCode::D)) {
 	 			position += cameraSpeed * Vector3::cross(cameraFront, _worldUp).normalized() * deltaTime;
-				transformShared->setPosition(position);
+				transform->setPosition(position);
 	 		}
 	 	}
 	 }

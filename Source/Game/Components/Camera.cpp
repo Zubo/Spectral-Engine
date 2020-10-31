@@ -8,7 +8,7 @@
 #include "Render/CameraData.h"
 
 namespace sp {
-	std::shared_ptr<Camera> Camera::_mainCamera;
+	OptionalRef<Camera> Camera::_mainCamera;
 
 	Camera::Camera(GameObject * gameObjectOwner) : GameObjectComponent{ gameObjectOwner } {
 	}
@@ -19,11 +19,11 @@ namespace sp {
 		CameraData::setScreenWidth(screenWidth);
 	}
 
-	std::shared_ptr<Camera> Camera::getMainCamera() {
-		return _mainCamera;
+	Camera & Camera::getMainCamera() {
+		return *_mainCamera;
 	}
 
-	void Camera::setMainCamera(std::shared_ptr<Camera> const camera) {
+	void Camera::setMainCamera(Camera & camera) {
 		_mainCamera = camera;
 	}
 }

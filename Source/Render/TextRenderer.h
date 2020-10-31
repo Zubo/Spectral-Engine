@@ -31,7 +31,7 @@ namespace sp {
 	private:
 		GLuint _VBO;
 		GLuint _VAO;
-		std::shared_ptr<Font const> _font;
+		std::unique_ptr<Font const> _font;
 		ShaderProgram _shaderProgram;
 	};
 }

@@ -7,6 +7,10 @@ set(SpectralEngine_Core_NoFilter_HEADER
 set(SpectralEngine_Core_Utility_SRC
 	"Utility/ResourcesPathProvider.cpp")
 
+set(SpectralEngine_Core_Utility_HEADER
+	"Utility/ResourcesPathProvider.h"
+	"Utility/OptionalRef.h")
+
 set(SpectralEngine_Core_Math_SRC
 	"Math/SpMath.cpp"
 	"Math/LinearTransformations.cpp"
@@ -28,9 +32,6 @@ set(SpectralEngine_Core_Math_HEADER
 	"Math/Quaternion.h"
 	"Math/Matrix4x4.h"
 	"Math/Direction.h")
-
-set(SpectralEngine_Core_Utility_HEADER
-	"Utility/ResourcesPathProvider.h")
 	
 set(SpectralEngine_Core_Files
 	"CMakeSources.cmake")

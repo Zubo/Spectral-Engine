@@ -17,13 +17,11 @@ namespace sp {
 	}
 
 	void LightSource::initLightSource(LightType const lightType) {
-		std::weak_ptr<Transform const> const transformWeak =
-			_gameObjectOwner->getComponent<Transform>();
+		OptionalRef<Transform const> const transformOptionalRef =
+			_gameObjectOwner->getComponent<Transform const>();
 
-		std::shared_ptr<Transform const> const transformShared = transformWeak.lock();
-
-		Vector3 const & position = transformShared->getPosition();
-		Vector3 const & rotation = transformShared->getRotationEuler();
+		Vector3 const & position = transformOptionalRef->getPosition();
+		Vector3 const & rotation = transformOptionalRef->getRotationEuler();
 		Degree const xAngle{ rotation.X };
 		Degree const yAngle{ rotation.Y };
 		Vector3 const & direction = getDirection(xAngle, yAngle);

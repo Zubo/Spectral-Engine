@@ -29,56 +29,54 @@ namespace sp {
 	std::default_random_engine generator{ (SpUnsigned)time(0) };
 	std::uniform_real_distribution<float> distribution{ 0.0F, 1.0F };
 
-	void setRandomColors(std::weak_ptr<Material> materialWeak) {
-		if (auto materialShared = materialWeak.lock()) {
-			Vector3 ambient{ 0.2F };
-			materialShared->setAmbient(ambient);
-		
-			Vector3 diffuse{ distribution(generator) };
-			materialShared->setDiffuse(diffuse);
+	void setRandomColors(Material & material) {
+		Vector3 ambient{ 0.2F };
+		material.setAmbient(ambient);
 
-			Vector3 specular{ distribution(generator) };
-			materialShared->setSpecular(specular);
+		Vector3 diffuse{ distribution(generator) };
+		material.setDiffuse(diffuse);
 
-			SpFloat shininess{ 1.0F + 31 * distribution(generator) };
-			materialShared->setShinines(shininess);
-		}
+		Vector3 specular{ distribution(generator) };
+		material.setSpecular(specular);
+
+		SpFloat shininess{ 1.0F + 31 * distribution(generator) };
+		material.setShinines(shininess);
 	}
 
 	GameObject * createLight(SpString const & shadersFolderPath, SpString const texturePathArray[], SpInt const lightSourceIndex) {
 		GameObject * lightSourceGameObject = new GameObject;
 
-		std::weak_ptr<Transform> lightSourceTransformWeak = lightSourceGameObject->addComponent<Transform>();
-		if (auto transformShared = lightSourceTransformWeak.lock()) {
-			transformShared->setPosition(cubePositions[lightSourceIndex]);
-			transformShared->setScale(Vector3{ 0.1F });
+		OptionalRef<Transform> transformOptionalRef = lightSourceGameObject->addComponent<Transform>();
+		if (transformOptionalRef.HasRef()) {
+			transformOptionalRef->setPosition(cubePositions[lightSourceIndex]);
+			transformOptionalRef->setScale(Vector3{ 0.1F });
 		}
 
-		std::weak_ptr<Renderer> rendererWeak = lightSourceGameObject->addComponent<Renderer>();
-		if (auto rendererShared = rendererWeak.lock()) {
+		OptionalRef<Renderer> rendererOptionalRef = lightSourceGameObject->addComponent<Renderer>();
+		if (rendererOptionalRef.HasRef()) {
 			SpUnsigned const meshId = MeshContainer::createMesh(verticesUV, (int)(sizeof(verticesUV) / sizeof(float)), indices, (int)sizeof(indices), true, false);
-			rendererShared->initRenderer(meshId);
+			rendererOptionalRef->initRenderer(meshId);
 		}
 
 		SpString const vertexLightingShaderPath{ shadersFolderPath + SpString{ "/vertex_shader.glsl" } };
 		SpString const fragmentLightingShaderPath{ shadersFolderPath + SpString{ "/fragment_lamp_shader.glsl" } };
-		std::weak_ptr<Material> material = lightSourceGameObject->addComponent<Material>();
-		if (auto materialShared = material.lock()) {
-			materialShared->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
+		OptionalRef<Material> material = lightSourceGameObject->addComponent<Material>();
+		if (material.HasRef()) {
+			material->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
 			const SpInt numberOfTextures = 2;
-			materialShared->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
+			material->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
 		}
 
-		std::weak_ptr<LightSource> pointLightSourceWeak = lightSourceGameObject->addComponent<LightSource>();
-		if (std::shared_ptr<LightSource> lightSourceShared = pointLightSourceWeak.lock()) {
-			lightSourceShared->initLightSource(LightType::Point);
+		OptionalRef<LightSource> pointLightSourceRef = lightSourceGameObject->addComponent<LightSource>();
+		if (pointLightSourceRef.HasRef()) {
+			pointLightSourceRef->initLightSource(LightType::Point);
 		}
 
 		lightSourceGameObject->addComponent<PositionOscilator>();
 		lightSourceGameObject->addComponent<Rotator>();
-		std::weak_ptr<LightSource> directionalLightSourceWeak = lightSourceGameObject->addComponent<LightSource>();
-		if (std::shared_ptr<LightSource> directionalLightSourceShared = directionalLightSourceWeak.lock()) {
-			directionalLightSourceShared->initLightSource(LightType::Directional);
+		OptionalRef<LightSource> directionalLightSourceRef = lightSourceGameObject->addComponent<LightSource>();
+		if (directionalLightSourceRef.HasRef()) {
+			directionalLightSourceRef->initLightSource(LightType::Directional);
 		}
 
 		return lightSourceGameObject;
@@ -86,45 +84,45 @@ namespace sp {
 
 	void createBoxObjects(
 		SpString const & bigBoxTexture, SpString const & specularMapTexturePath, SpString const & diffuseMapTexturePath, SpString const & vertexShaderPath,
-		SpString const & fragmentShaderPath, SpInt const numberOfBoxes, std::weak_ptr<Transform> cameraTransformWeak, std::weak_ptr<Transform> lightSourceTrnasformWeak) {
+		SpString const & fragmentShaderPath, SpInt const numberOfBoxes, Transform & cameraTransform, Transform & lightSourceTrnasform) {
 
 		GameObject * boxObjects = new GameObject[numberOfBoxes];
 
 		for (SpInt i = 0; i < numberOfBoxes; ++i) {
 
-			std::weak_ptr<Renderer> renderer = boxObjects[i].addComponent<Renderer>();
-			if (auto rendererShared = renderer.lock()) {
+			OptionalRef<Renderer> renderer = boxObjects[i].addComponent<Renderer>();
+			if (renderer.HasRef()) {
 				SpUnsigned const meshId = MeshContainer::createMesh(verticesUVNormals,
 					(int)(sizeof(verticesUVNormals) / sizeof(float)), indices, (int)(sizeof(indices) / sizeof(int)), true, true);
-				rendererShared->initRenderer(meshId);
+				renderer->initRenderer(meshId);
 			}
 
-			std::weak_ptr<Material> material = boxObjects[i].addComponent<Material>();
+			OptionalRef<Material> material = boxObjects[i].addComponent<Material>();
 
-			if (auto materialShared = material.lock()) {
-				materialShared->initMaterial(vertexShaderPath, fragmentShaderPath);
+			if (material.HasRef()) {
+				material->initMaterial(vertexShaderPath, fragmentShaderPath);
 				if (i == 0) {
-					materialShared->setDiffuseMap(bigBoxTexture);
-					materialShared->setSpecularMap(bigBoxTexture);
+					material->setDiffuseMap(bigBoxTexture);
+					material->setSpecularMap(bigBoxTexture);
 				}
 				else {
-					materialShared->setDiffuseMap(diffuseMapTexturePath);
-					materialShared->setSpecularMap(specularMapTexturePath);
+					material->setDiffuseMap(diffuseMapTexturePath);
+					material->setSpecularMap(specularMapTexturePath);
 				}
 			}
 
-			setRandomColors(material);
+			setRandomColors(*material);
 
 			if (i % 2) {
 				boxObjects[i].addComponent<Rotator>();
 			}
 
 
-			std::weak_ptr<Transform> transform = boxObjects[i].addComponent<Transform>();
-			if (auto transformShared = transform.lock()) {
-				transformShared->setPosition(cubePositions[i]);
+			OptionalRef<Transform> transform = boxObjects[i].addComponent<Transform>();
+			if (transform.HasRef()) {
+				transform->setPosition(cubePositions[i]);
 				if (i == 0) {
-					transformShared->setScale(Vector3{ 50.0F });
+					transform->setScale(Vector3{ 50.0F });
 				}
 			}
 		}
@@ -132,17 +130,17 @@ namespace sp {
 
 	void initScene(SpString const & executablePath) {
 		GameObject * const cameraGameObject = new GameObject();
-		auto cameraTransformWeak = cameraGameObject->addComponent<CameraTransform>();
-		auto cameraWeak = cameraGameObject->addComponent<Camera>();
+		auto cameraTransformRef = cameraGameObject->addComponent<CameraTransform>();
+		OptionalRef<Camera> cameraRef = cameraGameObject->addComponent<Camera>();
 		cameraGameObject->addComponent<CameraInputHandler>();
 
-		std::weak_ptr<LightSource> cameraFlashlightWeak = cameraGameObject->addComponent<LightSource>();
-		if (std::shared_ptr<LightSource> cameraFlashlightShared = cameraFlashlightWeak.lock()) {
-			cameraFlashlightShared->initLightSource(LightType::Directional);
+		OptionalRef<LightSource> cameraFlashlightRef = cameraGameObject->addComponent<LightSource>();
+		if (cameraFlashlightRef.HasRef()) {
+			cameraFlashlightRef->initLightSource(LightType::Directional);
 		}
-		if (auto cameraShared = cameraWeak.lock()) {
-			cameraShared->initCamera(45.0F, SCR_WIDTH, SCR_HEIGHT);
-			Camera::setMainCamera(cameraShared);
+		if (cameraRef.HasRef()) {
+			cameraRef->initCamera(45.0F, SCR_WIDTH, SCR_HEIGHT);
+			Camera::setMainCamera(*cameraRef);
 		}
 
 		SpString const shadersFolderPath{ ResourcesPathProvider::getShaderFilesDirectoryPath() };
@@ -160,7 +158,7 @@ namespace sp {
 		GameObject * lightSourceGameObject = createLight(shadersFolderPath, texturePathArray, numberOfObjects - 1);
 
 		SpInt const numberOfBoxes = numberOfObjects - 1;
-		std::weak_ptr<Transform> lightSourceTransformWeak = lightSourceGameObject->getComponent<Transform>();
-		createBoxObjects(texturePathArray[0], specularMapPath, diffuseMapPath, vertexShaderPath, fragmentShaderPath, numberOfBoxes, cameraTransformWeak, lightSourceTransformWeak);
+		OptionalRef<Transform> lightSourceTransformRef = lightSourceGameObject->getComponent<Transform>();
+		createBoxObjects(texturePathArray[0], specularMapPath, diffuseMapPath, vertexShaderPath, fragmentShaderPath, numberOfBoxes, cameraTransformRef, *lightSourceTransformRef);
 	}
 }

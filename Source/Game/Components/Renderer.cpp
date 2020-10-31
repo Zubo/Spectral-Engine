@@ -22,13 +22,13 @@ namespace sp {
 		bool const isStatic = false;
 		createRenderData(gameObjectId, isActive, meshId, isStatic);
 
-		std::weak_ptr<Transform> transformWeak = _gameObjectOwner->getComponent<Transform>();
-		if (std::shared_ptr<Transform> transformShared = transformWeak.lock()) {
+		OptionalRef<Transform> transformOptionalRef = _gameObjectOwner->getComponent<Transform>();
+		if (transformOptionalRef.HasRef()) {
 			RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
 			RenderData renderData = renderDataContainer.getRenderData(gameObjectId);
-			renderData.Position = transformShared->getPosition();
-			renderData.RotationEuler = transformShared->getRotationEuler();
-			renderData.Scale = transformShared->getScale();
+			renderData.Position = transformOptionalRef->getPosition();
+			renderData.RotationEuler = transformOptionalRef->getRotationEuler();
+			renderData.Scale = transformOptionalRef->getScale();
 			renderDataContainer.saveRenderData(renderData);
 		}
 	}
@@ -58,7 +58,7 @@ namespace sp {
 	}
 
 	bool Renderer::hasMesh() const {
-		std::weak_ptr<Renderer> rendererWeak = _gameObjectOwner->getComponent<Renderer>();
-		return (bool)rendererWeak.lock();
+		OptionalRef<Renderer> rendererRef = _gameObjectOwner->getComponent<Renderer>();
+		return (bool)rendererRef.HasRef();
 	}
 }

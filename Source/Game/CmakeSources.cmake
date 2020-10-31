@@ -3,8 +3,8 @@ set(SpectralEngine_Game_NoFilter_HEADER
     "Vertices.h")
 
 set(SpectralEngine_Game_Components_SRC
-    "Components/Camera.cpp"
     "Components/GameObjectComponent.cpp"
+    "Components/Camera.cpp"
     "Components/Material.cpp"
     "Components/Renderer.cpp" 
     "Components/Transform.cpp"
@@ -16,8 +16,8 @@ set(SpectralEngine_Game_Components_SRC
     "Components/LightSource.cpp")
 
 set(SpectralEngine_Game_Components_HEADER
-    "Components/Camera.h"
     "Components/GameObjectComponent.h"
+    "Components/Camera.h"
     "Components/Material.h"
     "Components/Renderer.h"
     "Components/Transform.h"

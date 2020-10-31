@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
 	sp::ResourcesPathProvider::initializePaths(rootPath);
 	sp::initScene(argv[0]);
 
-	sp::TextRenderer textRenderer = sp::TextRenderer::getInstance();
+	sp::TextRenderer & textRenderer = sp::TextRenderer::getInstance();
 	textRenderer.init();
 
 	glfwSwapInterval(0);

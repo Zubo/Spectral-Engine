@@ -21,6 +21,8 @@ namespace sp {
 		}
 
 		FT_Set_Pixel_Sizes(face, 0, DEFAULT_FONT_SIZE);
+
+		return 0;
 	}
 
 	void loadFontCharacters(Font & font, FT_Face const & face) {

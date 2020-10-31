@@ -1,7 +1,9 @@
 #pragma once
 
 #include <memory>
+#include <type_traits>
 #include <vector>
+#include <Core/Utility/OptionalRef.h>
 
 #include "PlatformIndependence/SpType.h"
 
@@ -23,33 +25,33 @@ namespace sp {
 		}
 
 		template <typename T>
-		std::weak_ptr<T> addComponent() {
-			std::shared_ptr<T> component = std::make_shared<T>(this);
-			_components.push_back(std::static_pointer_cast<GameObjectComponent>(component));
-			return std::weak_ptr<T>{ component };
+		T& addComponent() {
+			std::unique_ptr<GameObjectComponent> componentUnique{ new T{ this } };
+			GameObjectComponent & component = *componentUnique;
+
+			_components.push_back(std::move(componentUnique));
+
+			return dynamic_cast<T &>(component);
 		}
 
 		template <typename T>
-		std::weak_ptr<T> getComponent() const {
-			for (auto const & comp : _components) {
-				std::shared_ptr<T> componentT = std::dynamic_pointer_cast<T>(comp);
-				if (componentT != nullptr) {
-					return std::weak_ptr<T>{ componentT };
+		OptionalRef<T> getComponent() const {
+			for (auto const & compUnique : _components) {
+				if (IsComponentOfType<T>(compUnique)) {
+					return OptionalRef<T>(dynamic_cast<T &>(*compUnique));
 				}
 			}
 
-			return std::weak_ptr<T>{};
+			return OptionalRef<T>();
 		}
 
 		template <typename T>
-		std::vector<std::weak_ptr<T>> getComponents() const {
-			std::vector<std::weak_ptr<T>> componentsVector;
+		std::vector< OptionalRef<T> > getComponents() const {
+			std::vector< OptionalRef<T> > componentsVector;
 
-			for (auto & comp : _components) {
-				std::shared_ptr<T> componentT = std::dynamic_pointer_cast<T>(comp);
-				if (componentT != nullptr) {
-					std::weak_ptr<T> componentWeak = std::weak_ptr<T>{ componentT };
-					componentsVector.push_back(componentWeak);
+			for (auto & compUnique : _components) {
+				if (IsComponentOfType<T>(compUnique)) {
+					componentsVector.push_back(dynamic_cast<T &>(*compUnique));
 				}
 			}
 
@@ -60,11 +62,19 @@ namespace sp {
 		static void updateGameObjects(SpFloat const deltaTime);
 		static std::vector<GameObject *> getGameObjectCollection();
 
+	private:
+		template<typename T>
+		bool IsComponentOfType(std::unique_ptr<GameObjectComponent> const & gameObjectComponentUnique) const {
+			T * const casted = dynamic_cast<T*>(gameObjectComponentUnique.get());
+
+			return casted != nullptr;
+		}
+
 
 	private:
 		SpInt _id;
 		bool _isActive;
-		std::vector<std::shared_ptr<GameObjectComponent>> _components;
+		std::vector<std::unique_ptr<GameObjectComponent>> _components;
 		static SpInt getGameObjectIndex(GameObject *);
 		static std::vector<GameObject *> _gameObjectCollection;
 		static SpInt _nextId;
