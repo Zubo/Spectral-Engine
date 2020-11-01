@@ -13,6 +13,9 @@ namespace sp {
 	private:
 		static SpWindow * windowInstance;
 
+	public:
+		~SpWindow();
+
 	private:
 		SpWindow(SpInt const width, SpInt const height);
 		SpWindow(SpWindow const & window) = delete;

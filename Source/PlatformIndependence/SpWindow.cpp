@@ -21,6 +21,12 @@ namespace sp {
 		return SpWindow::windowInstance;
 	}
 
+	SpWindow::~SpWindow() {
+		if (_concreteWindow) {
+			glfwDestroyWindow(_concreteWindow);
+		}
+	}
+
 	sp::SpWindow::SpWindow(SpInt const width, SpInt const height) : _width{ width }, _height{ height }, _initialized{ false } {
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
