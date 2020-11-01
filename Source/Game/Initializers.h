@@ -1,3 +1,10 @@
+/****************************************
+**
+**	FOR TESTING PURPOSES - WILL BE REMOVED WHEN THE SCENE SERIALIZATION SYSTEM
+**	IS IMPLEMENTED
+**
+*****************************************/
+
 #pragma once
 #include <memory>
 #include <random>
@@ -128,7 +135,7 @@ namespace sp {
 		}
 	}
 
-	void initScene(SpString const & executablePath) {
+	void initScene() {
 		GameObject * const cameraGameObject = new GameObject();
 		auto cameraTransformRef = cameraGameObject->addComponent<CameraTransform>();
 		OptionalRef<Camera> cameraRef = cameraGameObject->addComponent<Camera>();

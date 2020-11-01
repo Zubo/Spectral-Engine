@@ -11,7 +11,7 @@
 #include "PlatformIndependence/Input/Input.h"
 #include "PlatformIndependence/SpType.h"
 #include "PlatformIndependence/SpWindow.h"
-#include "Render/Renderer.h"
+#include "Render/Render.h"
 #include "Render/TextRenderer.h"
 
 #include "Core/Math/Vector3.h"
@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
 	sp::SpString const executablePath{ argv[0] };
 	sp::SpString const rootPath{ executablePath.substr(0, executablePath.find_last_of(sp::Environment::FilePathSeparator())) };
 	sp::ResourcesPathProvider::initializePaths(rootPath);
-	sp::initScene(argv[0]);
+	sp::initScene();
 
 	sp::TextRenderer & textRenderer = sp::TextRenderer::getInstance();
 	textRenderer.init();
