@@ -3,17 +3,20 @@
 #include <memory>
 #include <type_traits>
 #include <vector>
-#include <Core/Utility/OptionalRef.h>
 
+#include "Game/Components/GameObjectComponent.h"
+#include "Game/Scene/Scene.h"
+#include "Core/Utility/OptionalRef.h"
 #include "PlatformIndependence/SpType.h"
 
 namespace sp {
 	class GameObjectComponent;
+	class Scene;
 
 	class GameObject {
 	public:
 		GameObject();
-		~GameObject();
+		~GameObject() = default;
 
 	public:
 		inline SpInt getId() const {
@@ -23,6 +26,9 @@ namespace sp {
 		inline bool getIsActive() const {
 			return _isActive;
 		}
+
+		void bindToScene(Scene & scene);
+		OptionalRef<Scene> const & GetSceneRef() const;
 
 		template <typename T>
 		T& addComponent() {
@@ -59,8 +65,6 @@ namespace sp {
 		}
 
 		void updateComponents(SpFloat const deltaTime);
-		static void updateGameObjects(SpFloat const deltaTime);
-		static std::vector<GameObject *> getGameObjectCollection();
 
 	private:
 		template<typename T>
@@ -73,9 +77,10 @@ namespace sp {
 	private:
 		SpInt _id;
 		bool _isActive;
-		std::vector<std::unique_ptr<GameObjectComponent>> _components;
-		static SpInt getGameObjectIndex(GameObject *);
-		static std::vector<GameObject *> _gameObjectCollection;
+		std::vector< std::unique_ptr<GameObjectComponent> > _components;
+		OptionalRef<Scene> _sceneOptionalRef;
+
+	private:
 		static SpInt _nextId;
 	};
 }

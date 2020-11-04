@@ -6,12 +6,6 @@
 #include "Render/LightData.h"
 
 namespace sp {
-	LightDataContainer LightDataContainer::_instance;
-
-	LightDataContainer & LightDataContainer::getInstance() {
-		return LightDataContainer::_instance;
-	}
-
 	LightDataContainer::LightDataContainer() {
 	}
 

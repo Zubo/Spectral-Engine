@@ -14,9 +14,11 @@ namespace sp {
 	}
 
 	void Camera::initCamera(Degree fov, SpInt screenWidth, SpInt screenHeight) {
-		CameraData::setFov(fov);
-		CameraData::setScreenHeight(screenHeight);
-		CameraData::setScreenWidth(screenWidth);
+		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+		CameraData & cameraData{ renderContext.CameraData };
+		cameraData.setFov(fov);
+		cameraData.setScreenHeight(screenHeight);
+		cameraData.setScreenWidth(screenWidth);
 	}
 
 	Camera & Camera::getMainCamera() {

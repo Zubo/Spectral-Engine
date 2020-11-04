@@ -10,6 +10,7 @@
 #include "Render/Enum/LightType.h"
 #include "Render/LightData.h"
 #include "Render/LightDataContainer.h"
+#include "Render/RenderContext.h"
 
 namespace sp {
 	LightSource::LightSource(GameObject * gameObjectOwner) : GameObjectComponent{ gameObjectOwner } {
@@ -27,14 +28,18 @@ namespace sp {
 		Vector3 const & direction = getDirection(xAngle, yAngle);
 
 		LightData const lightData{ lightType, Vector3{ 1.0F }, position, direction };
-		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
+
+		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+
+		LightDataContainer & lightDataContainer{ renderContext.LightDataContainer };
 		lightDataContainer.saveLightData(lightData);
 
 		_lightDataId = lightData.Id;
 	}
 
 	void LightSource::onPositionUpdated(Vector3 const & position) {
-		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
+		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+		LightDataContainer & lightDataContainer{ renderContext.LightDataContainer };
 		LightData lightData = lightDataContainer.getLightData(_lightDataId);
 		lightData.Position = position;
 		lightData.Changed = true;
@@ -42,7 +47,9 @@ namespace sp {
 	}
 
 	void LightSource::onRotationUpdated(Vector3 const & rotation) {
-		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
+		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+		LightDataContainer & lightDataContainer{ renderContext.LightDataContainer };
+
 		LightData lightData = lightDataContainer.getLightData(_lightDataId);
 
 		Degree const xAngle{ rotation.X };

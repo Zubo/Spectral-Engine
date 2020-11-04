@@ -65,18 +65,11 @@ namespace sp {
 		CameraData::_dataChanged = false;
 	}
 
-	Vector3 const CameraData::getForward() {
-		Vector3 const rotation = CameraData::_rotation;
+	Vector3 CameraData::getForward() {
+		Vector3 const rotation = _rotation;
 		Degree const rotX{ rotation.X };
 		Degree const rotY{ rotation.Y };
 
 		return getDirection(rotX, rotY);
 	}
-
-	bool CameraData::_dataChanged = false;
-	Vector3 CameraData::_translation{};
-	Vector3 CameraData::_rotation{};
-	Degree CameraData::_fov{};
-	SpInt CameraData::_screenWidth;
-	SpInt CameraData::_screenHeight;
 }

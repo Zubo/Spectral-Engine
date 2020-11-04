@@ -11,7 +11,7 @@ namespace sp {
 	class RenderData {
 	public:
 		RenderData(SpInt const gameObjectId, bool const active, bool const isStatic);
-		Matrix4x4 const GetModelMatrix() const;
+		Matrix4x4 const getModelMatrix() const;
 
 	public:
 		SpInt GameObjectId;

@@ -27,6 +27,12 @@ set(SpectralEngine_Game_Components_HEADER
     "Components/FPSCounter.h"
     "Components/CameraTransform.h"
     "Components/LightSource.h")
+    
+set(SpectralEngine_Game_Scene_SRC
+    "Scene/Scene.cpp")
+
+set(SpectralEngine_Game_Scene_HEADER
+    "Scene/Scene.h")
 
 set(SpectralEngine_Game_Components_Interface_HEADER
     "Components/Interface/IRenderer.h"
@@ -41,6 +47,8 @@ set(SpectralEngine_Game_GameObject_HEADER
 source_group("Header Files" FILES ${SpectralEngine_Game_NoFilter_HEADER})
 source_group("Source Files\\Components" FILES ${SpectralEngine_Game_Components_SRC})
 source_group("Header Files\\Components" FILES ${SpectralEngine_Game_Components_HEADER})
+source_group("Header Files\\Scene" FILES ${SpectralEngine_Game_Scene_HEADER})
+source_group("Source Files\\Scene" FILES ${SpectralEngine_Game_Scene_SRC})
 source_group("Header Files\\Components\\Interface" FILES ${SpectralEngine_Game_Components_Interface_HEADER})
 source_group("Source Files\\Components\\UI" FILES ${SpectralEngine_Game_Components_UI_SRC})
 source_group("Header Files\\Components\\UI" FILES ${SpectralEngine_Game_Components_UI_HEADER})
@@ -51,6 +59,8 @@ set(SpectralEngine_Game_SRC
     ${SpectralEngine_Game_NoFilter_HEADER}
 	${SpectralEngine_Game_Components_SRC}
 	${SpectralEngine_Game_Components_HEADER}
+	${SpectralEngine_Game_Scene_SRC}
+	${SpectralEngine_Game_Scene_HEADER}
 	${SpectralEngine_Game_Components_Interface_HEADER}
     ${SpectralEngine_Game_GameObject_HEADER}
     ${SpectralEngine_Game_GameObject_SRC})

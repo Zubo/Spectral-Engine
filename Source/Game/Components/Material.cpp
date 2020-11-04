@@ -22,7 +22,10 @@ namespace sp {
 	void Material::initMaterial(SpString const & vertexShaderPath, SpString const & fragmentShaderPath) {
 		ShaderProgram const shaderProgram{ vertexShaderPath, fragmentShaderPath };
 		SpInt const gameObjectId = _gameObjectOwner->getId();
-		updateShaderProgram(gameObjectId, shaderProgram);
+
+		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+
+		renderContext.updateShaderProgram(gameObjectId, shaderProgram);
 		setAmbient(_ambientColor);
 		setSpecular(_specularColor);
 		setDiffuse(_diffuseColor);
@@ -67,7 +70,10 @@ namespace sp {
 		SpInt const gameObjectId = _gameObjectOwner->getId();
 		SpUnsigned const diffuseMapTextureIndex = 0;
 		SpUnsigned const textureId = texture.getId();
-		updateTextureId(gameObjectId, textureId, diffuseMapTextureIndex);
+
+		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+
+		renderContext.updateTextureId(gameObjectId, textureId, diffuseMapTextureIndex);
 	}
 
 	void Material::setSpecularMap(SpString const & texturePath) {
@@ -77,13 +83,18 @@ namespace sp {
 		SpInt const gameObjectId = _gameObjectOwner->getId();
 		SpUnsigned const specularMapTextureIndex = 1;
 		SpUnsigned const textureId = texture.getId();
-		updateTextureId(gameObjectId, textureId, specularMapTextureIndex);
+
+		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+
+		renderContext.updateTextureId(gameObjectId, textureId, specularMapTextureIndex);
 	}
 
 	ShaderProgram const Material::getShaderProgram() {
 		SpInt const gameObjectId = _gameObjectOwner->getId();
-		RenderDataContainer const & renderDataContainer = RenderDataContainer::getInstance();
-		RenderData const & renderData = renderDataContainer.getRenderData(gameObjectId);
+		
+		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+
+		RenderData const & renderData = renderContext.RenderDataContainer.getRenderData(gameObjectId);
 
 		return renderData.RenderShaderProgram;
 	}

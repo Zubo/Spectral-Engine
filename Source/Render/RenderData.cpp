@@ -9,7 +9,7 @@ namespace sp {
 		: GameObjectId{ gameObjectId }, Active{ active }, IsStatic{ isStatic }, Scale{ 1.0F } {
 	}
 
-	Matrix4x4 const RenderData::GetModelMatrix() const {
+	Matrix4x4 const RenderData::getModelMatrix() const {
 		Matrix4x4 modelMatrix;
 
 		modelMatrix = rotateX(modelMatrix, Degree{ RotationEuler.X });

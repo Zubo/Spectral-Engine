@@ -49,7 +49,9 @@ namespace sp {
 	 	OptionalRef<Transform> const transform = getGameObject()->getComponent<Transform>();
 		OptionalRef<Camera> const camera = getGameObject()->getComponent<Camera>();
 
-		Vector3 cameraFront = CameraData::getForward();
+		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+		CameraData & cameraData{ renderContext.CameraData };
+		Vector3 cameraFront = cameraData.getForward();
 
 	 	if (transform.HasRef()) {
 	 		Vector3 position = transform->getPosition();

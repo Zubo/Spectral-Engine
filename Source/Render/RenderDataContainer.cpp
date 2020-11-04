@@ -3,8 +3,6 @@
 #include "Render/RenderData.h"
 
 namespace sp {
-	RenderDataContainer RenderDataContainer::_instance;
-
 	RenderData const & RenderDataContainer::getRenderData(SpInt const gameObjectId) const {
 		return _renderDataMap.at(gameObjectId);
 	}
@@ -26,9 +24,5 @@ namespace sp {
 			RenderData & renderData = renderDataIter->second;
 			renderData.ModelMatrixChanged = false;
 		}
-	}
-
-	RenderDataContainer & RenderDataContainer::getInstance() {
-		return RenderDataContainer::_instance;
 	}
 }

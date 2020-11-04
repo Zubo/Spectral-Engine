@@ -1,17 +1,13 @@
-#include "Render/Render.h"
+#pragma once
 
-#include "Core/Math/Direction.h"
 #include "glad/glad.h"
-#include "Render/CameraData.h"
+#include "GLFW/glfw3.h"
+#include "Core/Math/Matrix4x4.h"
+#include "Core/Math/Direction.h"
+#include "Render/RenderContext.h"
 #include "Render/RenderData.h"
-#include "Render/LightDataContainer.h"
-#include "Render/RenderDataContainer.h"
-#include "PlatformIndependence/SpString.h"
 
 namespace sp {
-	class Matrix4x4;
-	class Vector3;
-
 	inline void updateCamera(
 		ShaderProgram const & shaderProgram,
 		Matrix4x4 const & viewMatrix,
@@ -50,8 +46,7 @@ namespace sp {
 		}
 	}
 
-	inline void updateLights(ShaderProgram const & shaderProgram) {
-		LightDataContainer const & lightDataContainer = LightDataContainer::getInstance();
+	inline void updateLights(LightDataContainer const & lightDataContainer, ShaderProgram const & shaderProgram) {
 		std::unordered_map<int, LightData> const & lightDataMap = lightDataContainer.getLightDataMap();
 		SpInt index = 0;
 		bool const numberOfLightsChanged = lightDataContainer.getNumberOfLightsChanged();
@@ -77,27 +72,40 @@ namespace sp {
 		shaderProgram.setInt("numberOfLights", numberOfLights);
 	}
 
-	void renderAll() {
-		RenderDataContainer & renderDataContainer = RenderDataContainer::getInstance();
+	inline void render(RenderContext & renderContext) {
+		std::unique_ptr<SpWindow> const & contextSpWindow = renderContext.getWindow();
 
-		auto iterator = renderDataContainer.getRenderDataMap().cbegin();
-		auto end = renderDataContainer.getRenderDataMap().cend();
+		if (contextSpWindow == nullptr) {
+			return;
+		}
 
-		Matrix4x4 const projectionMatrix = CameraData::GetProjectionMatrix();
-		Matrix4x4 const viewMatrix = CameraData::GetViewMatrix();
-		Vector3 const cameraPos = CameraData::getTranslation();
-		bool const cameraDataChanged = CameraData::getDataChanged();
-		Vector3 const cameraRotation = CameraData::getRotation();
+		GLFWwindow * const glfwWindow = contextSpWindow->getConcreteWindow();
+		glfwMakeContextCurrent(glfwWindow);
+
+		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		RenderDataContainer & renderDataContainer = renderContext.RenderDataContainer;
+
+		auto iterator = renderDataContainer.getRenderDataMap().begin();
+		auto end = renderDataContainer.getRenderDataMap().end();
+
+		CameraData & cameraData = renderContext.CameraData;
+		Matrix4x4 const projectionMatrix = cameraData.GetProjectionMatrix();
+		Matrix4x4 const viewMatrix = cameraData.GetViewMatrix();
+		Vector3 const cameraPos = cameraData.getTranslation();
+		bool const cameraDataChanged = cameraData.getDataChanged();
+		Vector3 const cameraRotation = cameraData.getRotation();
 
 		for (iterator; iterator != end; ++iterator) {
 			RenderData const & renderData = iterator->second;
 
 			renderData.RenderShaderProgram.use();
 
-			updateLights(renderData.RenderShaderProgram);
+			updateLights(renderContext.LightDataContainer, renderData.RenderShaderProgram);
 
 			if (renderData.ModelMatrixChanged) {
-				Matrix4x4 const modelMatrix = renderData.GetModelMatrix();
+				Matrix4x4 const modelMatrix = renderData.getModelMatrix();
 				SpString const & modelMatrixUniformName = "modelMatrix";
 				renderData.RenderShaderProgram.setMatrix4fv(modelMatrixUniformName, modelMatrix.getValuePtr());
 			}
@@ -114,9 +122,13 @@ namespace sp {
 
 		unbindAllTextures();
 		renderDataContainer.resetAllChangedFlags();
-		LightDataContainer & lightDataContainer = LightDataContainer::getInstance();
+		LightDataContainer & lightDataContainer = renderContext.LightDataContainer;
 		lightDataContainer.setNumberOfLightsChangedToFalse();
 		lightDataContainer.setAllLightDataChangedToFalse();
-		CameraData::setDataChangedToFalse();
+		cameraData.setDataChangedToFalse();
+
+		glfwSwapBuffers(glfwWindow);
+		glfwPollEvents();
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 }
