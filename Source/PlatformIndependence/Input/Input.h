@@ -8,13 +8,14 @@
 namespace sp {
 	class MouseInputManager;
 	class KeyInputManager;
+	class SpWindow;
 
 	class Input {
 	private:
 		Input() = delete;
 
 	public:
-		static void init();
+		static void init(SpWindow & spWindow);
 		static bool keyDown(KeyCode keyCode);
 		static Vector2 mouseAxis();
 		static void update();

@@ -9,10 +9,7 @@
 #include "Render/UI/Font/Font.h"
 
 namespace sp {
-	TextRenderer TextRenderer::instance;
-
-	TextRenderer & TextRenderer::getInstance() {
-		return TextRenderer::instance;
+	TextRenderer::TextRenderer(SpWindow const & spWindow) : _spWindow{ spWindow } {
 	}
 
 	void TextRenderer::init() {
@@ -91,9 +88,8 @@ namespace sp {
 	}
 
 	Matrix4x4 TextRenderer::getOrthoProjectionMatrix() const {
-		SpWindow const * const window = SpWindow::getInstance();
-		SpFloat const width = static_cast<SpFloat>(window->getWidht());
-		SpFloat const height = static_cast<SpFloat>(window->getHeight());
+		SpFloat const width = static_cast<SpFloat>(_spWindow.getWidht());
+		SpFloat const height = static_cast<SpFloat>(_spWindow.getHeight());
 		return getOrthographicMat(0, width, 0, height);
 	}
 }

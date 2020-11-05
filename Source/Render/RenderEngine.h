@@ -10,6 +10,10 @@ namespace sp {
 
 	class RenderEngine {
 	public:
+		RenderEngine() = default;
+		RenderEngine(RenderEngine const & renderEngine) = delete;
+
+	public:
 		RenderContext & createContext(bool const isMainContext);
 		bool renderAllContexts();
 

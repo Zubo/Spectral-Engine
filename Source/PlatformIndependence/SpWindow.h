@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "PlatformIndependence/SpType.h"
 
 struct GLFWwindow;
@@ -7,11 +9,7 @@ struct GLFWwindow;
 namespace sp {
 	class SpWindow {
 	public:
-		static void init(SpInt const width, SpInt const height);
-		static SpWindow * const getInstance();
-
-	private:
-		static SpWindow * windowInstance;
+		static std::unique_ptr<SpWindow> create(SpInt const width, SpInt const height);
 
 	public:
 		~SpWindow();

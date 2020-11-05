@@ -1,6 +1,6 @@
 #include "PlatformIndependence/Input/KeyInputManager.h"
 
-sp::KeyInputManager::KeyInputManager(GLFWwindow * const window) : window{ window } {
+sp::KeyInputManager::KeyInputManager(GLFWwindow * window) : window{ window } {
 }
 
 bool sp::KeyInputManager::keyPressed(KeyCode const keyCode) {

@@ -11,12 +11,11 @@
 
 namespace sp {
 	class Vector2;
+	class SpWindow;
 
 	class TextRenderer {
 	public:
-		static TextRenderer & getInstance();
-	private:
-		static TextRenderer instance;
+		TextRenderer(SpWindow const & spWindow);
 
 	public:
 		void init();
@@ -33,5 +32,6 @@ namespace sp {
 		GLuint _VAO;
 		std::unique_ptr<Font const> _font;
 		ShaderProgram _shaderProgram;
+		SpWindow const & _spWindow;
 	};
 }

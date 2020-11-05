@@ -1,24 +1,16 @@
 #include "SpWindow.h"
+#include "glad/glad.h"
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include <ThirdParty/Glad/include/glad/glad.h>
 #include <iostream>
+#include <memory>
 
-#include "SpWindow.h"
+#include "PlatformIndependence/SpWindow.h"
 
 namespace sp {
-	sp::SpWindow * sp::SpWindow::windowInstance = nullptr;
-
-	void sp::SpWindow::init(SpInt const width, SpInt const height) {
-		SpWindow::windowInstance = new SpWindow(width, height);
-	}
-
-	sp::SpWindow * const sp::SpWindow::getInstance() {
-		if (SpWindow::windowInstance == nullptr) {
-			std::cerr << "Error: Trying to get unallocated window instance.";
-		}
-
-		return SpWindow::windowInstance;
+	std::unique_ptr<SpWindow> SpWindow::create(SpInt const width, SpInt const height) {
+		return std::unique_ptr<SpWindow>(new SpWindow(width, height));
 	}
 
 	SpWindow::~SpWindow() {
@@ -27,7 +19,7 @@ namespace sp {
 		}
 	}
 
-	sp::SpWindow::SpWindow(SpInt const width, SpInt const height) : _width{ width }, _height{ height }, _initialized{ false } {
+	SpWindow::SpWindow(SpInt const width, SpInt const height) : _width{ width }, _height{ height }, _initialized{ false } {
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -60,21 +52,21 @@ namespace sp {
 		_initialized = true;
 	}
 
-	void sp::SpWindow::update() const {
+	void SpWindow::update() const {
 		if (glfwGetKey(_concreteWindow, GLFW_KEY_ESCAPE)) {
 			glfwSetWindowShouldClose(_concreteWindow, true);
 		}
 	}
 
-	bool const sp::SpWindow::initializedSuccessfuly() const {
+	bool const SpWindow::initializedSuccessfuly() const {
 		return _initialized;
 	}
 
-	bool const sp::SpWindow::shouldClose() const {
+	bool const SpWindow::shouldClose() const {
 		return glfwWindowShouldClose(_concreteWindow);
 	}
 
-	GLFWwindow * const sp::SpWindow::getConcreteWindow() const {
+	GLFWwindow * const SpWindow::getConcreteWindow() const {
 		return _concreteWindow;
 	}
 }

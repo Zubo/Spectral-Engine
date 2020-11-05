@@ -9,7 +9,7 @@
 namespace sp {
 	class KeyInputManager {
 	public:
-		KeyInputManager(GLFWwindow * const window);
+		KeyInputManager(GLFWwindow * window);
 
 	public:
 		bool keyPressed(KeyCode const keyCode);

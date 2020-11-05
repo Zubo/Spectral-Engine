@@ -6,22 +6,17 @@
 
 #include "Core/Utility/ResourcesPathProvider.h"
 #include "Game/Initializers.h"
-#include "Game/Vertices.h"
+#include "Game/Scene/Scene.h"
 #include "PlatformIndependence/Environment.h"
 #include "PlatformIndependence/Input/Input.h"
 #include "PlatformIndependence/SpType.h"
 #include "PlatformIndependence/SpWindow.h"
 #include "Render/TextRenderer.h"
-
-#include "Core/Math/Vector3.h"
-#include "Core/Math/Vector2.h"
+#include "Render/RenderEngine.h"
 
 int main(int argc, char** argv) {
-
-
-	sp::SpWindow::init(800, 600);
-	sp::SpWindow const * const window = sp::SpWindow::getInstance();
-	sp::Input::init();
+	std::unique_ptr<sp::SpWindow> window = sp::SpWindow::create(800, 600);
+	sp::Input::init(*window);
 
 	if (window->initializedSuccessfuly() == false) {
 		return -1;
@@ -34,8 +29,12 @@ int main(int argc, char** argv) {
 	sp::ResourcesPathProvider::initializePaths(rootPath);
 	sp::initScene();
 
-	sp::TextRenderer & textRenderer = sp::TextRenderer::getInstance();
+	sp::TextRenderer textRenderer{ *window };
 	textRenderer.init();
+
+	sp::RenderEngine renderEngine;
+	sp::Scene scene{ renderEngine, true };
+	scene.getRenderContext().assignWindow(std::move(window));
 
 	glfwSwapInterval(0);
 	glEnable(GL_DEPTH_TEST);
@@ -45,7 +44,7 @@ int main(int argc, char** argv) {
 	while (!window->shouldClose()) {
 		sp::SpFloat currentFrame = static_cast<float>(glfwGetTime());
 		sp::SpFloat deltaTime = currentFrame - lastFrame;
-		sp::GameObject::updateGameObjects(deltaTime);
+		scene.updateGameObjects(deltaTime);
 		lastFrame = currentFrame;
 
 		window->update();
@@ -54,7 +53,7 @@ int main(int argc, char** argv) {
 		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		sp::renderAll();
+		renderEngine.renderAllContexts();
 
 		glfwSwapBuffers(window->getConcreteWindow());
 		glfwPollEvents();
