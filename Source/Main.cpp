@@ -1,8 +1,8 @@
 #include <memory>
 
 #include "Core/Utility/ResourcesPathProvider.h"
-#include "Game/Initializers.h"
-#include "Game/Scene/Scene.h"
+#include "Scene/Initializers.h"
+#include "Scene/Scene/Scene.h"
 #include "PlatformIndependence/Environment.h"
 #include "PlatformIndependence/Input/Input.h"
 #include "PlatformIndependence/SpType.h"
