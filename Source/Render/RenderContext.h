@@ -15,10 +15,15 @@ namespace sp {
 		RenderContext(SpInt const id);
 
 	public:
+		SpInt getId();
+		RenderDataContainer const & getRenderDataContainer() const;
+		RenderDataContainer & getRenderDataContainer();
+		LightDataContainer const & getLightDataContainer() const;
+		LightDataContainer & getLightDataContainer();
+		CameraData const & getCameraData() const;
+		CameraData & getCameraData();
 		std::unique_ptr<SpWindow> const & getWindow() const;
 		void assignWindow(std::unique_ptr<SpWindow> spWindowUnique);
-
-	public:
 		void createRenderData(SpInt const gameObjectId, bool const active, SpUnsigned const meshId, bool const isStatic);
 		void updateObjectMesh(SpInt const gameObjectId, SpUnsigned const meshId, bool isStatic);
 		void updateShaderProgram(SpInt const gameObjectId, ShaderProgram const shaderProgram);
@@ -27,11 +32,11 @@ namespace sp {
 		void updateScale(SpInt const gameObjectId, Vector3 const & scale);
 		void updateTextureId(SpInt const gameObjectId, SpUnsigned const textureId, SpUnsigned const textureIdIndex);
 
-	public:
-		const SpInt Id;
-		RenderDataContainer RenderDataContainer;
-		LightDataContainer LightDataContainer;
-		CameraData CameraData;
+	private:
+		const SpInt _id;
+		RenderDataContainer _renderDataContainer;
+		LightDataContainer _lightDataContainer;
+		CameraData _cameraData;
 
 	private:
 		std::unique_ptr<SpWindow> _spWindowUnique;

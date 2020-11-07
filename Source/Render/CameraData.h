@@ -9,18 +9,18 @@ namespace sp {
 
 	class CameraData {
 	public:
-		Matrix4x4 const GetViewMatrix();
-		Matrix4x4 const GetProjectionMatrix();
+		Matrix4x4 GetViewMatrix() const;
+		Matrix4x4 GetProjectionMatrix() const;
 		void setFov(Degree const & fov);
 		void setScreenWidth(SpInt const screenWidth);
 		void setScreenHeight(SpInt const screenHeight);
-		Vector3 const getTranslation();
+		Vector3 getTranslation() const;
 		void setTranslation(Vector3 const & translation);
-		Vector3 const getRotation();
+		Vector3 getRotation() const;
 		void setRotation(Vector3 const & rotation);
-		bool getDataChanged();
+		bool getDataChanged() const;
 		void setDataChangedToFalse();
-		Vector3 getForward();
+		Vector3 getForward() const;
 
 	private:
 		bool _dataChanged = false;

@@ -14,7 +14,7 @@ namespace sp {
 		_renderContexts.push_back(std::move(contextUnique));
 
 		if (isMainContext) {
-			_mainContextId = contextRef.Id;
+			_mainContextId = contextRef.getId();
 		}
 
 		return contextRef;
@@ -24,7 +24,7 @@ namespace sp {
 		glEnable(GL_DEPTH_TEST);
 
 		for (auto && renderContext : _renderContexts) {
-			if (renderContext->Id == _mainContextId) {
+			if (renderContext->getId() == _mainContextId) {
 				std::unique_ptr<SpWindow> const & contextWindowUnique = renderContext->getWindow();
 
 				if (contextWindowUnique != nullptr && glfwWindowShouldClose(contextWindowUnique->getConcreteWindow())) {

@@ -52,7 +52,7 @@ namespace sp {
 		OptionalRef<Camera> const camera = getGameObject()->getComponent<Camera>();
 
 		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
-		CameraData & cameraData{ renderContext.CameraData };
+		CameraData & cameraData{ renderContext.getCameraData() };
 		Vector3 cameraFront = cameraData.getForward();
 
 	 	if (transform.HasRef()) {

@@ -94,7 +94,7 @@ namespace sp {
 		
 		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
 
-		RenderData const & renderData = renderContext.RenderDataContainer.getRenderData(gameObjectId);
+		RenderData const & renderData = renderContext.getRenderDataContainer().getRenderData(gameObjectId);
 
 		return renderData.RenderShaderProgram;
 	}

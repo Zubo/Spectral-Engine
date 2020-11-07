@@ -85,12 +85,12 @@ namespace sp {
 		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		RenderDataContainer & renderDataContainer = renderContext.RenderDataContainer;
+		RenderDataContainer & renderDataContainer = renderContext.getRenderDataContainer();
 
 		auto iterator = renderDataContainer.getRenderDataMap().begin();
 		auto end = renderDataContainer.getRenderDataMap().end();
 
-		CameraData & cameraData = renderContext.CameraData;
+		CameraData & cameraData = renderContext.getCameraData();
 		Matrix4x4 const projectionMatrix = cameraData.GetProjectionMatrix();
 		Matrix4x4 const viewMatrix = cameraData.GetViewMatrix();
 		Vector3 const cameraPos = cameraData.getTranslation();
@@ -102,7 +102,7 @@ namespace sp {
 
 			renderData.RenderShaderProgram.use();
 
-			updateLights(renderContext.LightDataContainer, renderData.RenderShaderProgram);
+			updateLights(renderContext.getLightDataContainer(), renderData.RenderShaderProgram);
 
 			if (renderData.ModelMatrixChanged) {
 				Matrix4x4 const modelMatrix = renderData.getModelMatrix();
@@ -122,7 +122,7 @@ namespace sp {
 
 		unbindAllTextures();
 		renderDataContainer.resetAllChangedFlags();
-		LightDataContainer & lightDataContainer = renderContext.LightDataContainer;
+		LightDataContainer & lightDataContainer = renderContext.getLightDataContainer();
 		lightDataContainer.setNumberOfLightsChangedToFalse();
 		lightDataContainer.setAllLightDataChangedToFalse();
 		cameraData.setDataChangedToFalse();

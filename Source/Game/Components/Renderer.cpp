@@ -26,11 +26,11 @@ namespace sp {
 
 		OptionalRef<Transform> transformOptionalRef = _gameObjectOwner->getComponent<Transform>();
 		if (transformOptionalRef.HasRef()) {
-			RenderData renderData = renderContext.RenderDataContainer.getRenderData(gameObjectId);
+			RenderData renderData = renderContext.getRenderDataContainer().getRenderData(gameObjectId);
 			renderData.Position = transformOptionalRef->getPosition();
 			renderData.RotationEuler = transformOptionalRef->getRotationEuler();
 			renderData.Scale = transformOptionalRef->getScale();
-			renderContext.RenderDataContainer.saveRenderData(renderData);
+			renderContext.getRenderDataContainer().saveRenderData(renderData);
 		}
 	}
 

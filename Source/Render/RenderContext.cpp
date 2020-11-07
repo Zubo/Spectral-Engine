@@ -5,7 +5,35 @@
 #include "Render/RenderData.h"
 
 namespace sp {
-	RenderContext::RenderContext(SpInt const id) : Id{ id } {
+	RenderContext::RenderContext(SpInt const id) : _id{ id } {
+	}
+
+	SpInt RenderContext::getId() {
+		return _id;
+	}
+
+	RenderDataContainer const & RenderContext::getRenderDataContainer() const {
+		return _renderDataContainer;
+	}
+
+	RenderDataContainer & RenderContext::getRenderDataContainer() {
+		return _renderDataContainer;
+	}
+
+	LightDataContainer const & RenderContext::getLightDataContainer() const {
+		return _lightDataContainer;
+	}
+
+	LightDataContainer & RenderContext::getLightDataContainer() {
+		return _lightDataContainer;
+	}
+
+	CameraData const & RenderContext::getCameraData() const {
+		return _cameraData;
+	}
+
+	CameraData & RenderContext::getCameraData() {
+		return _cameraData;
 	}
 
 	std::unique_ptr<SpWindow> const & RenderContext::getWindow() const {
@@ -20,12 +48,12 @@ namespace sp {
 		RenderData renderData{ gameObjectId, active, isStatic };
 		renderData.GameObjectId = gameObjectId;
 
-		RenderDataContainer.saveRenderData(renderData);
+		_renderDataContainer.saveRenderData(renderData);
 		updateObjectMesh(gameObjectId, meshId, isStatic);
 	}
 
 	void RenderContext::updateObjectMesh(SpInt const gameObjectId, SpUnsigned const meshId, bool isStatic) {
-		RenderData renderData = RenderDataContainer.getRenderData(gameObjectId);
+		RenderData renderData = _renderDataContainer.getRenderData(gameObjectId);
 
 		glGenVertexArrays(1, &renderData.VAO);
 		glBindVertexArray(renderData.VAO);
@@ -66,41 +94,41 @@ namespace sp {
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-		RenderDataContainer.saveRenderData(renderData);
+		_renderDataContainer.saveRenderData(renderData);
 	}
 
 	void RenderContext::updateShaderProgram(SpInt const gameObjectId, ShaderProgram const shaderProgram) {
-		RenderData renderData = RenderDataContainer.getRenderData(gameObjectId);
+		RenderData renderData = _renderDataContainer.getRenderData(gameObjectId);
 
 		renderData.RenderShaderProgram = shaderProgram;
 
-		RenderDataContainer.saveRenderData(renderData);
+		_renderDataContainer.saveRenderData(renderData);
 	}
 
 	void RenderContext::updatePosition(SpInt const gameObjectId, Vector3 const & position) {
-		RenderData renderData = RenderDataContainer.getRenderData(gameObjectId);
+		RenderData renderData = _renderDataContainer.getRenderData(gameObjectId);
 		renderData.Position = position;
 		renderData.ModelMatrixChanged = true;
-		RenderDataContainer.saveRenderData(renderData);
+		_renderDataContainer.saveRenderData(renderData);
 	}
 
 	void RenderContext::saveRotation(SpInt const gameObjectId, Vector3 const & rotationEuler) {
-		RenderData renderData = RenderDataContainer.getRenderData(gameObjectId);
+		RenderData renderData = _renderDataContainer.getRenderData(gameObjectId);
 		renderData.RotationEuler = rotationEuler;
 		renderData.ModelMatrixChanged = true;
-		RenderDataContainer.saveRenderData(renderData);
+		_renderDataContainer.saveRenderData(renderData);
 	}
 
 	void RenderContext::updateScale(SpInt const gameObjectId, Vector3 const & scale) {
-		RenderData renderData = RenderDataContainer.getRenderData(gameObjectId);
+		RenderData renderData = _renderDataContainer.getRenderData(gameObjectId);
 		renderData.Scale = scale;
 		renderData.ModelMatrixChanged = true;
-		RenderDataContainer.saveRenderData(renderData);
+		_renderDataContainer.saveRenderData(renderData);
 	}
 
 	void RenderContext::updateTextureId(SpInt const gameObjectId, SpUnsigned const textureId, SpUnsigned const textureIdIndex) {
-		RenderData renderData = RenderDataContainer.getRenderData(gameObjectId);
+		RenderData renderData = _renderDataContainer.getRenderData(gameObjectId);
 		renderData.TextureIds[textureIdIndex] = textureId;
-		RenderDataContainer.saveRenderData(renderData);
+		_renderDataContainer.saveRenderData(renderData);
 	}
 }

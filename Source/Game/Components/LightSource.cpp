@@ -31,7 +31,7 @@ namespace sp {
 
 		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
 
-		LightDataContainer & lightDataContainer{ renderContext.LightDataContainer };
+		LightDataContainer & lightDataContainer{ renderContext.getLightDataContainer() };
 		lightDataContainer.saveLightData(lightData);
 
 		_lightDataId = lightData.Id;
@@ -39,7 +39,7 @@ namespace sp {
 
 	void LightSource::onPositionUpdated(Vector3 const & position) {
 		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
-		LightDataContainer & lightDataContainer{ renderContext.LightDataContainer };
+		LightDataContainer & lightDataContainer{ renderContext.getLightDataContainer() };
 		LightData lightData = lightDataContainer.getLightData(_lightDataId);
 		lightData.Position = position;
 		lightData.Changed = true;
@@ -48,7 +48,7 @@ namespace sp {
 
 	void LightSource::onRotationUpdated(Vector3 const & rotation) {
 		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
-		LightDataContainer & lightDataContainer{ renderContext.LightDataContainer };
+		LightDataContainer & lightDataContainer{ renderContext.getLightDataContainer() };
 
 		LightData lightData = lightDataContainer.getLightData(_lightDataId);
 
