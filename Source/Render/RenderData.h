@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include "Core/Math/Vector3.h"
 #include "Core/Math/Matrix4x4.h"
 #include "PlatformIndependence/SpType.h"
@@ -11,12 +12,13 @@ namespace sp {
 	class RenderData {
 	public:
 		RenderData(SpInt const gameObjectId, bool const active, bool const isStatic);
-		Matrix4x4 const GetModelMatrix() const;
+		Matrix4x4 const getModelMatrix() const;
 
 	public:
 		SpInt GameObjectId;
 		bool Active;
 		bool IsStatic;
+		bool DepthTest = true;
 		SpUnsigned VAO;
 		SpUnsigned VBO;
 		SpUnsigned EBO;

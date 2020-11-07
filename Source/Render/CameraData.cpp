@@ -6,7 +6,7 @@
 #include "Core/Math/Vector3.h"
 
 namespace sp {
-	Matrix4x4 const CameraData::GetViewMatrix() {
+	Matrix4x4 CameraData::GetViewMatrix() const {
 		Vector3 const worldUp{ 0.0F, 1.0F, 0.0f };
 		Vector3 const forward = CameraData::getForward();
 		Vector3 const right = Vector3::cross(forward, worldUp).normalized();
@@ -16,7 +16,7 @@ namespace sp {
 		return lookAt;
 	}
 
-	Matrix4x4 const CameraData::GetProjectionMatrix() {
+	Matrix4x4 CameraData::GetProjectionMatrix() const {
 		SpFloat aspect = static_cast<float>(CameraData::_screenWidth) / CameraData::_screenHeight;
 		return getPerspectiveMat(CameraData::_fov, aspect, 0.1F, 100.0F);
 	}
@@ -36,7 +36,7 @@ namespace sp {
 		CameraData::_dataChanged = true;
 	}
 
-	Vector3 const CameraData::getTranslation()
+	Vector3 CameraData::getTranslation() const
 	{
 		return CameraData::_translation;
 	}
@@ -46,7 +46,7 @@ namespace sp {
 		CameraData::_dataChanged = true;
 	}
 
-	Vector3 const CameraData::getRotation()
+	Vector3 CameraData::getRotation() const
 	{
 		return CameraData::_rotation;
 	}
@@ -56,8 +56,7 @@ namespace sp {
 		CameraData::_dataChanged = true;
 	}
 
-	bool CameraData::getDataChanged()
-	{
+	bool CameraData::getDataChanged() const {
 		return CameraData::_dataChanged;
 	}
 
@@ -65,18 +64,11 @@ namespace sp {
 		CameraData::_dataChanged = false;
 	}
 
-	Vector3 const CameraData::getForward() {
-		Vector3 const rotation = CameraData::_rotation;
+	Vector3 CameraData::getForward() const {
+		Vector3 const rotation = _rotation;
 		Degree const rotX{ rotation.X };
 		Degree const rotY{ rotation.Y };
 
 		return getDirection(rotX, rotY);
 	}
-
-	bool CameraData::_dataChanged = false;
-	Vector3 CameraData::_translation{};
-	Vector3 CameraData::_rotation{};
-	Degree CameraData::_fov{};
-	SpInt CameraData::_screenWidth;
-	SpInt CameraData::_screenHeight;
 }

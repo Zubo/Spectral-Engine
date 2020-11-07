@@ -1,5 +1,8 @@
 #pragma once
 
+#include <memory>
+
+#include "PlatformIndependence/Input/Input.h"
 #include "PlatformIndependence/SpType.h"
 
 struct GLFWwindow;
@@ -7,11 +10,7 @@ struct GLFWwindow;
 namespace sp {
 	class SpWindow {
 	public:
-		static void init(SpInt const width, SpInt const height);
-		static SpWindow * const getInstance();
-
-	private:
-		static SpWindow * windowInstance;
+		static std::unique_ptr<SpWindow> create(SpInt const width, SpInt const height);
 
 	public:
 		~SpWindow();
@@ -22,9 +21,11 @@ namespace sp {
 
 	public:
 		void update() const;
-		bool const initializedSuccessfuly() const;
-		bool const shouldClose() const;
-		GLFWwindow * const getConcreteWindow() const;
+		bool shouldClose() const;
+		void setCursorEnabled(bool const cursorEnabled);
+		GLFWwindow * getConcreteWindow() const;
+		Input const & getInput() const;
+		Input & getInput();
 
 		inline SpInt getWidht() const {
 			return _width;
@@ -35,9 +36,15 @@ namespace sp {
 		}
 
 	private:
+		void initGLFW();
+
+	private:
 		SpInt _width;
 		SpInt _height;
-		bool _initialized;
 		GLFWwindow * _concreteWindow = nullptr;
+		std::unique_ptr<Input> _inputUnique;
+
+	private:
+		static bool _GLFWInitialized;
 	};
 }

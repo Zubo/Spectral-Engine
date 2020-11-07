@@ -11,7 +11,9 @@ namespace sp {
 
 	class LightDataContainer {
 	public:
-		static LightDataContainer & getInstance();
+		LightDataContainer();
+
+	public:
 		void saveLightData(LightData const & lightData);
 		LightData const & getLightData(SpInt const gameObjectId);
 		std::unordered_map<int, LightData> const & getLightDataMap() const;
@@ -20,12 +22,10 @@ namespace sp {
 		void setAllLightDataChangedToFalse();
 
 	private:
-		LightDataContainer();
 		LightDataContainer(LightDataContainer const & lightDataContainer) = delete;
 		LightDataContainer & operator=(LightDataContainer & lightDataContainer) = delete;
 
 	private:
-		static LightDataContainer _instance;
 		std::unordered_map<int, LightData> _lightDataMap;
 		bool _numberOfLightsChanged = false;
 	};

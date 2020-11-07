@@ -7,7 +7,7 @@ namespace sp {
 	template<typename T>
 	class OptionalRef {
 	public:
-		OptionalRef() = default;
+		OptionalRef() { };
 		OptionalRef(const OptionalRef<T>& other) = default;
 
 		OptionalRef(T & ref) : _component{ ref } {

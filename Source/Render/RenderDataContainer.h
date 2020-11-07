@@ -3,25 +3,24 @@
 #include <unordered_map>
 
 #include "PlatformIndependence/SpType.h"
+#include "Render/RenderData.h"
 
 namespace sp {
-	class RenderData;
-
 	class RenderDataContainer {
+	public:
+		RenderDataContainer() = default;
+
+	private:
+		RenderDataContainer(RenderDataContainer const & renderDataContainer) = delete;
+		RenderDataContainer operator=(RenderDataContainer & renderDataCOntainer) = delete;
+
 	public:
 		RenderData const & getRenderData(SpInt const gameObjectId) const;
 		std::unordered_map<int, RenderData> const & getRenderDataMap() const;
 		void saveRenderData(RenderData const & renderData);
 		void resetAllChangedFlags();
-		static RenderDataContainer & getInstance();
-
-	private:
-		RenderDataContainer() = default;
-		RenderDataContainer(RenderDataContainer const & renderDataContainer) = delete;
-		RenderDataContainer operator=(RenderDataContainer & renderDataCOntainer) = delete;
 
 	private:
 		std::unordered_map<int, RenderData> _renderDataMap;
-		static RenderDataContainer _instance;
 	};
 }

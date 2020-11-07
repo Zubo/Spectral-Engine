@@ -9,25 +9,25 @@ namespace sp {
 
 	class CameraData {
 	public:
-		static Matrix4x4 const GetViewMatrix();
-		static Matrix4x4 const GetProjectionMatrix();
-		static void setFov(Degree const & fov);
-		static void setScreenWidth(SpInt const screenWidth);
-		static void setScreenHeight(SpInt const screenHeight);
-		static Vector3 const getTranslation();
-		static void setTranslation(Vector3 const & translation);
-		static Vector3 const getRotation();
-		static void setRotation(Vector3 const & rotation);
-		static bool getDataChanged();
-		static void setDataChangedToFalse();
-		static Vector3 const getForward();
+		Matrix4x4 GetViewMatrix() const;
+		Matrix4x4 GetProjectionMatrix() const;
+		void setFov(Degree const & fov);
+		void setScreenWidth(SpInt const screenWidth);
+		void setScreenHeight(SpInt const screenHeight);
+		Vector3 getTranslation() const;
+		void setTranslation(Vector3 const & translation);
+		Vector3 getRotation() const;
+		void setRotation(Vector3 const & rotation);
+		bool getDataChanged() const;
+		void setDataChangedToFalse();
+		Vector3 getForward() const;
 
 	private:
-		static bool _dataChanged;
-		static Vector3 _translation;
-		static Vector3 _rotation;
-		static Degree _fov;
-		static SpInt _screenWidth;
-		static SpInt _screenHeight;
+		bool _dataChanged = false;
+		Vector3 _translation;
+		Vector3 _rotation;
+		Degree _fov;
+		SpInt _screenWidth;
+		SpInt _screenHeight;
 	};
 }

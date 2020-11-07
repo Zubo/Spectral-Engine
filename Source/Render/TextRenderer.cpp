@@ -1,19 +1,21 @@
+#include "TextRenderer.h"
+#include "TextRenderer.h"
 #include "Render/TextRenderer.h"
 
 #include "Core/Math/LinearTransformations.h"
 #include "Core/Utility/ResourcesPathProvider.h"
 #include "glad/glad.h"
+#include "GLFW/glfw3.h"
 #include "PlatformIndependence/SpType.h"
 #include "PlatformIndependence/SpWindow.h"
 #include "Render/UI/Font/Character.h"
 #include "Render/UI/Font/Font.h"
 
 namespace sp {
-	TextRenderer TextRenderer::instance;
-
-	TextRenderer & TextRenderer::getInstance() {
-		return TextRenderer::instance;
-	}
+	 GLuint TextRenderer::_VBO;
+	 GLuint TextRenderer::_VAO;
+	 std::unique_ptr<Font const> TextRenderer::_font;
+	 ShaderProgram TextRenderer::_shaderProgram;
 
 	void TextRenderer::init() {
 		glGenVertexArrays(1, &_VAO);
@@ -39,11 +41,14 @@ namespace sp {
 	}
 
 	void TextRenderer::renderText(
+		SpWindow const & spWindow,
 		SpString const & text,
 		Vector2 const & position,
-		Vector2 const & scale
-	) const {
-		Matrix4x4 const orthoProjectionMatrix = getOrthoProjectionMatrix();
+		Vector2 const & scale) {
+		GLFWwindow * glfwWindow = spWindow.getConcreteWindow();
+		glfwMakeContextCurrent(glfwWindow);
+
+		Matrix4x4 const orthoProjectionMatrix = getOrthoProjectionMatrix(spWindow);
 
 		_shaderProgram.use();
 		_shaderProgram.setMatrix4fv("projection", orthoProjectionMatrix.getValuePtr());
@@ -90,10 +95,9 @@ namespace sp {
 		}
 	}
 
-	Matrix4x4 TextRenderer::getOrthoProjectionMatrix() const {
-		SpWindow const * const window = SpWindow::getInstance();
-		SpFloat const width = static_cast<SpFloat>(window->getWidht());
-		SpFloat const height = static_cast<SpFloat>(window->getHeight());
+	Matrix4x4 TextRenderer::getOrthoProjectionMatrix(SpWindow const & spWindow) {
+		SpFloat const width = static_cast<SpFloat>(spWindow.getWidht());
+		SpFloat const height = static_cast<SpFloat>(spWindow.getHeight());
 		return getOrthographicMat(0, width, 0, height);
 	}
 }

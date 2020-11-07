@@ -1,10 +1,10 @@
 set(SpectralEngine_Render_NoFilter_SRC
+    "RenderEngine.cpp"
+    "RenderContext.cpp"
     "Mesh.cpp"
     "MeshContainer.cpp"
-    "RenderDataUpdate.cpp"
     "RenderData.cpp"
     "RenderDataContainer.cpp"
-    "Render.cpp"
     "Texture.cpp"
     "TextureManager.cpp"
     "CameraData.cpp"
@@ -13,12 +13,13 @@ set(SpectralEngine_Render_NoFilter_SRC
     "TextRenderer.cpp")
     
 set(SpectralEngine_Render_NoFilter_HEADER
+    "RenderEngine.h"
+    "RenderContext.h"
+    "RenderFunctions.h"
     "Mesh.h"
     "MeshContainer.h"
-    "RenderDataUpdate.h"
     "RenderData.h"
     "RenderDataContainer.h"
-    "Render.h"
     "Texture.h"
     "TextureManager.h"
     "CameraData.h"
