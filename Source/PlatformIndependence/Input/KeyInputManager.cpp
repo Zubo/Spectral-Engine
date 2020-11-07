@@ -1,3 +1,4 @@
+#include "GLFW/glfw3.h"
 #include "PlatformIndependence/Input/KeyInputManager.h"
 
 sp::KeyInputManager::KeyInputManager(GLFWwindow * window) : window{ window } {

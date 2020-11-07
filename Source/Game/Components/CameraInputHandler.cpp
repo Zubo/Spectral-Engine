@@ -20,7 +20,9 @@ namespace sp {
 	 void CameraInputHandler::processMouseInput() {
 
 		 float const sensitivity = 0.05F;
-		 Vector2 const mouseOffset = Input::mouseAxis() * sensitivity;
+
+		 Input & input{ _gameObjectOwner->GetSceneRef()->getInput() };
+		 Vector2 const mouseOffset = input.mouseAxis() * sensitivity;
 
 		 if (mouseOffset.X * mouseOffset.X < 0.01F && mouseOffset.Y * mouseOffset.Y < 0.01F) {
 			 return;
@@ -57,19 +59,21 @@ namespace sp {
 	 		Vector3 position = transform->getPosition();
 			Vector3 oldPosition{ position };
 
-	 		if (Input::keyDown(KeyCode::W)) {
+			Input & input{ _gameObjectOwner->GetSceneRef()->getInput() };
+
+	 		if (input.keyDown(KeyCode::W)) {
 	 			position += cameraSpeed * cameraFront * deltaTime;
 				transform->setPosition(position);
 	 		}
-	 		if (Input::keyDown(KeyCode::S)) {
+	 		if (input.keyDown(KeyCode::S)) {
 	 			position -= cameraSpeed * cameraFront * deltaTime;
 				transform->setPosition(position);
 	 		}
-	 		if (Input::keyDown(KeyCode::A)) {
+	 		if (input.keyDown(KeyCode::A)) {
 	 			position -= cameraSpeed * Vector3::cross(cameraFront, _worldUp).normalized() * deltaTime;
 				transform->setPosition(position);
 	 		}
-	 		if (Input::keyDown(KeyCode::D)) {
+	 		if (input.keyDown(KeyCode::D)) {
 	 			position += cameraSpeed * Vector3::cross(cameraFront, _worldUp).normalized() * deltaTime;
 				transform->setPosition(position);
 	 		}

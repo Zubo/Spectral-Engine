@@ -23,6 +23,7 @@
 #include "Game/Components/LightSource.h"
 #include "Game/Components/PositionOscilator.h"
 #include "Game/GameObject/GameObject.h"
+#include "Game/Scene/Scene.h"
 #include "Game/Vertices.h"
 #include "Render/MeshContainer.h"
 #include "Render/Enum/LightType.h"
@@ -50,16 +51,16 @@ namespace sp {
 		material.setShinines(shininess);
 	}
 
-	GameObject * createLight(SpString const & shadersFolderPath, SpString const texturePathArray[], SpInt const lightSourceIndex) {
-		GameObject * lightSourceGameObject = new GameObject;
+	GameObject & createLight(Scene & scene, SpString const & shadersFolderPath, SpString const texturePathArray[], SpInt const lightSourceIndex) {
+		GameObject & lightSourceGameObject{ scene.createGameObject() };
 
-		OptionalRef<Transform> transformOptionalRef = lightSourceGameObject->addComponent<Transform>();
+		OptionalRef<Transform> transformOptionalRef = lightSourceGameObject.addComponent<Transform>();
 		if (transformOptionalRef.HasRef()) {
 			transformOptionalRef->setPosition(cubePositions[lightSourceIndex]);
 			transformOptionalRef->setScale(Vector3{ 0.1F });
 		}
 
-		OptionalRef<Renderer> rendererOptionalRef = lightSourceGameObject->addComponent<Renderer>();
+		OptionalRef<Renderer> rendererOptionalRef = lightSourceGameObject.addComponent<Renderer>();
 		if (rendererOptionalRef.HasRef()) {
 			SpUnsigned const meshId = MeshContainer::createMesh(verticesUV, (int)(sizeof(verticesUV) / sizeof(float)), indices, (int)sizeof(indices), true, false);
 			rendererOptionalRef->initRenderer(meshId);
@@ -67,21 +68,21 @@ namespace sp {
 
 		SpString const vertexLightingShaderPath{ shadersFolderPath + SpString{ "/vertex_shader.glsl" } };
 		SpString const fragmentLightingShaderPath{ shadersFolderPath + SpString{ "/fragment_lamp_shader.glsl" } };
-		OptionalRef<Material> material = lightSourceGameObject->addComponent<Material>();
+		OptionalRef<Material> material = lightSourceGameObject.addComponent<Material>();
 		if (material.HasRef()) {
 			material->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
 			const SpInt numberOfTextures = 2;
 			material->initMaterial(vertexLightingShaderPath, fragmentLightingShaderPath);
 		}
 
-		OptionalRef<LightSource> pointLightSourceRef = lightSourceGameObject->addComponent<LightSource>();
+		OptionalRef<LightSource> pointLightSourceRef = lightSourceGameObject.addComponent<LightSource>();
 		if (pointLightSourceRef.HasRef()) {
 			pointLightSourceRef->initLightSource(LightType::Point);
 		}
 
-		lightSourceGameObject->addComponent<PositionOscilator>();
-		lightSourceGameObject->addComponent<Rotator>();
-		OptionalRef<LightSource> directionalLightSourceRef = lightSourceGameObject->addComponent<LightSource>();
+		lightSourceGameObject.addComponent<PositionOscilator>();
+		lightSourceGameObject.addComponent<Rotator>();
+		OptionalRef<LightSource> directionalLightSourceRef = lightSourceGameObject.addComponent<LightSource>();
 		if (directionalLightSourceRef.HasRef()) {
 			directionalLightSourceRef->initLightSource(LightType::Directional);
 		}
@@ -90,21 +91,21 @@ namespace sp {
 	}
 
 	void createBoxObjects(
+		Scene & scene,
 		SpString const & bigBoxTexture, SpString const & specularMapTexturePath, SpString const & diffuseMapTexturePath, SpString const & vertexShaderPath,
 		SpString const & fragmentShaderPath, SpInt const numberOfBoxes, Transform & cameraTransform, Transform & lightSourceTrnasform) {
 
-		GameObject * boxObjects = new GameObject[numberOfBoxes];
-
 		for (SpInt i = 0; i < numberOfBoxes; ++i) {
 
-			OptionalRef<Renderer> renderer = boxObjects[i].addComponent<Renderer>();
+			GameObject & boxObject{ scene.createGameObject() };
+			OptionalRef<Renderer> const renderer = boxObject.addComponent<Renderer>();
 			if (renderer.HasRef()) {
 				SpUnsigned const meshId = MeshContainer::createMesh(verticesUVNormals,
 					(int)(sizeof(verticesUVNormals) / sizeof(float)), indices, (int)(sizeof(indices) / sizeof(int)), true, true);
 				renderer->initRenderer(meshId);
 			}
 
-			OptionalRef<Material> materialRef = boxObjects[i].addComponent<Material>();
+			OptionalRef<Material> materialRef = boxObject.addComponent<Material>();
 
 			if (materialRef.HasRef()) {
 				materialRef->initMaterial(vertexShaderPath, fragmentShaderPath);
@@ -121,11 +122,11 @@ namespace sp {
 			setRandomColors(materialRef);
 
 			if (i % 2) {
-				boxObjects[i].addComponent<Rotator>();
+				boxObject.addComponent<Rotator>();
 			}
 
 
-			OptionalRef<Transform> transform = boxObjects[i].addComponent<Transform>();
+			OptionalRef<Transform> transform = boxObject.addComponent<Transform>();
 			if (transform.HasRef()) {
 				transform->setPosition(cubePositions[i]);
 				if (i == 0) {
@@ -135,13 +136,13 @@ namespace sp {
 		}
 	}
 
-	void initScene() {
-		GameObject * const cameraGameObject = new GameObject();
-		auto cameraTransformRef = cameraGameObject->addComponent<CameraTransform>();
-		OptionalRef<Camera> cameraRef = cameraGameObject->addComponent<Camera>();
-		cameraGameObject->addComponent<CameraInputHandler>();
+	void initScene(Scene & scene) {
+		GameObject & cameraGameObject{ scene.createGameObject() };
+		auto cameraTransformRef = cameraGameObject.addComponent<CameraTransform>();
+		OptionalRef<Camera> cameraRef = cameraGameObject.addComponent<Camera>();
+		cameraGameObject.addComponent<CameraInputHandler>();
 
-		OptionalRef<LightSource> cameraFlashlightRef = cameraGameObject->addComponent<LightSource>();
+		OptionalRef<LightSource> cameraFlashlightRef = cameraGameObject.addComponent<LightSource>();
 		if (cameraFlashlightRef.HasRef()) {
 			cameraFlashlightRef->initLightSource(LightType::Directional);
 		}
@@ -162,10 +163,10 @@ namespace sp {
 		};
 
 		constexpr SpInt numberOfObjects = (sizeof(cubePositions) / sizeof(cubePositions[0]));
-		GameObject * lightSourceGameObject = createLight(shadersFolderPath, texturePathArray, numberOfObjects - 1);
+		GameObject & lightSourceGameObject{ createLight(scene, shadersFolderPath, texturePathArray, numberOfObjects - 1) };
 
 		SpInt const numberOfBoxes = numberOfObjects - 1;
-		OptionalRef<Transform> lightSourceTransformRef = lightSourceGameObject->getComponent<Transform>();
-		createBoxObjects(texturePathArray[0], specularMapPath, diffuseMapPath, vertexShaderPath, fragmentShaderPath, numberOfBoxes, cameraTransformRef, lightSourceTransformRef);
+		OptionalRef<Transform> lightSourceTransformRef = lightSourceGameObject.getComponent<Transform>();
+		createBoxObjects(scene, texturePathArray[0], specularMapPath, diffuseMapPath, vertexShaderPath, fragmentShaderPath, numberOfBoxes, cameraTransformRef, lightSourceTransformRef);
 	}
 }

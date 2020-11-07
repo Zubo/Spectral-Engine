@@ -1,10 +1,10 @@
 #pragma once
 
 #include <unordered_map>
-#define GLFW_INCLUDE_NONE
-#include <GLFW/glfw3.h>
 
 #include "PlatformIndependence/Input/KeyCode.h"
+
+struct GLFWwindow;
 
 namespace sp {
 	class KeyInputManager {

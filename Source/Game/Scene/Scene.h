@@ -5,6 +5,7 @@
 
 #include "Game/GameObject/GameObject.h"
 #include "PlatformIndependence/SpType.h"
+#include "PlatformIndependence/Input/Input.h"
 #include "Render/RenderContext.h"
 #include "Render/RenderEngine.h"
 
@@ -21,6 +22,9 @@ namespace sp {
 		void insertGameObject(std::unique_ptr<GameObject> gameObjectUnique);
 		RenderContext & getRenderContext();
 		RenderContext const & getRenderContext() const;
+		Input const & getInput() const;
+		Input & getInput();
+		GameObject & createGameObject();
 
 	private:
 		SpInt getGameObjectIndex(std::unique_ptr<GameObject> const & gameObjectUnique) const;

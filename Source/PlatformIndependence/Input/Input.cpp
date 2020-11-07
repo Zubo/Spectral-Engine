@@ -4,35 +4,30 @@
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
-#include "PlatformIndependence/SpWindow.h"
-#include "PlatformIndependence/Input/MouseInputManager.h"
-#include "PlatformIndependence/Input/KeyInputManager.h"
-
 namespace sp {
-	std::unique_ptr<MouseInputManager> Input::_mouseInputManagerUnique;
-	std::unique_ptr<KeyInputManager> Input::_keyInputManagerUnique;
+	std::unordered_map<GLFWwindow *, MousePosCallbackFunction> Input::_updateMousePosCallbackMap;
 
-	void Input::init(SpWindow & spWindow) {
-		Input::_mouseInputManagerUnique = std::make_unique<MouseInputManager>();
+	Input::Input(GLFWwindow & spWindow) :
+		_keyInputManager{ &spWindow } {
 
-		glfwSetCursorPosCallback(spWindow.getConcreteWindow(),
-			[](auto window, auto xpos, auto ypos) {
-			Input::_mouseInputManagerUnique->updateMousePos((float)xpos, (float)ypos);
+		_updateMousePosCallbackMap.emplace(&spWindow, [this](float const xPos, float const yPos) { _mouseInputManager.updateMousePos(xPos, yPos); });
+		
+		glfwSetCursorPosCallback(&spWindow,
+			[](GLFWwindow * window, double xpos, double ypos) {
+			_updateMousePosCallbackMap.at(window)(static_cast<float>(xpos), static_cast<float>(ypos));
 		});
-
-		Input::_keyInputManagerUnique = std::unique_ptr<KeyInputManager>(new KeyInputManager{ spWindow.getConcreteWindow() });
 	}
 
 	bool Input::keyDown(KeyCode keyCode) {
-		return Input::_keyInputManagerUnique->keyPressed(keyCode);
+		return _keyInputManager.keyPressed(keyCode);
 	}
 
 	Vector2 Input::mouseAxis() {
-		return Vector2{ Input::_mouseInputManagerUnique->_xDelta, Input::_mouseInputManagerUnique->_yDelta };
+		return Vector2{ _mouseInputManager._xDelta, _mouseInputManager._yDelta };
 	}
 
 	void Input::update() {
-		Input::_keyInputManagerUnique->update();
-		Input::_mouseInputManagerUnique->update();
+		_keyInputManager.update();
+		_mouseInputManager.update();
 	}
 }

@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include "PlatformIndependence/Input/Input.h"
 #include "PlatformIndependence/SpType.h"
 
 struct GLFWwindow;
@@ -20,9 +21,10 @@ namespace sp {
 
 	public:
 		void update() const;
-		bool const initializedSuccessfuly() const;
 		bool const shouldClose() const;
-		GLFWwindow * const getConcreteWindow() const;
+		GLFWwindow * getConcreteWindow() const;
+		Input const & getInput() const;
+		Input & getInput();
 
 		inline SpInt getWidht() const {
 			return _width;
@@ -33,9 +35,15 @@ namespace sp {
 		}
 
 	private:
+		void initGLFW();
+
+	private:
 		SpInt _width;
 		SpInt _height;
-		bool _initialized;
 		GLFWwindow * _concreteWindow = nullptr;
+		std::unique_ptr<Input> _inputUnique;
+
+	private:
+		static bool _GLFWInitialized;
 	};
 }

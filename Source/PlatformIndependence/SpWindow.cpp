@@ -9,6 +9,8 @@
 #include "PlatformIndependence/SpWindow.h"
 
 namespace sp {
+	bool SpWindow::_GLFWInitialized{ false };
+
 	std::unique_ptr<SpWindow> SpWindow::create(SpInt const width, SpInt const height) {
 		return std::unique_ptr<SpWindow>(new SpWindow(width, height));
 	}
@@ -19,11 +21,11 @@ namespace sp {
 		}
 	}
 
-	SpWindow::SpWindow(SpInt const width, SpInt const height) : _width{ width }, _height{ height }, _initialized{ false } {
-		glfwInit();
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	SpWindow::SpWindow(SpInt const width, SpInt const height) : _width{ width }, _height{ height } {
+		if (!_GLFWInitialized) {
+			initGLFW();
+			_GLFWInitialized = true;
+		}
 
 		_concreteWindow = glfwCreateWindow(width, height, "Spectral Engine", NULL, NULL);
 
@@ -49,7 +51,7 @@ namespace sp {
 
 		glfwSetInputMode(_concreteWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-		_initialized = true;
+		_inputUnique = std::make_unique<Input>(*_concreteWindow);
 	}
 
 	void SpWindow::update() const {
@@ -58,15 +60,26 @@ namespace sp {
 		}
 	}
 
-	bool const SpWindow::initializedSuccessfuly() const {
-		return _initialized;
-	}
-
 	bool const SpWindow::shouldClose() const {
 		return glfwWindowShouldClose(_concreteWindow);
 	}
 
-	GLFWwindow * const SpWindow::getConcreteWindow() const {
+	GLFWwindow * SpWindow::getConcreteWindow() const {
 		return _concreteWindow;
+	}
+
+	Input const & SpWindow::getInput() const {
+		return *_inputUnique;
+	}
+
+	Input & SpWindow::getInput() {
+		return *_inputUnique;
+	}
+
+	void SpWindow::initGLFW() {
+		glfwInit();
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	}
 }
