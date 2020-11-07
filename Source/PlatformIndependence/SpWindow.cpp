@@ -60,7 +60,7 @@ namespace sp {
 		}
 	}
 
-	bool const SpWindow::shouldClose() const {
+	bool SpWindow::shouldClose() const {
 		return glfwWindowShouldClose(_concreteWindow);
 	}
 

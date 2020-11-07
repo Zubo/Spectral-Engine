@@ -21,7 +21,7 @@ namespace sp {
 
 	public:
 		void update() const;
-		bool const shouldClose() const;
+		bool shouldClose() const;
 		GLFWwindow * getConcreteWindow() const;
 		Input const & getInput() const;
 		Input & getInput();

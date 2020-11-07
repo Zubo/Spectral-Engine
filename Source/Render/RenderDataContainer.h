@@ -3,10 +3,9 @@
 #include <unordered_map>
 
 #include "PlatformIndependence/SpType.h"
+#include "Render/RenderData.h"
 
 namespace sp {
-	class RenderData;
-
 	class RenderDataContainer {
 	public:
 		RenderDataContainer() = default;
