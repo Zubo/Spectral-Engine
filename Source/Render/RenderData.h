@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include "Core/Math/Vector3.h"
 #include "Core/Math/Matrix4x4.h"
 #include "PlatformIndependence/SpType.h"
@@ -17,6 +18,7 @@ namespace sp {
 		SpInt GameObjectId;
 		bool Active;
 		bool IsStatic;
+		bool DepthTest = true;
 		SpUnsigned VAO;
 		SpUnsigned VBO;
 		SpUnsigned EBO;

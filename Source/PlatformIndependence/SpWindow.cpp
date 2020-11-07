@@ -42,14 +42,10 @@ namespace sp {
 			return;
 		}
 
-		glViewport(0, 0, width, height);
-
 		glfwSetFramebufferSizeCallback(_concreteWindow,
 			[](GLFWwindow * window, SpInt width, SpInt height) {
 			glViewport(0, 0, width, height);
 		});
-
-		glfwSetInputMode(_concreteWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 		_inputUnique = std::make_unique<Input>(*_concreteWindow);
 	}
@@ -62,6 +58,11 @@ namespace sp {
 
 	bool SpWindow::shouldClose() const {
 		return glfwWindowShouldClose(_concreteWindow);
+	}
+
+	void SpWindow::setCursorEnabled(bool const cursorEnabled) {
+		auto inputModeCursorArg{ (cursorEnabled) ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_DISABLED };
+		glfwSetInputMode(_concreteWindow, GLFW_CURSOR, inputModeCursorArg);
 	}
 
 	GLFWwindow * SpWindow::getConcreteWindow() const {

@@ -87,9 +87,6 @@ namespace sp {
 
 		RenderDataContainer & renderDataContainer = renderContext.getRenderDataContainer();
 
-		auto iterator = renderDataContainer.getRenderDataMap().begin();
-		auto end = renderDataContainer.getRenderDataMap().end();
-
 		CameraData & cameraData = renderContext.getCameraData();
 		Matrix4x4 const projectionMatrix = cameraData.GetProjectionMatrix();
 		Matrix4x4 const viewMatrix = cameraData.GetViewMatrix();
@@ -97,8 +94,13 @@ namespace sp {
 		bool const cameraDataChanged = cameraData.getDataChanged();
 		Vector3 const cameraRotation = cameraData.getRotation();
 
+		auto iterator = renderDataContainer.getRenderDataMap().begin();
+		auto end = renderDataContainer.getRenderDataMap().end();
+
 		for (iterator; iterator != end; ++iterator) {
 			RenderData const & renderData = iterator->second;
+
+			renderData.DepthTest ? glEnable(GL_DEPTH_TEST) : glDisable(GL_DEPTH_TEST);
 
 			renderData.RenderShaderProgram.use();
 

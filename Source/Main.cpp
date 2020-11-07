@@ -11,17 +11,16 @@
 #include "Render/RenderEngine.h"
 
 int main(int argc, char** argv) {
-	std::unique_ptr<sp::SpWindow> window = sp::SpWindow::create(800, 600);
-
 	sp::SpString const executablePath{ argv[0] };
 	sp::SpString const rootPath{ executablePath.substr(0, executablePath.find_last_of(sp::Environment::FilePathSeparator())) };
 	sp::ResourcesPathProvider::initializePaths(rootPath);
 
-	sp::TextRenderer textRenderer{ *window };
-	textRenderer.init();
+	std::unique_ptr<sp::SpWindow> window = sp::SpWindow::create(800, 600);
+	sp::TextRenderer::init();
 
 	sp::RenderEngine renderEngine;
 	sp::Scene scene{ renderEngine, true };
+
 	scene.getRenderContext().assignWindow(std::move(window));
 	sp::initScene(scene);
 
@@ -31,7 +30,7 @@ int main(int argc, char** argv) {
 
 	while (!mainWindow.shouldClose()) {
 		sp::SpFloat currentFrame = static_cast<float>(glfwGetTime());
-		sp::SpFloat deltaTime = currentFrame - lastFrame;
+		sp::SpFloat const deltaTime = currentFrame - lastFrame;
 		scene.updateGameObjects(deltaTime);
 		lastFrame = currentFrame;
 

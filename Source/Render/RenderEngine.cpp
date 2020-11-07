@@ -21,8 +21,6 @@ namespace sp {
 	}
 
 	bool RenderEngine::renderAllContexts() {
-		glEnable(GL_DEPTH_TEST);
-
 		for (auto && renderContext : _renderContexts) {
 			if (renderContext->getId() == _mainContextId) {
 				std::unique_ptr<SpWindow> const & contextWindowUnique = renderContext->getWindow();

@@ -22,6 +22,7 @@ namespace sp {
 	public:
 		void update() const;
 		bool shouldClose() const;
+		void setCursorEnabled(bool const cursorEnabled);
 		GLFWwindow * getConcreteWindow() const;
 		Input const & getInput() const;
 		Input & getInput();

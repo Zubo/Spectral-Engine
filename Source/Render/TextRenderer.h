@@ -5,6 +5,7 @@
 #include "glad/glad.h"
 
 #include "Core/Math/Matrix4x4.h"
+#include "Core/Utility/OptionalRef.h"
 #include "PlatformIndependence/SpType.h"
 #include "Render/Shader/ShaderProgram.h"
 #include "Render/UI/Font/Font.h"
@@ -15,23 +16,20 @@ namespace sp {
 
 	class TextRenderer {
 	public:
-		TextRenderer(SpWindow const & spWindow);
-
-	public:
-		void init();
-		void renderText(
+		static void init();
+		static void renderText(
+			SpWindow const & window,
 			SpString const & text,
 			Vector2 const & position,
-			Vector2 const & scale) const;
+			Vector2 const & scale);
 
 	private:
-		Matrix4x4 getOrthoProjectionMatrix() const;
+		static Matrix4x4 getOrthoProjectionMatrix(SpWindow const & spWindow);
 
 	private:
-		GLuint _VBO;
-		GLuint _VAO;
-		std::unique_ptr<Font const> _font;
-		ShaderProgram _shaderProgram;
-		SpWindow const & _spWindow;
+		static GLuint _VBO;
+		static GLuint _VAO;
+		static std::unique_ptr<Font const> _font;
+		static ShaderProgram _shaderProgram;
 	};
 }
