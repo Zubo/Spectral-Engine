@@ -32,7 +32,22 @@ set(SpectralEngine_Core_Math_HEADER
 	"Math/Quaternion.h"
 	"Math/Matrix4x4.h"
 	"Math/Direction.h")
+
+set(SpectralEngine_Core_Event_HEADER
+	"Event/EventContext.h"
+	"Event/EventSubscription.h")
+
+set(SpectralEngine_Core_Event_SRC
+	"Event/EventContext.cpp"
+	"Event/EventSubscription.cpp")
 	
+set(SpectralEngine_Core_EventMessage_SRC
+	"Event/Message/EventMessage.cpp")
+
+set(SpectralEngine_Core_EventMessage_HEADER
+	"Event/Message/EventMessage.h"
+	"Event/Message/EventMessageType.h")
+
 set(SpectralEngine_Core_Files
 	"CMakeSources.cmake")
 
@@ -44,6 +59,10 @@ source_group("Source Files\\Math" FILES ${SpectralEngine_Core_Math_SRC})
 source_group("Header Files\\Math" FILES ${SpectralEngine_Core_Math_HEADER})
 source_group("Source Files\\Utility\\Input" FILES ${SpectralEngine_Core_Input_SRC})
 source_group("Header Files\\Utility\\Input" FILES ${SpectralEngine_Core_Input_HEADER})
+source_group("Source Files\\Event" FILES ${SpectralEngine_Core_Event_SRC})
+source_group("Header Files\\Event" FILES ${SpectralEngine_Core_Event_HEADER})
+source_group("Header Files\\Event\\Message" FILES ${SpectralEngine_Core_EventMessage_SRC})
+source_group("Header Files\\Event\\Message" FILES ${SpectralEngine_Core_EventMessage_HEADER})
 
 set(SpectralEngine_Core_SRC
 	${SpectralEngine_Core_Components_SRC}
@@ -57,4 +76,8 @@ set(SpectralEngine_Core_SRC
 	${SpectralEngine_Core_Utility_HEADER}
 	${SpectralEngine_Core_Math_SRC}
 	${SpectralEngine_Core_Math_HEADER}
+	${SpectralEngine_Core_Event_SRC}
+	${SpectralEngine_Core_Event_HEADER}
+	${SpectralEngine_Core_EventMessage_SRC}
+	${SpectralEngine_Core_EventMessage_HEADER}
 	${SpectralEngine_Core_Files})
