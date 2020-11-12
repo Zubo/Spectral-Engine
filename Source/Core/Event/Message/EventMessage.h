@@ -5,7 +5,7 @@
 namespace sp {
 	class EventMessage {
 	public:
-		EventMessage() = delete;
+		EventMessage(EventMessageType const messageType);
 		virtual ~EventMessage() = default;
 
 	public:

@@ -5,26 +5,26 @@
 namespace sp {
 	namespace test {
 		TEST(Radian, getValueRadian) {
-			// Arrange
+			// arrange
 			SpFloat const initialValueRadian{ 2.12F };
 			Radian const radian{ initialValueRadian };
 
-			// Act
+			// act
 			SpFloat const resultValueRadians = radian.getValueRadians();
 
-			// Assert
+			// assert
 			ASSERT_FLOAT_EQ(initialValueRadian, resultValueRadians);
 		}
 
 		TEST(Radian, getValueDegree) {
-			// Arrange
+			// arrange
 			SpFloat const initialValueRadian{ 5.1F };
 			Radian const radian{ initialValueRadian };
 
-			// Act
+			// act
 			SpFloat const resultValueDegree = radian.getVlueDegrees();
 
-			// Assert
+			// assert
 			SpFloat const expectedValueDegree = initialValueRadian * 180.0F / PI;
 			ASSERT_FLOAT_EQ(expectedValueDegree, resultValueDegree);
 		}
