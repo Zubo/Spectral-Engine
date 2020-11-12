@@ -1,24 +1,28 @@
 #include "Core/Event/EventContext.h"
 
 namespace sp {
-	void EventContext::subscribe(EventSubscription const & eventSubscription) {
-		EventMessageType const messageType = eventSubscription.getMessageType();
-		SubscriptionVector & subscriptionVector{ _eventHandlerMap[messageType] };
+	void EventContext::broadcastEvent(EventMessage & message) const {
+		EventMessageType const messageType{ message.getMessageType() };
+		SubscriptionVector const & subscriptionVector{ _eventHandlerMap.at(messageType) };
 
-		auto const existingSubscrIter{ std::find(subscriptionVector.begin(), subscriptionVector.end(), eventSubscription) };
-
-		if (existingSubscrIter != subscriptionVector.end()) {
-			throw "Error: Trying to insert event subscription that already exists. Event subscription must be unique!";
+		for (auto && subscription : subscriptionVector) {
+			subscription.handle(message);
 		}
-
-		subscriptionVector.emplace_back(eventSubscription);
 	}
 
-	void EventContext::unsubscribe(EventSubscription const & eventSubscription) {
-		EventMessageType const messageType = eventSubscription.getMessageType();
+	EventSubscription const & EventContext::subscribe(EventMessageType const messageType, EventHandler const & eventHandler) {
+		SubscriptionVector & subscriptionVector{ _eventHandlerMap[messageType] };
+		EventSubscription const & sub = subscriptionVector.emplace_back(EventSubscription{ messageType, eventHandler });
+		return sub;
+	}
+
+	void EventContext::unsubscribe(SpInt const subscriptionId, EventMessageType const messageType) {
 		SubscriptionVector & subscriptionVector{ _eventHandlerMap[messageType] };
 
-		auto const existingSubscrIter{ std::find(subscriptionVector.begin(), subscriptionVector.end(), eventSubscription) };
+		auto const existingSubscrIter{ 
+			std::find_if(subscriptionVector.begin(), subscriptionVector.end(), 
+			[subscriptionId](EventSubscription const & subscription) { return subscription.getSubscriptionId() == subscriptionId; })
+		};
 		subscriptionVector.erase(existingSubscrIter);
 	}
 }

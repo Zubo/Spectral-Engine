@@ -4,25 +4,22 @@
 
 #include "Core/Event/Message/EventMessage.h"
 #include "Core/Event/Message/EventMessageType.h"
-#include "Core/Utility/OptionalRef.h"
 #include "PlatformIndependence/SpType.h"
 
 namespace sp {
 	using EventHandler = std::function<void(EventMessage & message)>;
-	class EventContext;
 
 	class EventSubscription {
 	public:
+		EventSubscription(EventMessageType const eventMessageType, EventHandler const & eventHandler);
 		EventSubscription(EventSubscription const & other) = default;
 		EventSubscription(EventSubscription && other) = default;
-		~EventSubscription();
-
-	private:
-		EventSubscription(EventContext & eventContext, EventHandler const & eventHandler, EventMessageType const eventMessageType);
+		~EventSubscription() = default;
 
 	public:
 		void handle(EventMessage & message) const;
 		EventMessageType getMessageType() const;
+		SpInt getSubscriptionId() const;
 		void operator=(EventSubscription const & other);
 		bool operator==(EventSubscription const & other) const;
 
@@ -30,11 +27,7 @@ namespace sp {
 		SpInt _subscriptionId;
 		EventHandler _eventHandler;
 		EventMessageType _eventMessageType;
-		OptionalRef<EventContext> _eventContextRef;
 		
-	public:
-		static EventSubscription create(EventContext & eventContext, EventHandler const & eventHandler, EventMessageType const eventMessageType);
-
 	private:
 		static SpInt _nextSubscriptionId;
 	};

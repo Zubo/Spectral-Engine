@@ -35,11 +35,13 @@ set(SpectralEngine_Core_Math_HEADER
 
 set(SpectralEngine_Core_Event_HEADER
 	"Event/EventContext.h"
-	"Event/EventSubscription.h")
+	"Event/EventSubscription.h"
+	"Event/EventBinding.h")
 
 set(SpectralEngine_Core_Event_SRC
 	"Event/EventContext.cpp"
-	"Event/EventSubscription.cpp")
+	"Event/EventSubscription.cpp"
+	"Event/EventBinding.cpp")
 	
 set(SpectralEngine_Core_EventMessage_SRC
 	"Event/Message/EventMessage.cpp")

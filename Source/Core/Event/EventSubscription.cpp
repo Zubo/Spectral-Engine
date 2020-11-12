@@ -1,20 +1,14 @@
 #include <memory>
 
 #include "Core/Event/EventSubscription.h"
-#include "Core/Event/EventContext.h"
 
 namespace sp {
 	SpInt EventSubscription::_nextSubscriptionId{ 0 };
 
-	EventSubscription::~EventSubscription() {
-		_eventContextRef->unsubscribe(*this);
-	}
-
-	EventSubscription::EventSubscription(EventContext & eventContext, EventHandler const & eventHandler, EventMessageType const eventMessageType) :
+	EventSubscription::EventSubscription(EventMessageType const eventMessageType, EventHandler const & eventHandler) :
 		_subscriptionId{ _nextSubscriptionId++ },
-		_eventHandler{ eventHandler },
 		_eventMessageType{ eventMessageType },
-		_eventContextRef{ eventContext} {
+		_eventHandler{ eventHandler } {
 	}
 
 	void EventSubscription::handle(EventMessage & message) const {
@@ -25,21 +19,17 @@ namespace sp {
 		return _eventMessageType;
 	}
 
+	SpInt EventSubscription::getSubscriptionId() const {
+		return _subscriptionId;
+	}
+
 	void EventSubscription::operator=(EventSubscription const & other) {
 		_subscriptionId = other._subscriptionId;
 		_eventHandler = other._eventHandler;
 		_eventMessageType = other._eventMessageType;
-		_eventContextRef = other._eventContextRef;
 	}
 
 	bool EventSubscription::operator==(EventSubscription const & other) const {
 		return other._subscriptionId == _subscriptionId;
-	}
-
-	EventSubscription EventSubscription::create(EventContext & eventContext, EventHandler const & eventHandler, EventMessageType const eventMessageType) {
-		EventSubscription subscription{ eventContext, eventHandler, eventMessageType };
-		eventContext.subscribe(subscription);
-
-		return subscription;
 	}
 }

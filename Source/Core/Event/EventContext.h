@@ -18,8 +18,9 @@ namespace sp {
 		~EventContext() = default;
 
 	public:
-		void subscribe(EventSubscription const & eventSubscription);
-		void unsubscribe(EventSubscription const & eventSubscription);
+		void broadcastEvent(EventMessage & message) const;
+		EventSubscription const & subscribe(EventMessageType const messageType, EventHandler const & eventHandler);
+		void unsubscribe(SpInt const subscriptionId, EventMessageType const messageType);
 
 	private:
 		std::unordered_map<EventMessageType, SubscriptionVector> _eventHandlerMap;
