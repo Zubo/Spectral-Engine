@@ -6,7 +6,7 @@ include(ExternalProject)
 
 ExternalProject_Add(Gtest
 	GIT_REPOSITORY		git@github.com:google/googletest.git
-	GIT_TAG				release-1.8.1
+	GIT_TAG				release-1.10.0
 	SOURCE_DIR			"${Gtest_SOURCE_DIR}"
 	BINARY_DIR			"${Gtest_BUILD_DIR}"
 	CONFIGURE_COMMAND	""

@@ -8,6 +8,7 @@ add_executable(Test ${SpectralEngine_Test_SRC})
 
 target_link_libraries(Test Core)
 target_link_libraries(Test gtest_main)
+target_link_libraries(Test gmock_main)
 
 set_target_properties(Test PROPERTIES
     FOLDER Test)

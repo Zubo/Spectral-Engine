@@ -26,3 +26,5 @@ set_target_properties(gtest PROPERTIES
 	FOLDER ThirdParty)
 set_target_properties(gtest_main PROPERTIES
 	FOLDER ThirdParty)
+set_target_properties(gmock_main PROPERTIES
+FOLDER ThirdParty)
