@@ -37,7 +37,7 @@ set(SpectralEngine_Core_Event_HEADER
 	"Event/EventContext.h"
 	"Event/IEventContext.h"
 	"Event/EventSubscription.h"
-	"Event/iEventSubscription.h"
+	"Event/IEventSubscription.h"
 	"Event/EventBinding.h"
 	"Event/IEventBinding.h")
 

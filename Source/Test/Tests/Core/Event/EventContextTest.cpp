@@ -10,7 +10,7 @@ namespace sp {
 
 			EventMessageType messageType{ static_cast<EventMessageType>(0) };
 			SpInt calledCount = 0;
-			EventHandler const handler{ [&calledCount](auto x) { ++calledCount; } };
+			EventHandler const handler{ [&calledCount](auto) { ++calledCount; } };
 			eventContext.subscribe(messageType, handler);
 
 			// act
@@ -26,7 +26,7 @@ namespace sp {
 			EventContext eventContext;
 
 			EventMessageType messageType{ static_cast<EventMessageType>(0) };
-			EventHandler const handler{ [](auto x) {} };
+			EventHandler const handler{ [](auto) {} };
 
 			// act
 			IEventSubscription const & eventSubscription = eventContext.subscribe(messageType, handler);
@@ -40,7 +40,7 @@ namespace sp {
 			EventContext eventContext;
 
 			EventMessageType messageType{ static_cast<EventMessageType>(0) };
-			EventHandler const handler{ [](auto x) {} };
+			EventHandler const handler{ [](auto) {} };
 			IEventSubscription const & eventSubscription = eventContext.subscribe(messageType, handler);
 
 			// act - assert

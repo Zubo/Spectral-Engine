@@ -8,7 +8,7 @@ namespace sp {
 		TEST(EventBindingTest, bind) {
 			// arrange
 			EventMessageType const messageType{ (EventMessageType)0 };
-			EventHandler const handler{ [](auto x) { } };
+			EventHandler const handler{ [](auto) { } };
 			EventSubscription const eventSubscription{ messageType, handler };
 
 			mocks::IEventContextMock eventContext;
@@ -23,7 +23,7 @@ namespace sp {
 		TEST(EventBindingTest, unbind) {
 			// arrange
 			EventMessageType const messageType{ (EventMessageType)0 };
-			EventHandler const handler{ [](auto x) {} };
+			EventHandler const handler{ [](auto) {} };
 			EventSubscription const eventSubscription{ messageType, handler };
 
 			mocks::IEventContextMock eventContext;\

@@ -8,7 +8,7 @@ namespace sp {
 		TEST(EventSubscription, CopyConstructor) {
 			// arrange
 			EventMessageType messageType{ static_cast<EventMessageType>(0) };
-			EventHandler handler{ [](auto x) {} };
+			EventHandler handler{ [](auto) {} };
 			EventSubscription subscription1{ messageType, handler };
 			EventSubscription subscription2{ subscription1 };
 
@@ -19,7 +19,7 @@ namespace sp {
 		TEST(EventSubscription, MoveConstructor) {
 			// arrange
 			EventMessageType messageType{ static_cast<EventMessageType>(0) };
-			EventHandler handler{ [](auto x) {} };
+			EventHandler handler{ [](auto) {} };
 			EventSubscription subscription1{ messageType, handler };
 			SpInt const firstSubscriptionId{ subscription1.getSubscriptionId() };
 
@@ -41,7 +41,7 @@ namespace sp {
 			EventMessageType messageType{ static_cast<EventMessageType>(0) };
 			SpInt callCount{ 0 };
 			
-			EventHandler handler{ [&callCount](auto x) { ++callCount; } };
+			EventHandler handler{ [&callCount](auto) { ++callCount; } };
 
 			EventSubscription subscription{ messageType, handler };
 
@@ -56,7 +56,7 @@ namespace sp {
 		TEST(EventSubscription, getMessageType) {
 			// arrange
 			EventMessageType messageType{ static_cast<EventMessageType>(0) };
-			EventHandler handler{ [](auto x) { } };
+			EventHandler handler{ [](auto) { } };
 			EventSubscription subscription{ messageType, handler };
 
 			// act
@@ -69,7 +69,7 @@ namespace sp {
 		TEST(EventSubscription, getSubscriptionId) {
 			// arrange
 			EventMessageType messageType{ static_cast<EventMessageType>(0) };
-			EventHandler handler{ [](auto x) {} };
+			EventHandler handler{ [](auto) {} };
 			EventSubscription subscription{ messageType, handler };
 
 			// act - assert
@@ -79,7 +79,7 @@ namespace sp {
 		TEST(EventSubscription, equalsOperator_equal) {
 			// arrange
 			EventMessageType messageType{ static_cast<EventMessageType>(0) };
-			EventHandler handler{ [](auto x) {} };
+			EventHandler handler{ [](auto) {} };
 			EventSubscription subscription{ messageType, handler };
 
 			// act - assert
@@ -89,7 +89,7 @@ namespace sp {
 		TEST(EventSubscription, equalsOperator_nonEqual) {
 			// arrange
 			EventMessageType messageType{ static_cast<EventMessageType>(0) };
-			EventHandler handler{ [](auto x) {} };
+			EventHandler handler{ [](auto) {} };
 			EventSubscription subscription1{ messageType, handler };
 			EventSubscription subscription2{ messageType, handler };
 
@@ -100,7 +100,7 @@ namespace sp {
 		TEST(EventSubscription, assignmentOperator) {
 			// arrange
 			EventMessageType messageType{ static_cast<EventMessageType>(0) };
-			EventHandler handler{ [](auto x) {} };
+			EventHandler handler{ [](auto) {} };
 			EventSubscription subscription1{ messageType, handler };
 			EventSubscription subscription2{ messageType, handler };
 

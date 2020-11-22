@@ -25,8 +25,8 @@ namespace sp {
 
 	private:
 		SpInt _subscriptionId;
-		EventHandler _eventHandler;
 		EventMessageType _eventMessageType;
+		EventHandler _eventHandler;
 
 	public:
 		static constexpr SpInt ErrorSubscriptionId = -1;
