@@ -5,11 +5,12 @@
 #include <unordered_map>
 #include <vector>
 
-#include "Core/Event/Message/EventMessageType.h"
 #include "Core/Event/EventSubscription.h"
+#include "Core/Event/IEventContext.h"
+#include "Core/Event/Message/EventMessageType.h"
 
 namespace sp {
-	class EventContext {
+	class EventContext : public IEventContext {
 	private:
 		using SubscriptionVector = std::vector<EventSubscription>;
 
@@ -18,9 +19,9 @@ namespace sp {
 		~EventContext() = default;
 
 	public:
-		void broadcastEvent(EventMessage & message) const;
-		EventSubscription const & subscribe(EventMessageType const messageType, EventHandler const & eventHandler);
-		void unsubscribe(SpInt const subscriptionId, EventMessageType const messageType);
+		virtual void broadcastEvent(EventMessage & message) const override;
+		virtual IEventSubscription const & subscribe(EventMessageType const messageType, EventHandler const & eventHandler) override;
+		virtual void unsubscribe(SpInt const subscriptionId, EventMessageType const messageType) override;
 
 	private:
 		std::unordered_map<EventMessageType, SubscriptionVector> _eventHandlerMap;

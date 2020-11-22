@@ -2,7 +2,7 @@
 #include "Core/Event/Message/EventMessage.h"
 
 namespace sp {
-	namespace test {
+	namespace tests {
 		TEST(MessageTest, getMessageType) {
 			// arrange
 			constexpr EventMessageType msgType{ static_cast<EventMessageType>(0) };

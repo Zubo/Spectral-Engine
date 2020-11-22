@@ -4,7 +4,7 @@
 #include "gtest/gtest.h"
 
 namespace sp {
-	namespace test {
+	namespace tests {
 		TEST(Quaternion, multiplicationWithQuat) {
 			// arrange
 			Quaternion const quat{ 0.3F, 11.2F, 2.3F, 0.1F };

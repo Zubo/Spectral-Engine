@@ -10,7 +10,7 @@ namespace sp {
 		}
 	}
 
-	EventSubscription const & EventContext::subscribe(EventMessageType const messageType, EventHandler const & eventHandler) {
+	IEventSubscription const & EventContext::subscribe(EventMessageType const messageType, EventHandler const & eventHandler) {
 		SubscriptionVector & subscriptionVector{ _eventHandlerMap[messageType] };
 		EventSubscription const & sub = subscriptionVector.emplace_back(EventSubscription{ messageType, eventHandler });
 		return sub;
@@ -23,6 +23,7 @@ namespace sp {
 			std::find_if(subscriptionVector.begin(), subscriptionVector.end(), 
 			[subscriptionId](EventSubscription const & subscription) { return subscription.getSubscriptionId() == subscriptionId; })
 		};
+
 		subscriptionVector.erase(existingSubscrIter);
 	}
 }

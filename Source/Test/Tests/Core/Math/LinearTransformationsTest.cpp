@@ -4,7 +4,7 @@
 #include "Core/Math/Vector3.h"
 
 namespace sp {
-	namespace test {
+	namespace tests {
 		TEST(LinearTransformations, translate) {
 			// arrange
 			Matrix4x4 transformation{};

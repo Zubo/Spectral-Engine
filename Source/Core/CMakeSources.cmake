@@ -35,8 +35,11 @@ set(SpectralEngine_Core_Math_HEADER
 
 set(SpectralEngine_Core_Event_HEADER
 	"Event/EventContext.h"
+	"Event/IEventContext.h"
 	"Event/EventSubscription.h"
-	"Event/EventBinding.h")
+	"Event/iEventSubscription.h"
+	"Event/EventBinding.h"
+	"Event/IEventBinding.h")
 
 set(SpectralEngine_Core_Event_SRC
 	"Event/EventContext.cpp"
@@ -63,7 +66,7 @@ source_group("Source Files\\Utility\\Input" FILES ${SpectralEngine_Core_Input_SR
 source_group("Header Files\\Utility\\Input" FILES ${SpectralEngine_Core_Input_HEADER})
 source_group("Source Files\\Event" FILES ${SpectralEngine_Core_Event_SRC})
 source_group("Header Files\\Event" FILES ${SpectralEngine_Core_Event_HEADER})
-source_group("Header Files\\Event\\Message" FILES ${SpectralEngine_Core_EventMessage_SRC})
+source_group("Source Files\\Event\\Message" FILES ${SpectralEngine_Core_EventMessage_SRC})
 source_group("Header Files\\Event\\Message" FILES ${SpectralEngine_Core_EventMessage_HEADER})
 
 set(SpectralEngine_Core_SRC

@@ -11,6 +11,15 @@ namespace sp {
 		_eventHandler{ eventHandler } {
 	}
 
+	EventSubscription::EventSubscription(EventSubscription && other) :
+		_subscriptionId{ other._subscriptionId },
+		_eventMessageType{ other._eventMessageType },
+		_eventHandler{ other._eventHandler } {
+		other._subscriptionId = ErrorSubscriptionId;
+		other._eventMessageType = EventMessageType::ErrorType;
+		other._eventHandler = NULL;
+	}
+
 	void EventSubscription::handle(EventMessage & message) const {
 		_eventHandler(message);
 	}
@@ -23,13 +32,19 @@ namespace sp {
 		return _subscriptionId;
 	}
 
+	bool EventSubscription::operator==(IEventSubscription const & other) const {
+		const EventSubscription * const otherEventSubscription{ dynamic_cast<const EventSubscription *>(&other) };
+
+		if (otherEventSubscription == nullptr) {
+			return false;
+		}
+
+		return otherEventSubscription->_subscriptionId == _subscriptionId;
+	}
+
 	void EventSubscription::operator=(EventSubscription const & other) {
 		_subscriptionId = other._subscriptionId;
 		_eventHandler = other._eventHandler;
 		_eventMessageType = other._eventMessageType;
-	}
-
-	bool EventSubscription::operator==(EventSubscription const & other) const {
-		return other._subscriptionId == _subscriptionId;
 	}
 }

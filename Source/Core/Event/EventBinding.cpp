@@ -1,16 +1,17 @@
 #include "Core/Event/EventBinding.h"
-#include "Core/Event/EventContext.h"
+#include "Core/Event/EventSubscription.h"
+#include "Core/Event/IEventContext.h"
 
 namespace sp {
 	EventBinding::~EventBinding() {
 	}
 
-	void EventBinding::bind(EventContext & eventContext, EventMessageType const messageType, EventHandler const & handler) {
+	void EventBinding::bind(IEventContext & eventContext, EventMessageType const messageType, EventHandler const & handler) {
 		if (_bound) {
 			unbind();
 		}
 
-		EventSubscription const & eventSubscription = eventContext.subscribe(messageType, handler);
+		IEventSubscription const & eventSubscription = eventContext.subscribe(messageType, handler);
 
 		_subscriptionId = eventSubscription.getSubscriptionId();
 		_messageType = messageType;

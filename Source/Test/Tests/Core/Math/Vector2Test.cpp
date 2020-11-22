@@ -2,7 +2,7 @@
 #include "gtest/gtest.h"
 
 namespace sp {
-	namespace test {
+	namespace tests {
 		TEST(Vector2, additionWithVector2) {
 			// arrange
 			SpFloat const firstX = 0.7F;
