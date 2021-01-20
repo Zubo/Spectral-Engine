@@ -1,12 +1,15 @@
 #pragma once
 
+#include <limits>
+
 #include "PlatformIndependence/SpType.h"
 
 namespace sp {
 	class Radian;
 	class Degree;
 
-	#define PI 3.14159265358979323846F
+	constexpr SpFloat PI = 3.14159265358979323846F;
+	constexpr SpFloat EPSILON = std::numeric_limits<float>::epsilon();
 
 	SpFloat sin(Radian const rad);
 	SpFloat sin(Degree const degree);

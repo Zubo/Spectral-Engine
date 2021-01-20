@@ -71,6 +71,10 @@ namespace sp {
 	Vector3 Vector3::normalized() const {
 		SpFloat const vectorLength = length();
 
+		if (vectorLength < EPSILON) {
+			return Vector3{ 0.0F };
+		}
+
 		return Vector3{
 			X / vectorLength,
 			Y / vectorLength,
