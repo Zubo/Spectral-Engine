@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include "Core/Event/EventBinding.h"
 #include "PlatformIndependence/SpWindow.h"
 #include "PlatformIndependence/SpType.h"
 #include "Render/CameraData.h"
@@ -10,6 +11,8 @@
 #include "Render/Shader/ShaderProgram.h"
 
 namespace sp {
+	class IEventContext;
+
 	class RenderContext {
 	public:
 		RenderContext(SpInt const id);
@@ -23,7 +26,7 @@ namespace sp {
 		CameraData const & getCameraData() const;
 		CameraData & getCameraData();
 		std::unique_ptr<SpWindow> const & getWindow() const;
-		void assignWindow(std::unique_ptr<SpWindow> spWindowUnique);
+		void bindWindow(std::unique_ptr<SpWindow> spWindowUnique, IEventContext & eventContext);
 		void createRenderData(SpInt const gameObjectId, bool const active, SpUnsigned const meshId, bool const isStatic);
 		void updateObjectMesh(SpInt const gameObjectId, SpUnsigned const meshId, bool isStatic);
 		void updateShaderProgram(SpInt const gameObjectId, ShaderProgram const shaderProgram);
@@ -37,6 +40,7 @@ namespace sp {
 		RenderDataContainer _renderDataContainer;
 		LightDataContainer _lightDataContainer;
 		CameraData _cameraData;
+		EventBinding _viewportChangedEventBinding;
 
 	private:
 		std::unique_ptr<SpWindow> _spWindowUnique;

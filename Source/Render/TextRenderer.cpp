@@ -8,6 +8,7 @@
 #include "GLFW/glfw3.h"
 #include "PlatformIndependence/SpType.h"
 #include "PlatformIndependence/SpWindow.h"
+#include "Render/RenderContext.h"
 #include "Render/UI/Font/Character.h"
 #include "Render/UI/Font/Font.h"
 
@@ -41,14 +42,20 @@ namespace sp {
 	}
 
 	void TextRenderer::renderText(
-		SpWindow const & spWindow,
+		RenderContext const & renderContext,
 		SpString const & text,
 		Vector2 const & position,
 		Vector2 const & scale) {
-		GLFWwindow * glfwWindow = spWindow.getConcreteWindow();
+		std::unique_ptr<SpWindow> const & spWindow = renderContext.getWindow();
+
+		if (spWindow == nullptr) {
+			return;
+		}
+
+		GLFWwindow * glfwWindow = spWindow->getConcreteWindow();
 		glfwMakeContextCurrent(glfwWindow);
 
-		Matrix4x4 const orthoProjectionMatrix = getOrthoProjectionMatrix(spWindow);
+		Matrix4x4 const orthoProjectionMatrix = getOrthoProjectionMatrix(*spWindow);
 
 		_shaderProgram.use();
 		_shaderProgram.setMatrix4fv("projection", orthoProjectionMatrix.getValuePtr());

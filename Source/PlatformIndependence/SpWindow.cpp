@@ -35,17 +35,13 @@ namespace sp {
 			return;
 		}
 
+		glfwSetWindowUserPointer(_concreteWindow, this);
 		glfwMakeContextCurrent(_concreteWindow);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 			std::cout << "Failed to initialize GLAD." << std::endl;
 			return;
 		}
-
-		glfwSetFramebufferSizeCallback(_concreteWindow,
-			[](GLFWwindow * window, SpInt width, SpInt height) {
-			glViewport(0, 0, width, height);
-		});
 
 		_inputUnique = std::make_unique<Input>(*_concreteWindow);
 	}
@@ -60,7 +56,7 @@ namespace sp {
 		return glfwWindowShouldClose(_concreteWindow);
 	}
 
-	void SpWindow::setCursorEnabled(bool const cursorEnabled) {
+	void SpWindow::setCursorEnabled(bool const cursorEnabled) const {
 		auto inputModeCursorArg{ (cursorEnabled) ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_DISABLED };
 		glfwSetInputMode(_concreteWindow, GLFW_CURSOR, inputModeCursorArg);
 	}
@@ -75,6 +71,16 @@ namespace sp {
 
 	Input & SpWindow::getInput() {
 		return *_inputUnique;
+	}
+
+	void SpWindow::registerSetFramebufferSizeCallback(SetFramebufferSizeCallback callback) {
+		_setFramebufferSizeCallback = callback;
+
+		glfwSetFramebufferSizeCallback(_concreteWindow,
+			[](GLFWwindow * window, SpInt width, SpInt height) {
+			SpWindow * spWindow = static_cast<SpWindow*>(glfwGetWindowUserPointer(window));
+			spWindow->_setFramebufferSizeCallback(width, height);
+		});
 	}
 
 	void SpWindow::initGLFW() {

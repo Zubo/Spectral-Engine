@@ -1,4 +1,7 @@
 #include "glad/glad.h"
+
+#include "Core/Event/Message/EventMessage.h"
+#include "Core/Event/Message/Messages/ViewportChangedMessage.h"
 #include "Render/Mesh.h"
 #include "Render/MeshContainer.h"
 #include "Render/RenderContext.h"
@@ -40,8 +43,14 @@ namespace sp {
 		return _spWindowUnique;
 	}
 
-	void RenderContext::assignWindow(std::unique_ptr<SpWindow> spWindowUnique) {
+	void RenderContext::bindWindow(std::unique_ptr<SpWindow> spWindowUnique, IEventContext & eventContext) {
 		_spWindowUnique = std::move(spWindowUnique);
+
+		_viewportChangedEventBinding.bind(eventContext, EventMessageType::ViewportChanged,
+			[](EventMessage & message) {
+			ViewportChangedMessage & viewportChangedMessage{ dynamic_cast<ViewportChangedMessage &>(message) };
+			glViewport(0, 0, viewportChangedMessage.getWidth(), viewportChangedMessage.getHeight());
+		});
 	}
 
 	void RenderContext::createRenderData(SpInt const gameObjectId, bool const active, SpUnsigned const meshId, bool const isStatic) {

@@ -13,12 +13,13 @@
 namespace sp {
 	class Vector2;
 	class SpWindow;
+	class RenderContext;
 
 	class TextRenderer {
 	public:
 		static void init();
 		static void renderText(
-			SpWindow const & window,
+			RenderContext const & renderContext,
 			SpString const & text,
 			Vector2 const & position,
 			Vector2 const & scale);

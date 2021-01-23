@@ -10,9 +10,14 @@ namespace sp {
 	Input::Input(GLFWwindow & spWindow) :
 		_keyInputManager{ &spWindow } {
 
-		_updateMousePosCallbackMap.emplace(&spWindow, [this](float const xPos, float const yPos) { _mouseInputManager.updateMousePos(xPos, yPos); });
+		_updateMousePosCallbackMap.emplace(
+			&spWindow,
+			[this](float const xPos, float const yPos) {
+			_mouseInputManager.updateMousePos(xPos, yPos);
+		});
 		
-		glfwSetCursorPosCallback(&spWindow,
+		glfwSetCursorPosCallback(
+			&spWindow,
 			[](GLFWwindow * window, double xpos, double ypos) {
 			_updateMousePosCallbackMap.at(window)(static_cast<float>(xpos), static_cast<float>(ypos));
 		});

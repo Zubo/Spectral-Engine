@@ -3,7 +3,13 @@
 namespace sp {
 	void EventContext::broadcastEvent(EventMessage & message) const {
 		EventMessageType const messageType{ message.getMessageType() };
-		SubscriptionVector const & subscriptionVector{ _eventHandlerMap.at(messageType) };
+		
+		auto subscritpionVectorIter = _eventHandlerMap.find(messageType);
+		if (subscritpionVectorIter == _eventHandlerMap.end()) {
+			return;
+		}
+
+		SubscriptionVector const & subscriptionVector{ subscritpionVectorIter->second };
 
 		for (auto && subscription : subscriptionVector) {
 			subscription.handle(message);

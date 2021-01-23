@@ -5,11 +5,13 @@ set(SpectralEngine_Core_NoFilter_HEADER
 	"FileReader.h")
 
 set(SpectralEngine_Core_Utility_SRC
-	"Utility/ResourcesPathProvider.cpp")
+	"Utility/ResourcesPathProvider.cpp"
+	"Utility/WindowEventBinding.cpp")
 
 set(SpectralEngine_Core_Utility_HEADER
 	"Utility/ResourcesPathProvider.h"
-	"Utility/OptionalRef.h")
+	"Utility/OptionalRef.h"
+	"Utility/WindowEventBinding.h")
 
 set(SpectralEngine_Core_Math_SRC
 	"Math/SpMath.cpp"
@@ -52,6 +54,12 @@ set(SpectralEngine_Core_EventMessage_SRC
 set(SpectralEngine_Core_EventMessage_HEADER
 	"Event/Message/EventMessage.h"
 	"Event/Message/EventMessageType.h")
+	
+set(SpectralEngine_Core_EventMessage_Messages_SRC
+	"Event/Message/Messages/ViewportChangedMessage.cpp")
+
+set(SpectralEngine_Core_EventMessage_Messages_HEADER
+	"Event/Message/Messages/ViewportChangedMessage.h")
 
 set(SpectralEngine_Core_Files
 	"CMakeSources.cmake")
@@ -68,6 +76,8 @@ source_group("Source Files\\Event" FILES ${SpectralEngine_Core_Event_SRC})
 source_group("Header Files\\Event" FILES ${SpectralEngine_Core_Event_HEADER})
 source_group("Source Files\\Event\\Message" FILES ${SpectralEngine_Core_EventMessage_SRC})
 source_group("Header Files\\Event\\Message" FILES ${SpectralEngine_Core_EventMessage_HEADER})
+source_group("Source Files\\Event\\Message\\Messages" FILES ${SpectralEngine_Core_EventMessage_Messages_SRC})
+source_group("Header Files\\Event\\Message\\Messages" FILES ${SpectralEngine_Core_EventMessage_Messages_HEADER})
 
 set(SpectralEngine_Core_SRC
 	${SpectralEngine_Core_Components_SRC}
@@ -85,4 +95,6 @@ set(SpectralEngine_Core_SRC
 	${SpectralEngine_Core_Event_HEADER}
 	${SpectralEngine_Core_EventMessage_SRC}
 	${SpectralEngine_Core_EventMessage_HEADER}
+	${SpectralEngine_Core_EventMessage_Messages_SRC}
+	${SpectralEngine_Core_EventMessage_Messages_HEADER}
 	${SpectralEngine_Core_Files})

@@ -1,8 +1,12 @@
+#include "Core/Event/IEventContext.h"
+#include "Core/Utility/WindowEventBinding.h"
+#include "Scene.h"
 #include "Scene/GameObject/GameObject.h"
 #include "Scene/Scene/Scene.h"
 
 namespace sp {
-	Scene::Scene(RenderEngine & renderEngine, bool const isMainScene) : _renderContext{ renderEngine.createContext(isMainScene) } {
+	Scene::Scene(RenderEngine & renderEngine, bool const isMainScene) :
+		_renderContext{ renderEngine.createContext(isMainScene) } {
 	}
 
 	void Scene::updateGameObjects(SpFloat const deltaTime) {
@@ -45,6 +49,11 @@ namespace sp {
 		gameObjectRef.bindToScene(*this);
 
 		return gameObjectRef;
+	}
+
+	void Scene::assignWindow(std::unique_ptr<SpWindow> window) {
+		_renderContext.bindWindow(std::move(window), _eventContext);
+		bindWindowToEventContext(*_renderContext.getWindow(), _eventContext);
 	}
 
 	SpInt Scene::getGameObjectIndex(std::unique_ptr<GameObject> const & gameObjectUnique) const {

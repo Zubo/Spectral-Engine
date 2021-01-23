@@ -21,12 +21,13 @@ int main(int argc, char** argv) {
 	sp::RenderEngine renderEngine;
 	sp::Scene scene{ renderEngine, true };
 
-	scene.getRenderContext().assignWindow(std::move(window));
+	scene.assignWindow(std::move(window));
 	sp::initScene(scene);
 
 	sp::SpFloat lastFrame = static_cast<float>(glfwGetTime());
 
-	sp::SpWindow const & mainWindow{ *scene.getRenderContext().getWindow() };
+	sp::SpWindow & mainWindow{ *scene.getRenderContext().getWindow() };
+	mainWindow.setCursorEnabled(false);
 
 	while (!mainWindow.shouldClose()) {
 		sp::SpFloat currentFrame = static_cast<float>(glfwGetTime());
