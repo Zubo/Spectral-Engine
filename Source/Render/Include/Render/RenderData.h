@@ -1,10 +1,10 @@
 #pragma once
 
 
-#include "Core/Math/Vector3.h"
-#include "Core/Math/Matrix4x4.h"
-#include "PlatformIndependence/SpType.h"
-#include "Render/Shader/ShaderProgram.h"
+#include <Core/Math/Vector3.h>
+#include <Core/Math/Matrix4x4.h>
+#include <PlatformIndependence/SpType.h>
+#include <Render/Shader/ShaderProgram.h>
 
 #define MAX_NUMBER_OF_TEXTURES 32
 

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "glad/glad.h"
-#include "Core/Math/Matrix4x4.h"
-#include "Core/Math/Direction.h"
-#include "Render/RenderContext.h"
-#include "Render/RenderData.h"
+#include <glad/glad.h>
+#include <Core/Math/Matrix4x4.h>
+#include <Core/Math/Direction.h>
+#include <Render/RenderContext.h>
+#include <Render/RenderData.h>
 
 namespace sp {
 	inline void updateCamera(

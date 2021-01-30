@@ -2,10 +2,10 @@
 
 #include <memory>
 
-#include "Core/Math/Degree.h"
-#include "Core/Utility/OptionalRef.h"
-#include "Scene/Components/GameObjectComponent.h"
-#include "PlatformIndependence/SpType.h"
+#include <Core/Math/Degree.h>
+#include <Core/Utility/OptionalRef.h>
+#include <Scene/Components/GameObjectComponent.h>
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	class GameObject;

@@ -2,10 +2,10 @@
 
 #include <iostream>
 
-#include "glad/glad.h"
-#include "PlatformIndependence/SpString.h"
-#include "PlatformIndependence/SpType.h"
-#include "PlatformIndependence/SpHash.h"
+#include <glad/glad.h>
+#include <PlatformIndependence/SpString.h>
+#include <PlatformIndependence/SpType.h>
+#include <PlatformIndependence/SpHash.h>
 
 namespace sp {
 	class Texture {

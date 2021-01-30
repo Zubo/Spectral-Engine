@@ -1,7 +1,7 @@
-#include "Scene/Components/CameraTransform.h"
-#include "Scene/GameObject/GameObject.h"
-#include "Render/CameraData.h"
-#include "Render/RenderContext.h"
+#include <Scene/Components/CameraTransform.h>
+#include <Scene/GameObject/GameObject.h>
+#include <Render/CameraData.h>
+#include <Render/RenderContext.h>
 
 sp::CameraTransform::CameraTransform(GameObject * const gameObjectOwner) : Transform(gameObjectOwner) {
 }

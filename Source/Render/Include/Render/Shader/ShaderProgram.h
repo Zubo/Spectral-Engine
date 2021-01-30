@@ -1,7 +1,7 @@
 #pragma once
 
-#include "PlatformIndependence/SpString.h"
-#include "PlatformIndependence/SpType.h"
+#include <PlatformIndependence/SpString.h>
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	class ShaderProgram {

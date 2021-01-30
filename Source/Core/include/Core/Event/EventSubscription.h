@@ -2,11 +2,11 @@
 
 #include <functional>
 
-#include "Core/Event/IEventSubscription.h"
-#include "Core/Event/IEventContext.h"
-#include "Core/Event/Message/EventMessage.h"
-#include "Core/Event/Message/EventMessageType.h"
-#include "PlatformIndependence/SpType.h"
+#include <Core/Event/IEventSubscription.h>
+#include <Core/Event/IEventContext.h>
+#include <Core/Event/Message/EventMessage.h>
+#include <Core/Event/Message/EventMessageType.h>
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	class EventSubscription : public IEventSubscription {

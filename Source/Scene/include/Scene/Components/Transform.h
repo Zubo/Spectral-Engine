@@ -2,8 +2,8 @@
 
 #include <vector>
 
-#include "GameObjectComponent.h"
-#include "Core/Math/Vector3.h"
+#include <GameObjectComponent.h>
+#include <Core/Math/Vector3.h>
 
 namespace sp {
 	class Matrix4x4;

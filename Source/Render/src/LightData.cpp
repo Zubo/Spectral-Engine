@@ -1,5 +1,5 @@
-#include "PlatformIndependence/SpType.h"
-#include "Render/LightData.h"
+#include <PlatformIndependence/SpType.h>
+#include <Render/LightData.h>
 
 namespace sp {
 	SpInt LightData::_nextId = 0;

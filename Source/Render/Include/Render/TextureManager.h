@@ -2,9 +2,9 @@
 
 #include <unordered_map>
 
-#include "glad/glad.h"
-#include "Render/Texture.h"
-#include "PlatformIndependence/SpString.h"
+#include <glad/glad.h>
+#include <Render/Texture.h>
+#include <PlatformIndependence/SpString.h>
 
 namespace sp {
 	class TextureManager {

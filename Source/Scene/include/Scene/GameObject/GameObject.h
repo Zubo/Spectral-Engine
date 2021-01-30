@@ -4,10 +4,10 @@
 #include <type_traits>
 #include <vector>
 
-#include "Scene/Components/GameObjectComponent.h"
-#include "Scene/Scene/Scene.h"
-#include "Core/Utility/OptionalRef.h"
-#include "PlatformIndependence/SpType.h"
+#include <Scene/Components/GameObjectComponent.h>
+#include <Scene/Scene/Scene.h>
+#include <Core/Utility/OptionalRef.h>
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	class GameObjectComponent;

@@ -1,6 +1,6 @@
-#include "Core/Event/EventBinding.h"
-#include "Core/Event/EventSubscription.h"
-#include "Core/Event/IEventContext.h"
+#include <Core/Event/EventBinding.h>
+#include <Core/Event/EventSubscription.h>
+#include <Core/Event/IEventContext.h>
 
 namespace sp {
 	EventBinding::~EventBinding() {

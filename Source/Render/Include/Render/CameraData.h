@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Core/Math/Vector3.h"
-#include "Core/Math/Degree.h"
-#include "PlatformIndependence/SpType.h"
+#include <Core/Math/Vector3.h>
+#include <Core/Math/Degree.h>
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	class Matrix4x4;

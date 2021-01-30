@@ -1,4 +1,4 @@
-#include "Core/Event/EventContext.h"
+#include <Core/Event/EventContext.h>
 
 namespace sp {
 	void EventContext::broadcastEvent(EventMessage & message) const {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core/Event/Message/EventMessageType.h"
+#include <Core/Event/Message/EventMessageType.h>
 
 namespace sp {
 	class EventMessage {

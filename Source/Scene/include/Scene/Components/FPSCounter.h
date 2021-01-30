@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Scene/Components/GameObjectComponent.h"
-#include "PlatformIndependence/SpType.h"
+#include <Scene/Components/GameObjectComponent.h>
+#include <PlatformIndependence/SpType.h>
 
 #define FPS_RENDER_PERIOD 0.35F
 

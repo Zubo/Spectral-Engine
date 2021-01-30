@@ -1,11 +1,11 @@
-#include "Scene/Components/FPSCounter.h"
+#include <Scene/Components/FPSCounter.h>
 
 #include <cmath>
 #include <memory>
 #include <sstream>
 
-#include "Scene/GameObject/GameObject.h"
-#include "PlatformIndependence/SpString.h"
+#include <Scene/GameObject/GameObject.h>
+#include <PlatformIndependence/SpString.h>
 
 namespace sp {
 	FPSCounter::FPSCounter(GameObject * const gameObject) : GameObjectComponent(gameObject) {

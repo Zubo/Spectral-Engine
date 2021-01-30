@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Scene/Components/GameObjectComponent.h"
-#include "Scene/Components/Interface/ITransformChangeObserver.h"
-#include "PlatformIndependence/SpType.h"
-#include "Render/Enum/LightType.h"
+#include <Scene/Components/GameObjectComponent.h>
+#include <Scene/Components/Interface/ITransformChangeObserver.h>
+#include <PlatformIndependence/SpType.h>
+#include <Render/Enum/LightType.h>
 
 namespace sp {
 	class Vector3;

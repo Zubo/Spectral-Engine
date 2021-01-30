@@ -5,9 +5,9 @@
 #include <unordered_map>
 #include <vector>
 
-#include "Core/Event/EventSubscription.h"
-#include "Core/Event/IEventContext.h"
-#include "Core/Event/Message/EventMessageType.h"
+#include <Core/Event/EventSubscription.h>
+#include <Core/Event/IEventContext.h>
+#include <Core/Event/Message/EventMessageType.h>
 
 namespace sp {
 	class EventContext : public IEventContext {

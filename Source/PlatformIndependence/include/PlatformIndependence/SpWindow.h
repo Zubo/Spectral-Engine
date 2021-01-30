@@ -3,8 +3,8 @@
 #include <functional>
 #include <memory>
 
-#include "PlatformIndependence/Input/Input.h"
-#include "PlatformIndependence/SpType.h"
+#include <PlatformIndependence/Input/Input.h>
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	class SpWindow {

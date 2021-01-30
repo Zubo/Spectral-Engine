@@ -2,13 +2,13 @@
 
 #include <memory>
 
-#include "glad/glad.h"
+#include <glad/glad.h>
 
-#include "Core/Math/Matrix4x4.h"
-#include "Core/Utility/OptionalRef.h"
-#include "PlatformIndependence/SpType.h"
-#include "Render/Shader/ShaderProgram.h"
-#include "Render/UI/Font/Font.h"
+#include <Core/Math/Matrix4x4.h>
+#include <Core/Utility/OptionalRef.h>
+#include <PlatformIndependence/SpType.h>
+#include <Render/Shader/ShaderProgram.h>
+#include <Render/UI/Font/Font.h>
 
 namespace sp {
 	class Vector2;

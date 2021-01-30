@@ -1,8 +1,8 @@
 #pragma once
 
-#include "gmock/gmock.h"
+#include <gmock/gmock.h>
 
-#include "Core/Event/IEventContext.h"
+#include <Core/Event/IEventContext.h>
 
 namespace sp {
 	namespace mocks {

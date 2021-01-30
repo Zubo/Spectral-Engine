@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 
-#include "PlatformIndependence/Input/KeyCode.h"
+#include <PlatformIndependence/Input/KeyCode.h>
 
 struct GLFWwindow;
 

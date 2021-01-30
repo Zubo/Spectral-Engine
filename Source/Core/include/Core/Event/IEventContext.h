@@ -2,7 +2,7 @@
 
 #include <functional>
 
-#include "Core/Event/IEventSubscription.h"
+#include <Core/Event/IEventSubscription.h>
 
 namespace sp {
 	using EventHandler = std::function<void(EventMessage & message)>;

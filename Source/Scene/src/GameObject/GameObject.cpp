@@ -1,6 +1,6 @@
-#include "Scene/Components/GameObjectComponent.h"
-#include "Scene/GameObject/GameObject.h"
-#include "PlatformIndependence/SpType.h"
+#include <Scene/Components/GameObjectComponent.h>
+#include <Scene/GameObject/GameObject.h>
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	SpInt GameObject::_nextId{ 0 };

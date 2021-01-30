@@ -1,11 +1,11 @@
-#include "Core/Math/LinearTransformations.h"
-#include "Core/Math/Matrix4x4.h"
-#include "Core/Math/Vector3.h"
-#include "Scene/Components/Camera.h"
-#include "Scene/GameObject/GameObject.h"
-#include "Scene/Components/GameObjectComponent.h"
-#include "Scene/Components/Transform.h"
-#include "Render/CameraData.h"
+#include <Core/Math/LinearTransformations.h>
+#include <Core/Math/Matrix4x4.h>
+#include <Core/Math/Vector3.h>
+#include <Scene/Components/Camera.h>
+#include <Scene/GameObject/GameObject.h>
+#include <Scene/Components/GameObjectComponent.h>
+#include <Scene/Components/Transform.h>
+#include <Render/CameraData.h>
 
 namespace sp {
 	OptionalRef<Camera> Camera::_mainCamera;

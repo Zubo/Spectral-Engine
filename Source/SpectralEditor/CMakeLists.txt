@@ -1,6 +1,8 @@
 cmake_minimum_required (VERSION 3.8)
 add_executable (SpectralEditor "src/Main.cpp")
 
+source_group("src" FILES "src/Main.cpp")
+
 target_link_libraries(SpectralEditor PRIVATE Core)
 target_link_libraries(SpectralEditor PRIVATE Render)
 target_link_libraries(SpectralEditor PRIVATE Scene)

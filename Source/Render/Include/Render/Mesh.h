@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 
-#include "PlatformIndependence/SpType.h"
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	class Mesh {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Core/Event/Message/EventMessage.h"
-#include "PlatformIndependence/SpType.h"
+#include <Core/Event/Message/EventMessage.h>
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	class ViewportChangedMessage : public EventMessage {

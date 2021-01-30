@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SpMath.h"
+#include <SpMath.h>
 
 namespace sp {
 	class Radian;

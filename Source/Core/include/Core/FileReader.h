@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PlatformIndependence/SpString.h"
+#include <PlatformIndependence/SpString.h>
 
 namespace sp {
 	class FileReader {

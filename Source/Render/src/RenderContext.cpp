@@ -1,11 +1,11 @@
-#include "glad/glad.h"
+#include <glad/glad.h>
 
-#include "Core/Event/Message/EventMessage.h"
-#include "Core/Event/Message/Messages/ViewportChangedMessage.h"
-#include "Render/Mesh.h"
-#include "Render/MeshContainer.h"
-#include "Render/RenderContext.h"
-#include "Render/RenderData.h"
+#include <Core/Event/Message/EventMessage.h>
+#include <Core/Event/Message/Messages/ViewportChangedMessage.h>
+#include <Render/Mesh.h>
+#include <Render/MeshContainer.h>
+#include <Render/RenderContext.h>
+#include <Render/RenderData.h>
 
 namespace sp {
 	RenderContext::RenderContext(SpInt const id) : _id{ id } {

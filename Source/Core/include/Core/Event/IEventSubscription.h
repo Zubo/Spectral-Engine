@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Core/Event/Message/EventMessage.h"
-#include "Core/Event/Message/EventMessageType.h"
-#include "PlatformIndependence/SpType.h"
+#include <Core/Event/Message/EventMessage.h>
+#include <Core/Event/Message/EventMessageType.h>
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	class IEventSubscription {

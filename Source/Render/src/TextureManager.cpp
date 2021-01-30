@@ -1,10 +1,10 @@
-#include "Render/TextureManager.h"
+#include <Render/TextureManager.h>
 
 #include <unordered_map>
 
-#include "PlatformIndependence/SpHash.h"
-#include "PlatformIndependence/SpString.h"
-#include "PlatformIndependence/SpType.h"
+#include <PlatformIndependence/SpHash.h>
+#include <PlatformIndependence/SpString.h>
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	TextureManager TextureManager::_instance;

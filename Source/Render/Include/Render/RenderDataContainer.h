@@ -2,8 +2,8 @@
 
 #include <unordered_map>
 
-#include "PlatformIndependence/SpType.h"
-#include "Render/RenderData.h"
+#include <PlatformIndependence/SpType.h>
+#include <Render/RenderData.h>
 
 namespace sp {
 	class RenderDataContainer {

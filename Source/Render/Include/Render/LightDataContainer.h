@@ -2,9 +2,9 @@
 
 #include <unordered_map>
 
-#include "PlatformIndependence/SpType.h"
-#include "Render/Enum/LightType.h"
-#include "Render/LightData.h"
+#include <PlatformIndependence/SpType.h>
+#include <Render/Enum/LightType.h>
+#include <Render/LightData.h>
 
 namespace sp {
 	class Vector3;

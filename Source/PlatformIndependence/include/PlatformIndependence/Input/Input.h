@@ -4,9 +4,9 @@
 #include <memory>
 #include <unordered_map>
 
-#include "PlatformIndependence/Input/KeyCode.h"
-#include "PlatformIndependence/Input/KeyInputManager.h"
-#include "PlatformIndependence/Input/MouseInputManager.h"
+#include <PlatformIndependence/Input/KeyCode.h>
+#include <PlatformIndependence/Input/KeyInputManager.h>
+#include <PlatformIndependence/Input/MouseInputManager.h>
 
 struct GLFWwindow;
 

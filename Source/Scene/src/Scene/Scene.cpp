@@ -1,8 +1,8 @@
-#include "Core/Event/IEventContext.h"
-#include "Core/Utility/WindowEventBinding.h"
-#include "Scene/Scene/Scene.h"
-#include "Scene/GameObject/GameObject.h"
-#include "Scene/Scene/Scene.h"
+#include <Core/Event/IEventContext.h>
+#include <Core/Utility/WindowEventBinding.h>
+#include <Scene/Scene/Scene.h>
+#include <Scene/GameObject/GameObject.h>
+#include <Scene/Scene/Scene.h>
 
 namespace sp {
 	Scene::Scene(RenderEngine & renderEngine, bool const isMainScene) :

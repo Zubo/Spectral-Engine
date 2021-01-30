@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 
-#include "PlatformIndependence/SpType.h"
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	class RenderContext;

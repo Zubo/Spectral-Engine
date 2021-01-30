@@ -1,11 +1,11 @@
-#include "Render/UI/Font/FreeTypeHelper.h"
+#include <Render/UI/Font/FreeTypeHelper.h>
 
 #include <iostream>
 
-#include "glad/glad.h"
-#include "PlatformIndependence/SpType.h"
-#include "Render/UI/Font/Character.h"
-#include "Render/UI/Font/Font.h"
+#include <glad/glad.h>
+#include <PlatformIndependence/SpType.h>
+#include <Render/UI/Font/Character.h>
+#include <Render/UI/Font/Font.h>
 
 namespace sp {
 	SpInt createFace(SpString const & path, FT_Face & face) {

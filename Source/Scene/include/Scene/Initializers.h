@@ -10,25 +10,25 @@
 #include <random>
 #include <time.h>
 
-#include "Render/Shader/Shader.h"
-#include "Scene/Components/CameraTransform.h"
-#include "Scene/Components/Material.h"
-#include "Scene/Components/Transform.h"
-#include "Scene/Components/Renderer.h"
-#include "Scene/Components/Camera.h"
-#include "Scene/Components/CameraInputHandler.h"
-#include "Scene/Components/FPSCounter.h"
-#include "Scene/Components/LightSource.h"
-#include "Scene/Components/PositionOscilator.h"
-#include "Scene/GameObject/GameObject.h"
-#include "Scene/Scene/Scene.h"
-#include "Scene/Vertices.h"
-#include "Render/MeshContainer.h"
-#include "Render/Enum/LightType.h"
-#include "Scene/Components/Rotator.h"
-#include "Render/UI/Font/Font.h"
-#include "Core/Math/Radian.h"
-#include "Core/Utility/ResourcesPathProvider.h"
+#include <Render/Shader/Shader.h>
+#include <Scene/Components/CameraTransform.h>
+#include <Scene/Components/Material.h>
+#include <Scene/Components/Transform.h>
+#include <Scene/Components/Renderer.h>
+#include <Scene/Components/Camera.h>
+#include <Scene/Components/CameraInputHandler.h>
+#include <Scene/Components/FPSCounter.h>
+#include <Scene/Components/LightSource.h>
+#include <Scene/Components/PositionOscilator.h>
+#include <Scene/GameObject/GameObject.h>
+#include <Scene/Scene/Scene.h>
+#include <Scene/Vertices.h>
+#include <Render/MeshContainer.h>
+#include <Render/Enum/LightType.h>
+#include <Scene/Components/Rotator.h>
+#include <Render/UI/Font/Font.h>
+#include <Core/Math/Radian.h>
+#include <Core/Utility/ResourcesPathProvider.h>
 
 namespace sp {
 	constexpr SpUnsigned SCR_WIDTH = 800;

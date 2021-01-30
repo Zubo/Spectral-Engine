@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Scene/Components/Transform.h"
+#include <Scene/Components/Transform.h>
 
 namespace sp {
 	class CameraTransform : public Transform {

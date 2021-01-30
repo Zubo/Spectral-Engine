@@ -3,12 +3,12 @@
 #include <memory>
 #include <vector>
 
-#include "Scene/Components/GameObjectComponent.h"
-#include "Core/Math/Matrix4x4.h"
-#include "Core/Math/Vector3.h"
-#include "PlatformIndependence/SpString.h"
-#include "Render/Shader/ShaderProgram.h"
-#include "Render/RenderData.h"
+#include <Scene/Components/GameObjectComponent.h>
+#include <Core/Math/Matrix4x4.h>
+#include <Core/Math/Vector3.h>
+#include <PlatformIndependence/SpString.h>
+#include <Render/Shader/ShaderProgram.h>
+#include <Render/RenderData.h>
 
 namespace sp {
 	class Texture;

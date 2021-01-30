@@ -2,13 +2,13 @@
 
 #include <memory>
 
-#include "Core/Event/EventBinding.h"
-#include "PlatformIndependence/SpWindow.h"
-#include "PlatformIndependence/SpType.h"
-#include "Render/CameraData.h"
-#include "Render/LightDataContainer.h"
-#include "Render/RenderDataContainer.h"
-#include "Render/Shader/ShaderProgram.h"
+#include <Core/Event/EventBinding.h>
+#include <PlatformIndependence/SpWindow.h>
+#include <PlatformIndependence/SpType.h>
+#include <Render/CameraData.h>
+#include <Render/LightDataContainer.h>
+#include <Render/RenderDataContainer.h>
+#include <Render/Shader/ShaderProgram.h>
 
 namespace sp {
 	class IEventContext;

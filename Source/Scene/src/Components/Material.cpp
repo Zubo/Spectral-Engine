@@ -1,13 +1,13 @@
-#include "PlatformIndependence/SpString.h"
+#include <PlatformIndependence/SpString.h>
 
-#include "Scene/Components/Material.h"
-#include "Scene/GameObject/GameObject.h"
-#include "Render/RenderData.h"
-#include "Render/RenderDataContainer.h"
-#include "Render/RenderDataUpdate.h"
-#include "Render/Shader/ShaderProgram.h"
-#include "Render/Texture.h"
-#include "Render/TextureManager.h"
+#include <Scene/Components/Material.h>
+#include <Scene/GameObject/GameObject.h>
+#include <Render/RenderData.h>
+#include <Render/RenderDataContainer.h>
+#include <Render/RenderDataUpdate.h>
+#include <Render/Shader/ShaderProgram.h>
+#include <Render/Texture.h>
+#include <Render/TextureManager.h>
 
 #define MATERIAL_VARIABLE_NAME "material"
 

@@ -1,7 +1,7 @@
-#include "Render/RenderData.h"
+#include <Render/RenderData.h>
 
-#include "Core/Math/Degree.h"
-#include "Core/Math/LinearTransformations.h"
+#include <Core/Math/Degree.h>
+#include <Core/Math/LinearTransformations.h>
 
 namespace sp {
 	RenderData::RenderData(

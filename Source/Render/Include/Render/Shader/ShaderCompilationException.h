@@ -1,8 +1,8 @@
 #pragma once
 
 #include <glad/glad.h>
-#include "PlatformIndependence/SpString.h"
-#include "PlatformIndependence/SpType.h"
+#include <PlatformIndependence/SpString.h>
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	class ShaderCompilationException {

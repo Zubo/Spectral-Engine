@@ -1,5 +1,5 @@
-#include "Core/Math/Matrix4x4.h"
-#include "gtest/gtest.h"
+#include <Core/Math/Matrix4x4.h>
+#include <gtest/gtest.h>
 
 namespace sp {
 	namespace tests {

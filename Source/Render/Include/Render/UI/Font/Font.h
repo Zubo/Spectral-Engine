@@ -3,8 +3,8 @@
 #include <memory>
 #include <unordered_map>
 
-#include "PlatformIndependence/SpString.h"
-#include "Render/UI/Font/Character.h"
+#include <PlatformIndependence/SpString.h>
+#include <Render/UI/Font/Character.h>
 
 namespace sp {
 	class Font {

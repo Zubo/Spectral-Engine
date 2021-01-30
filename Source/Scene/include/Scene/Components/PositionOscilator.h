@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Scene/Components/GameObjectComponent.h"
+#include <Scene/Components/GameObjectComponent.h>
 
 namespace sp {
 	class PositionOscilator : public GameObjectComponent {

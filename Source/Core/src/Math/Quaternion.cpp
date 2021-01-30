@@ -1,5 +1,5 @@
-#include "Core/Math/Quaternion.h"
-#include "Core/Math/Vector3.h"
+#include <Core/Math/Quaternion.h>
+#include <Core/Math/Vector3.h>
 
 namespace sp {
 	Quaternion::Quaternion() : X{ 0.0F }, Y{ 0.0F }, Z{ 0.0F }, W{ 0.0F } {

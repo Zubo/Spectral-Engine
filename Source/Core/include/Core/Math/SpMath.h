@@ -2,7 +2,7 @@
 
 #include <limits>
 
-#include "PlatformIndependence/SpType.h"
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	class Radian;

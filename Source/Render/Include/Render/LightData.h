@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Core/Math/Vector3.h"
-#include "PlatformIndependence/SpType.h"
-#include "Render/Enum/LightType.h"
+#include <Core/Math/Vector3.h>
+#include <PlatformIndependence/SpType.h>
+#include <Render/Enum/LightType.h>
 
 namespace sp {
 	class LightData {

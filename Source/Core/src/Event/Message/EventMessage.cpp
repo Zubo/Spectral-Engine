@@ -1,4 +1,4 @@
-#include "Core/Event/Message/EventMessage.h"
+#include <Core/Event/Message/EventMessage.h>
 
 namespace sp {
 	EventMessage::EventMessage(EventMessageType const messageType) 

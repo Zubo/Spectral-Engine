@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Scene/Components/GameObjectComponent.h"
-#include "Scene/Components/Interface/IRenderer.h"
-#include "Scene/Components/Interface/ITransformChangeObserver.h"
-#include "PlatformIndependence/SpType.h"
+#include <Scene/Components/GameObjectComponent.h>
+#include <Scene/Components/Interface/IRenderer.h>
+#include <Scene/Components/Interface/ITransformChangeObserver.h>
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	class GameObject;

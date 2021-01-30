@@ -1,7 +1,7 @@
-#include "gtest/gtest.h"
-#include "Core/Math/LinearTransformations.h"
-#include "Core/Math/Matrix4x4.h"
-#include "Core/Math/Vector3.h"
+#include <gtest/gtest.h>
+#include <Core/Math/LinearTransformations.h>
+#include <Core/Math/Matrix4x4.h>
+#include <Core/Math/Vector3.h>
 
 namespace sp {
 	namespace tests {

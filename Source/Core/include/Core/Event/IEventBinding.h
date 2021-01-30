@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Core/Event/Message/EventMessageType.h"
-#include "Core/Event/EventSubscription.h"
+#include <Core/Event/Message/EventMessageType.h>
+#include <Core/Event/EventSubscription.h>
 
 namespace sp {
 	class IEventContext;

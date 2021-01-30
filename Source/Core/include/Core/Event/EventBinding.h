@@ -2,10 +2,10 @@
 
 #include <functional>
 
-#include "Core/Event/IEventBinding.h"
-#include "Core/Event/Message/EventMessageType.h"
-#include "Core/Utility/OptionalRef.h"
-#include "PlatformIndependence/SpType.h"
+#include <Core/Event/IEventBinding.h>
+#include <Core/Event/Message/EventMessageType.h>
+#include <Core/Utility/OptionalRef.h>
+#include <PlatformIndependence/SpType.h>
 
 namespace sp {
 	class EventBinding : public IEventBinding {

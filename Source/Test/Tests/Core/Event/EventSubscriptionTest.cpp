@@ -1,7 +1,7 @@
 #include <memory>
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
-#include "Core/Event/EventSubscription.h"
+#include <Core/Event/EventSubscription.h>
 
 namespace sp {
 	namespace tests {
