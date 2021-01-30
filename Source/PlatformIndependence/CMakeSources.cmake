@@ -1,29 +1,29 @@
 set(SpectralEngine_PlatformIndependence_NoFilter_SRC
-    "SpWindow.cpp"
-    "Environment.cpp")
+    "src/SpWindow.cpp"
+    "src/Environment.cpp")
 
 set(SpectralEngine_PlatformIndependence_NoFilter_HEADER
-    "SpWindow.h"
-    "SpString.h"
-    "SpType.h"
-    "SpHash.h"
-    "Environment.h")
+    "include/PlatformIndependence/SpWindow.hpp"
+    "include/PlatformIndependence/SpString.hpp"
+    "include/PlatformIndependence/SpType.hpp"
+    "include/PlatformIndependence/SpHash.hpp"
+    "include/PlatformIndependence/Environment.hpp")
 
 set(SpectralEngine_PlatformIndependence_Input_SRC
-    "Input/Input.cpp"
-    "Input/KeyInputManager.cpp"
-    "Input/MouseInputManager.cpp")
+    "src/Input/Input.cpp"
+    "src/Input/KeyInputManager.cpp"
+    "src/Input/MouseInputManager.cpp")
 
 set(SpectralEngine_PlatformIndependence_Input_HEADER
-    "Input/Input.h"
-    "Input/KeyInputManager.h"
-    "Input/MouseInputManager.h"
-    "Input/KeyCode.h")
+    "include/PlatformIndependence/Input/Input.hpp"
+    "include/PlatformIndependence/Input/KeyInputManager.hpp"
+    "include/PlatformIndependence/Input/MouseInputManager.hpp"
+    "include/PlatformIndependence/Input/KeyCode.hpp")
 
-source_group("Source Files" FILES ${SpectralEngine_PlatformIndependence_NoFilter_SRC})
-source_group("Header Files" FILES ${SpectralEngine_PlatformIndependence_NoFilter_HEADER})
-source_group("Source Files\\Input" FILES ${SpectralEngine_PlatformIndependence_Input_SRC})
-source_group("Header Files\\Input" FILES ${SpectralEngine_PlatformIndependence_Input_HEADER})
+source_group("src" FILES ${SpectralEngine_PlatformIndependence_NoFilter_SRC})
+source_group("include" FILES ${SpectralEngine_PlatformIndependence_NoFilter_HEADER})
+source_group("src\\Input" FILES ${SpectralEngine_PlatformIndependence_Input_SRC})
+source_group("include\\Input" FILES ${SpectralEngine_PlatformIndependence_Input_HEADER})
 
 set(SpectralEngine_PlatformIndependence_SRC
     ${SpectralEngine_PlatformIndependence_NoFilter_SRC}

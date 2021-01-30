@@ -1,7 +1,7 @@
-#include "Core/Math/Quaternion.h"
-#include "Core/Math/Vector3.h"
-#include "Core/Math/SpMath.h"
-#include "gtest/gtest.h"
+#include <Core/Math/Quaternion.hpp>
+#include <Core/Math/Vector3.hpp>
+#include <Core/Math/SpMath.hpp>
+#include <gtest/gtest.h>
 
 namespace sp {
 	namespace tests {

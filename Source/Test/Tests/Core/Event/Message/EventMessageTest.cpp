@@ -1,5 +1,5 @@
-#include "gtest/gtest.h"
-#include "Core/Event/Message/EventMessage.h"
+#include <gtest/gtest.h>
+#include <Core/Event/Message/EventMessage.hpp>
 
 namespace sp {
 	namespace tests {

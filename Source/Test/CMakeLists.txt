@@ -5,8 +5,10 @@ include(CMakeSources.cmake)
 enable_testing()
 
 add_executable(Test ${SpectralEngine_Test_SRC})
+target_include_directories(Test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(Test Core)
+target_link_libraries(Test PlatformIndependence)
 target_link_libraries(Test gtest_main)
 target_link_libraries(Test gmock_main)
 

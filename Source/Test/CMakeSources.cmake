@@ -20,7 +20,7 @@ set(SpectralEngine_Test_Core_Math_Source
     "Tests/Core/Math/Vector2Test.cpp")
 
 set(SpectralEngine_Mock_Core_Event
-    "Mocks/Core/Event/IEventContextMock.h")
+    "Mocks/Core/Event/IEventContextMock.hpp")
 
 set(SpectralEngine_Test_Files
     "CMakeSources.cmake")

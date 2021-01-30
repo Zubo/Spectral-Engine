@@ -1,4 +1,4 @@
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 namespace sp {
 	int main(int argc, char ** argv) {
