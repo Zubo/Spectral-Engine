@@ -1,8 +1,8 @@
-#include <Core/Math/Direction.h>
+#include <Core/Math/Direction.hpp>
 
-#include <Core/Math/Degree.h>
-#include <Core/Math/SpMath.h>
-#include <Core/Math/Vector3.h>
+#include <Core/Math/Degree.hpp>
+#include <Core/Math/SpMath.hpp>
+#include <Core/Math/Vector3.hpp>
 
 namespace sp {
 	Vector3 const getDirection(Degree const xAngle, Degree const yAngle)

@@ -1,9 +1,9 @@
-#include <Render/CameraData.h>
+#include <Render/CameraData.hpp>
 
-#include <Core/Math/Degree.h>
-#include <Core/Math/Direction.h>
-#include <Core/Math/LinearTransformations.h>
-#include <Core/Math/Vector3.h>
+#include <Core/Math/Degree.hpp>
+#include <Core/Math/Direction.hpp>
+#include <Core/Math/LinearTransformations.hpp>
+#include <Core/Math/Vector3.hpp>
 
 namespace sp {
 	Matrix4x4 CameraData::GetViewMatrix() const {

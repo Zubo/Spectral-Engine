@@ -1,4 +1,4 @@
-#include <Core/Utility/ResourcesPathProvider.h>
+#include <Core/Utility/ResourcesPathProvider.hpp>
 
 namespace sp {
 	SpString ResourcesPathProvider::_resourcesDirectoryPath;

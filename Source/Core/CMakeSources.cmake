@@ -2,16 +2,16 @@ set(SpectralEngine_Core_NoFilter_SRC
 	"src/FileReader.cpp")
 
 set(SpectralEngine_Core_NoFilter_HEADER
-	"include/Core/FileReader.h")
+	"include/Core/FileReader.hpp")
 
 set(SpectralEngine_Core_Utility_SRC
 	"src/Utility/ResourcesPathProvider.cpp"
 	"src/Utility/WindowEventBinding.cpp")
 
 set(SpectralEngine_Core_Utility_HEADER
-	"include/Core/Utility/ResourcesPathProvider.h"
-	"include/Core/Utility/OptionalRef.h"
-	"include/Core/Utility/WindowEventBinding.h")
+	"include/Core/Utility/ResourcesPathProvider.hpp"
+	"include/Core/Utility/OptionalRef.hpp"
+	"include/Core/Utility/WindowEventBinding.hpp")
 
 set(SpectralEngine_Core_Math_SRC
 	"src/Math/SpMath.cpp"
@@ -25,23 +25,23 @@ set(SpectralEngine_Core_Math_SRC
 	"src/Math/Direction.cpp")
 
 set(SpectralEngine_Core_Math_HEADER
-	"include/Core/Math/SpMath.h"
-	"include/Core/Math/LinearTransformations.h"
-	"include/Core/Math/Radian.h"
-	"include/Core/Math/Degree.h"
-	"include/Core/Math/Vector3.h"
-	"include/Core/Math/Vector2.h"
-	"include/Core/Math/Quaternion.h"
-	"include/Core/Math/Matrix4x4.h"
-	"include/Core/Math/Direction.h")
+	"include/Core/Math/SpMath.hpp"
+	"include/Core/Math/LinearTransformations.hpp"
+	"include/Core/Math/Radian.hpp"
+	"include/Core/Math/Degree.hpp"
+	"include/Core/Math/Vector3.hpp"
+	"include/Core/Math/Vector2.hpp"
+	"include/Core/Math/Quaternion.hpp"
+	"include/Core/Math/Matrix4x4.hpp"
+	"include/Core/Math/Direction.hpp")
 
 set(SpectralEngine_Core_Event_HEADER
-	"include/Core/Event/EventContext.h"
-	"include/Core/Event/IEventContext.h"
-	"include/Core/Event/EventSubscription.h"
-	"include/Core/Event/IEventSubscription.h"
-	"include/Core/Event/EventBinding.h"
-	"include/Core/Event/IEventBinding.h")
+	"include/Core/Event/EventContext.hpp"
+	"include/Core/Event/IEventContext.hpp"
+	"include/Core/Event/EventSubscription.hpp"
+	"include/Core/Event/IEventSubscription.hpp"
+	"include/Core/Event/EventBinding.hpp"
+	"include/Core/Event/IEventBinding.hpp")
 
 set(SpectralEngine_Core_Event_SRC
 	"src/Event/EventContext.cpp"
@@ -52,14 +52,14 @@ set(SpectralEngine_Core_EventMessage_SRC
 	"src/Event/Message/EventMessage.cpp")
 
 set(SpectralEngine_Core_EventMessage_HEADER
-	"include/Core/Event/Message/EventMessage.h"
-	"include/Core/Event/Message/EventMessageType.h")
+	"include/Core/Event/Message/EventMessage.hpp"
+	"include/Core/Event/Message/EventMessageType.hpp")
 	
 set(SpectralEngine_Core_EventMessage_Messages_SRC
 	"src/Event/Message/Messages/ViewportChangedMessage.cpp")
 
 set(SpectralEngine_Core_EventMessage_Messages_HEADER
-	"include/Core/Event/Message/Messages/ViewportChangedMessage.h")
+	"include/Core/Event/Message/Messages/ViewportChangedMessage.hpp")
 
 set(SpectralEngine_Core_Files
 	"CMakeSources.cmake")

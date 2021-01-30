@@ -1,4 +1,4 @@
-#include <PlatformIndependence/Input/Input.h>
+#include <PlatformIndependence/Input/Input.hpp>
 
 #include <memory>
 #define GLFW_INCLUDE_NONE

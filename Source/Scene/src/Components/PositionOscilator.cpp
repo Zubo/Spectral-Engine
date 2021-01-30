@@ -1,11 +1,11 @@
 #include <memory>
 
-#include <Core/Math/SpMath.h>
-#include <Core/Math/Radian.h>
-#include <Scene/GameObject/GameObject.h>
-#include <Scene/Components/PositionOscilator.h>
-#include <Scene/Components/Transform.h>
-#include <PlatformIndependence/SpType.h>
+#include <Core/Math/SpMath.hpp>
+#include <Core/Math/Radian.hpp>
+#include <Scene/GameObject/GameObject.hpp>
+#include <Scene/Components/PositionOscilator.hpp>
+#include <Scene/Components/Transform.hpp>
+#include <PlatformIndependence/SpType.hpp>
 
 namespace sp {
 	PositionOscilator::PositionOscilator(GameObject * gameObjectOwner) : GameObjectComponent{ gameObjectOwner } {

@@ -1,16 +1,16 @@
-#include <Scene/Components/LightSource.h>
+#include <Scene/Components/LightSource.hpp>
 
 #include <memory>
 
-#include <Core/Math/Direction.h>
-#include <Core/Math/Degree.h>
-#include <Scene/GameObject/GameObject.h>
-#include <Scene/Components/GameObjectComponent.h>
-#include <Scene/Components/Transform.h>
-#include <Render/Enum/LightType.h>
-#include <Render/LightData.h>
-#include <Render/LightDataContainer.h>
-#include <Render/RenderContext.h>
+#include <Core/Math/Direction.hpp>
+#include <Core/Math/Degree.hpp>
+#include <Scene/GameObject/GameObject.hpp>
+#include <Scene/Components/GameObjectComponent.hpp>
+#include <Scene/Components/Transform.hpp>
+#include <Render/Enum/LightType.hpp>
+#include <Render/LightData.hpp>
+#include <Render/LightDataContainer.hpp>
+#include <Render/RenderContext.hpp>
 
 namespace sp {
 	LightSource::LightSource(GameObject * gameObjectOwner) : GameObjectComponent{ gameObjectOwner } {

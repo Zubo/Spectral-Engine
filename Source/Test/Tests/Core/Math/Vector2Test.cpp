@@ -1,4 +1,4 @@
-#include <Core/Math/Vector2.h>
+#include <Core/Math/Vector2.hpp>
 #include <gtest/gtest.h>
 
 namespace sp {

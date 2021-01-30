@@ -1,4 +1,4 @@
-#include <Render/Mesh.h>
+#include <Render/Mesh.hpp>
 
 #include <algorithm>
 

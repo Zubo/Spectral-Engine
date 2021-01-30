@@ -1,16 +1,15 @@
 #include <glad/glad.h>
 #include <memory>
 
-#include <Scene/Components/Camera.h>
-#include <Scene/GameObject/GameObject.h>
-#include <Scene/Components/Material.h>
-#include <Scene/Components/Renderer.h>
-#include <Scene/Components/Transform.h>
-#include <PlatformIndependence/SpString.h>
-#include <Render/Shader/ShaderProgram.h>
-#include <Render/RenderDataUpdate.h>
-#include <Render/RenderDataContainer.h>
-#include <Render/RenderContext.h>
+#include <Scene/Components/Camera.hpp>
+#include <Scene/GameObject/GameObject.hpp>
+#include <Scene/Components/Material.hpp>
+#include <Scene/Components/Renderer.hpp>
+#include <Scene/Components/Transform.hpp>
+#include <PlatformIndependence/SpString.hpp>
+#include <Render/Shader/ShaderProgram.hpp>
+#include <Render/RenderDataContainer.hpp>
+#include <Render/RenderContext.hpp>
 
 namespace sp {
 	Renderer::Renderer(GameObject * const gameObjectOwner) : GameObjectComponent(gameObjectOwner) {

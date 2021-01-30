@@ -1,6 +1,6 @@
 #include <memory>
 
-#include <Core/Event/EventSubscription.h>
+#include <Core/Event/EventSubscription.hpp>
 
 namespace sp {
 	SpInt EventSubscription::_nextSubscriptionId{ 0 };

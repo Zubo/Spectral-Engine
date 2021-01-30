@@ -1,9 +1,9 @@
-#include <Render/LightDataContainer.h>
+#include <Render/LightDataContainer.hpp>
 
 #include <unordered_map>
 
-#include <PlatformIndependence/SpType.h>
-#include <Render/LightData.h>
+#include <PlatformIndependence/SpType.hpp>
+#include <Render/LightData.hpp>
 
 namespace sp {
 	LightDataContainer::LightDataContainer() {

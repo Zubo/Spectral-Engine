@@ -1,4 +1,4 @@
-#include <PlatformIndependence/Environment.h>
+#include <PlatformIndependence/Environment.hpp>
 
 namespace sp {
     char Environment::FilePathSeparator() {

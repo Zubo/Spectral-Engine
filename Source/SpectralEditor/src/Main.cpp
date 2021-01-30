@@ -1,14 +1,14 @@
 #include <chrono>
 #include <memory>
 
-#include <Core/Utility/ResourcesPathProvider.h>
-#include <Scene/Scene/Scene.h>
-#include <Scene/Initializers.h>
-#include <PlatformIndependence/Environment.h>
-#include <PlatformIndependence/SpType.h>
-#include <PlatformIndependence/SpWindow.h>
-#include <Render/TextRenderer.h>
-#include <Render/RenderEngine.h>
+#include <Core/Utility/ResourcesPathProvider.hpp>
+#include <Scene/Scene/Scene.hpp>
+#include <Scene/Initializers.hpp>
+#include <PlatformIndependence/Environment.hpp>
+#include <PlatformIndependence/SpType.hpp>
+#include <PlatformIndependence/SpWindow.hpp>
+#include <Render/TextRenderer.hpp>
+#include <Render/RenderEngine.hpp>
 
 int main(int argc, char** argv) {
 	sp::SpString const executablePath{ argv[0] };

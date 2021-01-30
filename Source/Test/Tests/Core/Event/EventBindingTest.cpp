@@ -1,6 +1,6 @@
-#include <Core/Event/EventBinding.h>
-#include <Core/Event/Message/EventMessage.h>
-#include <Mocks/Core/Event/IEventContextMock.h>
+#include <Core/Event/EventBinding.hpp>
+#include <Core/Event/Message/EventMessage.hpp>
+#include <Mocks/Core/Event/IEventContextMock.hpp>
 #include <gtest/gtest.h>
 
 namespace sp {

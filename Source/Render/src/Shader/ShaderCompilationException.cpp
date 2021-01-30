@@ -1,7 +1,7 @@
 #include <sstream>
 
-#include <Render/Shader/ShaderCompilationException.h>
-#include <PlatformIndependence/SpType.h>
+#include <Render/Shader/ShaderCompilationException.hpp>
+#include <PlatformIndependence/SpType.hpp>
 
 namespace sp {
 	ShaderCompilationException::ShaderCompilationException(SpUnsigned const shaderId, GLenum shaderType, char infoLog[512])

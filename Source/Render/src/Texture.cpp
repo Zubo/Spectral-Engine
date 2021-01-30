@@ -1,8 +1,8 @@
-#include <Render/Texture.h>
+#include <Render/Texture.hpp>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
-#include <PlatformIndependence/SpHash.h>
+#include <PlatformIndependence/SpHash.hpp>
 
 
 namespace sp {

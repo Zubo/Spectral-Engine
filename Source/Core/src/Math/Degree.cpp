@@ -1,5 +1,5 @@
-#include <Core/Math/Degree.h>
-#include <Core/Math/Radian.h>
+#include <Core/Math/Degree.hpp>
+#include <Core/Math/Radian.hpp>
 
 namespace sp {
 	Degree::Degree() : _value{ 0.0F } {

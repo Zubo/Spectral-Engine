@@ -1,15 +1,15 @@
-#include <Scene/Components/Transform.h>
+#include <Scene/Components/Transform.hpp>
 
 #include <memory>
 #include <vector>
 
-#include <Core/Math/Degree.h>
-#include <Core/Math/Direction.h>
-#include <Core/Math/LinearTransformations.h>
-#include <Core/Math/Matrix4x4.h>
-#include <Scene/Components/Interface/ITransformChangeObserver.h>
-#include <Scene/Components/Renderer.h>
-#include <Scene/GameObject/GameObject.h>
+#include <Core/Math/Degree.hpp>
+#include <Core/Math/Direction.hpp>
+#include <Core/Math/LinearTransformations.hpp>
+#include <Core/Math/Matrix4x4.hpp>
+#include <Scene/Components/Interface/ITransformChangeObserver.hpp>
+#include <Scene/Components/Renderer.hpp>
+#include <Scene/GameObject/GameObject.hpp>
 
 
 namespace sp {

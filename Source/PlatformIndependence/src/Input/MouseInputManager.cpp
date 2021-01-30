@@ -1,4 +1,4 @@
-#include <PlatformIndependence/Input/MouseInputManager.h>
+#include <PlatformIndependence/Input/MouseInputManager.hpp>
 
 void sp::MouseInputManager::update() {
 	if (_updated) {

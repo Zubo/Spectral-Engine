@@ -1,4 +1,4 @@
-#include <Core/Math/Vector3.h>
+#include <Core/Math/Vector3.hpp>
 #include <gtest/gtest.h>
 
 namespace sp {

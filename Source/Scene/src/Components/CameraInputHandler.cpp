@@ -1,12 +1,12 @@
-#include <Scene/Components/CameraInputHandler.h>
+#include <Scene/Components/CameraInputHandler.hpp>
 
-#include <Core/Math/SpMath.h>
-#include <Core/Math/Vector2.h>
-#include <Scene/Components/Camera.h>
-#include <Scene/Components/Transform.h>
-#include <Scene/GameObject/GameObject.h>
-#include <Render/CameraData.h>
-#include <PlatformIndependence/Input/Input.h>
+#include <Core/Math/SpMath.hpp>
+#include <Core/Math/Vector2.hpp>
+#include <Scene/Components/Camera.hpp>
+#include <Scene/Components/Transform.hpp>
+#include <Scene/GameObject/GameObject.hpp>
+#include <Render/CameraData.hpp>
+#include <PlatformIndependence/Input/Input.hpp>
 
 namespace sp {
 	CameraInputHandler::CameraInputHandler(GameObject * gameObject) : GameObjectComponent{ gameObject } {

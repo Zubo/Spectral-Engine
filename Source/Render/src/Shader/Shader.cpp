@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include <Core/FileReader.h>
-#include <Render/Shader/Shader.h>
-#include <Render/Shader/ShaderCompilationException.h>
+#include <Core/FileReader.hpp>
+#include <Render/Shader/Shader.hpp>
+#include <Render/Shader/ShaderCompilationException.hpp>
 
 namespace sp {
 	Shader::Shader(SpString const & filePath, GLenum const type) : type{ type } {

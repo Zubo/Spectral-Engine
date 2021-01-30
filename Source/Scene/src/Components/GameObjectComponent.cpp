@@ -1,4 +1,4 @@
-#include <Scene/Components/GameObjectComponent.h>
+#include <Scene/Components/GameObjectComponent.hpp>
 
 namespace sp {
 	GameObjectComponent::GameObjectComponent(GameObject * const gameObjectOwner) :

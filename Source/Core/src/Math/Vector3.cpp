@@ -1,6 +1,6 @@
-#include <Core/Math/Vector3.h>
-#include <Core/Math/Vector2.h>
-#include <Core/Math/SpMath.h>
+#include <Core/Math/Vector3.hpp>
+#include <Core/Math/Vector2.hpp>
+#include <Core/Math/SpMath.hpp>
 
 namespace sp {
 	SpFloat sp::Vector3::dot(Vector3 const & vec1, Vector3 const & vec2) {

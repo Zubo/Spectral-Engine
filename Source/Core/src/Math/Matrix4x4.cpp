@@ -1,6 +1,6 @@
 #include <algorithm>
 
-#include <Core/Math/Matrix4x4.h>
+#include <Core/Math/Matrix4x4.hpp>
 
 namespace sp {
 	Matrix4x4::Matrix4x4() : _values{ 0.0F } {

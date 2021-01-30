@@ -1,4 +1,4 @@
-#include <Core/Event/Message/Messages/ViewportChangedMessage.h>
+#include <Core/Event/Message/Messages/ViewportChangedMessage.hpp>
 
 namespace sp {
 	ViewportChangedMessage::ViewportChangedMessage(SpInt const width, SpInt const height) :

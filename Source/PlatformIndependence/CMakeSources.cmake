@@ -3,11 +3,11 @@ set(SpectralEngine_PlatformIndependence_NoFilter_SRC
     "src/Environment.cpp")
 
 set(SpectralEngine_PlatformIndependence_NoFilter_HEADER
-    "include/PlatformIndependence/SpWindow.h"
-    "include/PlatformIndependence/SpString.h"
-    "include/PlatformIndependence/SpType.h"
-    "include/PlatformIndependence/SpHash.h"
-    "include/PlatformIndependence/Environment.h")
+    "include/PlatformIndependence/SpWindow.hpp"
+    "include/PlatformIndependence/SpString.hpp"
+    "include/PlatformIndependence/SpType.hpp"
+    "include/PlatformIndependence/SpHash.hpp"
+    "include/PlatformIndependence/Environment.hpp")
 
 set(SpectralEngine_PlatformIndependence_Input_SRC
     "src/Input/Input.cpp"
@@ -15,10 +15,10 @@ set(SpectralEngine_PlatformIndependence_Input_SRC
     "src/Input/MouseInputManager.cpp")
 
 set(SpectralEngine_PlatformIndependence_Input_HEADER
-    "include/PlatformIndependence/Input/Input.h"
-    "include/PlatformIndependence/Input/KeyInputManager.h"
-    "include/PlatformIndependence/Input/MouseInputManager.h"
-    "include/PlatformIndependence/Input/KeyCode.h")
+    "include/PlatformIndependence/Input/Input.hpp"
+    "include/PlatformIndependence/Input/KeyInputManager.hpp"
+    "include/PlatformIndependence/Input/MouseInputManager.hpp"
+    "include/PlatformIndependence/Input/KeyCode.hpp")
 
 source_group("src" FILES ${SpectralEngine_PlatformIndependence_NoFilter_SRC})
 source_group("include" FILES ${SpectralEngine_PlatformIndependence_NoFilter_HEADER})

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include <Core/Math/Degree.h>
-#include <Core/Math/SpMath.h>
+#include <Core/Math/Degree.hpp>
+#include <Core/Math/SpMath.hpp>
 
 
 namespace sp

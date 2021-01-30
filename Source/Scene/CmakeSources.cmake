@@ -1,6 +1,6 @@
 set(SpectralEngine_Game_NoFilter_HEADER
-    "include/Scene/Initializers.h"
-    "include/Scene/Vertices.h")
+    "include/Scene/Initializers.hpp"
+    "include/Scene/Vertices.hpp")
 
 set(SpectralEngine_Game_Components_SRC
     "src/Components/GameObjectComponent.cpp"
@@ -16,33 +16,33 @@ set(SpectralEngine_Game_Components_SRC
     "src/Components/LightSource.cpp")
 
 set(SpectralEngine_Game_Components_HEADER
-    "include/Scene/Components/GameObjectComponent.h"
-    "include/Scene/Components/Camera.h"
-    "include/Scene/Components/Material.h"
-    "include/Scene/Components/Renderer.h"
-    "include/Scene/Components/Transform.h"
-    "include/Scene/Components/Rotator.h"
-    "include/Scene/Components/PositionOscilator.h"
-    "include/Scene/Components/CameraInputHandler.h"
-    "include/Scene/Components/FPSCounter.h"
-    "include/Scene/Components/CameraTransform.h"
-    "include/Scene/Components/LightSource.h")
+    "include/Scene/Components/GameObjectComponent.hpp"
+    "include/Scene/Components/Camera.hpp"
+    "include/Scene/Components/Material.hpp"
+    "include/Scene/Components/Renderer.hpp"
+    "include/Scene/Components/Transform.hpp"
+    "include/Scene/Components/Rotator.hpp"
+    "include/Scene/Components/PositionOscilator.hpp"
+    "include/Scene/Components/CameraInputHandler.hpp"
+    "include/Scene/Components/FPSCounter.hpp"
+    "include/Scene/Components/CameraTransform.hpp"
+    "include/Scene/Components/LightSource.hpp")
     
 set(SpectralEngine_Game_Scene_SRC
     "src/Scene/Scene.cpp")
 
 set(SpectralEngine_Game_Scene_HEADER
-    "include/Scene/Scene/Scene.h")
+    "include/Scene/Scene/Scene.hpp")
 
 set(SpectralEngine_Game_Components_Interface_HEADER
-    "include/Scene/Components/Interface/IRenderer.h"
-    "include/Scene/Components/Interface/ITransformChangeObserver.h")
+    "include/Scene/Components/Interface/IRenderer.hpp"
+    "include/Scene/Components/Interface/ITransformChangeObserver.hpp")
 
 set(SpectralEngine_Game_GameObject_SRC
     "src/GameObject/GameObject.cpp")
 
 set(SpectralEngine_Game_GameObject_HEADER
-    "include/Scene/GameObject/GameObject.h")
+    "include/Scene/GameObject/GameObject.hpp")
 
 source_group("include\\Scene" FILES ${SpectralEngine_Game_NoFilter_HEADER})
 source_group("src\\Components" FILES ${SpectralEngine_Game_Components_SRC})

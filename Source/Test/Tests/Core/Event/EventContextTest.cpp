@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <Core/Event/EventContext.h>
+#include <Core/Event/EventContext.hpp>
 
 namespace sp {
 	namespace tests {

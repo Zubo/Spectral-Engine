@@ -1,6 +1,6 @@
-#include <Render/RenderDataContainer.h>
+#include <Render/RenderDataContainer.hpp>
 
-#include <Render/RenderData.h>
+#include <Render/RenderData.hpp>
 
 namespace sp {
 	RenderData const & RenderDataContainer::getRenderData(SpInt const gameObjectId) const {

@@ -1,5 +1,5 @@
-#include <Core/Math/LinearTransformations.h>
-#include <Core/Math/Matrix4x4.h>
+#include <Core/Math/LinearTransformations.hpp>
+#include <Core/Math/Matrix4x4.hpp>
 
 namespace sp {
 	Matrix4x4 getPerspectiveMat(Degree const fov, SpFloat const aspect, SpFloat const far, SpFloat const near) {

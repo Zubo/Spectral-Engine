@@ -1,4 +1,4 @@
-#include <Core/FileReader.h>
+#include <Core/FileReader.hpp>
 
 #include <fstream>
 #include <streambuf>

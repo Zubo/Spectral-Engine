@@ -1,5 +1,5 @@
-#include <Core/Math/Radian.h>
-#include <Core/Math/SpMath.h>
+#include <Core/Math/Radian.hpp>
+#include <Core/Math/SpMath.hpp>
 #include <gtest/gtest.h>
 
 namespace sp {

@@ -1,11 +1,11 @@
-#include <Render/UI/Font/Font.h>
+#include <Render/UI/Font/Font.hpp>
 
 #include <iostream>
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
-#include <Render/UI/Font/Character.h>
-#include <Render/UI/Font/FreeTypeHelper.h>
+#include <Render/UI/Font/Character.hpp>
+#include <Render/UI/Font/FreeTypeHelper.hpp>
 
 namespace sp {
 	std::unique_ptr<Font const> Font::getFont(SpString const & path) {

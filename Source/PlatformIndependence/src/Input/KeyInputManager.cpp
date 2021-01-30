@@ -1,5 +1,5 @@
 #include <GLFW/glfw3.h>
-#include <PlatformIndependence/Input/KeyInputManager.h>
+#include <PlatformIndependence/Input/KeyInputManager.hpp>
 
 sp::KeyInputManager::KeyInputManager(GLFWwindow * window) : window{ window } {
 }

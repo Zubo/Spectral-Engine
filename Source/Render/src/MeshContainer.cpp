@@ -1,9 +1,9 @@
-#include <Render/MeshContainer.h>
+#include <Render/MeshContainer.hpp>
 
 #include <memory>
 
-#include <PlatformIndependence/SpType.h>
-#include <Render/Mesh.h>
+#include <PlatformIndependence/SpType.hpp>
+#include <Render/Mesh.hpp>
 
 namespace sp {
 	std::map<SpUnsigned const, Mesh> MeshContainer::_meshMap;

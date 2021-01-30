@@ -1,7 +1,7 @@
 #include <sstream>
 
-#include <PlatformIndependence/SpType.h>
-#include <Render/Shader/ShaderProgramLinkingException.h>
+#include <PlatformIndependence/SpType.hpp>
+#include <Render/Shader/ShaderProgramLinkingException.hpp>
 
 namespace sp {
 	ShaderProgramLinkingException::ShaderProgramLinkingException(SpUnsigned const programId, char const infoLog[])

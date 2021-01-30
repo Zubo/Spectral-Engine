@@ -1,4 +1,4 @@
-#include <Core/Math/Matrix4x4.h>
+#include <Core/Math/Matrix4x4.hpp>
 #include <gtest/gtest.h>
 
 namespace sp {

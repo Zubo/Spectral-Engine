@@ -1,9 +1,9 @@
-#include <Core/Utility/WindowEventBinding.h>
+#include <Core/Utility/WindowEventBinding.hpp>
 
-#include <Core/Event/IEventContext.h>
-#include <Core/Event/Message/Messages/ViewportChangedMessage.h>
-#include <PlatformIndependence/SpWindow.h>
-#include <PlatformIndependence/SpType.h>
+#include <Core/Event/IEventContext.hpp>
+#include <Core/Event/Message/Messages/ViewportChangedMessage.hpp>
+#include <PlatformIndependence/SpWindow.hpp>
+#include <PlatformIndependence/SpType.hpp>
 
 namespace sp {
 	void bindWindowToEventContext(SpWindow & spWindow, IEventContext const & eventContext) {

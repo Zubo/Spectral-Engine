@@ -1,12 +1,12 @@
-#include <Core/Math/LinearTransformations.h>
-#include <Core/Utility/ResourcesPathProvider.h>
+#include <Core/Math/LinearTransformations.hpp>
+#include <Core/Utility/ResourcesPathProvider.hpp>
 #include <glad/glad.h>
-#include <PlatformIndependence/SpType.h>
-#include <PlatformIndependence/SpWindow.h>
-#include <Render/RenderContext.h>
-#include <Render/TextRenderer.h>
-#include <Render/UI/Font/Character.h>
-#include <Render/UI/Font/Font.h>
+#include <PlatformIndependence/SpType.hpp>
+#include <PlatformIndependence/SpWindow.hpp>
+#include <Render/RenderContext.hpp>
+#include <Render/TextRenderer.hpp>
+#include <Render/UI/Font/Character.hpp>
+#include <Render/UI/Font/Font.hpp>
 
 namespace sp {
 	 GLuint TextRenderer::_VBO;

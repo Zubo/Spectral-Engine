@@ -1,9 +1,9 @@
-#include <Scene/Components/Rotator.h>
+#include <Scene/Components/Rotator.hpp>
 
-#include <Core/Math/Radian.h>
-#include <Core/Math/SpMath.h>
-#include <Scene/GameObject/GameObject.h>
-#include <Scene/Components/Transform.h>
+#include <Core/Math/Radian.hpp>
+#include <Core/Math/SpMath.hpp>
+#include <Scene/GameObject/GameObject.hpp>
+#include <Scene/Components/Transform.hpp>
 
 namespace sp {
 	Rotator::Rotator(GameObject * const gameObjectOwner) : GameObjectComponent{ gameObjectOwner } {

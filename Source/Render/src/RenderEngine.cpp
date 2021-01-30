@@ -1,6 +1,6 @@
-#include <Render/RenderContext.h>
-#include <Render/RenderEngine.h>
-#include <Render/RenderFunctions.h>
+#include <Render/RenderContext.hpp>
+#include <Render/RenderEngine.hpp>
+#include <Render/RenderFunctions.hpp>
 
 namespace sp {
 	SpInt RenderEngine::_nextRenderContextId{ 0 };

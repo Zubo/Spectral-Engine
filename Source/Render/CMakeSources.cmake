@@ -13,19 +13,19 @@ set(SpectralEngine_Render_NoFilter_SRC
     "src/TextRenderer.cpp")
     
 set(SpectralEngine_Render_NoFilter_HEADER
-    "include/Render/RenderEngine.h"
-    "include/Render/RenderContext.h"
-    "include/Render/RenderFunctions.h"
-    "include/Render/Mesh.h"
-    "include/Render/MeshContainer.h"
-    "include/Render/RenderData.h"
-    "include/Render/RenderDataContainer.h"
-    "include/Render/Texture.h"
-    "include/Render/TextureManager.h"
-    "include/Render/CameraData.h"
-    "include/Render/LightData.h"
-    "include/Render/LightDataContainer.h"
-    "include/Render/TextRenderer.h")
+    "include/Render/RenderEngine.hpp"
+    "include/Render/RenderContext.hpp"
+    "include/Render/RenderFunctions.hpp"
+    "include/Render/Mesh.hpp"
+    "include/Render/MeshContainer.hpp"
+    "include/Render/RenderData.hpp"
+    "include/Render/RenderDataContainer.hpp"
+    "include/Render/Texture.hpp"
+    "include/Render/TextureManager.hpp"
+    "include/Render/CameraData.hpp"
+    "include/Render/LightData.hpp"
+    "include/Render/LightDataContainer.hpp"
+    "include/Render/TextRenderer.hpp")
 
 set(SpectralEngine_Render_Shader_SRC
     "src/Shader/ShaderCompilationException.cpp"
@@ -34,10 +34,10 @@ set(SpectralEngine_Render_Shader_SRC
     "src/Shader/ShaderProgram.cpp")
 
 set(SpectralEngine_Render_Shader_HEADER
-    "include/Render/Shader/ShaderCompilationException.h"
-    "include/Render/Shader/ShaderProgramLinkingException.h"
-    "include/Render/Shader/Shader.h"
-    "include/Render/Shader/ShaderProgram.h")
+    "include/Render/Shader/ShaderCompilationException.hpp"
+    "include/Render/Shader/ShaderProgramLinkingException.hpp"
+    "include/Render/Shader/Shader.hpp"
+    "include/Render/Shader/ShaderProgram.hpp")
 
 set(SpectralEngine_Render_Font_SRC
     "src/UI/Font/Character.cpp"
@@ -45,12 +45,12 @@ set(SpectralEngine_Render_Font_SRC
 	"src/UI/Font/FreeTypeHelper.cpp")
 
 set(SpectralEngine_Render_Font_HEADER
-    "include/Render/UI/Font/Character.h"
-    "include/Render/UI/Font/Font.h"
-	"include/Render/UI/Font/FreeTypeHelper.h")
+    "include/Render/UI/Font/Character.hpp"
+    "include/Render/UI/Font/Font.hpp"
+	"include/Render/UI/Font/FreeTypeHelper.hpp")
 
 set(SpectralEngine_Render_Enum_HEADER
-    "include/Render/Enum/LightType.h")
+    "include/Render/Enum/LightType.hpp")
 
 source_group("src\\" FILES ${SpectralEngine_Render_NoFilter_SRC})
 source_group("include\\Render\\" FILES ${SpectralEngine_Render_NoFilter_HEADER})
