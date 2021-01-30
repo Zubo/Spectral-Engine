@@ -2,82 +2,82 @@ set(SpectralEngine_Core_NoFilter_SRC
 	"FileReader.cpp")
 
 set(SpectralEngine_Core_NoFilter_HEADER
-	"FileReader.h")
+	"include/Core/FileReader.h")
 
 set(SpectralEngine_Core_Utility_SRC
-	"Utility/ResourcesPathProvider.cpp"
-	"Utility/WindowEventBinding.cpp")
+	"src/Utility/ResourcesPathProvider.cpp"
+	"src/Utility/WindowEventBinding.cpp")
 
 set(SpectralEngine_Core_Utility_HEADER
-	"Utility/ResourcesPathProvider.h"
-	"Utility/OptionalRef.h"
-	"Utility/WindowEventBinding.h")
+	"include/Core/Utility/ResourcesPathProvider.h"
+	"include/Core/Utility/OptionalRef.h"
+	"include/Core/Utility/WindowEventBinding.h")
 
 set(SpectralEngine_Core_Math_SRC
-	"Math/SpMath.cpp"
-	"Math/LinearTransformations.cpp"
-	"Math/Radian.cpp"
-	"Math/Degree.cpp"
-	"Math/Vector3.cpp"
-	"Math/Vector2.cpp"
-	"Math/Quaternion.cpp"
-	"Math/Matrix4x4.cpp"
-	"Math/Direction.cpp")
+	"src/Math/SpMath.cpp"
+	"src/Math/LinearTransformations.cpp"
+	"src/Math/Radian.cpp"
+	"src/Math/Degree.cpp"
+	"src/Math/Vector3.cpp"
+	"src/Math/Vector2.cpp"
+	"src/Math/Quaternion.cpp"
+	"src/Math/Matrix4x4.cpp"
+	"src/Math/Direction.cpp")
 
 set(SpectralEngine_Core_Math_HEADER
-	"Math/SpMath.h"
-	"Math/LinearTransformations.h"
-	"Math/Radian.h"
-	"Math/Degree.h"
-	"Math/Vector3.h"
-	"Math/Vector2.h"
-	"Math/Quaternion.h"
-	"Math/Matrix4x4.h"
-	"Math/Direction.h")
+	"include/Core/Math/SpMath.h"
+	"include/Core/Math/LinearTransformations.h"
+	"include/Core/Math/Radian.h"
+	"include/Core/Math/Degree.h"
+	"include/Core/Math/Vector3.h"
+	"include/Core/Math/Vector2.h"
+	"include/Core/Math/Quaternion.h"
+	"include/Core/Math/Matrix4x4.h"
+	"include/Core/Math/Direction.h")
 
 set(SpectralEngine_Core_Event_HEADER
-	"Event/EventContext.h"
-	"Event/IEventContext.h"
-	"Event/EventSubscription.h"
-	"Event/IEventSubscription.h"
-	"Event/EventBinding.h"
-	"Event/IEventBinding.h")
+	"include/Core/Event/EventContext.h"
+	"include/Core/Event/IEventContext.h"
+	"include/Core/Event/EventSubscription.h"
+	"include/Core/Event/IEventSubscription.h"
+	"include/Core/Event/EventBinding.h"
+	"include/Core/Event/IEventBinding.h")
 
 set(SpectralEngine_Core_Event_SRC
-	"Event/EventContext.cpp"
-	"Event/EventSubscription.cpp"
-	"Event/EventBinding.cpp")
+	"src/Event/EventContext.cpp"
+	"src/Event/EventSubscription.cpp"
+	"src/Event/EventBinding.cpp")
 	
 set(SpectralEngine_Core_EventMessage_SRC
-	"Event/Message/EventMessage.cpp")
+	"src/Event/Message/EventMessage.cpp")
 
 set(SpectralEngine_Core_EventMessage_HEADER
-	"Event/Message/EventMessage.h"
-	"Event/Message/EventMessageType.h")
+	"include/Core/Event/Message/EventMessage.h"
+	"include/Core/Event/Message/EventMessageType.h")
 	
 set(SpectralEngine_Core_EventMessage_Messages_SRC
 	"Event/Message/Messages/ViewportChangedMessage.cpp")
 
 set(SpectralEngine_Core_EventMessage_Messages_HEADER
-	"Event/Message/Messages/ViewportChangedMessage.h")
+	"include/Core/Event/Message/Messages/ViewportChangedMessage.h")
 
 set(SpectralEngine_Core_Files
 	"CMakeSources.cmake")
 
-source_group("Source Files" ${SpectralEngine_Core_NoFilter_SRC})
-source_group("Header Files" ${SpectralEngine_Core_NoFilter_HEADER})
-source_group("Source Files\\Utility" FILES ${SpectralEngine_Core_Utility_SRC})
-source_group("Header Files\\Utility" FILES ${SpectralEngine_Core_Utility_HEADER})
-source_group("Source Files\\Math" FILES ${SpectralEngine_Core_Math_SRC})
-source_group("Header Files\\Math" FILES ${SpectralEngine_Core_Math_HEADER})
-source_group("Source Files\\Utility\\Input" FILES ${SpectralEngine_Core_Input_SRC})
-source_group("Header Files\\Utility\\Input" FILES ${SpectralEngine_Core_Input_HEADER})
-source_group("Source Files\\Event" FILES ${SpectralEngine_Core_Event_SRC})
-source_group("Header Files\\Event" FILES ${SpectralEngine_Core_Event_HEADER})
-source_group("Source Files\\Event\\Message" FILES ${SpectralEngine_Core_EventMessage_SRC})
-source_group("Header Files\\Event\\Message" FILES ${SpectralEngine_Core_EventMessage_HEADER})
-source_group("Source Files\\Event\\Message\\Messages" FILES ${SpectralEngine_Core_EventMessage_Messages_SRC})
-source_group("Header Files\\Event\\Message\\Messages" FILES ${SpectralEngine_Core_EventMessage_Messages_HEADER})
+source_group("src" ${SpectralEngine_Core_NoFilter_SRC})
+source_group("include\\Core" ${SpectralEngine_Core_NoFilter_HEADER})
+source_group("src\\Utility" FILES ${SpectralEngine_Core_Utility_SRC})
+source_group("include\\Core\\Utility" FILES ${SpectralEngine_Core_Utility_HEADER})
+source_group("src\\Math" FILES ${SpectralEngine_Core_Math_SRC})
+source_group("include\\Core\\Math" FILES ${SpectralEngine_Core_Math_HEADER})
+source_group("src\\Utility\\Input" FILES ${SpectralEngine_Core_Input_SRC})
+source_group("include\\Core\\Utility\\Input" FILES ${SpectralEngine_Core_Input_HEADER})
+source_group("src\\Event" FILES ${SpectralEngine_Core_Event_SRC})
+source_group("include\\Core\\Event" FILES ${SpectralEngine_Core_Event_HEADER})
+source_group("src\\Event\\Message" FILES ${SpectralEngine_Core_EventMessage_SRC})
+source_group("include\\Core\\Event\\Message" FILES ${SpectralEngine_Core_EventMessage_HEADER})
+source_group("src\\Event\\Message\\Messages" FILES ${SpectralEngine_Core_EventMessage_Messages_SRC})
+source_group("include\\Core\\Event\\Message\\Messages" FILES ${SpectralEngine_Core_EventMessage_Messages_HEADER})
 
 set(SpectralEngine_Core_SRC
 	${SpectralEngine_Core_Components_SRC}
