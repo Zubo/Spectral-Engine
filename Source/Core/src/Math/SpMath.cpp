@@ -1,8 +1,8 @@
 #include <cmath>
 
-#include "Degree.h"
-#include "Radian.h"
-#include "SpMath.h"
+#include "Core/Math/Degree.h"
+#include "Core/Math/Radian.h"
+#include "Core/Math/SpMath.h"
 
 namespace sp {
 	SpFloat sin(Radian const rad) {

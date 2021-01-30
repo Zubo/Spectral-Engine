@@ -1,14 +1,10 @@
-#include "TextRenderer.h"
-#include "TextRenderer.h"
-#include "Render/TextRenderer.h"
-
 #include "Core/Math/LinearTransformations.h"
 #include "Core/Utility/ResourcesPathProvider.h"
 #include "glad/glad.h"
-#include "GLFW/glfw3.h"
 #include "PlatformIndependence/SpType.h"
 #include "PlatformIndependence/SpWindow.h"
 #include "Render/RenderContext.h"
+#include "Render/TextRenderer.h"
 #include "Render/UI/Font/Character.h"
 #include "Render/UI/Font/Font.h"
 
@@ -52,8 +48,7 @@ namespace sp {
 			return;
 		}
 
-		GLFWwindow * glfwWindow = spWindow->getConcreteWindow();
-		glfwMakeContextCurrent(glfwWindow);
+		spWindow->makeCurrentContext();
 
 		Matrix4x4 const orthoProjectionMatrix = getOrthoProjectionMatrix(*spWindow);
 

@@ -1,5 +1,5 @@
 set(SpectralEngine_Core_NoFilter_SRC
-	"FileReader.cpp")
+	"src/FileReader.cpp")
 
 set(SpectralEngine_Core_NoFilter_HEADER
 	"include/Core/FileReader.h")
@@ -56,7 +56,7 @@ set(SpectralEngine_Core_EventMessage_HEADER
 	"include/Core/Event/Message/EventMessageType.h")
 	
 set(SpectralEngine_Core_EventMessage_Messages_SRC
-	"Event/Message/Messages/ViewportChangedMessage.cpp")
+	"src/Event/Message/Messages/ViewportChangedMessage.cpp")
 
 set(SpectralEngine_Core_EventMessage_Messages_HEADER
 	"include/Core/Event/Message/Messages/ViewportChangedMessage.h")

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "glad/glad.h"
-#include "GLFW/glfw3.h"
 #include "Core/Math/Matrix4x4.h"
 #include "Core/Math/Direction.h"
 #include "Render/RenderContext.h"
@@ -79,11 +78,9 @@ namespace sp {
 			return;
 		}
 
-		GLFWwindow * const glfwWindow = contextSpWindow->getConcreteWindow();
-		glfwMakeContextCurrent(glfwWindow);
-
+		contextSpWindow->makeCurrentContext();
 		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		RenderDataContainer & renderDataContainer = renderContext.getRenderDataContainer();
 
@@ -129,8 +126,7 @@ namespace sp {
 		lightDataContainer.setAllLightDataChangedToFalse();
 		cameraData.setDataChangedToFalse();
 
-		glfwSwapBuffers(glfwWindow);
-		glfwPollEvents();
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		contextSpWindow->swapBuffers();
+		contextSpWindow->pollEvents();
 	}
 }

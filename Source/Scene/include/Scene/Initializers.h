@@ -8,8 +8,6 @@
 #pragma once
 #include <memory>
 #include <random>
-#define GLFW_INCLUDE_NONE
-#include <GLFW/glfw3.h>
 #include <time.h>
 
 #include "Render/Shader/Shader.h"
@@ -30,6 +28,7 @@
 #include "Scene/Components/Rotator.h"
 #include "Render/UI/Font/Font.h"
 #include "Core/Math/Radian.h"
+#include "Core/Utility/ResourcesPathProvider.h"
 
 namespace sp {
 	constexpr SpUnsigned SCR_WIDTH = 800;

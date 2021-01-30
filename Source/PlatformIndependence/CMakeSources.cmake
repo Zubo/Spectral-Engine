@@ -21,9 +21,9 @@ set(SpectralEngine_PlatformIndependence_Input_HEADER
     "include/PlatformIndependence/Input/KeyCode.h")
 
 source_group("src" FILES ${SpectralEngine_PlatformIndependence_NoFilter_SRC})
-source_group("include\\PlatformIndependence" FILES ${SpectralEngine_PlatformIndependence_NoFilter_HEADER})
+source_group("include" FILES ${SpectralEngine_PlatformIndependence_NoFilter_HEADER})
 source_group("src\\Input" FILES ${SpectralEngine_PlatformIndependence_Input_SRC})
-source_group("include\\PlatformIndependence\\Input" FILES ${SpectralEngine_PlatformIndependence_Input_HEADER})
+source_group("include\\Input" FILES ${SpectralEngine_PlatformIndependence_Input_HEADER})
 
 set(SpectralEngine_PlatformIndependence_SRC
     ${SpectralEngine_PlatformIndependence_NoFilter_SRC}

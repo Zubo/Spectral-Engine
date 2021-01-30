@@ -1,10 +1,10 @@
+#include <chrono>
 #include <memory>
 
 #include "Core/Utility/ResourcesPathProvider.h"
-#include "Scene/Initializers.h"
 #include "Scene/Scene/Scene.h"
+#include "Scene/Initializers.h"
 #include "PlatformIndependence/Environment.h"
-#include "PlatformIndependence/Input/Input.h"
 #include "PlatformIndependence/SpType.h"
 #include "PlatformIndependence/SpWindow.h"
 #include "Render/TextRenderer.h"
@@ -14,8 +14,9 @@ int main(int argc, char** argv) {
 	sp::SpString const executablePath{ argv[0] };
 	sp::SpString const rootPath{ executablePath.substr(0, executablePath.find_last_of(sp::Environment::FilePathSeparator())) };
 	sp::ResourcesPathProvider::initializePaths(rootPath);
-
-	std::unique_ptr<sp::SpWindow> window = sp::SpWindow::create(800, 600);
+	
+	constexpr bool isMainWindow = true;
+	std::unique_ptr<sp::SpWindow> window = sp::SpWindow::create(800, 600, isMainWindow);
 	sp::TextRenderer::init();
 
 	sp::RenderEngine renderEngine;
@@ -24,14 +25,15 @@ int main(int argc, char** argv) {
 	scene.assignWindow(std::move(window));
 	sp::initScene(scene);
 
-	sp::SpFloat lastFrame = static_cast<float>(glfwGetTime());
+	auto lastFrame = std::chrono::system_clock::now();
 
 	sp::SpWindow & mainWindow{ *scene.getRenderContext().getWindow() };
 	mainWindow.setCursorEnabled(false);
 
 	while (!mainWindow.shouldClose()) {
-		sp::SpFloat currentFrame = static_cast<float>(glfwGetTime());
-		sp::SpFloat const deltaTime = currentFrame - lastFrame;
+		auto currentFrame = std::chrono::system_clock::now();
+		sp::SpFloat const deltaTime =
+			std::chrono::duration_cast<std::chrono::milliseconds>(currentFrame - lastFrame).count() / 1000.0F;
 		scene.updateGameObjects(deltaTime);
 		lastFrame = currentFrame;
 
@@ -40,8 +42,6 @@ int main(int argc, char** argv) {
 		
 		renderEngine.renderAllContexts();
 	}
-
-	glfwTerminate();
 
 	return 0;
 }

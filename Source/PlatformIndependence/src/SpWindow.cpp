@@ -1,8 +1,7 @@
-#include "SpWindow.h"
-#include "glad/glad.h"
+#include "PlatformIndependence/SpWindow.h"
+#include <glad/glad.h>
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
-#include <ThirdParty/Glad/include/glad/glad.h>
 #include <iostream>
 #include <memory>
 
@@ -11,22 +10,34 @@
 namespace sp {
 	bool SpWindow::_GLFWInitialized{ false };
 
-	std::unique_ptr<SpWindow> SpWindow::create(SpInt const width, SpInt const height) {
-		return std::unique_ptr<SpWindow>(new SpWindow(width, height));
+	std::unique_ptr<SpWindow> SpWindow::create(SpInt const width, SpInt const height, bool const isMainWindow) {
+		if (!_GLFWInitialized) {
+			initGLFW();
+			_GLFWInitialized = true;
+		}
+
+		return std::unique_ptr<SpWindow>(new SpWindow(width, height, isMainWindow));
+	}
+
+	void SpWindow::initGLFW() {
+		glfwInit();
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	}
 
 	SpWindow::~SpWindow() {
 		if (_concreteWindow) {
 			glfwDestroyWindow(_concreteWindow);
 		}
+
+		if (_isMainWindow) {
+			glfwTerminate();
+		}
 	}
 
-	SpWindow::SpWindow(SpInt const width, SpInt const height) : _width{ width }, _height{ height } {
-		if (!_GLFWInitialized) {
-			initGLFW();
-			_GLFWInitialized = true;
-		}
-
+	SpWindow::SpWindow(SpInt const width, SpInt const height, bool const isMainWindow) :
+			_width{ width }, _height{ height },	_isMainWindow{ isMainWindow } {
 		_concreteWindow = glfwCreateWindow(width, height, "Spectral Engine", NULL, NULL);
 
 		if (_concreteWindow == nullptr) {
@@ -61,10 +72,6 @@ namespace sp {
 		glfwSetInputMode(_concreteWindow, GLFW_CURSOR, inputModeCursorArg);
 	}
 
-	GLFWwindow * SpWindow::getConcreteWindow() const {
-		return _concreteWindow;
-	}
-
 	Input const & SpWindow::getInput() const {
 		return *_inputUnique;
 	}
@@ -82,11 +89,16 @@ namespace sp {
 			spWindow->_setFramebufferSizeCallback(width, height);
 		});
 	}
+	
+	void sp::SpWindow::makeCurrentContext() const {
+		glfwMakeContextCurrent(_concreteWindow);
+	}
 
-	void SpWindow::initGLFW() {
-		glfwInit();
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	void SpWindow::swapBuffers() const {
+		glfwSwapBuffers(_concreteWindow);
+	}
+
+	void SpWindow::pollEvents() const {
+		glfwPollEvents();
 	}
 }

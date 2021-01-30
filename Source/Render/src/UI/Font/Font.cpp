@@ -2,8 +2,6 @@
 
 #include <iostream>
 
-#define GLFW_INCLUDE_NONE
-#include "GLFW/glfw3.h"
 #include "ft2build.h"
 #include FT_FREETYPE_H
 #include "Render/UI/Font/Character.h"

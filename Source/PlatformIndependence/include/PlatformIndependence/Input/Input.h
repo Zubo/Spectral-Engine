@@ -7,7 +7,6 @@
 #include "PlatformIndependence/Input/KeyCode.h"
 #include "PlatformIndependence/Input/KeyInputManager.h"
 #include "PlatformIndependence/Input/MouseInputManager.h"
-#include "Core/Math/Vector2.h"
 
 struct GLFWwindow;
 
@@ -22,7 +21,8 @@ namespace sp {
 
 	public:
 		bool keyDown(KeyCode keyCode);
-		Vector2 mouseAxis();
+		SpFloat mouseAxisX();
+		SpFloat mouseAxisY();
 		void update();
 
 	private:

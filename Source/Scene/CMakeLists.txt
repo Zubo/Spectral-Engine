@@ -2,10 +2,12 @@ cmake_minimum_required(VERSION 3.8)
 
 include(CmakeSources.cmake)
 
-add_library(Scene STATIC ${SpectralEngine_Game_SRC})
+add_library(Scene STATIC "${SpectralEngine_Game_SRC}")
+target_include_directories(Scene PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 target_link_libraries(Scene PRIVATE Render)
 target_link_libraries(Scene PRIVATE Core)
+target_link_libraries(Scene PRIVATE PlatformIndependence)
 target_link_libraries(Scene PRIVATE glad)
 target_link_libraries(Scene PRIVATE khr)
 

@@ -1,4 +1,4 @@
-#include "CameraInputHandler.h"
+#include "Scene/Components/CameraInputHandler.h"
 
 #include "Core/Math/SpMath.h"
 #include "Core/Math/Vector2.h"
@@ -22,7 +22,7 @@ namespace sp {
 		 float const sensitivity = 0.05F;
 
 		 Input & input{ _gameObjectOwner->GetSceneRef()->getInput() };
-		 Vector2 const mouseOffset = input.mouseAxis() * sensitivity;
+		 Vector2 const mouseOffset = Vector2{ input.mouseAxisX(), input.mouseAxisY() } *sensitivity;
 
 		 if (mouseOffset.X * mouseOffset.X < 0.01F && mouseOffset.Y * mouseOffset.Y < 0.01F) {
 			 return;

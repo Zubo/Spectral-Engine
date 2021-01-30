@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core/Math/Vector2.h"
+#include "PlatformIndependence/SpType.h"
 
 namespace sp {
 	class MouseInputManager {

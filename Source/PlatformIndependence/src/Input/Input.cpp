@@ -27,8 +27,12 @@ namespace sp {
 		return _keyInputManager.keyPressed(keyCode);
 	}
 
-	Vector2 Input::mouseAxis() {
-		return Vector2{ _mouseInputManager._xDelta, _mouseInputManager._yDelta };
+	SpFloat Input::mouseAxisX()	{
+		return _mouseInputManager._xDelta;
+	}
+
+	SpFloat Input::mouseAxisY()	{
+		return _mouseInputManager._yDelta;
 	}
 
 	void Input::update() {

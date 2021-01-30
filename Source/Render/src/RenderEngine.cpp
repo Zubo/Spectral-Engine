@@ -25,7 +25,7 @@ namespace sp {
 			if (renderContext->getId() == _mainContextId) {
 				std::unique_ptr<SpWindow> const & contextWindowUnique = renderContext->getWindow();
 
-				if (contextWindowUnique != nullptr && glfwWindowShouldClose(contextWindowUnique->getConcreteWindow())) {
+				if (contextWindowUnique != nullptr && contextWindowUnique->shouldClose()) {
 					return false;
 				}
 			}
