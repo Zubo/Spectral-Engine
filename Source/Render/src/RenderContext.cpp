@@ -47,9 +47,13 @@ namespace sp {
 		_spWindowUnique = std::move(spWindowUnique);
 
 		_viewportChangedEventBinding.bind(eventContext, EventMessageType::ViewportChanged,
-			[](EventMessage & message) {
-			ViewportChangedMessage & viewportChangedMessage{ dynamic_cast<ViewportChangedMessage &>(message) };
-			glViewport(0, 0, viewportChangedMessage.getWidth(), viewportChangedMessage.getHeight());
+			[this](EventMessage& message) {
+				ViewportChangedMessage& viewportChangedMessage{ dynamic_cast<ViewportChangedMessage&>(message) };
+				SpInt const screenWidth = viewportChangedMessage.getWidth();
+				SpInt const screenHeight = viewportChangedMessage.getHeight();
+				glViewport(0, 0, screenWidth, screenHeight);
+				_cameraData.setScreenWidth(screenWidth);
+				_cameraData.setScreenHeight(screenHeight);
 		});
 	}
 
