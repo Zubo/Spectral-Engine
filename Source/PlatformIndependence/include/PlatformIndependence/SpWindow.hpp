@@ -6,6 +6,8 @@
 #include <PlatformIndependence/Input/Input.hpp>
 #include <PlatformIndependence/SpType.hpp>
 
+struct GLFWwindow;
+
 namespace sp {
 	class SpWindow {
 	public:
@@ -16,12 +18,13 @@ namespace sp {
 
 	private:
 		static void initGLFW();
+		static void initGlad();
 
 	public:
 		~SpWindow();
 
 	private:
-		SpWindow(SpInt const width, SpInt const height, bool const isMainWindow);
+		SpWindow(SpInt const width, SpInt const height, bool const isMainWindow, GLFWwindow * const concreteWindow);
 		SpWindow(SpWindow const & window) = delete;
 
 	public:
@@ -53,5 +56,6 @@ namespace sp {
 
 	private:
 		static bool _GLFWInitialized;
+		static bool _gladInitialized;
 	};
 }

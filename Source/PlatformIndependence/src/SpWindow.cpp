@@ -9,14 +9,30 @@
 
 namespace sp {
 	bool SpWindow::_GLFWInitialized{ false };
+	bool SpWindow::_gladInitialized{ false };
 
 	std::unique_ptr<SpWindow> SpWindow::create(SpInt const width, SpInt const height, bool const isMainWindow) {
 		if (!_GLFWInitialized) {
 			initGLFW();
-			_GLFWInitialized = true;
 		}
 
-		return std::unique_ptr<SpWindow>(new SpWindow(width, height, isMainWindow));
+		GLFWwindow * const concreteWindow{ glfwCreateWindow(width, height, "Spectral Engine", NULL, NULL) };
+
+		if (concreteWindow == nullptr) {
+			std::cout << "Failed to create GLFW window." << std::endl;
+			return nullptr;
+		}
+
+		std::unique_ptr<SpWindow> windowUnique(new SpWindow(width, height, isMainWindow, concreteWindow));
+		
+		glfwSetWindowUserPointer(windowUnique->_concreteWindow, windowUnique.get());
+
+		if (!_gladInitialized) {
+			glfwMakeContextCurrent(windowUnique->_concreteWindow);
+			initGlad();
+		}
+
+		return std::move(windowUnique);
 	}
 
 	void SpWindow::initGLFW() {
@@ -24,6 +40,16 @@ namespace sp {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		_GLFWInitialized = true;
+	}
+
+	void SpWindow::initGlad() {
+		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+			std::cout << "Failed to initialize GLAD." << std::endl;
+			return;
+		}
+
+		_gladInitialized = true;
 	}
 
 	SpWindow::~SpWindow() {
@@ -36,25 +62,12 @@ namespace sp {
 		}
 	}
 
-	SpWindow::SpWindow(SpInt const width, SpInt const height, bool const isMainWindow) :
-			_width{ width }, _height{ height },	_isMainWindow{ isMainWindow } {
-		_concreteWindow = glfwCreateWindow(width, height, "Spectral Engine", NULL, NULL);
-
-		if (_concreteWindow == nullptr) {
-			std::cout << "Failed to create GLFW window." << std::endl;
-			glfwTerminate();
-			return;
-		}
-
-		glfwSetWindowUserPointer(_concreteWindow, this);
-		glfwMakeContextCurrent(_concreteWindow);
-
-		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-			std::cout << "Failed to initialize GLAD." << std::endl;
-			return;
-		}
-
-		_inputUnique = std::make_unique<Input>(*_concreteWindow);
+	SpWindow::SpWindow(SpInt const width, SpInt const height, bool const isMainWindow, GLFWwindow * const concreteWindow) :
+			_width{ width },
+			_height{ height },
+			_isMainWindow{ isMainWindow },
+			_concreteWindow{ concreteWindow } {
+		_inputUnique = std::make_unique<Input>(*concreteWindow);
 	}
 
 	void SpWindow::update() const {
