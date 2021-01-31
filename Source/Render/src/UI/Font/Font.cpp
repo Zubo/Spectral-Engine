@@ -16,14 +16,14 @@ namespace sp {
 
 		auto existingFontIter = fontMap.find(path);
 		if (existingFontIter != fontMap.end()) {
-			return *existingFontIter->second;
+			return OptionalRef<Font const>{ *existingFontIter->second };
 		}
 
 		auto newFontPair = fontMap.emplace(path, std::unique_ptr<Font>{ new Font() });
 		Font & newFont = *newFontPair.first->second;
 		loadFontCharacters(newFont, face);
 
-		return OptionalRef<Font const>(newFont);
+		return OptionalRef<Font const>{ newFont };
 	}
 
 	std::unordered_map< SpString, std::unique_ptr<Font> > Font::fontMap;
