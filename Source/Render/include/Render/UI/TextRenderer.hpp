@@ -22,7 +22,8 @@ namespace sp {
 			RenderContext const & renderContext,
 			SpString const & text,
 			Vector2 const & position,
-			Vector2 const & scale);
+			Vector2 const & scale,
+			Font const & font);
 
 	private:
 		static Matrix4x4 getOrthoProjectionMatrix(SpWindow const & spWindow);
@@ -30,7 +31,6 @@ namespace sp {
 	private:
 		static GLuint _VBO;
 		static GLuint _VAO;
-		static std::unique_ptr<Font const> _font;
 		static ShaderProgram _shaderProgram;
 	};
 }

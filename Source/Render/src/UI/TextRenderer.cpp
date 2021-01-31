@@ -4,14 +4,13 @@
 #include <PlatformIndependence/SpType.hpp>
 #include <PlatformIndependence/SpWindow.hpp>
 #include <Render/RenderContext.hpp>
-#include <Render/TextRenderer.hpp>
+#include <Render/UI/TextRenderer.hpp>
 #include <Render/UI/Font/Character.hpp>
 #include <Render/UI/Font/Font.hpp>
 
 namespace sp {
 	 GLuint TextRenderer::_VBO;
 	 GLuint TextRenderer::_VAO;
-	 std::unique_ptr<Font const> TextRenderer::_font;
 	 ShaderProgram TextRenderer::_shaderProgram;
 
 	void TextRenderer::init() {
@@ -28,9 +27,7 @@ namespace sp {
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 		glBindVertexArray(0);
-
-		SpString const fontPath{ ResourcesPathProvider::getResourcesDirectoryPath() + SpString{ "/Fonts/Arial.ttf" } };
-		_font = Font::getFont(fontPath);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 		SpString const vertexShaderPath{ ResourcesPathProvider::getShaderFilesDirectoryPath() + SpString{"/vertex_text_shader.glsl" } };
 		SpString const fragmentShaderPath{ ResourcesPathProvider::getShaderFilesDirectoryPath() + SpString{"/fragment_text_shader.glsl" } };
@@ -41,7 +38,8 @@ namespace sp {
 		RenderContext const & renderContext,
 		SpString const & text,
 		Vector2 const & position,
-		Vector2 const & scale) {
+		Vector2 const & scale,
+		Font const & font) {
 		std::unique_ptr<SpWindow> const & spWindow = renderContext.getWindow();
 
 		if (spWindow == nullptr) {
@@ -62,7 +60,7 @@ namespace sp {
 		SpFloat characterOffsetX = 0.0f;
 
 		for (SpString::const_iterator charIterator = text.begin(); charIterator != text.end(); ++charIterator) {
-			Character const character = _font->getCharacter(*charIterator);
+			Character const character = font.getCharacter(*charIterator);
 			Vector2 const currentCharPos = position + Vector2{ characterOffsetX, 0.0F };
 			Vector2 const characterBearing{ (float)character.bitmapLeft, (float)character.bitmapTop };
 			Vector2 const textureOrigin = currentCharPos + characterBearing;

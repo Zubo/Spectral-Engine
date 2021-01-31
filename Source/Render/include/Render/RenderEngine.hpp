@@ -19,7 +19,7 @@ namespace sp {
 
 	private:
 		std::vector< std::unique_ptr<RenderContext> > _renderContexts;
-		SpInt _mainContextId;
+		SpInt _mainContextId = -1;
 
 	private:
 		static SpInt _nextRenderContextId;

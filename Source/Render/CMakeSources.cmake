@@ -9,8 +9,7 @@ set(SpectralEngine_Render_NoFilter_SRC
     "src/TextureManager.cpp"
     "src/CameraData.cpp"
     "src/LightData.cpp"
-    "src/LightDataContainer.cpp"
-    "src/TextRenderer.cpp")
+    "src/LightDataContainer.cpp")
     
 set(SpectralEngine_Render_NoFilter_HEADER
     "include/Render/RenderEngine.hpp"
@@ -24,8 +23,7 @@ set(SpectralEngine_Render_NoFilter_HEADER
     "include/Render/TextureManager.hpp"
     "include/Render/CameraData.hpp"
     "include/Render/LightData.hpp"
-    "include/Render/LightDataContainer.hpp"
-    "include/Render/TextRenderer.hpp")
+    "include/Render/LightDataContainer.hpp")
 
 set(SpectralEngine_Render_Shader_SRC
     "src/Shader/ShaderCompilationException.cpp"
@@ -38,6 +36,12 @@ set(SpectralEngine_Render_Shader_HEADER
     "include/Render/Shader/ShaderProgramLinkingException.hpp"
     "include/Render/Shader/Shader.hpp"
     "include/Render/Shader/ShaderProgram.hpp")
+
+set(SpectralEngine_Render_UI_SRC
+    "src/UI/TextRenderer.cpp")
+
+set(SpectralEngine_Render_UI_HEADER
+    "include/Render/UI/TextRenderer.hpp")
 
 set(SpectralEngine_Render_Font_SRC
     "src/UI/Font/Character.cpp"
@@ -56,6 +60,8 @@ source_group("src\\" FILES ${SpectralEngine_Render_NoFilter_SRC})
 source_group("include\\Render\\" FILES ${SpectralEngine_Render_NoFilter_HEADER})
 source_group("src\\Shader" FILES ${SpectralEngine_Render_Shader_SRC})
 source_group("include\\Render\\Shader" FILES ${SpectralEngine_Render_Shader_HEADER})
+source_group("src\\UI\\Font" FILES ${SpectralEngine_Render_UI_SRC})
+source_group("include\\Render\\UI\\Font" FILES ${SpectralEngine_Render_UI_HEADER})
 source_group("src\\UI\\Font" FILES ${SpectralEngine_Render_Font_SRC})
 source_group("include\\Render\\UI\\Font" FILES ${SpectralEngine_Render_Font_HEADER})
 source_group("include\\Render\\Enum" FILES ${SpectralEngine_Render_Enum_HEADER})
@@ -65,6 +71,8 @@ set(SpectralEngine_Render_SRC
     ${SpectralEngine_Render_NoFilter_HEADER}
     ${SpectralEngine_Render_Shader_SRC}
     ${SpectralEngine_Render_Shader_HEADER}
+    ${SpectralEngine_Render_UI_SRC}
+    ${SpectralEngine_Render_UI_HEADER}
 	${SpectralEngine_Render_Font_SRC}
 	${SpectralEngine_Render_Font_HEADER}
     ${SpectralEngine_Render_Enum_HEADER})

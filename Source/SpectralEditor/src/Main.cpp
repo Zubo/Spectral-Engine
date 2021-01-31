@@ -7,7 +7,7 @@
 #include <PlatformIndependence/Environment.hpp>
 #include <PlatformIndependence/SpType.hpp>
 #include <PlatformIndependence/SpWindow.hpp>
-#include <Render/TextRenderer.hpp>
+#include <Render/UI/TextRenderer.hpp>
 #include <Render/RenderEngine.hpp>
 
 int main(int argc, char** argv) {
