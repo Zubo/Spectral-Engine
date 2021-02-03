@@ -6,6 +6,7 @@
 #include <PlatformIndependence/SpWindow.hpp>
 #include <PlatformIndependence/SpType.hpp>
 #include <Render/CameraData.hpp>
+#include <Render/GUI/GUIDrawCallDataContainer.hpp>
 #include <Render/LightDataContainer.hpp>
 #include <Render/RenderDataContainer.hpp>
 #include <Render/Shader/ShaderProgram.hpp>
@@ -23,6 +24,7 @@ namespace sp {
 		RenderDataContainer & getRenderDataContainer();
 		LightDataContainer const & getLightDataContainer() const;
 		LightDataContainer & getLightDataContainer();
+		GUIDrawCallDataContainer & getGUIDrawCallDataContainer();
 		CameraData const & getCameraData() const;
 		CameraData & getCameraData();
 		std::unique_ptr<SpWindow> const & getWindow() const;
@@ -39,6 +41,7 @@ namespace sp {
 		const SpInt _id;
 		RenderDataContainer _renderDataContainer;
 		LightDataContainer _lightDataContainer;
+		GUIDrawCallDataContainer _guiDrawCallDataContainer;
 		CameraData _cameraData;
 		EventBinding _viewportChangedEventBinding;
 

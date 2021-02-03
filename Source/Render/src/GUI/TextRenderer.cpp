@@ -4,9 +4,9 @@
 #include <PlatformIndependence/SpType.hpp>
 #include <PlatformIndependence/SpWindow.hpp>
 #include <Render/RenderContext.hpp>
-#include <Render/UI/TextRenderer.hpp>
-#include <Render/UI/Font/Character.hpp>
-#include <Render/UI/Font/Font.hpp>
+#include <Render/GUI/TextRenderer.hpp>
+#include <Render/GUI/Font/Character.hpp>
+#include <Render/GUI/Font/Font.hpp>
 
 namespace sp {
 	 GLuint TextRenderer::_VBO;

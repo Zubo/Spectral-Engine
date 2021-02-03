@@ -8,7 +8,7 @@
 #include <Core/Utility/OptionalRef.hpp>
 #include <PlatformIndependence/SpType.hpp>
 #include <Render/Shader/ShaderProgram.hpp>
-#include <Render/UI/Font/Font.hpp>
+#include <Render/GUI/Font/Font.hpp>
 
 namespace sp {
 	class Vector2;

@@ -1,4 +1,4 @@
-#include <Render/UI/Font/Character.hpp>
+#include <Render/GUI/Font/Character.hpp>
 
 sp::Character::Character(
 	SpUnsigned const textureId,

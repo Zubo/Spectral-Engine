@@ -31,6 +31,10 @@ namespace sp {
 		return _lightDataContainer;
 	}
 
+	GUIDrawCallDataContainer & RenderContext::getGUIDrawCallDataContainer() {
+		return _guiDrawCallDataContainer;
+	}
+
 	CameraData const & RenderContext::getCameraData() const {
 		return _cameraData;
 	}
