@@ -18,8 +18,8 @@ namespace sp {
 		virtual void unbind() override;
 
 	private:
-		SpInt _subscriptionId;
-		EventMessageType _messageType;
+		SpInt _subscriptionId = -1;
+		EventMessageType _messageType = EventMessageType::ErrorType;
 		OptionalRef<IEventContext> _eventContextRef;
 		bool _bound = false;
 	};

@@ -38,12 +38,12 @@ set(SpectralEngine_Render_Shader_HEADER
     "include/Render/Shader/ShaderProgram.hpp")
 
 set(SpectralEngine_Render_GUI_SRC
-    "src/GUI/TextRenderer.cpp"
-    "src/GUI/GUIDrawCallDataContainer.cpp")
+    "src/GUI/GUIDrawCallDataContainer.cpp"
+    "src/GUI/TextRenderer.cpp")
 
 set(SpectralEngine_Render_GUI_HEADER
-    "include/Render/GUI/TextRenderer.hpp"
-    "include/Render/GUI/GUIDrawCallDataContainer.hpp")
+    "include/Render/GUI/GUIDrawCallDataContainer.hpp"
+    "include/Render/GUI/TextRenderer.hpp")
 
 set(SpectralEngine_Render_Font_SRC
     "src/GUI/Font/Character.cpp"

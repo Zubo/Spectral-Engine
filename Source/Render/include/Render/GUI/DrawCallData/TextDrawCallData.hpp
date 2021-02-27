@@ -6,6 +6,7 @@
 
 namespace sp{
 	class Font;
+	class RenderContext;
 
 	class TextDrawCallData {
 	public:
@@ -14,6 +15,9 @@ namespace sp{
 			Vector2 const position,
 			Vector2 const scale,
 			Font const & font);
+
+	public:
+		void render(RenderContext const & renderContext) const;
 
 	public:
 		SpString Text;
