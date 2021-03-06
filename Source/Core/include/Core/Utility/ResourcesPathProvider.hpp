@@ -6,6 +6,7 @@ namespace sp {
 	class ResourcesPathProvider {
 	public:
 		static SpString const & getResourcesDirectoryPath();
+		static SpString getFullResourcePath(SpString const & resourceRelativePath);
 		static SpString const & getShaderFilesDirectoryPath();
 		static void initializePaths(SpString const & rootPath);
 

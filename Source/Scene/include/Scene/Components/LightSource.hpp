@@ -19,6 +19,6 @@ namespace sp {
 		virtual void onScaleUpdated(Vector3 const & scale) override;
 
 	private:
-		SpInt _lightDataId;
+		SpInt _lightDataId = -1;
 	};
 }

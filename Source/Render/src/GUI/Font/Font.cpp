@@ -9,11 +9,6 @@
 
 namespace sp {
 	OptionalRef<Font const> Font::getFont(SpString const & path) {
-		FT_Face face;
-		if (createFace(path, face)) {
-			return OptionalRef<Font const>{};
-		}
-
 		auto existingFontIter = fontMap.find(path);
 		if (existingFontIter != fontMap.end()) {
 			return OptionalRef<Font const>{ *existingFontIter->second };
@@ -21,6 +16,12 @@ namespace sp {
 
 		auto newFontPair = fontMap.emplace(path, std::unique_ptr<Font>{ new Font() });
 		Font & newFont = *newFontPair.first->second;
+
+		FT_Face face;
+		if (createFace(path, face)) {
+			return OptionalRef<Font const>{};
+		}
+
 		loadFontCharacters(newFont, face);
 
 		return OptionalRef<Font const>{ newFont };
