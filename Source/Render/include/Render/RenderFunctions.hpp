@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include <Core/Math/Matrix4x4.hpp>
 #include <Core/Math/Direction.hpp>
+#include <Render/GUI/TextRenderer.hpp>
 #include <Render/RenderContext.hpp>
 #include <Render/RenderData.hpp>
 
@@ -71,20 +72,7 @@ namespace sp {
 		shaderProgram.setInt("numberOfLights", numberOfLights);
 	}
 
-	inline void render(RenderContext & renderContext) {
-		std::unique_ptr<SpWindow> const & contextSpWindow = renderContext.getWindow();
-
-		if (contextSpWindow == nullptr) {
-			return;
-		}
-
-		contextSpWindow->makeCurrentContext();
-		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		RenderDataContainer & renderDataContainer = renderContext.getRenderDataContainer();
-
-		CameraData & cameraData = renderContext.getCameraData();
+	inline void renderScene(RenderDataContainer const & renderDataContainer, CameraData const & cameraData, LightDataContainer const & lightDataContainer) {
 		Matrix4x4 const projectionMatrix = cameraData.GetProjectionMatrix();
 		Matrix4x4 const viewMatrix = cameraData.GetViewMatrix();
 		Vector3 const cameraPos = cameraData.getTranslation();
@@ -101,7 +89,7 @@ namespace sp {
 
 			renderData.RenderShaderProgram.use();
 
-			updateLights(renderContext.getLightDataContainer(), renderData.RenderShaderProgram);
+			updateLights(lightDataContainer, renderData.RenderShaderProgram);
 
 			if (renderData.ModelMatrixChanged) {
 				Matrix4x4 const modelMatrix = renderData.getModelMatrix();
@@ -118,10 +106,44 @@ namespace sp {
 			glBindVertexArray(renderData.VAO);
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
+	}
+
+	void renderGUIDrawCalls(RenderContext & renderContext) {
+		GUIDrawCallDataContainer & guiDrawCallDataContainer = renderContext.getGUIDrawCallDataContainer();
+		std::queue<GUIDrawCallData> & drawCallDataQueue = guiDrawCallDataContainer.getDrawCallDataQueue();
+
+		while (!drawCallDataQueue.empty()) {
+			GUIDrawCallData const & drawCallData = drawCallDataQueue.front();
+			
+			std::visit([&renderContextConst = std::as_const(renderContext)](auto const & drawCallData) {
+				drawCallData.render(renderContextConst);
+			}, drawCallData);
+
+			drawCallDataQueue.pop();
+		}
+	}
+
+	inline void render(RenderContext & renderContext) {
+		std::unique_ptr<SpWindow> const & contextSpWindow = renderContext.getWindow();
+
+		if (contextSpWindow == nullptr) {
+			return;
+		}
+
+		contextSpWindow->makeCurrentContext();
+		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		RenderDataContainer & renderDataContainer = renderContext.getRenderDataContainer();
+		CameraData & cameraData = renderContext.getCameraData();
+		LightDataContainer & lightDataContainer = renderContext.getLightDataContainer();
+
+		renderScene(renderDataContainer, cameraData, lightDataContainer);
+
+		renderGUIDrawCalls(renderContext);
 
 		unbindAllTextures();
 		renderDataContainer.resetAllChangedFlags();
-		LightDataContainer & lightDataContainer = renderContext.getLightDataContainer();
 		lightDataContainer.setNumberOfLightsChangedToFalse();
 		lightDataContainer.setAllLightDataChangedToFalse();
 		cameraData.setDataChangedToFalse();

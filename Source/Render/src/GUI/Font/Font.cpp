@@ -1,19 +1,14 @@
-#include <Render/UI/Font/Font.hpp>
+#include <Render/GUI/Font/Font.hpp>
 
 #include <iostream>
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
-#include <Render/UI/Font/Character.hpp>
-#include <Render/UI/Font/FreeTypeHelper.hpp>
+#include <Render/GUI/Font/Character.hpp>
+#include <Render/GUI/Font/FreeTypeHelper.hpp>
 
 namespace sp {
 	OptionalRef<Font const> Font::getFont(SpString const & path) {
-		FT_Face face;
-		if (createFace(path, face)) {
-			return OptionalRef<Font const>{};
-		}
-
 		auto existingFontIter = fontMap.find(path);
 		if (existingFontIter != fontMap.end()) {
 			return OptionalRef<Font const>{ *existingFontIter->second };
@@ -21,6 +16,12 @@ namespace sp {
 
 		auto newFontPair = fontMap.emplace(path, std::unique_ptr<Font>{ new Font() });
 		Font & newFont = *newFontPair.first->second;
+
+		FT_Face face;
+		if (createFace(path, face)) {
+			return OptionalRef<Font const>{};
+		}
+
 		loadFontCharacters(newFont, face);
 
 		return OptionalRef<Font const>{ newFont };

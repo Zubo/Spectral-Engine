@@ -27,7 +27,7 @@ namespace sp {
 		Vector3 _translation;
 		Vector3 _rotation;
 		Degree _fov;
-		SpInt _screenWidth;
-		SpInt _screenHeight;
+		SpInt _screenWidth = 0;
+		SpInt _screenHeight = 0;
 	};
 }

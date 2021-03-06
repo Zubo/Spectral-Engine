@@ -5,7 +5,7 @@
 
 #include <Core/Utility/OptionalRef.hpp>
 #include <PlatformIndependence/SpString.hpp>
-#include <Render/UI/Font/Character.hpp>
+#include <Render/GUI/Font/Character.hpp>
 
 namespace sp {
 	class Font {

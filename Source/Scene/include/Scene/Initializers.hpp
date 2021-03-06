@@ -26,7 +26,7 @@
 #include <Render/MeshContainer.hpp>
 #include <Render/Enum/LightType.hpp>
 #include <Scene/Components/Rotator.hpp>
-#include <Render/UI/Font/Font.hpp>
+#include <Render/GUI/Font/Font.hpp>
 #include <Core/Math/Radian.hpp>
 #include <Core/Utility/ResourcesPathProvider.hpp>
 

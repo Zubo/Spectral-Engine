@@ -8,6 +8,10 @@ namespace sp {
 		return _resourcesDirectoryPath;
 	}
 
+	SpString ResourcesPathProvider::getFullResourcePath(SpString const & resourceRelativePath) {
+		return _resourcesDirectoryPath + "/" + resourceRelativePath;
+	}
+
 	SpString const & ResourcesPathProvider::getShaderFilesDirectoryPath() {
 		return _shaderFilesDirectoryPath;
 	}
