@@ -31,7 +31,7 @@ namespace sp {
 		std::copy(mesh._elementIndices, &mesh._elementIndices[mesh._indexCount], _elementIndices);
 	}
 
-	Mesh::Mesh(Mesh && mesh) :
+	Mesh::Mesh(Mesh && mesh) noexcept :
 			_id{ mesh._id },
 			_dataArray{ mesh._dataArray },
 			_dataArraySize{ mesh._dataArraySize },

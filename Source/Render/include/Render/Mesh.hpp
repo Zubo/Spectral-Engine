@@ -8,7 +8,7 @@ namespace sp {
 	class Mesh {
 	public:
 		~Mesh();
-		Mesh(Mesh && mesh);
+		Mesh(Mesh && mesh) noexcept;
 
 	private:
 		friend class MeshContainer;

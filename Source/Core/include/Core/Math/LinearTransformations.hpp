@@ -17,7 +17,7 @@ namespace sp {
 		return translationMat * mat;
 	}
 
-	inline Matrix4x4 scale(Matrix4x4 const & mat, Vector3 const & scale) {
+	inline Matrix4x4 performScale(Matrix4x4 const & mat, Vector3 const & scale) {
 		Matrix4x4 scaleMat;
 
 		scaleMat[0][0] = scale.X;

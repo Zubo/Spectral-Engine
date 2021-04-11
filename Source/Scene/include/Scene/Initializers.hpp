@@ -163,6 +163,7 @@ namespace sp {
 
 		constexpr SpInt numberOfObjects = (sizeof(cubePositions) / sizeof(cubePositions[0]));
 		GameObject & lightSourceGameObject{ createLight(scene, shadersFolderPath, texturePathArray, numberOfObjects - 1) };
+		lightSourceGameObject.addComponent<FPSCounter>();
 
 		SpInt const numberOfBoxes = numberOfObjects - 1;
 		OptionalRef<Transform> lightSourceTransformRef = lightSourceGameObject.getComponent<Transform>();

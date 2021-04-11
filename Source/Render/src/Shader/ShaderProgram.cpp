@@ -5,7 +5,7 @@
 #include <Render/Shader/ShaderProgramLinkingException.hpp>
 
 namespace sp {
-	ShaderProgram::ShaderProgram(SpString vertexShaderPath, SpString fragmentShaderPath) {
+	ShaderProgram::ShaderProgram(SpString const & vertexShaderPath, SpString const & fragmentShaderPath) {
 		id = glCreateProgram();
 	
 		Shader vertexShader{ vertexShaderPath, GL_VERTEX_SHADER };

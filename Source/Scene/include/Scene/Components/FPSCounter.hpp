@@ -15,6 +15,6 @@ namespace sp {
 
 	private:
 		SpFloat _timeSinceLastRender;
-		SpInt _numberOfFrames;
+		SpInt _numberOfFrames = 0;
 	};
 }

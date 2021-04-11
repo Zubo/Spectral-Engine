@@ -11,7 +11,6 @@ namespace sp {
 	class Texture {
 	public:
 		Texture(SpString const & path, bool const genMipmap, GLenum format);
-		~Texture();
 
 		inline SpUnsigned getId() const {
 			return _id;
@@ -27,6 +26,14 @@ namespace sp {
 
 		inline GLenum getFormat() const {
 			return _format;
+		}
+
+		inline SpInt getWidth() const {
+			return _width;
+		}
+
+		inline SpInt getHeight() const {
+			return _height;
 		}
 
 	private:

@@ -8,4 +8,4 @@ uniform sampler2D tex1;
 void main()
 {
     FragColor = mix(texture(tex0, texCoordinates), texture(tex1, texCoordinates), 0.75);
-} 
+}

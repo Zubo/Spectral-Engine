@@ -33,7 +33,7 @@ namespace sp {
 			SpInt const textureUnit = GL_TEXTURE0 + i;
 			glActiveTexture(textureUnit);
 
-			SpUnsigned textureId = renderData.TextureIds[i];
+			SpUnsigned const textureId = renderData.TextureIds[i];
 			glBindTexture(GL_TEXTURE_2D, textureId);
 		}
 	}

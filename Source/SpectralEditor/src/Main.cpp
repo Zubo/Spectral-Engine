@@ -8,6 +8,7 @@
 #include <PlatformIndependence/SpType.hpp>
 #include <PlatformIndependence/SpWindow.hpp>
 #include <Render/GUI/TextRenderer.hpp>
+#include <Render/GUI/TextureRenderer.hpp>
 #include <Render/RenderEngine.hpp>
 
 int main(int argc, char** argv) {
@@ -18,6 +19,7 @@ int main(int argc, char** argv) {
 	constexpr bool isMainWindow = true;
 	std::unique_ptr<sp::SpWindow> window = sp::SpWindow::create(800, 600, isMainWindow);
 	sp::TextRenderer::init();
+	sp::TextureRenderer::init();
 
 	sp::RenderEngine renderEngine;
 	sp::Scene scene{ renderEngine, true };

@@ -28,7 +28,4 @@ namespace sp {
 		glBindTexture(GL_TEXTURE_2D, 0);
 		stbi_image_free(data);
 	}
-
-	Texture::~Texture() {
-	}
 }

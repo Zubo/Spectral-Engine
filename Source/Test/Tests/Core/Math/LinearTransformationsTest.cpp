@@ -37,13 +37,13 @@ namespace sp {
 			}
 		}
 
-		TEST(LinearTransformations, scale) {
+		TEST(LinearTransformations, performScale) {
 			// arrange
 			Matrix4x4 transformation{};
 
 			// act
 			Vector3 const scaleVector{ 2.5F, 1.0F, 18.231F };
-			Matrix4x4 const resultMatrix = scale(transformation, scaleVector);
+			Matrix4x4 const resultMatrix = performScale(transformation, scaleVector);
 
 			// assert
 			SpFloat const * startingValues = transformation.getValuePtr();
