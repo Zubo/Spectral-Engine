@@ -29,6 +29,10 @@ namespace sp {
 			return &(_component.value().get());
 		}
 
+		T & operator*() const {
+			return _component.value().get();
+		}
+
 		OptionalRef<T> & operator=(T & ref) {
 			_component = ref;
 			return *this;

@@ -1,4 +1,5 @@
 #include <Core/Math/LinearTransformations.hpp>
+#include <Core/Math/Vector3.hpp>
 #include <Core/Utility/ResourcesPathProvider.hpp>
 #include <glad/glad.h>
 #include <PlatformIndependence/SpType.hpp>
@@ -48,19 +49,26 @@ namespace sp {
 
 		spWindow->makeCurrentContext();
 
-		Matrix4x4 const orthoProjectionMatrix = getOrthoProjectionMatrix(*spWindow);
+		SpInt const windowWidth = spWindow->getWidht();
+		SpInt const windowHeight = spWindow->getHeight();
+		Matrix4x4 const orthoProjectionMatrix = getOrthographicMat(0.0F, static_cast<SpFloat>(windowWidth), 0.0F, static_cast<SpFloat>(windowHeight));
+
+		Matrix4x4 modelMatrix;
+		modelMatrix = translate(modelMatrix, Vector3{ position });
+
+		Matrix4x4 const mvpMatrix = orthoProjectionMatrix * modelMatrix;
 
 		_shaderProgram.use();
-		_shaderProgram.setMatrix4fv("projection", orthoProjectionMatrix.getValuePtr());
-		_shaderProgram.setInt("textu", 0);
+		_shaderProgram.setMatrix4fv("mvpMatrix", mvpMatrix.getValuePtr());
+		_shaderProgram.setInt("text0", 0);
 
 		glActiveTexture(GL_TEXTURE0);
 		glBindVertexArray(_VAO);
 
 		SpFloat characterOffsetX = 0.0f;
 
-		for (SpString::const_iterator charIterator = text.begin(); charIterator != text.end(); ++charIterator) {
-			Character const character = font.getCharacter(*charIterator);
+		for (const char charIterator : text) {
+			Character const character = font.getCharacter(charIterator);
 			Vector2 const currentCharPos = position + Vector2{ characterOffsetX, 0.0F };
 			Vector2 const characterBearing{ (float)character.bitmapLeft, (float)character.bitmapTop };
 			Vector2 const textureOrigin = currentCharPos + characterBearing;
@@ -93,11 +101,5 @@ namespace sp {
 
 			characterOffsetX += (character.advance >> 6);
 		}
-	}
-
-	Matrix4x4 TextRenderer::getOrthoProjectionMatrix(SpWindow const & spWindow) {
-		SpFloat const width = static_cast<SpFloat>(spWindow.getWidht());
-		SpFloat const height = static_cast<SpFloat>(spWindow.getHeight());
-		return getOrthographicMat(0, width, 0, height);
 	}
 }

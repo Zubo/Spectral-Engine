@@ -14,7 +14,7 @@ namespace sp {
 		_sceneOptionalRef = scene;
 	}
 
-	OptionalRef<Scene> const & GameObject::GetSceneRef() const {
+	OptionalRef<Scene> const & GameObject::getSceneRef() const {
 		return _sceneOptionalRef;
 	}
 

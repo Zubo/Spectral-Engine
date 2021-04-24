@@ -22,7 +22,7 @@ namespace sp {
 		ShaderProgram const shaderProgram{ vertexShaderPath, fragmentShaderPath };
 		SpInt const gameObjectId = _gameObjectOwner->getId();
 
-		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+		RenderContext & renderContext{ _gameObjectOwner->getSceneRef()->getRenderContext() };
 
 		renderContext.updateShaderProgram(gameObjectId, shaderProgram);
 		setAmbient(_ambientColor);
@@ -70,7 +70,7 @@ namespace sp {
 		SpUnsigned const diffuseMapTextureIndex = 0;
 		SpUnsigned const textureId = texture.getId();
 
-		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+		RenderContext & renderContext{ _gameObjectOwner->getSceneRef()->getRenderContext() };
 
 		renderContext.updateTextureId(gameObjectId, textureId, diffuseMapTextureIndex);
 	}
@@ -83,7 +83,7 @@ namespace sp {
 		SpUnsigned const specularMapTextureIndex = 1;
 		SpUnsigned const textureId = texture.getId();
 
-		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+		RenderContext & renderContext{ _gameObjectOwner->getSceneRef()->getRenderContext() };
 
 		renderContext.updateTextureId(gameObjectId, textureId, specularMapTextureIndex);
 	}
@@ -91,7 +91,7 @@ namespace sp {
 	ShaderProgram const Material::getShaderProgram() {
 		SpInt const gameObjectId = _gameObjectOwner->getId();
 		
-		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+		RenderContext & renderContext{ _gameObjectOwner->getSceneRef()->getRenderContext() };
 
 		RenderData const & renderData = renderContext.getRenderDataContainer().getRenderData(gameObjectId);
 

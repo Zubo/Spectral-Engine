@@ -21,7 +21,7 @@ namespace sp {
 
 		 float const sensitivity = 0.05F;
 
-		 Input & input{ _gameObjectOwner->GetSceneRef()->getInput() };
+		 Input & input{ _gameObjectOwner->getSceneRef()->getInput() };
 		 Vector2 const mouseOffset = Vector2{ input.mouseAxisX(), input.mouseAxisY() } *sensitivity;
 
 		 if (mouseOffset.X * mouseOffset.X < 0.01F && mouseOffset.Y * mouseOffset.Y < 0.01F) {
@@ -51,7 +51,7 @@ namespace sp {
 	 	OptionalRef<Transform> const transform = getGameObject()->getComponent<Transform>();
 		OptionalRef<Camera> const camera = getGameObject()->getComponent<Camera>();
 
-		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+		RenderContext & renderContext{ _gameObjectOwner->getSceneRef()->getRenderContext() };
 		CameraData & cameraData{ renderContext.getCameraData() };
 		Vector3 cameraFront = cameraData.getForward();
 
@@ -59,7 +59,7 @@ namespace sp {
 	 		Vector3 position = transform->getPosition();
 			Vector3 oldPosition{ position };
 
-			Input & input{ _gameObjectOwner->GetSceneRef()->getInput() };
+			Input & input{ _gameObjectOwner->getSceneRef()->getInput() };
 
 	 		if (input.keyDown(KeyCode::W)) {
 	 			position += cameraSpeed * cameraFront * deltaTime;

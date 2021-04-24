@@ -7,7 +7,7 @@ namespace sp {
 	class ShaderProgram {
 	public:
 		ShaderProgram() = default;
-		ShaderProgram(SpString vertexShaderPath, SpString fragmentShaderPath);
+		ShaderProgram(SpString const & vertexShaderPath, SpString const & fragmentShaderPath);
 		~ShaderProgram();
 		void use() const;
 		SpUnsigned getId() const;

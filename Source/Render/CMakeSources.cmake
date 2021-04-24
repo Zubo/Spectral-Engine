@@ -39,11 +39,13 @@ set(SpectralEngine_Render_Shader_HEADER
 
 set(SpectralEngine_Render_GUI_SRC
     "src/GUI/GUIDrawCallDataContainer.cpp"
-    "src/GUI/TextRenderer.cpp")
+    "src/GUI/TextRenderer.cpp"
+    "src/GUI/TextureRenderer.cpp")
 
 set(SpectralEngine_Render_GUI_HEADER
     "include/Render/GUI/GUIDrawCallDataContainer.hpp"
-    "include/Render/GUI/TextRenderer.hpp")
+    "include/Render/GUI/TextRenderer.hpp"
+    "include/Render/GUI/TextureRenderer.hpp")
 
 set(SpectralEngine_Render_Font_SRC
     "src/GUI/Font/Character.cpp"
@@ -56,14 +58,19 @@ set(SpectralEngine_Render_Font_HEADER
     "include/Render/GUI/Font/FreeTypeHelper.hpp")
     
 set(SpectralEngine_Render_DrawCallData_SRC
-    "src/GUI/DrawCallData/TextDrawCallData.cpp")
+    "src/GUI/DrawCallData/TextDrawCallData.cpp"
+    "src/GUI/DrawCallData/TextureDrawCallData.cpp")
 
 set(SpectralEngine_Render_DrawCallData_HEADER
     "include/Render/GUI/DrawCallData/GUIDrawCallData.hpp"
-    "include/Render/GUI/DrawCallData/TextDrawCallData.hpp")
+    "include/Render/GUI/DrawCallData/TextDrawCallData.hpp"
+    "include/Render/GUI/DrawCallData/TextureDrawCallData.hpp")
 
 set(SpectralEngine_Render_Enum_HEADER
     "include/Render/Enum/LightType.hpp")
+
+set(SpectralEngine_Render_BasicShapes_HEADER
+    "include/Render/BasicShapes/Quad.hpp")
 
 source_group("src" FILES ${SpectralEngine_Render_NoFilter_SRC})
 source_group("include\\Render" FILES ${SpectralEngine_Render_NoFilter_HEADER})
@@ -76,6 +83,7 @@ source_group("include\\Render\\UI\\Font" FILES ${SpectralEngine_Render_Font_HEAD
 source_group("src\\GUI\\DrawCallData" FILES ${SpectralEngine_Render_DrawCallData_SRC})
 source_group("include\\Render\\UI\\DrawCallData" FILES ${SpectralEngine_Render_DrawCallData_HEADER})
 source_group("include\\Render\\Enum" FILES ${SpectralEngine_Render_Enum_HEADER})
+source_group("include\\Render\\BasicShapes" FILES ${SpectralEngine_Render_BasicShapes_HEADER})
 
 set(SpectralEngine_Render_SRC
     ${SpectralEngine_Render_NoFilter_SRC}
@@ -88,4 +96,5 @@ set(SpectralEngine_Render_SRC
     ${SpectralEngine_Render_Font_HEADER}
     ${SpectralEngine_Render_DrawCallData_SRC}
     ${SpectralEngine_Render_DrawCallData_HEADER}
-    ${SpectralEngine_Render_Enum_HEADER})
+    ${SpectralEngine_Render_Enum_HEADER}
+    ${SpectralEngine_Render_BasicShapes_HEADER})

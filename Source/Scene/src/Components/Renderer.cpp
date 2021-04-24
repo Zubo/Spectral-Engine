@@ -20,7 +20,7 @@ namespace sp {
 		SpInt const gameObjectId = gameObjectOwner->getId();
 		bool const isActive = gameObjectOwner->getIsActive();
 		bool const isStatic = false;
-		RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+		RenderContext & renderContext{ _gameObjectOwner->getSceneRef()->getRenderContext() };
 		renderContext.createRenderData(gameObjectId, isActive, meshId, isStatic);
 
 		OptionalRef<Transform> transformOptionalRef = _gameObjectOwner->getComponent<Transform>();
@@ -39,7 +39,7 @@ namespace sp {
 	void Renderer::onPositionUpdated(Vector3 const & position) {
 		if (hasMesh()) {
 			SpInt const gameObjectId = _gameObjectOwner->getId();
-			RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+			RenderContext & renderContext{ _gameObjectOwner->getSceneRef()->getRenderContext() };
 			renderContext.updatePosition(gameObjectId, position);
 		}
 	}
@@ -47,7 +47,7 @@ namespace sp {
 	void Renderer::onRotationUpdated(Vector3 const & rotation) {
 		if (hasMesh()) {
 			SpInt const gameObjectId = _gameObjectOwner->getId();
-			RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+			RenderContext & renderContext{ _gameObjectOwner->getSceneRef()->getRenderContext() };
 			renderContext.saveRotation(gameObjectId, rotation);
 		}
 	}
@@ -55,7 +55,7 @@ namespace sp {
 	void Renderer::onScaleUpdated(Vector3 const & scale) {
 		if (hasMesh()) {
 			SpInt const gameObjectId = _gameObjectOwner->getId();
-			RenderContext & renderContext{ _gameObjectOwner->GetSceneRef()->getRenderContext() };
+			RenderContext & renderContext{ _gameObjectOwner->getSceneRef()->getRenderContext() };
 			renderContext.updateScale(gameObjectId, scale);
 		}
 	}

@@ -28,7 +28,7 @@ namespace sp {
 		}
 
 		void bindToScene(Scene & scene);
-		OptionalRef<Scene> const & GetSceneRef() const;
+		OptionalRef<Scene> const & getSceneRef() const;
 
 		template <typename T>
 		T& addComponent() {
