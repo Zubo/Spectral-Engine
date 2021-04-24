@@ -26,9 +26,6 @@ namespace sp {
 			Font const & font);
 
 	private:
-		static Matrix4x4 getOrthoProjectionMatrix(SpWindow const & spWindow);
-
-	private:
 		static GLuint _VBO;
 		static GLuint _VAO;
 		static ShaderProgram _shaderProgram;

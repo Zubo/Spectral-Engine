@@ -15,7 +15,7 @@ namespace sp {
 			RenderContext const & renderContext, 
 			Texture const texture, 
 			Vector2 const position, 
-			Vector2 const scale);
+			Vector2 const size);
 
 	private:
 		static GLuint _VAO;

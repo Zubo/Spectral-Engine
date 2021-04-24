@@ -33,4 +33,8 @@ namespace sp {
 	Vector2 Vector2::operator*(SpFloat const value) const {
 		return Vector2{ X * value, Y * value };
 	}
+
+	Vector2 Vector2::operator/(SpFloat const value) const {
+		return Vector2{ X / value, Y / value };
+	}
 }

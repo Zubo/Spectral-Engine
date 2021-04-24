@@ -17,6 +17,7 @@ namespace sp {
 		Vector2 operator-(Vector2 const & vector2) const;
 		Vector2 operator-() const;
 		Vector2 operator*(SpFloat const value) const;
+		Vector2 operator/(SpFloat const value) const;
 
 	public:
 		SpFloat X;
