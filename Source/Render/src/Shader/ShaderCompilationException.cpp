@@ -1,16 +1,15 @@
 #include <sstream>
 
 #include <Render/Shader/ShaderCompilationException.hpp>
-#include <PlatformIndependence/SpType.hpp>
 
 namespace sp {
 	ShaderCompilationException::ShaderCompilationException(SpUnsigned const shaderId, GLenum shaderType, char infoLog[512])
-		: shaderId{ shaderId }, shaderType{ shaderType }, infoLog{ SpString{infoLog} } {
+		: SpException{ infoLog }, _shaderId{ shaderId }, _shaderType{ shaderType } {
 	}
 
-	SpString ShaderCompilationException::what() {
+	char const * ShaderCompilationException::what() const {
 		std::stringstream ss;
-		ss << "Error: shader with id: " << shaderId << ", type: " << shaderType << " failed to compile." << std::endl << infoLog;
-		return ss.str();
+		ss << "Error: shader with id: " << _shaderId << ", type: " << _shaderType << " failed to compile." << std::endl << SpException::what();
+		return ss.str().c_str();
 	}
 }
