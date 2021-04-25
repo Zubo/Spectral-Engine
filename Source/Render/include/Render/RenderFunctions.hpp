@@ -82,7 +82,7 @@ namespace sp {
 		auto iterator = renderDataContainer.getRenderDataMap().begin();
 		auto end = renderDataContainer.getRenderDataMap().end();
 
-		for (iterator; iterator != end; ++iterator) {
+		for (; iterator != end; ++iterator) {
 			RenderData const & renderData = iterator->second;
 
 			renderData.DepthTest ? glEnable(GL_DEPTH_TEST) : glDisable(GL_DEPTH_TEST);

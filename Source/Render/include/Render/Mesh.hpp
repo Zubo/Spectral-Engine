@@ -18,13 +18,13 @@ namespace sp {
 
 	public:
 		SpUnsigned getId();
-		SpInt const getStride() const;
-		SpFloat const * const getDataArray() const;
-		SpInt const getDataArraySize() const;
-		SpUnsigned const * const getIndexArray() const;
-		SpInt const getIndexCount() const;
-		bool const hasUVCoords() const;
-		bool const hasNormalCoords() const;
+		SpInt getStride() const;
+		SpFloat const * getDataArray() const;
+		SpInt getDataArraySize() const;
+		SpUnsigned const * getIndexArray() const;
+		SpInt getIndexCount() const;
+		bool hasUVCoords() const;
+		bool hasNormalCoords() const;
 
 	private:
 		SpUnsigned _id;

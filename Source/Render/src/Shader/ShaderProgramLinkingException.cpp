@@ -1,16 +1,16 @@
 #include <sstream>
 
-#include <PlatformIndependence/SpType.hpp>
 #include <Render/Shader/ShaderProgramLinkingException.hpp>
 
 namespace sp {
-	ShaderProgramLinkingException::ShaderProgramLinkingException(SpUnsigned const programId, char const infoLog[])
-		: programId{ programId }, infoLog{ SpString{infoLog} } {
+	ShaderProgramLinkingException::ShaderProgramLinkingException(SpUnsigned const programId, char const infoLog[]) :
+		SpException{ infoLog },
+		_programId{ programId } {
 	}
 
-	SpString ShaderProgramLinkingException::what() {
+	char const * ShaderProgramLinkingException::what() const noexcept {
 		std::stringstream ss;
-		ss << "Error linking program with id: " << programId << std::endl << infoLog;
-		return ss.str();
+		ss << "Error linking program with id: " << _programId << std::endl << SpException::what();
+		return ss.str().c_str();
 	}
 }

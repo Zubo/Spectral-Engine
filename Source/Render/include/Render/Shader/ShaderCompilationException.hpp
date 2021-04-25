@@ -1,20 +1,19 @@
 #pragma once
 
 #include <glad/glad.h>
-#include <PlatformIndependence/SpString.hpp>
+#include <Core/Exception/SpException.hpp>
 #include <PlatformIndependence/SpType.hpp>
 
 namespace sp {
-	class ShaderCompilationException {
+	class ShaderCompilationException : public SpException {
 	public:
 		ShaderCompilationException(SpUnsigned const shaderId, GLenum shaderType, char infoLog[512]);
 
 	public:
-		SpString what();
+		char const * what() const noexcept override;
 
 	private:
-		SpUnsigned const shaderId;
-		GLenum const shaderType;
-		SpString const infoLog;
+		SpUnsigned const _shaderId;
+		GLenum const _shaderType;
 	};
 }

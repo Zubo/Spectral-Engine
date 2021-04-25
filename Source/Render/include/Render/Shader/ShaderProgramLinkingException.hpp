@@ -1,15 +1,15 @@
 #pragma once
 
-#include <PlatformIndependence/SpString.hpp>
+#include <Core/Exception/SpException.hpp>
+#include <PlatformIndependence/SpType.hpp>
 
 namespace sp {
-	class ShaderProgramLinkingException {
+	class ShaderProgramLinkingException : public SpException {
 	public:
 		ShaderProgramLinkingException(SpUnsigned const programId, char const infoLog[]);
-		SpString what();
+		char const * what() const noexcept override;
 
 	private:
-		SpUnsigned const programId;
-		SpString const infoLog;
+		SpUnsigned const _programId;
 	};
 }
