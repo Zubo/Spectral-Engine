@@ -69,7 +69,7 @@ namespace sp {
 
 		for (const char charIterator : text) {
 			Character const character = font.getCharacter(charIterator);
-			Vector2 const currentCharPos = position + Vector2{ characterOffsetX, 0.0F };
+			Vector2 const currentCharPos = Vector2{ characterOffsetX, 0.0F };
 			Vector2 const characterBearing{ (float)character.bitmapLeft, (float)character.bitmapTop };
 			Vector2 const textureOrigin = currentCharPos + characterBearing;
 
