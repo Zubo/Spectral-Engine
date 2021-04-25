@@ -11,7 +11,8 @@ set(SpectralEngine_Core_Utility_SRC
 set(SpectralEngine_Core_Utility_HEADER
 	"include/Core/Utility/ResourcesPathProvider.hpp"
 	"include/Core/Utility/OptionalRef.hpp"
-	"include/Core/Utility/WindowEventBinding.hpp")
+	"include/Core/Utility/WindowEventBinding.hpp"
+	"include/Core/Utility/StringConcat.hpp")
 
 set(SpectralEngine_Core_Math_SRC
 	"src/Math/SpMath.cpp"
