@@ -11,7 +11,7 @@ namespace sp {
 		explicit SpException(SpString && message);
 
 	public:
-		char const * what() const override;
+		char const * what() const noexcept override;
 
 	private:
 		SpString _message;

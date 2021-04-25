@@ -11,7 +11,7 @@ namespace sp {
 			SpString concated = Concat(expected.c_str());
 
 			// assert
-			for (int i = 0; i < concated.size(); ++i) {
+			for (int i = 0; i < static_cast<int>(concated.size()); ++i) {
 				ASSERT_EQ(concated[i], expected[i]);
 			}
 		}
@@ -35,7 +35,7 @@ namespace sp {
 			SpString concated = Concat(arg1, arg2.c_str(), arg3);
 
 			// assert
-			for (int i = 0; i < concated.size(); ++i) {
+			for (int i = 0; i < static_cast<int>(concated.size()); ++i) {
 				ASSERT_EQ(concated[i], expected[i]);
 			}
 		}

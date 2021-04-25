@@ -12,7 +12,7 @@ namespace sp {
 	void LightDataContainer::saveLightData(LightData const & lightData) {
 		SpInt const lightDataId = lightData.Id;
 
-		SpInt const previousLightCount = static_cast<SpInt>(_lightDataMap.size());
+		std::size_t const previousLightCount = _lightDataMap.size();
 
 		_lightDataMap.insert_or_assign(lightDataId, lightData);
 
@@ -41,7 +41,7 @@ namespace sp {
 		auto lightDataIter = _lightDataMap.begin();
 		auto lightDataIterEnd = _lightDataMap.end();
 
-		for (lightDataIter; lightDataIter != lightDataIterEnd; ++lightDataIter) {
+		for (; lightDataIter != lightDataIterEnd; ++lightDataIter) {
 			LightData & lightData = lightDataIter->second;
 			lightData.Changed = false;
 		}

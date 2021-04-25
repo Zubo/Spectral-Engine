@@ -32,7 +32,7 @@ namespace sp {
 			initGlad();
 		}
 
-		return std::move(windowUnique);
+		return windowUnique;
 	}
 
 	void SpWindow::initGLFW() {
@@ -65,8 +65,8 @@ namespace sp {
 	SpWindow::SpWindow(SpInt const width, SpInt const height, bool const isMainWindow, GLFWwindow * const concreteWindow) :
 			_width{ width },
 			_height{ height },
-			_isMainWindow{ isMainWindow },
-			_concreteWindow{ concreteWindow } {
+			_concreteWindow{ concreteWindow },
+			_isMainWindow{ isMainWindow } {
 		_inputUnique = std::make_unique<Input>(*concreteWindow);
 	}
 

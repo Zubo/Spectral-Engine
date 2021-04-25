@@ -20,7 +20,7 @@ namespace sp {
 		auto renderDataIter = _renderDataMap.begin();
 		auto const renderDataIterEnd = _renderDataMap.end();
 
-		for (renderDataIter; renderDataIter != renderDataIterEnd; ++renderDataIter) {
+		for (; renderDataIter != renderDataIterEnd; ++renderDataIter) {
 			RenderData & renderData = renderDataIter->second;
 			renderData.ModelMatrixChanged = false;
 		}

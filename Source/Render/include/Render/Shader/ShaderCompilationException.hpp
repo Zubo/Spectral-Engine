@@ -10,7 +10,7 @@ namespace sp {
 		ShaderCompilationException(SpUnsigned const shaderId, GLenum shaderType, char infoLog[512]);
 
 	public:
-		char const * what() const override;
+		char const * what() const noexcept override;
 
 	private:
 		SpUnsigned const _shaderId;

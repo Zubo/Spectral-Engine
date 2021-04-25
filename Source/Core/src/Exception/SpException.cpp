@@ -11,7 +11,7 @@ namespace sp {
 		_message{ std::move(message) } {
 	}
 
-	char const * SpException::what() const {
+	char const * SpException::what() const noexcept {
 		return _message.c_str();
 	}
 }

@@ -8,7 +8,7 @@ namespace sp {
 		_programId{ programId } {
 	}
 
-	char const * ShaderProgramLinkingException::what() const {
+	char const * ShaderProgramLinkingException::what() const noexcept {
 		std::stringstream ss;
 		ss << "Error linking program with id: " << _programId << std::endl << SpException::what();
 		return ss.str().c_str();

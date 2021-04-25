@@ -4,13 +4,13 @@
 namespace sp {
 	SpInt LightData::_nextId = 0;
 
-	LightData::LightData(LightType const type, Vector3 const & color, Vector3 const & position, Vector3 const & direction)
-		: Type{ type },
+	LightData::LightData(LightType const type, Vector3 const & color, Vector3 const & position, Vector3 const & direction) :
+		Id{ LightData::getNextId() },
+		Type{ type },
 		Color{ color },
 		Position{ position },
 		Direction{ direction },
-		Changed{ true },
-		Id{ LightData::getNextId() } {
+		Changed{ true } {
 	}
 
 	SpInt LightData::getNextId()

@@ -55,7 +55,7 @@ namespace sp {
 		return _id;
 	}
 
-	SpInt const Mesh::getStride() const {
+	SpInt Mesh::getStride() const {
 		SpInt stride = 3;
 
 		if (_uvCoords) {
@@ -69,27 +69,27 @@ namespace sp {
 		return stride;
 	}
 
-	SpFloat const * const Mesh::getDataArray() const {
+	sp::SpFloat const * Mesh::getDataArray() const {
 		return _dataArray;
 	}
 
-	SpInt const Mesh::getDataArraySize() const {
+	sp::SpInt Mesh::getDataArraySize() const {
 		return _dataArraySize;
 	}
 
-	SpUnsigned const * const Mesh::getIndexArray() const {
+	sp::SpUnsigned const * Mesh::getIndexArray() const {
 		return _elementIndices;
 	}
 
-	SpInt const Mesh::getIndexCount() const {
+	sp::SpInt Mesh::getIndexCount() const {
 		return _indexCount;
 	}
 
-	bool const Mesh::hasUVCoords() const {
+	bool Mesh::hasUVCoords() const {
 		return _uvCoords;
 	}
 
-	bool const Mesh::hasNormalCoords() const {
+	bool Mesh::hasNormalCoords() const {
 		return _normalCoords;
 	}
 }
