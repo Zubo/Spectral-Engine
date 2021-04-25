@@ -2,15 +2,18 @@
 
 #include <exception>
 
+#include <PlatformIndependence/SpString.hpp>
+
 namespace sp {
 	class SpException : public std::exception {
 	public:
-		SpException(char const * const message);
+		explicit SpException(const SpString & message);
+		explicit SpException(SpString && message);
 
 	public:
 		char const * what() const override;
 
 	private:
-		char const * _message;
+		SpString _message;
 	};
 }

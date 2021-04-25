@@ -1,11 +1,17 @@
+#include <utility>
+
 #include <Core/Exception/SpException.hpp>
 
 namespace sp {
-	SpException::SpException(char const * const message) :
+	SpException::SpException(const SpString & message) :
 		_message{ message } {
 	}
 
+	SpException::SpException(SpString && message) : 
+		_message{ std::move(message) } {
+	}
+
 	char const * SpException::what() const {
-		return _message;
+		return _message.c_str();
 	}
 }

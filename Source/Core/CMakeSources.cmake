@@ -54,6 +54,9 @@ set(SpectralEngine_Core_Exception_SRC
 
 set(SpectralEngine_Core_Exception_HEADER
 	"include/Core/Exception/SpException.hpp")
+	
+set(SpectralEngine_Core_Assert_HEADER
+	"include/Core/Assert/SpAssert.hpp")
 
 set(SpectralEngine_Core_EventMessage_SRC
 	"src/Event/Message/EventMessage.cpp")
@@ -80,6 +83,7 @@ source_group("include\\Core\\Math" FILES ${SpectralEngine_Core_Math_HEADER})
 source_group("src\\Exception" FILES ${SpectralEngine_Core_Exception_SRC})
 source_group("include\\Core\\Exception" FILES ${SpectralEngine_Core_Exception_HEADER})
 source_group("src\\Utility\\Input" FILES ${SpectralEngine_Core_Input_SRC})
+source_group("include\\Core\\Assert" FILES ${SpectralEngine_Core_Assert_HEADER})
 source_group("include\\Core\\Utility\\Input" FILES ${SpectralEngine_Core_Input_HEADER})
 source_group("src\\Event" FILES ${SpectralEngine_Core_Event_SRC})
 source_group("include\\Core\\Event" FILES ${SpectralEngine_Core_Event_HEADER})
@@ -102,6 +106,7 @@ set(SpectralEngine_Core_SRC
 	${SpectralEngine_Core_Math_HEADER}
 	${SpectralEngine_Core_Exception_SRC}
 	${SpectralEngine_Core_Exception_HEADER}
+	${SpectralEngine_Core_Assert_HEADER}
 	${SpectralEngine_Core_Event_SRC}
 	${SpectralEngine_Core_Event_HEADER}
 	${SpectralEngine_Core_EventMessage_SRC}
