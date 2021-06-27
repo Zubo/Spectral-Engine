@@ -6,20 +6,19 @@
 #include <Render/GUI/DrawCallData/TextureDrawCallData.hpp>
 
 namespace sp{
-	bool guiButton(RenderContext & renderContext, GUIButtonSettings const & guiButtonParams) {
+	bool guiButton(RenderContext & renderContext, Vector2 const position, Vector2 const size, GUIButtonSettings const & guiButtonParams) {
 		GUIDrawCallDataContainer & guiDrawCallDataContainer{ renderContext.getGUIDrawCallDataContainer() };
 		guiDrawCallDataContainer.enqueueDrawCallData(TextureDrawCallData {
 			guiButtonParams.BackgroundTexture,
-			guiButtonParams.Position,
-			guiButtonParams.Size
+			position,
+			size
 		});
 		
 		guiDrawCallDataContainer.enqueueDrawCallData(TextDrawCallData {
 			guiButtonParams.ButtonText,
-			guiButtonParams.Position + guiButtonParams.Size / 2,
+			position + size / 2,
 			Vector2::getVectorOne(),
-			*guiButtonParams.ButtonTextFontOptionalRef,
-			guiButtonParams.ButtonTextFontSize
+			{ *guiButtonParams.ButtonTextRenderSettings.FontRef, guiButtonParams.ButtonTextRenderSettings.FontSize }
 		});
 
 		return false;

@@ -3,20 +3,12 @@
 #include <Core/Math/Vector2.hpp>
 #include <Core/Utility/OptionalRef.hpp>
 #include <PlatformIndependence/SpString.hpp>
+#include <Render/GUI/Settings/TextRenderSettings.hpp>
 
 namespace sp{
-	class Font;
 	class RenderContext;
 
-	class TextDrawCallData {
-	public:
-		TextDrawCallData(
-			SpString const & text,
-			Vector2 const position,
-			Vector2 const scale,
-			Font const & font,
-			SpInt const fontSize);
-
+	struct TextDrawCallData {
 	public:
 		void render(RenderContext const & renderContext) const;
 
@@ -24,7 +16,6 @@ namespace sp{
 		SpString Text;
 		Vector2 Position;
 		Vector2 Scale;
-		OptionalRef<Font const> FontRef;
-		SpInt FontSize = 11;
+		TextRenderSettings Settings;
 	};
 }

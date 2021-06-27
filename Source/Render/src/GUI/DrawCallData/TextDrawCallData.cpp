@@ -3,16 +3,8 @@
 #include <Render/GUI/TextRenderer.hpp>
 #include <Render/RenderContext.hpp>
 
-namespace sp {
-	TextDrawCallData::TextDrawCallData(SpString const & text, Vector2 const position, Vector2 const scale, Font const & font, SpInt const fontSize) : 
-		Text{ text },
-		Position{ position },
-		Scale{ scale },
-		FontRef{ font },
-		FontSize{ fontSize } {
-	}
-	
+namespace sp {	
 	void TextDrawCallData::render(RenderContext const & renderContext) const {
-		TextRenderer::renderText(renderContext, Text, Position, Scale, FontRef, FontSize);
+		TextRenderer::renderText(renderContext, Text, Position, Scale, Settings.FontRef, Settings.FontSize);
 	}
 }

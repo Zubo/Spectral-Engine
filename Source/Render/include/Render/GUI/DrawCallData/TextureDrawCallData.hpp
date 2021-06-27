@@ -7,13 +7,7 @@
 namespace sp {
 	class RenderContext;
 
-	class TextureDrawCallData {
-	public:
-		TextureDrawCallData(
-			Texture const texture,
-			Vector2 const position,
-			Vector2 const scale);
-
+	struct TextureDrawCallData {
 	public:
 		void render(RenderContext const & renderContext) const;
 

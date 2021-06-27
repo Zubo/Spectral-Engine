@@ -17,6 +17,6 @@ namespace sp {
 	private:
 		SpFloat _timeSinceLastRender;
 		SpInt _numberOfFrames = 0;
-		GUIButtonSettings _settings{ Vector2::getVectorZero(), Vector2::getVectorOne() * 150, "Hello" };
+		GUIButtonSettings _settings;
 	};
 }
