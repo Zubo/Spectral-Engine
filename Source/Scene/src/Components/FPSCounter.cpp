@@ -6,6 +6,7 @@
 
 #include <Scene/GameObject/GameObject.hpp>
 #include <PlatformIndependence/SpString.hpp>
+#include <Render/GUI/Elements/GUIButton.hpp>
 
 namespace sp {
 	FPSCounter::FPSCounter(GameObject * const gameObject) : GameObjectComponent(gameObject) {
@@ -16,11 +17,8 @@ namespace sp {
 		_timeSinceLastRender += deltaTime;
 		_numberOfFrames++;
 
-		if (_timeSinceLastRender < FPS_RENDER_PERIOD) {
-			return;
-		}
-
 		// Render text
+		guiButton(_gameObjectOwner->getSceneRef()->getRenderContext(), _settings);
 
 		_timeSinceLastRender = 0.0F;
 		_numberOfFrames = 0;

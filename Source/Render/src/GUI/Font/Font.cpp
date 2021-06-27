@@ -1,5 +1,6 @@
 #include <Render/GUI/Font/Font.hpp>
 
+#include <algorithm>
 #include <iostream>
 
 #include <ft2build.h>
@@ -24,6 +25,13 @@ namespace sp {
 
 		loadFontCharacters(newFont, face);
 
+		auto const tallestCharIter = std::max_element(
+			newFont._characterMap.cbegin(),
+			newFont._characterMap.cend(),
+			[](auto const & pairLeft, auto const & pairRight) { return pairLeft.second.height < pairRight.second.height; });
+
+		newFont._tallestCharHeight = tallestCharIter->second.height;
+
 		return OptionalRef<Font const>{ newFont };
 	}
 
@@ -36,5 +44,8 @@ namespace sp {
 
 	Character const Font::getCharacter(unsigned char const c) const {
 		return _characterMap.at(c);
+	}
+	int Font::getTallestCharacterHeight() const {
+		return _tallestCharHeight;
 	}
 }

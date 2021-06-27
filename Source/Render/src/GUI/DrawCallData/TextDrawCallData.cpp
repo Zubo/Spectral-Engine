@@ -4,14 +4,15 @@
 #include <Render/RenderContext.hpp>
 
 namespace sp {
-	TextDrawCallData::TextDrawCallData(SpString const & text, Vector2 const position, Vector2 const scale, Font const & font) : 
+	TextDrawCallData::TextDrawCallData(SpString const & text, Vector2 const position, Vector2 const scale, Font const & font, SpInt const fontSize) : 
 		Text{ text },
 		Position{ position },
 		Scale{ scale },
-		FontRef{ font } {
+		FontRef{ font },
+		FontSize{ fontSize } {
 	}
 	
 	void TextDrawCallData::render(RenderContext const & renderContext) const {
-		TextRenderer::renderText(renderContext, Text, Position, Scale, FontRef);
+		TextRenderer::renderText(renderContext, Text, Position, Scale, FontRef, FontSize);
 	}
 }

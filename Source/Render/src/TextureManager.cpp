@@ -27,8 +27,8 @@ namespace sp {
 			}
 		}
 
-		Texture texture{ texturePath, genMipMap, format };
-		SpUnsigned id = texture.getId();
+		const Texture texture{ texturePath, genMipMap, format };
+		const SpUnsigned id = texture.getId();
 		_textureMap.insert(std::pair<SpUnsigned, Texture const>{ id, texture });
 
 		return texture;

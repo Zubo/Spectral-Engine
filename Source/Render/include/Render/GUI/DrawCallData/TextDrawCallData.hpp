@@ -14,7 +14,8 @@ namespace sp{
 			SpString const & text,
 			Vector2 const position,
 			Vector2 const scale,
-			Font const & font);
+			Font const & font,
+			SpInt const fontSize);
 
 	public:
 		void render(RenderContext const & renderContext) const;
@@ -24,5 +25,6 @@ namespace sp{
 		Vector2 Position;
 		Vector2 Scale;
 		OptionalRef<Font const> FontRef;
+		SpInt FontSize = 11;
 	};
 }

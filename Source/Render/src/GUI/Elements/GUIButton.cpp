@@ -16,9 +16,10 @@ namespace sp{
 		
 		guiDrawCallDataContainer.enqueueDrawCallData(TextDrawCallData {
 			guiButtonParams.ButtonText,
-			guiButtonParams.Position,
+			guiButtonParams.Position + guiButtonParams.Size / 2,
 			Vector2::getVectorOne(),
-			*guiButtonParams.ButtonTextFontOptionalRef
+			*guiButtonParams.ButtonTextFontOptionalRef,
+			guiButtonParams.ButtonTextFontSize
 		});
 
 		return false;

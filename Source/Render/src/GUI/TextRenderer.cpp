@@ -40,7 +40,8 @@ namespace sp {
 		SpString const & text,
 		Vector2 const & position,
 		Vector2 const & scale,
-		Font const & font) {
+		Font const & font,
+		SpInt fontSize) {
 		std::unique_ptr<SpWindow> const & spWindow = renderContext.getWindow();
 
 		if (spWindow == nullptr) {
@@ -54,7 +55,7 @@ namespace sp {
 		Matrix4x4 const orthoProjectionMatrix = getOrthographicMat(0.0F, static_cast<SpFloat>(windowWidth), 0.0F, static_cast<SpFloat>(windowHeight));
 
 		Matrix4x4 modelMatrix;
-		modelMatrix = translate(modelMatrix, Vector3{ position });
+		modelMatrix = translate(modelMatrix, Vector3{ position.X, windowHeight - position.Y, 0.0F });
 
 		Matrix4x4 const mvpMatrix = orthoProjectionMatrix * modelMatrix;
 
@@ -65,6 +66,10 @@ namespace sp {
 		glActiveTexture(GL_TEXTURE0);
 		glBindVertexArray(_VAO);
 
+		SpFloat const fontSizeFactor = static_cast<float>(fontSize) / font.getTallestCharacterHeight();
+		SpFloat const scaleX = scale.X * fontSizeFactor;
+		SpFloat const scaleY = scale.Y * fontSizeFactor;
+
 		SpFloat characterOffsetX = 0.0f;
 
 		for (const char charIterator : text) {
@@ -72,9 +77,6 @@ namespace sp {
 			Vector2 const currentCharPos = Vector2{ characterOffsetX, 0.0F };
 			Vector2 const characterBearing{ (float)character.bitmapLeft, (float)character.bitmapTop };
 			Vector2 const textureOrigin = currentCharPos + characterBearing;
-
-			SpFloat const scaleX = scale.X;
-			SpFloat const scaleY = scale.Y;
 
 			SpFloat const characterVertices[6][4]{
 				{ textureOrigin.X * scaleX, textureOrigin.Y * scaleY, 0.0F, 0.0F },

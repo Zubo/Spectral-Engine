@@ -15,9 +15,11 @@ namespace sp {
 		Texture BackgroundTexture;
 		OptionalRef<Font const> ButtonTextFontOptionalRef;
 		SpString ButtonText;
+		SpInt ButtonTextFontSize = DefaultFontSize;
 
 	private:
 		static constexpr char const * DefaultTexturePath = "Art/container.png";
 		static constexpr char const * DefaultFontPath = "Fonts/Arial.ttf";
+		static constexpr SpInt DefaultFontSize = 11;
 	};
 }

@@ -18,11 +18,13 @@ namespace sp {
 	public:
 		void insertCharacter(unsigned char key, Character const & character);
 		Character const getCharacter(unsigned char const c) const;
+		int getTallestCharacterHeight() const;
 
 	private:
 		Font() = default;
 
 	private:
 		std::unordered_map<unsigned char, Character const> _characterMap;
+		SpInt _tallestCharHeight = 1;
 	};
 }

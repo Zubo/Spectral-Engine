@@ -43,10 +43,13 @@ namespace sp {
 		SpWindow const & window = *renderContext.getWindow();
 		Matrix4x4 modelMatrix;
 		modelMatrix = performScale(modelMatrix, Vector3{ size.X, size.Y, 1.0F });
-		modelMatrix = translate(modelMatrix, Vector3{ position });
 
 		SpInt const windowWidth = window.getWidht();
 		SpInt const windowHeight = window.getHeight();
+		
+		Vector2 const positionScreenSpace{ position.X, windowHeight - position.Y - size.Y };
+		modelMatrix = translate(modelMatrix, Vector3{ positionScreenSpace });
+
 		Matrix4x4 const orthographicMatrix = getOrthographicMat(0.0F, static_cast<SpFloat>(windowWidth), 0.0F, static_cast<SpFloat>(windowHeight));
 
 		Matrix4x4 const mvpMatrix = orthographicMatrix * modelMatrix;

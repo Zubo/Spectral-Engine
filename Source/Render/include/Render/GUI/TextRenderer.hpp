@@ -23,7 +23,8 @@ namespace sp {
 			SpString const & text,
 			Vector2 const & position,
 			Vector2 const & scale,
-			Font const & font);
+			Font const & font,
+			SpInt fontSize);
 
 	private:
 		static GLuint _VBO;
