@@ -4,22 +4,13 @@
 #include <PlatformIndependence/SpType.hpp>
 
 namespace sp {
-	class Character {
+	struct Character {
 	public:
-		Character(
-			SpUnsigned const textureId,
-			SpUnsigned const width,
-			SpUnsigned const height,
-			SpUnsigned const bitmapLeft,
-			SpUnsigned const bitmapTop,
-			SpUnsigned const advance);
-
-	public:
-		SpUnsigned const textureId;
-		SpUnsigned const width;
-		SpUnsigned const height;
-		SpUnsigned const bitmapLeft;
-		SpUnsigned const bitmapTop;
-		SpUnsigned const advance;
+		SpUnsigned TextureId;
+		SpUnsigned Width;
+		SpUnsigned Height;
+		SpUnsigned BitmapLeft;
+		SpUnsigned BitmapTop;
+		SpUnsigned Advance;
 	};
 }

@@ -1,3 +1,7 @@
+#include <algorithm>
+#include <numeric>
+#include <vector>
+
 #include <Core/Math/LinearTransformations.hpp>
 #include <Core/Math/Vector3.hpp>
 #include <Core/Utility/ResourcesPathProvider.hpp>
@@ -52,10 +56,29 @@ namespace sp {
 
 		SpInt const windowWidth = spWindow->getWidht();
 		SpInt const windowHeight = spWindow->getHeight();
+
+		SpFloat const fontSizeFactor = static_cast<float>(fontSize) / font.getTallestCharacterHeight();
+		SpFloat const scaleX = scale.X * fontSizeFactor;
+		SpFloat const scaleY = scale.Y * fontSizeFactor;
+
+		std::vector<Character> characterVector{ text.size() };
+		std::transform(text.cbegin(), text.cend(), characterVector.begin(), [&font](char const c) { return font.getCharacter(c); });
+		SpInt const charAdvanceSum{
+			std::accumulate(
+				characterVector.cbegin(),
+				characterVector.cend(),
+				0,
+				[](SpInt const cur, Character const & c) { return cur + (c.Advance >> 6); })
+		};
+
+		SpFloat const textWidth{ charAdvanceSum * scale.X };
+
+		Vector2 const adjustedPosition{ position.X - ((textWidth / 2.0F) * scaleX), windowHeight - position.Y };
+
 		Matrix4x4 const orthoProjectionMatrix = getOrthographicMat(0.0F, static_cast<SpFloat>(windowWidth), 0.0F, static_cast<SpFloat>(windowHeight));
 
 		Matrix4x4 modelMatrix;
-		modelMatrix = translate(modelMatrix, Vector3{ position.X, windowHeight - position.Y, 0.0F });
+		modelMatrix = translate(modelMatrix, adjustedPosition);
 
 		Matrix4x4 const mvpMatrix = orthoProjectionMatrix * modelMatrix;
 
@@ -66,28 +89,24 @@ namespace sp {
 		glActiveTexture(GL_TEXTURE0);
 		glBindVertexArray(_VAO);
 
-		SpFloat const fontSizeFactor = static_cast<float>(fontSize) / font.getTallestCharacterHeight();
-		SpFloat const scaleX = scale.X * fontSizeFactor;
-		SpFloat const scaleY = scale.Y * fontSizeFactor;
-
 		SpFloat characterOffsetX = 0.0f;
 
 		for (const char charIterator : text) {
 			Character const character = font.getCharacter(charIterator);
 			Vector2 const currentCharPos = Vector2{ characterOffsetX, 0.0F };
-			Vector2 const characterBearing{ (float)character.bitmapLeft, (float)character.bitmapTop };
+			Vector2 const characterBearing{ (float)character.BitmapLeft, (float)character.BitmapTop };
 			Vector2 const textureOrigin = currentCharPos + characterBearing;
 
 			SpFloat const characterVertices[6][4]{
 				{ textureOrigin.X * scaleX, textureOrigin.Y * scaleY, 0.0F, 0.0F },
-				{ (textureOrigin.X + character.width) * scaleX, textureOrigin.Y * scaleY, 1.0F, 0.0F },
-				{ textureOrigin.X * scaleX, (textureOrigin.Y - character.height) * scaleY, 0.0F, 1.0F },
-				{ textureOrigin.X * scaleX, (textureOrigin.Y - character.height) * scaleY, 0.0F, 1.0F },
-				{ (textureOrigin.X + character.width) * scaleX, (textureOrigin.Y - character.height) * scaleY, 1.0F, 1.0F },
-				{ (textureOrigin.X + character.width) * scaleX, textureOrigin.Y * scaleY, 1.0F, 0.0F }
+				{ (textureOrigin.X + character.Width) * scaleX, textureOrigin.Y * scaleY, 1.0F, 0.0F },
+				{ textureOrigin.X * scaleX, (textureOrigin.Y - character.Height) * scaleY, 0.0F, 1.0F },
+				{ textureOrigin.X * scaleX, (textureOrigin.Y - character.Height) * scaleY, 0.0F, 1.0F },
+				{ (textureOrigin.X + character.Width) * scaleX, (textureOrigin.Y - character.Height) * scaleY, 1.0F, 1.0F },
+				{ (textureOrigin.X + character.Width) * scaleX, textureOrigin.Y * scaleY, 1.0F, 0.0F }
 			};
 
-			glBindTexture(GL_TEXTURE_2D, character.textureId);
+			glBindTexture(GL_TEXTURE_2D, character.TextureId);
 			glBindBuffer(GL_ARRAY_BUFFER, _VBO);
 			glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(characterVertices), characterVertices);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -101,7 +120,7 @@ namespace sp {
 			glDisable(GL_BLEND);
 			glEnable(GL_DEPTH_TEST);
 
-			characterOffsetX += (character.advance >> 6);
+			characterOffsetX += (character.Advance >> 6);
 		}
 	}
 }

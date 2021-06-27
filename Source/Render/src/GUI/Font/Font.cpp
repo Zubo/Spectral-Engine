@@ -28,9 +28,9 @@ namespace sp {
 		auto const tallestCharIter = std::max_element(
 			newFont._characterMap.cbegin(),
 			newFont._characterMap.cend(),
-			[](auto const & pairLeft, auto const & pairRight) { return pairLeft.second.height < pairRight.second.height; });
+			[](auto const & pairLeft, auto const & pairRight) { return pairLeft.second.Height < pairRight.second.Height; });
 
-		newFont._tallestCharHeight = tallestCharIter->second.height;
+		newFont._tallestCharHeight = tallestCharIter->second.Height;
 
 		return OptionalRef<Font const>{ newFont };
 	}
