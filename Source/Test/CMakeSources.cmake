@@ -1,49 +1,60 @@
-set(SpectralEngine_Test_Main
-    "main.cpp")
+set(SpectralEngine_Test_
+	"main.cpp"
+)
 
-set(SpectralEngine_Test_Core_Event_Source
-    "Tests/Core/Event/EventBindingTest.cpp"
-    "Tests/Core/Event/EventContextTest.cpp"
-    "Tests/Core/Event/EventSubscriptionTest.cpp")
-    
-set(SpectralEngine_Test_Core_Event_Message_Source
-    "Tests/Core/Event/Message/EventMessageTest.cpp")
+source_group("" FILES ${SpectralEngine_Test_})
 
-set(SpectralEngine_Test_Core_Math_Source
-    "Tests/Core/Math/DegreeTest.cpp"
-    "Tests/Core/Math/LinearTransformationsTest.cpp"
-    "Tests/Core/Math/Matrix4x4Test.cpp"
-    "Tests/Core/Math/QuaternionTest.cpp"
-    "Tests/Core/Math/RadianTest.cpp"
-    "Tests/Core/Math/DegreeTest.cpp"
-    "Tests/Core/Math/Vector3Test.cpp"
-    "Tests/Core/Math/Vector2Test.cpp")
+set(SpectralEngine_Test_Mocks_Core_Event
+	"Mocks/Core/Event/IEventContextMock.hpp"
+)
 
-set(SpectralEngine_Test_Utility_Source
-    "Tests/Core/Utility/StringConcatTest.cpp")
+source_group("Mocks/Core/Event" FILES ${SpectralEngine_Test_Mocks_Core_Event})
 
-set(SpectralEngine_Test_Assert_Source
-    "Tests/Core/Assert/SpAssertTest.cpp")
+set(SpectralEngine_Test_Tests_Core_Assert
+	"Tests/Core/Assert/SpAssertTest.cpp"
+)
 
-set(SpectralEngine_Mock_Core_Event
-    "Mocks/Core/Event/IEventContextMock.hpp")
+source_group("Tests/Core/Assert" FILES ${SpectralEngine_Test_Tests_Core_Assert})
 
-set(SpectralEngine_Test_Files
-    "CMakeSources.cmake")
+set(SpectralEngine_Test_Tests_Core_Event
+	"Tests/Core/Event/EventBindingTest.cpp"
+	"Tests/Core/Event/EventContextTest.cpp"
+	"Tests/Core/Event/EventSubscriptionTest.cpp"
+)
 
-source_group("Tests\\Core\\Assert" FILES ${SpectralEngine_Test_Assert_Source})
-source_group("Tests\\Core\\Event" FILES ${SpectralEngine_Test_Core_Event_Source})
-source_group("Tests\\Core\\Event\\Message" FILES ${SpectralEngine_Test_Core_Event_Message_Source})
-source_group("Tests\\Core\\Math" FILES ${SpectralEngine_Test_Core_Math_Source})
-source_group("Tests\\Core\\Utility" FILES ${SpectralEngine_Test_Utility_Source})
-source_group("Mocks\\Core\\Event" FILES ${SpectralEngine_Mock_Core_Event})
+source_group("Tests/Core/Event" FILES ${SpectralEngine_Test_Tests_Core_Event})
 
-set(SpectralEngine_Test_SRC
-    ${SpectralEngine_Test_Assert_Source}
-    ${SpectralEngine_Test_Main}
-    ${SpectralEngine_Test_Core_Event_Source}
-    ${SpectralEngine_Test_Core_Event_Message_Source}
-    ${SpectralEngine_Test_Core_Math_Source}
-    ${SpectralEngine_Test_Utility_Source}
-    ${SpectralEngine_Test_Files}
-    ${SpectralEngine_Mock_Core_Event})
+set(SpectralEngine_Test_Tests_Core_Event_Message
+	"Tests/Core/Event/Message/EventMessageTest.cpp"
+)
+
+source_group("Tests/Core/Event/Message" FILES ${SpectralEngine_Test_Tests_Core_Event_Message})
+
+set(SpectralEngine_Test_Tests_Core_Math
+	"Tests/Core/Math/DegreeTest.cpp"
+	"Tests/Core/Math/LinearTransformationsTest.cpp"
+	"Tests/Core/Math/Matrix4x4Test.cpp"
+	"Tests/Core/Math/QuaternionTest.cpp"
+	"Tests/Core/Math/RadianTest.cpp"
+	"Tests/Core/Math/SpMathTest.cpp"
+	"Tests/Core/Math/Vector2Test.cpp"
+	"Tests/Core/Math/Vector3Test.cpp"
+)
+
+source_group("Tests/Core/Math" FILES ${SpectralEngine_Test_Tests_Core_Math})
+
+set(SpectralEngine_Test_Tests_Core_Utility
+	"Tests/Core/Utility/StringConcatTest.cpp"
+)
+
+source_group("Tests/Core/Utility" FILES ${SpectralEngine_Test_Tests_Core_Utility})
+
+set(Test_ALL_SRC
+	${SpectralEngine_Test_}
+	${SpectralEngine_Test_Mocks_Core_Event}
+	${SpectralEngine_Test_Tests_Core_Assert}
+	${SpectralEngine_Test_Tests_Core_Event}
+	${SpectralEngine_Test_Tests_Core_Event_Message}
+	${SpectralEngine_Test_Tests_Core_Math}
+	${SpectralEngine_Test_Tests_Core_Utility}
+)
