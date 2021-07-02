@@ -27,12 +27,20 @@ namespace sp {
 		return _keyInputManager.keyPressed(keyCode);
 	}
 
-	SpFloat Input::mouseAxisX()	{
+	SpFloat Input::mouseAxisX()	const {
 		return _mouseInputManager._xDelta;
 	}
 
-	SpFloat Input::mouseAxisY()	{
+	SpFloat Input::mouseAxisY()	const {
 		return _mouseInputManager._yDelta;
+	}
+
+	SpFloat Input::getMousePosX() const {
+		return _mouseInputManager._xPosition;
+	}
+
+	SpFloat Input::getMousePosY() const {
+		return _mouseInputManager._yPosition;
 	}
 
 	void Input::update() {

@@ -11,10 +11,10 @@
 namespace sp {
 	struct GUIButtonSettings {
 		Texture BackgroundTexture{ TextureManager::getInstance().getTexture(ResourcesPathProvider::getFullResourcePath(DefaultTexturePath), true, GL_RGBA) };
-		SpString ButtonText{ "Button Text" };
+		SpString ButtonText{ "Button" };
 		TextRenderSettings ButtonTextRenderSettings;
 
 	private:
-		static constexpr char const * DefaultTexturePath = "Art/container.png";
+		static constexpr char const * DefaultTexturePath = "Art/gui-button.png";
 	};
 }

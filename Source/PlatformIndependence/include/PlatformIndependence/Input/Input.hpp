@@ -21,8 +21,10 @@ namespace sp {
 
 	public:
 		bool keyDown(KeyCode keyCode);
-		SpFloat mouseAxisX();
-		SpFloat mouseAxisY();
+		SpFloat mouseAxisX() const;
+		SpFloat mouseAxisY() const;
+		SpFloat getMousePosX() const;
+		SpFloat getMousePosY() const;
 		void update();
 
 	private:

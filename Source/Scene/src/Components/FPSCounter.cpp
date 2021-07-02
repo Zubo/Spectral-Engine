@@ -18,7 +18,7 @@ namespace sp {
 		_numberOfFrames++;
 
 		// Render text
-		guiButton(_gameObjectOwner->getSceneRef()->getRenderContext(), Vector2::getVectorOne() * 100.0F, Vector2{ 200.0F, 50.0F }, _settings);
+		guiButton(_gameObjectOwner->getSceneRef()->getRenderContext(), Vector2::getVectorOne() * 100.0F, Vector2{ 120.0F, 80.0F }, _settings);
 
 		_timeSinceLastRender = 0.0F;
 		_numberOfFrames = 0;
