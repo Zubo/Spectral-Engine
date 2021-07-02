@@ -1,12 +1,16 @@
-set(Glad_SRC
-    "glad.c")
+set(SpectralEngine_Glad_
+	"glad.c"
+)
 
-set(Glad_HEADER
-    "include/glad/glad.h")
+source_group("" FILES ${SpectralEngine_Glad_})
 
-source_group("Source Files" ${Glad_SRC})
-source_group("Header Files" ${Glad_HEADER})
+set(SpectralEngine_Glad_include_glad
+	"include/glad/glad.h"
+)
 
-set(Glad_ALL
-    ${Glad_SRC}
-    ${Glad_HEADER})
+source_group("include/glad" FILES ${SpectralEngine_Glad_include_glad})
+
+set(Glad_ALL_SRC
+	${SpectralEngine_Glad_}
+	${SpectralEngine_Glad_include_glad}
+)

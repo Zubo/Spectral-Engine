@@ -1,0 +1,9 @@
+{
+    "sourceRootDirPath" : "../Source/",
+    "sourceExtensions" : [
+        ".cpp",
+        ".c",
+        ".hpp",
+        ".h"
+    ]
+}
