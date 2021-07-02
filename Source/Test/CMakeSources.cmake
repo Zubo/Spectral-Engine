@@ -37,6 +37,7 @@ set(SpectralEngine_Test_Tests_Core_Math
 	"Tests/Core/Math/QuaternionTest.cpp"
 	"Tests/Core/Math/RadianTest.cpp"
 	"Tests/Core/Math/SpMathTest.cpp"
+	"Tests/Core/Math/SpMathUtilsTest.cpp"
 	"Tests/Core/Math/Vector2Test.cpp"
 	"Tests/Core/Math/Vector3Test.cpp"
 )

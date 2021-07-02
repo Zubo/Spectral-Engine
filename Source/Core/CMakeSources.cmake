@@ -49,6 +49,7 @@ set(SpectralEngine_Core_include_Core_Math
 	"include/Core/Math/Quaternion.hpp"
 	"include/Core/Math/Radian.hpp"
 	"include/Core/Math/SpMath.hpp"
+	"include/Core/Math/SpMathUtils.hpp"
 	"include/Core/Math/Vector2.hpp"
 	"include/Core/Math/Vector3.hpp"
 )
@@ -104,6 +105,7 @@ set(SpectralEngine_Core_src_Math
 	"src/Math/Quaternion.cpp"
 	"src/Math/Radian.cpp"
 	"src/Math/SpMath.cpp"
+	"src/Math/SpMathUtils.cpp"
 	"src/Math/Vector2.cpp"
 	"src/Math/Vector3.cpp"
 )
